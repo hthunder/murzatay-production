@@ -1,0 +1,69 @@
+footer {
+  background-color: #401f09;
+}
+
+.footer-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links-wrap {
+  margin-top: 23px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.social-links {
+  margin-right: 28px;
+  text-decoration: none;
+}
+
+.social-link-text {
+  display: inline-block;
+  font-family: Lora;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  color: rgba(242, 138, 46, 0.6);
+  text-decoration: none;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.questions-form-wrap {
+  max-width: 240px;
+  width: 21.5%;
+  margin-top: 23px;
+  margin-right: -15px;
+}
+
+form > textarea {
+  resize: none;
+  width: 100%;
+  height: 75px;
+  background-color: rgba(217, 182, 139, 1);
+  border: 3px solid rgba(140, 91, 62, 1);
+  border-radius: 5px;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+}
+
+form > button {
+  width: 40%;
+  padding: 2px;
+  margin-top: 12px;
+  background-color: rgba(217, 182, 139, 1);
+  outline: none;
+  border: 3px solid rgba(140, 91, 62, 1);
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+}

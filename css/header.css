@@ -1,0 +1,97 @@
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(217, 182, 139, 1);
+}
+
+.header {
+  max-width: 1140px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #fff;
+  background-image: url(../img/header.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.logo {
+  object-fit: cover;
+  width: 15%;
+}
+
+nav {
+  max-width: 1140px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #8c5d3e;
+  display: flex;
+}
+
+nav > p {
+  width: 14.5%;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 11%;
+}
+
+.nav-link {
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 18px;
+  align: Center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #401f09;
+}
+
+.nav-button {
+  width: 23.5%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.nav-button > button {
+  background-color: transparent;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.nav-button:hover > button {
+  color: #401f09;
+}
+
+.nav-button > button:focus {
+  color: #401f09;
+  border: 1px solid #401f09;
+  border-radius: 3px;
+  outline: none;
+}
+
+.nav-button > button:active {
+  color: #401f09;
+  border: 1px solid #401f09;
+  border-radius: 3px;
+  outline: none;
+}
+
+.nav-button > span {
+  color: #fff;
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.nav-button:hover > span {
+  color: #401f09;
+}
