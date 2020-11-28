@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Lora";
+  src: url("../fonts/lora/Lora-Regular.woff2") format("woff2"),
+    url("../fonts/lora/Lora-Regular.woff") format("woff"),
+    url("../fonts/lora/Lora-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("../fonts/lora/Lora-Medium.woff2") format("woff2"),
+    url("../fonts/lora/Lora-Medium.woff") format("woff"),
+    url("../fonts/lora/Lora-Medium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-regular.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-regular.woff") format("woff"),
+    url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-Medium.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-Medium.woff") format("woff"),
+    url("../fonts/raleway/Raleway-Medium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-SemiBold.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-SemiBold.woff") format("woff"),
+    url("../fonts/raleway/Raleway-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
+}
+
+.wrap {
+  width: 300px;
+  background-color: rgba(197, 147, 86, 0.5);
+  border: 4px solid rgb(150, 133, 108);
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px;
+
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.title {
+  font-family: Raleway;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 250px;
+  margin-bottom: 15px;
+  height: 30px;
+  padding: 5px;
+  outline: none;
+  border: 1px solid rgb(107, 97, 84);
+  border-radius: 3px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.registration > button {
+  width: 230px;
+  margin-bottom: 10px;
+  padding: 3px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  background-color: rgba(134, 92, 68, 0.336);
+  outline: none;
+  border: 0.5px solid rgb(107, 97, 84);
+  border-radius: 6px;
+}

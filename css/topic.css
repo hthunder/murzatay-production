@@ -56,127 +56,127 @@
   width: 100%;
 }
 
-.articles-title {
-  width: 52%;
+.add-favorite {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
   font-family: Lora;
-  font-size: 27px;
-  font-style: normal;
+  font-size: 30px;
   font-weight: 500;
   text-align: center;
-  margin: 21px auto 0 auto;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 15px;
 }
 
-.article {
-  display: flex;
-  margin-top: 35px;
+.topic-text {
+  text-indent: 20px;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  text-align: justify;
+  line-height: 20px;
 }
 
-.article-img {
-  margin-right: 32px;
-  object-fit: cover;
-  max-width: 128px;
-  max-height: 128px;
+.comment-title {
+  margin-top: 10px;
+  max-width: 640px;
+  margin-bottom: 5px;
+  font-family: Lora;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
 }
 
-.article-prewiew {
-  padding-top: 5px;
+.topic-comment-wrap {
   position: relative;
 }
 
-.article-title {
-  max-width: 695px;
-  margin-bottom: 5px;
-  font-family: Lora;
-  font-size: 24px;
+.topic-comment {
+  padding-top: 15px;
+  padding-left: 5px;
+  resize: none;
+  width: 80%;
+  height: 120px;
+  background-color: rgba(217, 182, 139, 0.651);
+  border: 2px solid rgba(140, 91, 62, 1);
+  border-radius: 5px;
+  font-family: Raleway;
+  font-size: 14px;
   font-weight: 400;
-  text-align: left;
-  margin-top: 12px;
-  font-family: Lora;
-  font-size: 22px;
-  font-weight: 500;
+  outline: none;
 }
 
-.unread {
+.symbol-count {
   position: absolute;
-  top: 0px;
-  background-color: rgba(221, 148, 83, 0.658);
-  padding: 1px 3px 1px 3px;
+  top: 3px;
+  left: 5px;
   font-family: Raleway;
   font-size: 12px;
-  font-weight: 500;
-  color: rgb(92, 64, 41);
-}
-
-.article-text {
-  max-width: 695px;
-  margin-bottom: 10px;
-  font-family: Raleway;
-  font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-
-.read-more {
-  background-color: transparent;
-  background: transparent;
-  border: none;
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 500;
-  text-align: right;
-  width: 100%;
-  max-width: 640px;
-  padding-right: 20px;
-}
-
-.read-more:hover {
-  color: rgba(190, 108, 35, 1);
-  cursor: pointer;
-}
-
-.read-more:active {
   outline: none;
 }
 
-.read-more:focus {
+.comment-submit {
+  width: 20%;
+  padding: 2px;
+  margin-top: 12px;
+  background-color: rgba(217, 182, 139, 0.651);
   outline: none;
-}
-
-.pgn-wrap {
-  max-width: 854px;
+  border: 2px solid rgba(140, 91, 62, 1);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
   text-align: center;
-  margin-top: 40px;
+}
+
+.comments-topic {
+  display: flex;
+}
+
+.topic-comment-ava {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.comments-topic {
   margin-bottom: 10px;
 }
 
-.pgn {
-  background-color: transparent;
-  border: none;
+.comments-topic > figcaption {
+  width: 87%;
+  position: relative;
+}
+
+.author {
   font-family: Lora;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.one-topic-comm {
+  font-family: Raleway;
   font-size: 14px;
   font-weight: 400;
-  margin-right: 5px;
-}
-
-.pgn:hover {
-  color: rgba(190, 108, 35, 1);
-  cursor: pointer;
-}
-
-.pgn:active {
   outline: none;
 }
 
-.pgn:focus {
-  outline: none;
-}
-
-.pgn-dot {
-  font-family: Lora;
-  font-size: 14px;
+.date {
+  font-family: Raleway;
+  font-size: 12px;
   font-weight: 400;
-  margin-right: 5px;
+  position: absolute;
+  bottom: 0px;
 }

@@ -21,6 +21,11 @@ footer {
   text-decoration: none;
 }
 
+.social-links:hover > .social-link-text {
+  color: rgba(242, 138, 46, 0.8);
+  text-shadow: rgb(255, 188, 4);
+}
+
 .social-link-text {
   display: inline-block;
   font-family: Lora;

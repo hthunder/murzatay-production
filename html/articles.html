@@ -1,3 +1,6 @@
+<!-- Штука с классом unread должна появляться у зарегестрированных пользователей для тех статей, который они еще не читали-->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +17,20 @@
       <div class="header">
          <div class="logo-wrap">
             <img src="../img/logo.png" alt="" class="logo">
+            <img src="../img/koshkonutost.png" alt="" class="logo-phrase">
          </div>
       </div>
       <nav>
-         <p><a href="#" class="nav-link">Главная</a></p>
-         <p><a href="#" class="nav-link">Об аворе</a></p>
-         <p><a href="#" class="nav-link">Контакты</a></p>
+         <p><a href="index.html" class="nav-link">Главная</a></p>
+         <p><a href="about.html" class="nav-link">Об аворе</a></p>
          <div class="nav-button">
             <button class="log-in">Войти</button>
             <span> / </span>
             <button class="sign-up">Зарегестрироваться</button>
          </div>
+         <form action="#" class="search-wrap">
+            <input type="search" class="search-field" placeholder="Поиск">
+         </form>
       </nav>
    </header>
    <section class="main">
@@ -34,6 +40,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -42,6 +49,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -50,6 +58,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -58,6 +67,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -66,6 +76,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -74,6 +85,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -82,6 +94,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -90,6 +103,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -98,6 +112,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -106,6 +121,7 @@
             <img src="../img/article.png" alt="" class="article-img">
             <figcaption class="article-prewiew">
                <h2 class="article-title">Название статьи</h2>
+               <span class="unread">Прочти меня</span>
                <p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
                <button class="read-more">Читать...</button>
             </figcaption>
@@ -127,9 +143,6 @@
 
       </div>
       <aside class="sidebar">
-            <form action="#" class="search-wrap">
-               <input type="search" class="search-field" placeholder="Поиск">
-            </form>
             <h3 class="aside-title">
                Рубрики
             </h3>
@@ -171,7 +184,7 @@
    <footer>
       <div class="footer-wrap">
          <div class="links-wrap">
-               <a href="" class="social-links">
+               <a href="#" class="social-links">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <rect width="32" height="32" rx="5" fill="#D95204" fill-opacity="0.6"/>
                      <path d="M26.4 0H5.6C2.50721 0 0 2.50721 0 5.6V26.4C0 29.4928 2.50721 32 5.6 32H26.4C29.4928 32 32 29.4928 32 26.4V5.6C32 2.50721 29.4928 0 26.4 0Z" fill="#D95204" fill-opacity="0.6"/>
@@ -179,14 +192,14 @@
                   </svg>                     
                   <p class="social-link-text">Вконтакте</p>
                </a>   
-               <a href="" class="social-links">
+               <a href="#" class="social-links">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M15.9999 31.713C24.678 31.713 31.7129 24.678 31.7129 16C31.7129 7.32194 24.678 0.286987 15.9999 0.286987C7.32189 0.286987 0.286942 7.32194 0.286942 16C0.286942 24.678 7.32189 31.713 15.9999 31.713Z" fill="#D95204" fill-opacity="0.7"/>
                      <path d="M19.5922 6.58545H16.7392C13.9358 6.58545 11.5584 8.71932 11.5584 12.8621C11.5584 15.3474 12.7097 17.1799 14.7616 18.0838L10.9327 25.0131C10.8074 25.2393 10.9327 25.4148 11.1328 25.4148H12.9099C13.0599 25.4148 13.1605 25.3647 13.2105 25.2393L16.6892 18.4354H17.9405V25.2393C17.9405 25.3141 18.0153 25.4148 18.1154 25.4148H19.6674C19.8174 25.4148 19.8676 25.3394 19.8676 25.2144V6.83651C19.8676 6.66076 19.7674 6.58545 19.5922 6.58545ZM17.9404 16.8288H16.8893C15.2376 16.8288 13.636 15.6238 13.636 12.6111C13.636 9.47239 15.1375 8.19207 16.664 8.19207H17.9405V16.8288H17.9404Z" fill="black" fill-opacity="0.8"/>
                   </svg>                                                        
                   <p class="social-link-text">Яндекс.Дзен</p>
                </a>
-               <a href="" class="social-links">
+               <a href="#" class="social-links">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <rect width="32" height="32" rx="5" fill="#D95204" fill-opacity="0.6"/>
                      <path d="M23.31 2H8.69C5 2 2 5 2 8.69V21H4V8.69C4 6.1 6.1 4 8.69 4H23.32C25.9 4 28 6.1 28 8.69V23.32C28 25.9 25.9 28 23.31 28H8.69C6.1 28 4 25.9 4 23.31H2C2 27 5 30 8.69 30H23.32C27 30 30 27 30 23.31V8.69C30 5 27 2 23.31 2Z" fill="black" fill-opacity="0.8"/>
@@ -194,6 +207,19 @@
                      <path d="M24 9C25.1046 9 26 8.10457 26 7C26 5.89543 25.1046 5 24 5C22.8954 5 22 5.89543 22 7C22 8.10457 22.8954 9 24 9Z" fill="black" fill-opacity="0.8"/>
                   </svg>                                                         
                   <p class="social-link-text">Instagram</p>
+               </a>
+               <a href="#" class="social-links">
+                  <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16347 24.8365 0 16 0C7.16347 0 0 7.16347 0 16C0 24.8365 7.16347 32 16 32Z" fill="url(#paint0_linear)" fill-opacity="0.6"/>
+                     <path d="M5.95881 16.7827C7.8292 15.7524 9.91707 14.8926 11.8679 14.0283C15.224 12.6127 18.5935 11.2216 21.9969 9.92657C22.6591 9.7059 23.8489 9.4901 23.9656 10.4714C23.9017 11.8605 23.6389 13.2414 23.4587 14.6224C23.0011 17.6592 22.4723 20.6856 21.9567 23.7124C21.779 24.7206 20.516 25.2425 19.7079 24.5973C17.7657 23.2854 15.8087 21.9864 13.8913 20.6441C13.2633 20.0059 13.8457 19.0894 14.4066 18.6337C16.0062 17.0573 17.7026 15.718 19.2186 14.0601C19.6275 13.0726 18.4193 13.9048 18.0207 14.1598C15.8309 15.6689 13.6946 17.2701 11.3858 18.5964C10.2065 19.2456 8.83193 18.6908 7.65313 18.3285C6.59619 17.8909 5.04737 17.45 5.95871 16.7828L5.95881 16.7827Z" fill="black" fill-opacity="0.8"/>
+                     <defs>
+                     <linearGradient id="paint0_linear" x1="12.0019" y1="1.3344" x2="4.00187" y2="20" gradientUnits="userSpaceOnUse">
+                     <stop stop-color="#D95204"/>
+                     <stop offset="1" stop-color="#D95204" stop-opacity="0.95"/>
+                     </linearGradient>
+                     </defs>
+                  </svg>
+                  <p class="social-link-text">Telegram</p>   
                </a>
          </div>
          <div class="questions-form-wrap">
