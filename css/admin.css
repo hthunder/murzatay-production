@@ -1,13 +1,84 @@
 .admin-input {
   margin-top: 10px;
+  background: #fff;
+  border: 1px solid gray;
+  margin-bottom: 10px;
 }
 
 .main-img-btn {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 200px;
 }
 
 .about-text-change {
   background-color: #fff;
   border: 1px solid gray;
   margin-top: 10px;
+}
+
+.special-text-change {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 100px;
+}
+
+.special-text-btn {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 100px;
+}
+
+.change-button {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 200px;
+}
+
+.admin-button {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 200px;
+}
+
+#indention {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 500px;
 }

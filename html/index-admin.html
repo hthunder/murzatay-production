@@ -31,15 +31,22 @@
    <section class="main">
       <div class="content">
          <img src="../img/mainPicture.png" alt="" class="main-img">
-         <button class="main-img-btn">Изменить</button>
+         <button class="main-img-btn" form="main-img-chng">Изменить</button>
          <!-- должно вылезать под кнопкой при раскомментировании для изменения фото выше с классом  main-img
-         <form action="post" class="admin-form">
+         <form action="post" class="admin-form" id="main-img-chng">
             <input type="file" method="post" class="admin-input">
             </form>-->
 
 
 
          <p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur soluta doloribus in error molestiae veniam!</p>
+         <button class="special-text-btn" form="special-text-chng">Изменить</button>
+         <!-- должно вылезать под кнопкой при раскомментировании для изменения текста выше с классом  special-text
+         <form action="post"  id="special-text-chng">
+            <textarea  class="admin-input"></textarea>
+            <button class="special-text-change">Готово</button>
+            </form>-->
+
          <figure class="last-article">
             <img src="../img/last-article.png" alt="" class="last-article-img">
             <figcaption class="last-article-prewiew">
@@ -72,6 +79,11 @@
                <p class="aside-button-wrap"><button class="aside-button">Коты спинальники</button></p>
                <p class="aside-button-wrap"><button class="aside-button">Интересные факты</button></p>
                <p class="aside-button-wrap"><button class="aside-button">Забавные истории</button></p>
+               <p class="aside-button-wrap"><button class="change-button" form="add-rubrick">Добавить рубрику</button></p>
+            <!--Должно появиться при нажатии кнопки с классом change-button для дообавления рубрики
+               <form action="post" id="add-rubrick">
+                  <input type="text" name="" id="">
+               </form>-->
             </div>
             <h3 class="aside-title">
                Комментарии
