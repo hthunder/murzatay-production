@@ -180,3 +180,176 @@
   font-weight: 400;
   margin-right: 5px;
 }
+
+@media screen and (max-width: 490px) {
+  .logo-phrase {
+    display: none;
+  }
+
+  .logo {
+    width: 30%;
+  }
+
+  .header {
+    width: auto;
+    max-width: 489px;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .nav-link {
+    display: none;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .search-wrap {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .menu-list {
+    list-style: none;
+    position: absolute;
+    top: 43px;
+    width: 50%;
+    right: 0px;
+  }
+
+  .nav-link-mobile {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .menu-item {
+    background-color: rgb(150, 104, 77);
+    padding: 5px;
+    text-align: center;
+  }
+
+  .log-in,
+  .sign-up {
+    background-color: transparent;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .mobile-rubrics-btn-wrap {
+    display: block;
+  }
+
+  .search-icon {
+    display: block;
+    position: absolute;
+  }
+
+  .search-wrap {
+    position: absolute;
+    width: 80%;
+    top: 43px;
+    left: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  body {
+    max-width: 489px;
+  }
+
+  .main {
+    max-width: 480px;
+    padding: 0px;
+    width: auto;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 3px;
+    width: auto;
+  }
+
+  .articles-title {
+    width: 92%;
+    font-size: 24px;
+  }
+
+  .article {
+    display: block;
+    text-align: center;
+    max-width: 488px;
+    margin-bottom: 10px;
+  }
+
+  .article-img {
+    object-fit: cover;
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .unread {
+    left: 0px;
+    top: 5px;
+  }
+
+  .article-title {
+    max-width: 90%;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 22px;
+  }
+
+  .article-text {
+    max-width: 98%;
+    margin-bottom: 7px;
+  }
+
+  .read-more {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    max-width: 98%;
+    padding-right: 0px;
+  }
+
+  .footer-wrap {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .links-wrap {
+    max-width: 100%;
+    margin-top: 23px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .questions-form-wrap {
+    max-width: 100%;
+    display: none;
+  }
+} ;

@@ -11,7 +11,7 @@
    <link rel="stylesheet" type="text/css" href="../css/my-page.css">
 </head>
 <body>
-   <header>
+      <header>
       <div class="header">
          <div class="logo-wrap">
             <img src="../img/logo.png" alt="" class="logo">
@@ -19,17 +19,58 @@
          </div>
       </div>
       <nav>
-         <p><a href="index.html" class="nav-link">Главная</a></p>
-         <p><a href="about.html" class="nav-link">Об аворе</a></p>
-         <div class="nav-button">
-            <button class="log-in">Войти</button>
-            <span> / </span>
-            <button class="sign-up">Зарегестрироваться</button>
-         </div>
-         <form action="#" class="search-wrap">
-            <input type="search" class="search-field" placeholder="Поиск">
-         </form>
+            <p><a href="index.html" class="nav-link">Главная</a></p>
+            <p><a href="about.html" class="nav-link">Об аворе</a></p>
+            <div class="nav-button">
+               <button class="log-in">Личный кабинет</button>
+               <span> / </span>
+               <button class="sign-up">Выйти</button>
+            </div>
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="search-icon">
+               <g clip-path="url(#clip0)">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7224 20.6921C17.1348 21.8673 22.0717 16.8189 20.6668 18.7379C20.702 18.7351 20.6368 18.8415 20.4184 19.1082C20.4184 19.1082 24.1702 22.8348 26.012 24.7314C26.6513 25.4228 25.4977 26.8028 24.714 26.0823C23.0462 24.4642 19.0998 20.4428 19.0937 20.4362L18.7224 20.6921V20.6921Z" fill="white"/>
+               <path d="M13.2096 22.5764C15.6236 22.5529 18.0133 21.5531 19.7317 19.8548C21.7727 17.8378 22.8236 14.8537 22.4571 12.0047C21.8289 7.12263 17.8155 3.80951 13.1496 3.80951C9.60439 3.80951 6.15908 6.02716 4.64783 9.24279C3.49096 11.7047 3.48861 14.677 4.64783 17.1431C6.1483 20.3362 9.53736 22.5422 13.0891 22.5764C13.1294 22.5764 13.1697 22.5764 13.2096 22.5764V22.5764ZM13.0989 21.0122C9.49377 20.9775 6.13002 18.1893 5.46111 14.6147C4.98955 12.0947 5.87971 9.36747 7.73408 7.57779C9.89877 5.48763 13.3014 4.78779 16.1308 5.97232C18.6621 7.03216 20.5567 9.4931 20.906 12.2043C21.205 14.5284 20.3711 16.964 18.7324 18.6417C17.2947 20.1136 15.2786 20.992 13.1997 21.0122C13.166 21.0122 13.1327 21.0122 13.0989 21.0122V21.0122Z" fill="white"/>
+               </g>
+               <defs>
+               <clipPath id="clip0">
+               <rect width="30" height="30" fill="white"/>
+               </clipPath>
+               </defs>
+               </svg>
+               
+            <form action="#" class="search-wrap">
+               <input type="search" class="search-field" placeholder="Поиск">
+            </form>
+
+            <button class="mobile-menu"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M3 8V6H21V8H3Z" fill="#F1BC9C" />
+               <path d="M3 13H21V11H3V13Z" fill="#F1BC9C" />
+               <path d="M3 18H21V16H3V18Z" fill="#F1BC9C" />
+               </svg>
+               </button>
+               <ul class="menu-list">
+                  <li class="menu-item"><a href="index.html" class="nav-link-mobile">Главная</a></li>
+                  <li class="menu-item"><a href="about.html" class="nav-link-mobile">Об аворе</a></li>
+                  <li class="menu-item"><button class="log-in">Войти</button></li>
+                  <li class="menu-item"><button class="sign-up">Зарегестрироваться</button></li>
+               </ul>
       </nav>
+      <div class="mobile-rubrics-wrap">
+         <p class="mobile-rubrics-btn-wrap"><button class="mobile-rubrics">
+            Рубрики
+         </button></p>
+         <div class="rubrics-mbl-container">
+            <p class="aside-button-wrap"><button class="aside-button">Кормление</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Уход</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Воспитание</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Адаптация</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">“Пора к ветеринару?”</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Коты доноры</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Коты спинальники</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Интересные факты</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Забавные истории</button></p>
+         </div>
+      </div>
    </header>
    <section class="main">
       <div class="content">

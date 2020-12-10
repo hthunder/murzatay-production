@@ -56,7 +56,7 @@
   width: 100%;
 }
 
-h1 {
+.about-title {
   font-family: Lora;
   font-size: 30px;
   font-weight: 500;
@@ -75,8 +75,168 @@ h1 {
 .about-img {
   object-fit: cover;
   margin-right: 30px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .about-text {
   max-width: 568px;
+  font-family: Raleway;
+  font-size: 14px;
+  text-indent: 18px;
+  line-height: 18px;
 }
+
+@media screen and (max-width: 490px) {
+  .logo-phrase {
+    display: none;
+  }
+
+  .logo {
+    width: 30%;
+  }
+
+  .header {
+    width: auto;
+    max-width: 489px;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .nav-link {
+    display: none;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .search-wrap {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .menu-list {
+    list-style: none;
+    position: absolute;
+    top: 43px;
+    width: 50%;
+    right: 0px;
+  }
+
+  .nav-link-mobile {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .menu-item {
+    background-color: rgb(150, 104, 77);
+    padding: 5px;
+    text-align: center;
+  }
+
+  .log-in,
+  .sign-up {
+    background-color: transparent;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .mobile-rubrics-btn-wrap {
+    display: block;
+  }
+
+  .search-icon {
+    display: block;
+    position: absolute;
+  }
+
+  .search-wrap {
+    position: absolute;
+    width: 80%;
+    top: 43px;
+    left: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  body {
+    max-width: 489px;
+  }
+
+  .main {
+    max-width: 480px;
+    padding: 0px;
+    width: auto;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 5px;
+    width: auto;
+  }
+
+  .about-title {
+    font-size: 24px;
+    text-align: center;
+    width: 80%;
+    max-width: 81%;
+    margin-bottom: -10px;
+  }
+
+  .about-wrap {
+    margin-top: 34px;
+    display: block;
+    text-align: center;
+  }
+
+  .about-img {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .about-text {
+    max-width: 98%;
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+
+  .footer-wrap {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .links-wrap {
+    max-width: 100%;
+    margin-top: 23px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .questions-form-wrap {
+    max-width: 100%;
+    display: none;
+  }
+} ;

@@ -180,3 +180,170 @@ h1 {
   position: absolute;
   bottom: 0px;
 }
+
+@media screen and (max-width: 490px) {
+  .logo-phrase {
+    display: none;
+  }
+
+  .logo {
+    width: 30%;
+  }
+
+  .header {
+    max-width: 489px;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .nav-link {
+    display: none;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .search-wrap {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .menu-list {
+    list-style: none;
+    position: absolute;
+    top: 43px;
+    width: 50%;
+    right: 0px;
+  }
+
+  .nav-link-mobile {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .menu-item {
+    background-color: rgb(150, 104, 77);
+    padding: 5px;
+    text-align: center;
+  }
+
+  .log-in,
+  .sign-up {
+    background-color: transparent;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .mobile-rubrics-btn-wrap {
+    display: block;
+  }
+
+  .search-icon {
+    display: block;
+    position: absolute;
+  }
+
+  .search-wrap {
+    position: absolute;
+    width: 80%;
+    top: 43px;
+    left: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  body {
+    max-width: 489px;
+  }
+
+  .main {
+    max-width: 489px;
+    padding: 0px;
+    width: auto;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 3px;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 26px;
+    width: 70%;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+
+  .topic-text {
+    margin-top: 8px;
+    max-width: 100%;
+    padding: 7px;
+  }
+
+  .comment-title {
+    margin-top: 10px;
+    max-width: 70%;
+    font-size: 16px;
+  }
+
+  .topic-comment {
+    width: 90%;
+    height: 100px;
+    border: 1px solid rgba(140, 91, 62, 1);
+  }
+
+  .comment-submit {
+    margin-top: 10px;
+    border: 1px solid rgba(140, 91, 62, 1);
+    width: 30%;
+  }
+
+  .comments-topic-wrap {
+    max-width: 98%;
+  }
+
+  .one-topic-comm {
+    max-width: 100%;
+  }
+
+  .footer-wrap {
+    max-width: 489px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .links-wrap {
+    max-width: 100%;
+    margin-top: 23px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .questions-form-wrap {
+    max-width: 100%;
+    display: none;
+  }
+}
