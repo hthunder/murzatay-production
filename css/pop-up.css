@@ -49,9 +49,9 @@
   box-sizing: border-box;
 }
 
-.wrap {
+.pop-up__login {
   width: 300px;
-  background-color: rgba(197, 147, 86, 0.5);
+  background-color: rgb(216, 193, 166);
   border: 4px solid rgb(150, 133, 108);
   border-radius: 25px;
   text-align: center;
@@ -59,6 +59,30 @@
 
   margin: 0 auto;
   margin-top: 20px;
+  /* -------- */
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  z-index: 100;
+}
+
+.pop-up__signup {
+  width: 300px;
+  background-color: rgb(216, 193, 166);
+  border: 4px solid rgb(150, 133, 108);
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px;
+
+  margin: 0 auto;
+  margin-top: 20px;
+  /* -------- */
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  z-index: 100;
 }
 
 .title {
@@ -84,11 +108,13 @@
   font-weight: 400;
 }
 
-.registration > button {
+.registration button,
+.cansel-login,
+.cansel-signup {
   width: 230px;
   margin-bottom: 10px;
   padding: 3px;
-  font-family: Raleway;
+  font-family: "Raleway";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -96,4 +122,44 @@
   outline: none;
   border: 0.5px solid rgb(107, 97, 84);
   border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  user-select: none;
+}
+
+.cansel-login,
+.cansel-signup {
+  padding: 3px 81px;
+}
+
+@media screen and (max-width: 750px) {
+  .pop-up__signup {
+    max-width: 250px;
+    top: 40%;
+    left: 18vw;
+    border: 2px solid rgb(150, 133, 108);
+  }
+
+  .pop-up__login {
+    max-width: 250px;
+    top: 40%;
+    left: 18vw;
+    border: 2px solid rgb(150, 133, 108);
+  }
+
+  .registration button,
+  .cansel-login,
+  .cansel-signup {
+    max-width: 200px;
+  }
+
+  .cansel-login,
+  .cansel-signup {
+    padding: 3px 65px;
+  }
+
+  .input {
+    max-width: 200px;
+  }
 }

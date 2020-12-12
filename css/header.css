@@ -61,6 +61,8 @@ nav > p {
   width: 23.5%;
   text-align: center;
   vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-button > button {
@@ -73,32 +75,15 @@ nav > p {
   font-size: 16px;
 }
 
-.nav-button:hover > button {
-  color: #401f09;
-}
-
-.nav-button > button:focus {
+.nav-button > button.log-in:focus,
+.nav-button > button.sign-up:focus {
   color: #401f09;
   border: 1px solid #401f09;
   border-radius: 3px;
   outline: none;
 }
 
-.nav-button > button:active {
-  color: #401f09;
-  border: 1px solid #401f09;
-  border-radius: 3px;
-  outline: none;
-}
-
-.nav-button > span {
-  color: #fff;
-  font-family: Raleway;
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.nav-button:hover > span {
+.nav-button > button:hover {
   color: #401f09;
 }
 
@@ -158,4 +143,5 @@ nav > p {
 
 .rubrics-mbl-container {
   display: none;
+  flex-wrap: wrap;
 }

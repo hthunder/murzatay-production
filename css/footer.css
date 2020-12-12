@@ -72,3 +72,14 @@ form > button {
   font-weight: 400;
   text-align: left;
 }
+
+.overlay {
+  background: rgba(155, 143, 143, 0.445);
+  width: 100%;
+  height: 200vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}

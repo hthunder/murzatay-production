@@ -7,6 +7,7 @@
    <link rel="stylesheet" type="text/css" href="../css/aside.css">
    <link rel="stylesheet" type="text/css" href="../css/footer.css">
    <link rel="stylesheet" type="text/css" href="../css/topic.css">
+   <link rel="stylesheet" type="text/css" href="../css/pop-up.css">
    <title>Мурзатай</title>
 </head>
 <body>
@@ -24,7 +25,6 @@
             <p><a href="about.html" class="nav-link">Об аворе</a></p>
             <div class="nav-button">
                <button class="log-in">Войти</button>
-               <span> / </span>
                <button class="sign-up">Зарегестрироваться</button>
             </div>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="search-icon">
@@ -213,6 +213,36 @@
       </div>
    </div>
 </footer>
+
+
+<div class="pop-up__login">
+   <form action="#" class="registration">
+      <h2 class="title">Войти</h2>
+      <input type="email" placeholder="E-mail/Login" class="input">
+      <input type="password" placeholder="Пароль" class="input">
+         <button class="submit" type="submit">Войти</button><br>
+         <!-- <button class="cansel">Отменить</button> -->
+         <a href="#" class="cansel-login" >Отменить</a>
+   </form>
+</div>
+
+<div class="pop-up__signup">
+   <h2 class="title">Регистрация</h2>
+   <form action="" class="registration">
+      <input type="text" placeholder="Login" class="input">
+      <input type="email" placeholder="E-mail" class="input">
+      <input type="password" placeholder="Пароль" class="input">
+      <input type="password" placeholder="Повторите пароль" class="input">
+      <input type="text"  placeholder="Город" class="input">
+      <button class="submit" type="submit">Зарегестрироваться</button><br>
+      <a href="#" class="cansel-signup" >Отменить</a>
+   </form>
+</div>
+<div class="overlay"></div>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/jquery.maskedinput.min.js"></script>
+<script src="../js/jquery.fancybox.min.js"></script>
+<script src="../js/main.js"></script>
 
 
 

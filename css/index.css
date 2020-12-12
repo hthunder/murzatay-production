@@ -106,6 +106,8 @@ nav > p {
   width: 23.5%;
   text-align: center;
   vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-button > button {
@@ -118,32 +120,15 @@ nav > p {
   font-size: 16px;
 }
 
-.nav-button:hover > button {
-  color: #401f09;
-}
-
-.nav-button > button:focus {
+.nav-button > button.log-in:focus,
+.nav-button > button.sign-up:focus {
   color: #401f09;
   border: 1px solid #401f09;
   border-radius: 3px;
   outline: none;
 }
 
-.nav-button > button:active {
-  color: #401f09;
-  border: 1px solid #401f09;
-  border-radius: 3px;
-  outline: none;
-}
-
-.nav-button > span {
-  color: #fff;
-  font-family: Raleway;
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.nav-button:hover > span {
+.nav-button > button:hover {
   color: #401f09;
 }
 
@@ -203,6 +188,7 @@ nav > p {
 
 .rubrics-mbl-container {
   display: none;
+  flex-wrap: wrap;
 }
 
 .main {
@@ -484,7 +470,7 @@ form > button {
   text-align: left;
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 750px) {
   .logo-phrase {
     display: none;
   }
@@ -523,7 +509,7 @@ form > button {
   .menu-list {
     list-style: none;
     position: absolute;
-    top: 43px;
+    top: 40px;
     width: 50%;
     right: 0px;
   }
@@ -565,8 +551,9 @@ form > button {
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 43px;
+    top: 40px;
     left: 0;
+    display: none;
   }
 
   .sidebar {
@@ -656,4 +643,15 @@ form > button {
     max-width: 100%;
     display: none;
   }
+}
+
+.overlay {
+  background: rgba(155, 143, 143, 0.445);
+  width: 100%;
+  height: 200vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
 }
