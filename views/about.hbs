@@ -1,382 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Мурзатай</title>
-    <link rel="stylesheet" type="text/css" href="../css/header.css" />
-    <link rel="stylesheet" type="text/css" href="../css/aside.css" />
-    <link rel="stylesheet" type="text/css" href="../css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="../css/about.css" />
-    <link rel="stylesheet" type="text/css" href="../css/pop-up.css" />
-  </head>
-  <body>
-    <header>
-      <div class="header">
-        <div class="logo-wrap">
-          <img src="../img/logo.png" alt="" class="logo" />
-          <img src="../img/koshkonutost.png" alt="" class="logo-phrase" />
-        </div>
-      </div>
-      <nav>
-        <p><a href="index.html" class="nav-link">Главная</a></p>
-        <p><a href="about.html" class="nav-link">Об авторе</a></p>
-        <div class="nav-button">
-          <button class="log-in">Войти</button>
-          <button class="sign-up">Зарегистрироваться</button>
-        </div>
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 30 30"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="search-icon"
-        >
-          <g clip-path="url(#clip0)">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M18.7224 20.6921C17.1348 21.8673 22.0717 16.8189 20.6668 18.7379C20.702 18.7351 20.6368 18.8415 20.4184 19.1082C20.4184 19.1082 24.1702 22.8348 26.012 24.7314C26.6513 25.4228 25.4977 26.8028 24.714 26.0823C23.0462 24.4642 19.0998 20.4428 19.0937 20.4362L18.7224 20.6921V20.6921Z"
-              fill="white"
-            />
-            <path
-              d="M13.2096 22.5764C15.6236 22.5529 18.0133 21.5531 19.7317 19.8548C21.7727 17.8378 22.8236 14.8537 22.4571 12.0047C21.8289 7.12263 17.8155 3.80951 13.1496 3.80951C9.60439 3.80951 6.15908 6.02716 4.64783 9.24279C3.49096 11.7047 3.48861 14.677 4.64783 17.1431C6.1483 20.3362 9.53736 22.5422 13.0891 22.5764C13.1294 22.5764 13.1697 22.5764 13.2096 22.5764V22.5764ZM13.0989 21.0122C9.49377 20.9775 6.13002 18.1893 5.46111 14.6147C4.98955 12.0947 5.87971 9.36747 7.73408 7.57779C9.89877 5.48763 13.3014 4.78779 16.1308 5.97232C18.6621 7.03216 20.5567 9.4931 20.906 12.2043C21.205 14.5284 20.3711 16.964 18.7324 18.6417C17.2947 20.1136 15.2786 20.992 13.1997 21.0122C13.166 21.0122 13.1327 21.0122 13.0989 21.0122V21.0122Z"
-              fill="white"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0">
-              <rect width="30" height="30" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
 
-        <form action="#" class="search-wrap">
-          <input type="search" class="search-field" placeholder="Поиск" />
-        </form>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Мурзатай</title>
+	<link rel="stylesheet" type="text/css" href="../css/header.css" />
+	<link rel="stylesheet" type="text/css" href="../css/aside.css" />
+	<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+	<link rel="stylesheet" type="text/css" href="../css/about.css" />
+	<link rel="stylesheet" type="text/css" href="../css/pop-up.css" />
+</head>
 
-        <button class="mobile-menu">
-          <svg
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M3 8V6H21V8H3Z" fill="#F1BC9C" />
-            <path d="M3 13H21V11H3V13Z" fill="#F1BC9C" />
-            <path d="M3 18H21V16H3V18Z" fill="#F1BC9C" />
-          </svg>
-        </button>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <a href="index.html" class="nav-link-mobile">Главная</a>
-          </li>
-          <li class="menu-item">
-            <a href="about.html" class="nav-link-mobile">Об авторе</a>
-          </li>
-          <li class="menu-item"><button class="log-in">Войти</button></li>
-          <li class="menu-item">
-            <button class="sign-up">Зарегистрироваться</button>
-          </li>
-        </ul>
-      </nav>
-      <div class="mobile-rubrics-wrap">
-        <p class="mobile-rubrics-btn-wrap">
-          <button class="mobile-rubrics">Рубрики</button>
-        </p>
-        <div class="rubrics-mbl-container">
-          <p class="aside-button-wrap">
-            <button class="aside-button">Кормление</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Уход</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Воспитание</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Адаптация</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">“Пора к ветеринару?”</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Коты доноры</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Коты спинальники</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Интересные факты</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Забавные истории</button>
-          </p>
-        </div>
-      </div>
-    </header>
-    <section class="main">
-      <div class="content">
-        <h1 class="about-title">Об авторе</h1>
-        <div class="about-wrap">
-          <img src="../img/about.png" alt="" class="about-img" />
-          <p class="about-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            et tortor libero. Sed enim risus, ullamcorper at purus eget, auctor
-            porta purus. Donec leo urna, ultrices nec magna vel, semper aliquam
-            leo. Vivamus ut sapien quis nunc faucibus aliquet et ornare velit.
-            Quisque nulla nulla, lacinia a accumsan sit amet, bibendum non
-            lorem. Nulla imperdiet quam vitae eros pellentesque volutpat. Donec
-            sodales sapien nec arcu blandit dignissim eu sit amet eros.
-            <br />
-            Aliquam erat volutpat. Donec ornare, augue eget rutrum porttitor,
-            nisl tortor tincidunt magna, sit amet commodo lorem eros quis diam.
-            Ut id orci vel dui convallis pulvinar vitae sit amet quam. Maecenas
-            sagittis rhoncus consequat.
-            <br />
-            Aliquam metus magna, egestas id mattis in, ullamcorper ut lacus.
-            Pellentesque iaculis scelerisque nisl vitae aliquet. Donec tempus
-            nulla sit amet justo placerat eleifend. Sed id massa eu massa
-            maximus iaculis. Integer volutpat at enim quis ultrices. Quisque
-            vitae suscipit lorem, ut euismod tellus. Morbi at ante mattis,
-            placerat tellus in, maximus purus.
-            <br />
-            Aliquam cursus nec dui at ultricies. Vestibulum euismod dui nec ex
-            fringilla condimentum. Nullam varius ligula non vestibulum aliquam.
-            Quisque arcu nibh, dictum ac sollicitudin ut, porttitor at libero.
-            Cras at orci ac lorem cursus facilisis. Aenean fermentum, mi a
-            tincidunt eleifend, nisl urna mollis nibh, a aliquet sapien nisi non
-            libero. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas. Ut id massa interdum, cursus
-            massa quis, feugiat risus. Vivamus at lacus nibh. Sed molestie
-            condimentum erat, at auctor nunc varius non. Sed feugiat neque odio,
-            nec ultricies nulla congue vitae.
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            convallis arcu eget fringilla porttitor. Duis ut ante ac lacus
-            tincidunt egestas. Vivamus quis ornare nulla. Vestibulum ante ipsum
-            primis in faucibus orci luctus et ultrices posuere cubilia curae;
-            Cras at erat mollis,
-          </p>
-        </div>
-      </div>
-      <aside class="sidebar">
-        <h3 class="aside-title">Рубрики</h3>
-        <div class="rubrick-wrap">
-          <p class="aside-button-wrap">
-            <button class="aside-button">Кормление</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Уход</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Воспитание</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Адаптация</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">“Пора к ветеринару?”</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Коты доноры</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Коты спинальники</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Интересные факты</button>
-          </p>
-          <p class="aside-button-wrap">
-            <button class="aside-button">Забавные истории</button>
-          </p>
-        </div>
-        <h3 class="aside-title">Комментарии</h3>
-        <div class="comment-wrap">
-          <figure class="comment">
-            <img src="../img/comment-img.png" alt="" class="comment-img" />
-            <figcaption class="comment-text-wrap">
-              <p class="comment-text">Какой-то коммент 1</p>
-              <p class="comment-author">L. Orem</p>
-            </figcaption>
-          </figure>
-          <figure class="comment">
-            <img src="../img/comment-img.png" alt="" class="comment-img" />
-            <figcaption class="comment-text-wrap">
-              <p class="comment-text">Какой-то коммент 1</p>
-              <p class="comment-author">L. Orem</p>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="insta">
-          <p class="insta-text">Тут хотят виджет из инсты</p>
-        </div>
-      </aside>
-    </section>
-    <footer>
-      <div class="footer-wrap">
-        <div class="links-wrap">
-          <a href="#" class="social-links">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                width="32"
-                height="32"
-                rx="5"
-                fill="#D95204"
-                fill-opacity="0.6"
-              />
-              <path
-                d="M26.4 0H5.6C2.50721 0 0 2.50721 0 5.6V26.4C0 29.4928 2.50721 32 5.6 32H26.4C29.4928 32 32 29.4928 32 26.4V5.6C32 2.50721 29.4928 0 26.4 0Z"
-                fill="#D95204"
-                fill-opacity="0.6"
-              />
-              <path
-                d="M4.81 9.88501H8.65C8.73028 9.88488 8.80869 9.90921 8.87479 9.95477C8.9409 10.0003 8.99155 10.0649 9.02 10.14C9.445 11.235 11.21 15.52 12.825 15.87C14.025 15.87 13.6 10.17 12.075 10.17C11.675 10.17 12.785 9.46001 12.86 9.43001C14.2772 9.04156 15.7728 9.04156 17.19 9.43001C17.955 9.75001 18.085 10.645 18.105 11.405C18.125 12.165 17.255 15.405 18.4 15.755C19.9 16.215 21.83 11.51 22.28 10.355C22.3093 10.2809 22.3602 10.2173 22.4263 10.1727C22.4923 10.1281 22.5703 10.1045 22.65 10.105H26.925C26.9911 10.1048 27.0561 10.121 27.1144 10.152C27.1727 10.1831 27.2224 10.2282 27.2591 10.2831C27.2957 10.3381 27.3182 10.4013 27.3244 10.467C27.3307 10.5328 27.3206 10.5991 27.295 10.66C26.4144 12.6689 25.3587 14.5963 24.14 16.42C24.0364 16.5705 23.9878 16.7521 24.0024 16.9342C24.0169 17.1163 24.0938 17.2879 24.22 17.42C25.5 18.79 29 22.67 27 22.67H22.685C22.5735 22.6703 22.4632 22.6468 22.3614 22.6011C22.2597 22.5554 22.1689 22.4886 22.095 22.405C21.425 21.665 19.475 19.605 18.595 19.77C17.865 19.905 17.795 21.145 17.83 21.955C17.841 22.164 17.7697 22.369 17.6314 22.526C17.4931 22.683 17.2987 22.7796 17.09 22.795C16.325 22.84 15.28 22.86 15.185 22.855C12.135 22.66 10.33 20.625 8.605 18.355C6.79807 15.9484 5.38853 13.2677 4.43 10.415C4.41041 10.3546 4.40528 10.2905 4.41502 10.2278C4.42476 10.1651 4.4491 10.1056 4.48608 10.054C4.52305 10.0024 4.57164 9.96025 4.6279 9.9309C4.68417 9.90154 4.74654 9.88583 4.81 9.88501V9.88501Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-            </svg>
-            <p class="social-link-text">Вконтакте</p>
-          </a>
-          <a href="#" class="social-links">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.9999 31.713C24.678 31.713 31.7129 24.678 31.7129 16C31.7129 7.32194 24.678 0.286987 15.9999 0.286987C7.32189 0.286987 0.286942 7.32194 0.286942 16C0.286942 24.678 7.32189 31.713 15.9999 31.713Z"
-                fill="#D95204"
-                fill-opacity="0.7"
-              />
-              <path
-                d="M19.5922 6.58545H16.7392C13.9358 6.58545 11.5584 8.71932 11.5584 12.8621C11.5584 15.3474 12.7097 17.1799 14.7616 18.0838L10.9327 25.0131C10.8074 25.2393 10.9327 25.4148 11.1328 25.4148H12.9099C13.0599 25.4148 13.1605 25.3647 13.2105 25.2393L16.6892 18.4354H17.9405V25.2393C17.9405 25.3141 18.0153 25.4148 18.1154 25.4148H19.6674C19.8174 25.4148 19.8676 25.3394 19.8676 25.2144V6.83651C19.8676 6.66076 19.7674 6.58545 19.5922 6.58545ZM17.9404 16.8288H16.8893C15.2376 16.8288 13.636 15.6238 13.636 12.6111C13.636 9.47239 15.1375 8.19207 16.664 8.19207H17.9405V16.8288H17.9404Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-            </svg>
-            <p class="social-link-text">Яндекс.Дзен</p>
-          </a>
-          <a href="#" class="social-links">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                width="32"
-                height="32"
-                rx="5"
-                fill="#D95204"
-                fill-opacity="0.6"
-              />
-              <path
-                d="M23.31 2H8.69C5 2 2 5 2 8.69V21H4V8.69C4 6.1 6.1 4 8.69 4H23.32C25.9 4 28 6.1 28 8.69V23.32C28 25.9 25.9 28 23.31 28H8.69C6.1 28 4 25.9 4 23.31H2C2 27 5 30 8.69 30H23.32C27 30 30 27 30 23.31V8.69C30 5 27 2 23.31 2Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-              <path
-                d="M7 16C7 20.96 11.04 25 16 25C20.96 25 25 20.96 25 16C25 11.04 20.96 7 16 7C11.04 7 7 11.04 7 16ZM23 16C23 19.86 19.86 23 16 23C12.14 23 9 19.86 9 16C9 12.14 12.14 9 16 9C19.86 9 23 12.14 23 16Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-              <path
-                d="M24 9C25.1046 9 26 8.10457 26 7C26 5.89543 25.1046 5 24 5C22.8954 5 22 5.89543 22 7C22 8.10457 22.8954 9 24 9Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-            </svg>
-            <p class="social-link-text">Instagram</p>
-          </a>
-          <a href="#" class="social-links">
-            <svg
-              width="34"
-              height="34"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16347 24.8365 0 16 0C7.16347 0 0 7.16347 0 16C0 24.8365 7.16347 32 16 32Z"
-                fill="url(#paint0_linear)"
-                fill-opacity="0.6"
-              />
-              <path
-                d="M5.95881 16.7827C7.8292 15.7524 9.91707 14.8926 11.8679 14.0283C15.224 12.6127 18.5935 11.2216 21.9969 9.92657C22.6591 9.7059 23.8489 9.4901 23.9656 10.4714C23.9017 11.8605 23.6389 13.2414 23.4587 14.6224C23.0011 17.6592 22.4723 20.6856 21.9567 23.7124C21.779 24.7206 20.516 25.2425 19.7079 24.5973C17.7657 23.2854 15.8087 21.9864 13.8913 20.6441C13.2633 20.0059 13.8457 19.0894 14.4066 18.6337C16.0062 17.0573 17.7026 15.718 19.2186 14.0601C19.6275 13.0726 18.4193 13.9048 18.0207 14.1598C15.8309 15.6689 13.6946 17.2701 11.3858 18.5964C10.2065 19.2456 8.83193 18.6908 7.65313 18.3285C6.59619 17.8909 5.04737 17.45 5.95871 16.7828L5.95881 16.7827Z"
-                fill="black"
-                fill-opacity="0.8"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear"
-                  x1="12.0019"
-                  y1="1.3344"
-                  x2="4.00187"
-                  y2="20"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#D95204" />
-                  <stop offset="1" stop-color="#D95204" stop-opacity="0.95" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <p class="social-link-text">Telegram</p>
-          </a>
-        </div>
-        <div class="questions-form-wrap">
-          <form action="#" class="questions-wrap">
-            <textarea
-              name="#"
-              id=""
-              placeholder="Задайте нам вопрос"
-              class="questions-area"
-            ></textarea>
-            <br />
-            <button class="question-btn">Отправить</button>
-          </form>
-        </div>
-      </div>
-    </footer>
+<body>
+	<header>
+		<div class="header">
+			<div class="logo-wrap">
+				<img src="../img/logo.png" alt="" class="logo" />
+				<img src="../img/koshkonutost.png" alt="" class="logo-phrase" />
+			</div>
+		</div>
+		<nav>
+			<p><a href="/" class="nav-link">Главная</a></p>
+			<p><a href="/about" class="nav-link">Об авторе</a></p>
+			<div class="nav-button">
+				<button class="log-in">Войти</button>
+				<button class="sign-up">Зарегистрироваться</button>
+			</div>
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+				class="search-icon">
+				<g clip-path="url(#clip0)">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						d="M18.7224 20.6921C17.1348 21.8673 22.0717 16.8189 20.6668 18.7379C20.702 18.7351 20.6368 18.8415 20.4184 19.1082C20.4184 19.1082 24.1702 22.8348 26.012 24.7314C26.6513 25.4228 25.4977 26.8028 24.714 26.0823C23.0462 24.4642 19.0998 20.4428 19.0937 20.4362L18.7224 20.6921V20.6921Z"
+						fill="white" />
+					<path
+						d="M13.2096 22.5764C15.6236 22.5529 18.0133 21.5531 19.7317 19.8548C21.7727 17.8378 22.8236 14.8537 22.4571 12.0047C21.8289 7.12263 17.8155 3.80951 13.1496 3.80951C9.60439 3.80951 6.15908 6.02716 4.64783 9.24279C3.49096 11.7047 3.48861 14.677 4.64783 17.1431C6.1483 20.3362 9.53736 22.5422 13.0891 22.5764C13.1294 22.5764 13.1697 22.5764 13.2096 22.5764V22.5764ZM13.0989 21.0122C9.49377 20.9775 6.13002 18.1893 5.46111 14.6147C4.98955 12.0947 5.87971 9.36747 7.73408 7.57779C9.89877 5.48763 13.3014 4.78779 16.1308 5.97232C18.6621 7.03216 20.5567 9.4931 20.906 12.2043C21.205 14.5284 20.3711 16.964 18.7324 18.6417C17.2947 20.1136 15.2786 20.992 13.1997 21.0122C13.166 21.0122 13.1327 21.0122 13.0989 21.0122V21.0122Z"
+						fill="white" />
+				</g>
+				<defs>
+					<clipPath id="clip0">
+						<rect width="30" height="30" fill="white" />
+					</clipPath>
+				</defs>
+			</svg>
 
-    <div class="pop-up__login">
-      <form action="#" class="registration">
-        <h2 class="title">Войти</h2>
-        <input type="email" placeholder="E-mail/Login" class="input" />
-        <input type="password" placeholder="Пароль" class="input" />
-        <button class="submit" type="submit">Войти</button><br />
-        <!-- <button class="cansel">Отменить</button> -->
-        <a href="#" class="cansel-login">Отменить</a>
-      </form>
-    </div>
+			<form action="#" class="search-wrap">
+				<input type="search" class="search-field" placeholder="Поиск" />
+			</form>
 
-    <div class="pop-up__signup">
-      <h2 class="title">Регистрация</h2>
-      <form action="" class="registration">
-        <input type="text" placeholder="Login" class="input" />
-        <input type="email" placeholder="E-mail" class="input" />
-        <input type="password" placeholder="Пароль" class="input" />
-        <input type="password" placeholder="Повторите пароль" class="input" />
-        <input type="text" placeholder="Город" class="input" />
-        <button class="submit" type="submit">Зарегистрироваться</button><br />
-        <a href="#" class="cansel-signup">Отменить</a>
-      </form>
-    </div>
-    <div class="overlay"></div>
-    <script src="../js/jquery-3.4.1.min.js"></script>
-    <script src="../js/jquery.maskedinput.min.js"></script>
-    <script src="../js/jquery.fancybox.min.js"></script>
-    <script src="../js/main.js"></script>
-  </body>
+			<button class="mobile-menu">
+				<svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M3 8V6H21V8H3Z" fill="#F1BC9C" />
+					<path d="M3 13H21V11H3V13Z" fill="#F1BC9C" />
+					<path d="M3 18H21V16H3V18Z" fill="#F1BC9C" />
+				</svg>
+			</button>
+			<ul class="menu-list">
+				<li class="menu-item">
+					<a href="/" class="nav-link-mobile">Главная</a>
+				</li>
+				<li class="menu-item">
+					<a href="/about" class="nav-link-mobile">Об авторе</a>
+				</li>
+				<li class="menu-item"><button class="log-in">Войти</button></li>
+				<li class="menu-item">
+					<button class="sign-up">Зарегистрироваться</button>
+				</li>
+			</ul>
+		</nav>
+		<div class="mobile-rubrics-wrap">
+			<p class="mobile-rubrics-btn-wrap">
+				<button class="mobile-rubrics">Рубрики</button>
+			</p>
+			<div class="rubrics-mbl-container">
+				<p class="aside-button-wrap">
+					<button class="aside-button">Кормление</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Уход</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Воспитание</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Адаптация</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">“Пора к ветеринару?”</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Коты доноры</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Коты спинальники</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Интересные факты</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Забавные истории</button>
+				</p>
+			</div>
+		</div>
+	</header>
+	<section class="main">
+		<div class="content">
+			<h1 class="about-title">Об авторе</h1>
+			<div class="about-wrap">
+				<img src="../img/about.png" alt="" class="about-img" />
+				<p class="about-text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+					et tortor libero. Sed enim risus, ullamcorper at purus eget, auctor
+					porta purus. Donec leo urna, ultrices nec magna vel, semper aliquam
+					leo. Vivamus ut sapien quis nunc faucibus aliquet et ornare velit.
+					Quisque nulla nulla, lacinia a accumsan sit amet, bibendum non
+					lorem. Nulla imperdiet quam vitae eros pellentesque volutpat. Donec
+					sodales sapien nec arcu blandit dignissim eu sit amet eros.
+					<br />
+					Aliquam erat volutpat. Donec ornare, augue eget rutrum porttitor,
+					nisl tortor tincidunt magna, sit amet commodo lorem eros quis diam.
+					Ut id orci vel dui convallis pulvinar vitae sit amet quam. Maecenas
+					sagittis rhoncus consequat.
+					<br />
+					Aliquam metus magna, egestas id mattis in, ullamcorper ut lacus.
+					Pellentesque iaculis scelerisque nisl vitae aliquet. Donec tempus
+					nulla sit amet justo placerat eleifend. Sed id massa eu massa
+					maximus iaculis. Integer volutpat at enim quis ultrices. Quisque
+					vitae suscipit lorem, ut euismod tellus. Morbi at ante mattis,
+					placerat tellus in, maximus purus.
+					<br />
+					Aliquam cursus nec dui at ultricies. Vestibulum euismod dui nec ex
+					fringilla condimentum. Nullam varius ligula non vestibulum aliquam.
+					Quisque arcu nibh, dictum ac sollicitudin ut, porttitor at libero.
+					Cras at orci ac lorem cursus facilisis. Aenean fermentum, mi a
+					tincidunt eleifend, nisl urna mollis nibh, a aliquet sapien nisi non
+					libero. Pellentesque habitant morbi tristique senectus et netus et
+					malesuada fames ac turpis egestas. Ut id massa interdum, cursus
+					massa quis, feugiat risus. Vivamus at lacus nibh. Sed molestie
+					condimentum erat, at auctor nunc varius non. Sed feugiat neque odio,
+					nec ultricies nulla congue vitae.
+					<br />
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+					convallis arcu eget fringilla porttitor. Duis ut ante ac lacus
+					tincidunt egestas. Vivamus quis ornare nulla. Vestibulum ante ipsum
+					primis in faucibus orci luctus et ultrices posuere cubilia curae;
+					Cras at erat mollis,
+				</p>
+			</div>
+		</div>
+		<aside class="sidebar">
+			<h3 class="aside-title">Рубрики</h3>
+			<div class="rubrick-wrap">
+				<p class="aside-button-wrap">
+					<button class="aside-button">Кормление</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Уход</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Воспитание</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Адаптация</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">“Пора к ветеринару?”</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Коты доноры</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Коты спинальники</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Интересные факты</button>
+				</p>
+				<p class="aside-button-wrap">
+					<button class="aside-button">Забавные истории</button>
+				</p>
+			</div>
+			<h3 class="aside-title">Комментарии</h3>
+			<div class="comment-wrap">
+				<figure class="comment">
+					<img src="../img/comment-img.png" alt="" class="comment-img" />
+					<figcaption class="comment-text-wrap">
+						<p class="comment-text">Какой-то коммент 1</p>
+						<p class="comment-author">L. Orem</p>
+					</figcaption>
+				</figure>
+				<figure class="comment">
+					<img src="../img/comment-img.png" alt="" class="comment-img" />
+					<figcaption class="comment-text-wrap">
+						<p class="comment-text">Какой-то коммент 1</p>
+						<p class="comment-author">L. Orem</p>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="insta">
+				<p class="insta-text">Тут хотят виджет из инсты</p>
+			</div>
+		</aside>
+	</section>
+	{{> footer}}
+
+	<div class="pop-up__login">
+		<form action="#" class="registration">
+			<h2 class="title">Войти</h2>
+			<input type="email" placeholder="E-mail/Login" class="input" />
+			<input type="password" placeholder="Пароль" class="input" />
+			<button class="submit" type="submit">Войти</button><br />
+			<!-- <button class="cansel">Отменить</button> -->
+			<a href="#" class="cansel-login">Отменить</a>
+		</form>
+	</div>
+
+	<div class="pop-up__signup">
+		<h2 class="title">Регистрация</h2>
+		<form action="" class="registration">
+			<input type="text" placeholder="Login" class="input" />
+			<input type="email" placeholder="E-mail" class="input" />
+			<input type="password" placeholder="Пароль" class="input" />
+			<input type="password" placeholder="Повторите пароль" class="input" />
+			<input type="text" placeholder="Город" class="input" />
+			<button class="submit" type="submit">Зарегистрироваться</button><br />
+			<a href="#" class="cansel-signup">Отменить</a>
+		</form>
+	</div>
+	<div class="overlay"></div>
+	<script src="../js/jquery-3.4.1.min.js"></script>
+	<script src="../js/jquery.maskedinput.min.js"></script>
+	<script src="../js/jquery.fancybox.min.js"></script>
+	<script src="../js/main.js"></script>
+</body>
+
 </html>

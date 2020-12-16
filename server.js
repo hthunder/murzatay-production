@@ -1,46 +1,53 @@
-const { response } = require('express');
 const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
+const hbs = require('hbs');
 
 const app = express();
 
-app.set('view engine', 'hbs');
+// app.use(express.static('public'));
+// app.set('view engine', 'hbs');
+// hbs.registerPartials(__dirname + '/views/partials');
 
-app.use(express.static('public'));
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
 
-app.use('/index-admin(.html)?', (req, res) => {
-  res.render('index-admin.hbs');
-});
+// app.get('/about', (req, res) => {
+//   res.render('about');
+// });
 
-app.use('/index(.html)?', (req, res) => {
-  res.render('index.hbs');
-});
+// app.get('/articles', (req, res) => {
+//   res.render('articles');
+// });
 
-app.use('/about-admin(.html)?', (req, res) => {
-  res.render('about-admin.hbs');
-});
+// app.get('/my-page', (req, res) => {
+//   res.render('my-page');
+// });
 
-app.use('/about(.html)?', (req, res) => {
-  res.render('about.hbs');
-});
-
-app.use('/articles-admin(.html)?', (req, res) => {
-  res.render('articles-admin.hbs');
-});
-
-app.use('/articles(.html)?', (req, res) => {
-  res.render('articles.hbs');
-});
-
-app.use('/my-page(.html)?', (req, res) => {
-  res.render('my-page.hbs');
-});
-
-app.use('/topic(.html)?', (req, res) => {
-  res.render('topic.hbs');
-});
-
+// app.get('/topic', (req, res) => {
+//   res.render('topic');
+// });
 const PORT = process.env.PORT || 5000;
+const username = process.env.DB_ADMIN_USERNAME;
+const password = process.env.DB_ADMIN_PASSWORD;
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+async function start() {
+  try {
+    await mongoose.connect(
+      `mongodb+srv://${username}:${password}@cluster0.m6k5m.mongodb.net/blog`,
+      {
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+        useFindAndModify: false
+      }
+    );
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+start();
