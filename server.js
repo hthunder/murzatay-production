@@ -26,6 +26,9 @@ app.use(bodyParser.json());
 //parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//routes
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 app.use(blogRoutes);
 app.use(express.static('public'));
 
@@ -42,10 +45,11 @@ async function start() {
         useUnifiedTopology: true,
         useFindAndModify: false
       }
-		);
-		app.listen(PORT, () => {
-			console.log(`Server started on port ${PORT}`);
-		});
+    );
+    initial();
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
   } catch (e) {
     console.log(e);
     process.exit();
