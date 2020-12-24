@@ -1,8 +1,8 @@
 <div class="pop-up__login">
-	<form action="#" class="registration">
+	<form action="/api/auth/signin" class="registration" method="post">
 		<h2 class="title">Войти</h2>
-		<input type="email" placeholder="E-mail/Login" class="input" />
-		<input type="password" placeholder="Пароль" class="input" />
+		<input type="text" placeholder="E-mail/Login" class="input" name="username" />
+		<input type="password" placeholder="Пароль" class="input" name="password" />
 		<button class="submit" type="submit">Войти</button><br />
 		<!-- <button class="cansel">Отменить</button> -->
 		<a href="#" class="cansel-login">Отменить</a>
