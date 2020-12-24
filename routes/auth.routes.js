@@ -1,5 +1,6 @@
 const { verifySignUp } = require('../middlewares');
 const controller = require('../controllers/auth.controller');
+const { body, validationResult } = require('express-validator');
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -8,6 +9,11 @@ module.exports = function (app) {
       'x-access-token, Origin, Content-Type, Accept'
     );
     next();
+  });
+
+  app.post('/api/auth/test/signup', (req, res) => {
+    console.log(req.body);
+    process.exit();
   });
 
   app.post(

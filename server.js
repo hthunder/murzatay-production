@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
@@ -21,10 +20,10 @@ app.set('view engine', 'hbs');
 app.set('views', 'views');
 
 //parse request of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 //parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 //routes
 require('./routes/auth.routes')(app);
