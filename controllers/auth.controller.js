@@ -1,5 +1,6 @@
 const config = require('../config/auth.config');
 const db = require('../models');
+const { validationResult } = require('express-validator');
 const User = db.user;
 const Role = db.role;
 
