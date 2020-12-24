@@ -1,6 +1,6 @@
 const { verifySignUp } = require('../middlewares');
 const controller = require('../controllers/auth.controller');
-const { body, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -11,14 +11,45 @@ module.exports = function (app) {
     next();
   });
 
-  app.post('/api/auth/test/signup', (req, res) => {
-    console.log(req.body);
-    process.exit();
-  });
-
+  // app.post(
+  //   '/api/auth/test/signup',
+  //   [
+  //     check('username', 'Введите логин').not().isEmpty(),
+  //     check('email', 'Введите валидный email').isEmail(),
+  //     check('password1').custom((value, { req }) => {
+  //       if (value !== req.body.password2) {
+  //         throw new Error('Пароли не совпадают');
+  //       }
+  //       return true;
+  //     }),
+  //     check(
+  //       'password1',
+  //       'Пароль должен содержать от 6 до 30 символов'
+  //     ).isLength({ min: 6, max: 30 })
+  //   ],
+  //   (req, res) => {
+  //     const errors = validationResult(req);
+  //     if (!errors.isEmpty()) {
+  //       return res.status(400).json({ errors: errors.array() });
+  //     }
+  //     return res.status(200).json(req.body);
+  //   }
+  // );
   app.post(
     '/api/auth/signup',
     [
+      check('username', 'Введите логин').not().isEmpty(),
+      check('email', 'Введите валидный email').isEmail(),
+      check('password1').custom((value, { req }) => {
+        if (value !== req.body.password2) {
+          throw new Error('Пароли не совпадают');
+        }
+        return true;
+      }),
+      check(
+        'password1',
+        'Пароль должен содержать от 6 до 30 символов'
+      ).isLength({ min: 6, max: 30 }),
       verifySignUp.checkDuplicateUsernameOrEmail,
       verifySignUp.checkRolesExisted
     ],
