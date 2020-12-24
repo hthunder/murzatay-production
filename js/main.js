@@ -44,21 +44,22 @@ let mbMenu = document.querySelector('.menu-list');
 
 
 burger.onclick = function(){
-    if (mbMenu.style.display = 'none'){
-        mbMenu.style.display = 'block'
+    if (mbMenu.classList.contains("open")) {
+        mbMenu.classList.remove("open")
     } else {
-        mbMenu.classList.add('.hide');
+        mbMenu.classList.add("open");
     }
+
 }
 
 let search = document.querySelector('.search-icon');
 let searchField = document.querySelector('.search-wrap');
 
 search.onclick = function(){
-    if (searchField.style.display = 'none'){
-        searchField.style.display = 'block'
+    if (searchField.classList.contains("open")){
+        searchField.classList.remove("open")
     } else {
-        searchField.style.display = 'none';
+        searchField.classList.add("open");
     }
 }
 
@@ -66,9 +67,9 @@ let rubrickBtn = document.querySelector('.mobile-rubrics-btn-wrap');
 let rubricks = document.querySelector('.rubrics-mbl-container');
 
 rubrickBtn.onclick = function(){
-    if (rubricks.style.display = 'none'){
-        rubricks.style.display = 'flex'
+    if (rubricks.classList.contains("open-rubric")){
+        rubricks.classList.remove("open-rubric")
     } else {
-        rubricks.style.display = 'none';
+        rubricks.classList.add("open-rubric");
     }
 }
