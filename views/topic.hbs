@@ -1,280 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="../css/header.css" />
-	<link rel="stylesheet" type="text/css" href="../css/aside.css" />
-	<link rel="stylesheet" type="text/css" href="../css/footer.css" />
-	<link rel="stylesheet" type="text/css" href="../css/topic.css" />
-	<link rel="stylesheet" type="text/css" href="../css/pop-up.css" />
-	<title>Мурзатай</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="../css/global.css">
+   <link rel="stylesheet" type="text/css" href="../css/topic.css">
+
+   <title>Мурзатай</title>
 </head>
-
 <body>
-	<header>
-		<div class="header">
-			<div class="logo-wrap">
-				<img src="../img/logo.png" alt="" class="logo" />
-				<img src="../img/koshkonutost.png" alt="" class="logo-phrase" />
-			</div>
-		</div>
-		<nav>
-			<p><a href="/" class="nav-link">Главная</a></p>
-			<p><a href="/about" class="nav-link">Об авторе</a></p>
-			<div class="nav-button">
-				<button class="log-in">Войти</button>
-				<button class="sign-up">Зарегистрироваться</button>
-			</div>
-			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
-				class="search-icon">
-				<g clip-path="url(#clip0)">
-					<path fill-rule="evenodd" clip-rule="evenodd"
-						d="M18.7224 20.6921C17.1348 21.8673 22.0717 16.8189 20.6668 18.7379C20.702 18.7351 20.6368 18.8415 20.4184 19.1082C20.4184 19.1082 24.1702 22.8348 26.012 24.7314C26.6513 25.4228 25.4977 26.8028 24.714 26.0823C23.0462 24.4642 19.0998 20.4428 19.0937 20.4362L18.7224 20.6921V20.6921Z"
-						fill="white" />
-					<path
-						d="M13.2096 22.5764C15.6236 22.5529 18.0133 21.5531 19.7317 19.8548C21.7727 17.8378 22.8236 14.8537 22.4571 12.0047C21.8289 7.12263 17.8155 3.80951 13.1496 3.80951C9.60439 3.80951 6.15908 6.02716 4.64783 9.24279C3.49096 11.7047 3.48861 14.677 4.64783 17.1431C6.1483 20.3362 9.53736 22.5422 13.0891 22.5764C13.1294 22.5764 13.1697 22.5764 13.2096 22.5764V22.5764ZM13.0989 21.0122C9.49377 20.9775 6.13002 18.1893 5.46111 14.6147C4.98955 12.0947 5.87971 9.36747 7.73408 7.57779C9.89877 5.48763 13.3014 4.78779 16.1308 5.97232C18.6621 7.03216 20.5567 9.4931 20.906 12.2043C21.205 14.5284 20.3711 16.964 18.7324 18.6417C17.2947 20.1136 15.2786 20.992 13.1997 21.0122C13.166 21.0122 13.1327 21.0122 13.0989 21.0122V21.0122Z"
-						fill="white" />
-				</g>
-				<defs>
-					<clipPath id="clip0">
-						<rect width="30" height="30" fill="white" />
-					</clipPath>
-				</defs>
-			</svg>
+   
 
-			<form action="#" class="search-wrap">
-				<input type="search" class="search-field" placeholder="Поиск" />
-			</form>
-
-			<button class="mobile-menu">
-				<svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M3 8V6H21V8H3Z" fill="#F1BC9C" />
-					<path d="M3 13H21V11H3V13Z" fill="#F1BC9C" />
-					<path d="M3 18H21V16H3V18Z" fill="#F1BC9C" />
-				</svg>
-			</button>
-			<ul class="menu-list">
-				<li class="menu-item">
-					<a href="/" class="nav-link-mobile">Главная</a>
-				</li>
-				<li class="menu-item">
-					<a href="/about" class="nav-link-mobile">Об авторе</a>
-				</li>
-				<li class="menu-item"><button class="log-in">Войти</button></li>
-				<li class="menu-item">
-					<button class="sign-up">Зарегистрироваться</button>
-				</li>
-			</ul>
-		</nav>
-		<div class="mobile-rubrics-wrap">
-			<p class="mobile-rubrics-btn-wrap">
-				<button class="mobile-rubrics">Рубрики</button>
-			</p>
-			<div class="rubrics-mbl-container">
-				<p class="aside-button-wrap">
-					<button class="aside-button">Кормление</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Уход</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Воспитание</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Адаптация</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">“Пора к ветеринару?”</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Коты доноры</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Коты спинальники</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Интересные факты</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Забавные истории</button>
-				</p>
-			</div>
-		</div>
-	</header>
-	<section class="main">
-		<div class="content">
-			<button class="add-favorite">
-				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M18.5826 2.81257C17.6375 1.88979 16.3319 1.42859 14.665 1.42859C14.2038 1.42859 13.733 1.50857 13.2532 1.66845C12.7732 1.82845 12.3267 2.04431 11.9141 2.31588C11.501 2.58737 11.146 2.84232 10.8481 3.08034C10.5506 3.31845 10.2678 3.57148 10 3.83926C9.73207 3.57148 9.44932 3.31845 9.1518 3.08034C8.85408 2.84232 8.4989 2.58752 8.08587 2.31588C7.67291 2.04419 7.22645 1.82849 6.74657 1.66845C6.26673 1.50861 5.79603 1.42859 5.33476 1.42859C3.66803 1.42859 2.36231 1.8899 1.4174 2.81257C0.472493 3.73516 0 5.01484 0 6.65174C0 7.15027 0.087564 7.66385 0.26234 8.19185C0.437116 8.72013 0.636285 9.17034 0.859456 9.54229C1.08259 9.9142 1.33562 10.2769 1.61837 10.6304C1.90112 10.9838 2.10775 11.2273 2.23781 11.3613C2.36798 11.4952 2.47032 11.592 2.54471 11.6516L9.5089 18.3704C9.64286 18.5043 9.80654 18.5715 9.99996 18.5715C10.1934 18.5715 10.3572 18.5043 10.4911 18.3704L17.4442 11.6737C19.1481 9.9701 20 8.29599 20 6.65159C20 5.01457 19.5275 3.735 18.5826 2.81257ZM16.4732 10.6248L10 16.8635L3.51577 10.6135C2.12436 9.22245 1.42878 7.9016 1.42878 6.65159C1.42878 6.049 1.50876 5.51693 1.66864 5.05573C1.82864 4.59446 2.03324 4.2279 2.28249 3.95633C2.53177 3.68469 2.83492 3.46351 3.19206 3.29226C3.54939 3.12115 3.89906 3.0058 4.24126 2.9463C4.58347 2.88688 4.94799 2.85713 5.33495 2.85713C5.7218 2.85713 6.13855 2.95189 6.58497 3.14168C7.03131 3.33139 7.44239 3.56949 7.81809 3.85591C8.19388 4.14252 8.51567 4.41034 8.78364 4.6595C9.05146 4.90891 9.27459 5.13755 9.45319 5.3459C9.58704 5.50966 9.76948 5.59151 10 5.59151C10.2307 5.59151 10.4129 5.50966 10.5469 5.3459C10.7255 5.13755 10.9488 4.90879 11.2166 4.6595C11.4844 4.41034 11.8063 4.14264 12.1819 3.85591C12.5577 3.56949 12.9688 3.33139 13.4153 3.14168C13.8616 2.95193 14.2785 2.85713 14.6654 2.85713C15.0522 2.85713 15.4167 2.88688 15.759 2.9463C16.1013 3.00576 16.451 3.12115 16.8082 3.29226C17.1654 3.46347 17.4685 3.68481 17.7177 3.95633C17.967 4.2279 18.1717 4.59446 18.3317 5.05573C18.4914 5.51693 18.5714 6.049 18.5714 6.65159C18.5713 7.9016 17.872 9.22612 16.4732 10.6248Z"
-						fill="#D95204" />
-				</svg>
-				<!--Сердечко добовляет статью в изьранное зарегестрированным пользователем. Свгшка, на которую дожно меняться сердечко при нажатии: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <header>
+      <div class="header">
+         <div class="logo-wrap">
+            <img src="../img/logo.png" alt="Лого" class="logo">
+            <img src="../img/koshkonutost.png"  class="logo-phrase">
+         </div>
+      </div>
+      <nav>
+            <p><a href="index.html" class="nav-link">Главная</a></p>
+            <p><a href="about.html" class="nav-link">Об аворе</a></p>
+            <div class="nav-button">
+               <button class="log-in">Войти</button>
+               <button class="sign-up">Зарегестрироваться</button>
+            </div>
+            <img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
+               
+            <form action="#" class="search-wrap">
+               <input type="search" class="search-field" placeholder="Поиск">
+            </form>
+   
+            <img src="/img/mobile-menu.svg" alt="Меню" class="mobile-menu">
+               
+               <ul class="menu-list">
+                  <li class="menu-item"><a href="index.html" class="nav-link-mobile">Главная</a></li>
+                  <li class="menu-item"><a href="about.html" class="nav-link-mobile">Об аворе</a></li>
+                  <li class="menu-item"><button class="log-in">Войти</button></li>
+                  <li class="menu-item"><button class="sign-up">Зарегестрироваться</button></li>
+               </ul>
+      </nav>
+      <div class="mobile-rubrics-wrap">
+         <p class="mobile-rubrics-btn-wrap"><button class="mobile-rubrics">
+            Рубрики
+         </button></p>
+         <div class="rubrics-mbl-container">
+            <p class="aside-button-wrap"><button class="aside-button">Кормление</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Уход</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Воспитание</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Адаптация</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">“Пора к ветеринару?”</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Коты доноры</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Коты спинальники</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Интересные факты</button></p>
+            <p class="aside-button-wrap"><button class="aside-button">Забавные истории</button></p>
+         </div>
+      </div>
+   </header>
+<section class="main">
+   <div class="content">
+      <button class="add-favorite">
+         <!--Сердечко добавляет статью в изьранное зарегестрированным пользователем. Свгшка, на которую дожно меняться сердечко при нажатии: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M20 6.99526C20 8.682 19.2731 10.199 18.1154 11.25H18.125L11.875 17.5C11.25 18.125 10.625 18.75 10 18.75C9.37501 18.75 8.75003 18.125 8.12502 17.5L1.875 11.25H1.88456C0.7269 10.199 0 8.682 0 6.99526C0 3.82223 2.57224 1.25 5.74523 1.25C7.43198 1.25 8.94893 1.9769 9.99998 3.13456C11.051 1.9769 12.568 1.25 14.2547 1.25C17.4278 1.25 20 3.82223 20 6.99526Z" fill="#D95204"/>
 </svg>
 -->
-			</button>
-			<h1 class="topic-title">Lorem ipsum dolor sit amet.</h1>
-			<p class="topic-text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-				pariatur quam harum error laboriosam recusandae fugit quaerat
-				necessitatibus repellendus provident corrupti illo, inventore non
-				aperiam vel velit eum repellat quo. Et, reiciendis! Deserunt ad
-				aperiam harum id hic distinctio, assumenda consequuntur est, incidunt
-				voluptatum sed ab molestiae architecto nulla. Culpa explicabo nihil
-				facilis minima enim officiis optio mollitia repellendus ut. Nisi
-				voluptatum inventore nobis numquam, ducimus in cumque! Amet corrupti
-				officiis veniam reprehenderit dolorum natus aut delectus molestias,
-				quis alias recusandae, quisquam sed maxime temporibus nemo nobis
-				optio? Minima, obcaecati! Perferendis consequuntur ipsam aperiam eius
-				odit repellat dolores sapiente amet aspernatur inventore, quia, esse
-				veniam dignissimos, suscipit nulla praesentium rerum delectus fugiat
-				provident deserunt. Dolore sint doloribus praesentium quae animi.
-				Autem esse deserunt maiores optio fugit. Fuga nihil ex enim magni
-				cumque laborum. Incidunt necessitatibus debitis quaerat deserunt enim
-				unde expedita repudiandae! Nisi dolorum sit at saepe blanditiis!
-				Doloremque, magnam. Sint quibusdam facere recusandae iusto voluptatum,
-				dolores, ipsa aperiam quae cum explicabo nihil voluptatibus sit odio
-				ducimus praesentium minima. Qui quos ipsam animi neque atque adipisci
-				necessitatibus nihil, temporibus alias? Recusandae deserunt
-				dignissimos asperiores numquam voluptatum labore perspiciatis nisi
-				repudiandae doloremque mollitia quisquam explicabo impedit dolor
-				laudantium reprehenderit molestiae, veritatis corrupti at alias optio
-				debitis aspernatur, distinctio unde! Illum, aperiam! Optio placeat
-				nostrum vel perspiciatis voluptatibus enim nisi, magni nesciunt. Neque
-				ipsum, ut, vero et qui ea tempora repellendus est non deleniti atque
-				voluptatem animi magnam dignissimos officia cumque soluta. Aliquam
-				dolore asperiores deleniti perspiciatis cupiditate? Deleniti incidunt
-				distinctio, fugit adipisci tempore accusantium illum consequatur,
-				praesentium rem eius voluptates eum, officia eveniet fuga quas
-				aspernatur ipsum quis inventore repellendus? Aut? Animi saepe
-				voluptatum esse, sapiente obcaecati dolorum, nostrum ad ducimus quasi
-				porro quod nobis! Minima laborum saepe voluptate ducimus illum fugit
-				praesentium culpa maxime eum. Nostrum soluta repellendus saepe natus!
-				Vero aspernatur temporibus quam voluptatem atque, fugiat cumque,
-				dolorum nostrum consequuntur labore nam incidunt unde tenetur commodi
-				ducimus quidem iure aliquam id enim eveniet molestias impedit
-				repudiandae eos deserunt! Omnis! Dolorum minima aspernatur voluptas
-				nesciunt aliquid quasi facilis illum, facere qui nobis labore? Saepe
-				minus earum mollitia? Sunt, quidem non? Rerum quis officiis eveniet
-				ullam ea ad nam maxime dolore! Esse beatae totam cum expedita
-				reprehenderit ullam repudiandae voluptatem veritatis dignissimos,
-				temporibus eum nam a quae maiores. Impedit eius tempora debitis! Non
-				optio ipsa perferendis. Tenetur blanditiis natus expedita ea!
-				Provident illum exercitationem mollitia vel corporis aliquam!
-				Voluptates aut eius illum? Magnam ipsa, impedit ea nihil fuga quas
-				distinctio facere, ab reprehenderit deserunt officia doloribus
-				deleniti recusandae alias sit. Reiciendis. Quaerat dolor, saepe
-				ducimus sequi assumenda eos. Quia, doloribus distinctio. Asperiores
-				cum, sint consectetur nostrum numquam magni eum vero delectus labore
-				alias sapiente quis tempora culpa illo aperiam dolorum est. Minus
-				provident deserunt aliquid culpa accusantium earum distinctio quod
-				atque consequatur soluta officia libero quasi temporibus illo tenetur
-				iusto, id modi delectus, incidunt impedit harum eum ratione commodi.
-				Quos, autem. Dolorem reprehenderit mollitia, in omnis atque hic
-				corrupti, facere esse maiores praesentium iure pariatur unde harum
-				debitis laborum neque amet minima, voluptates fugiat nostrum
-				accusantium magnam tenetur. Vel, et iusto. Reiciendis, veritatis
-				nesciunt quaerat quidem, similique laboriosam vero laborum quisquam
-				magni quos aliquam numquam, ut sed. Consequatur possimus magni
-				eligendi soluta culpa rerum unde doloribus, ullam cumque nisi, ratione
-				ad! Ratione laudantium autem officia. Delectus facere tenetur
-				repudiandae ullam explicabo, ea, blanditiis hic iusto porro corrupti
-				sed nobis laborum ex accusantium voluptates dolores obcaecati iure,
-				maxime nemo totam illum. Consequuntur. Vel exercitationem veritatis,
-				officia praesentium accusamus adipisci sapiente nesciunt itaque, omnis
-				culpa voluptatibus veniam nihil excepturi quaerat odit ipsum porro
-				quas harum sit corporis facilis ducimus voluptatem quidem!
-				Accusantium, minima. Beatae molestiae nostrum error nam dolore non cum
-				perspiciatis laborum doloribus labore est odit ipsum at laboriosam
-				dicta, distinctio voluptas mollitia omnis. Reprehenderit, sint illum
-				quaerat reiciendis eos odio accusantium. Ad odit tenetur non officia
-				praesentium, incidunt quo laborum, consequuntur sit excepturi suscipit
-				commodi vero mollitia quasi fugit maiores quaerat voluptatem.
-				Molestiae ab sit esse delectus, exercitationem dolorum similique
-				provident!
-			</p>
+         </button>
+      <h1 class="topic-title"> Lorem ipsum dolor sit amet. </h1>
+      <p class="topic-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium pariatur quam harum error laboriosam recusandae fugit quaerat necessitatibus repellendus provident corrupti illo, inventore non aperiam vel velit eum repellat quo.
+      Et, reiciendis! Deserunt ad aperiam harum id hic distinctio, assumenda consequuntur est, incidunt voluptatum sed ab molestiae architecto nulla. Culpa explicabo nihil facilis minima enim officiis optio mollitia repellendus ut.
+      Nisi voluptatum inventore nobis numquam, ducimus in cumque! Amet corrupti officiis veniam reprehenderit dolorum natus aut delectus molestias, quis alias recusandae, quisquam sed maxime temporibus nemo nobis optio? Minima, obcaecati!
+      Perferendis consequuntur ipsam aperiam eius odit repellat dolores sapiente amet aspernatur inventore, quia, esse veniam dignissimos, suscipit nulla praesentium rerum delectus fugiat provident deserunt. Dolore sint doloribus praesentium quae animi.
+      Autem esse deserunt maiores optio fugit. Fuga nihil ex enim magni cumque laborum. Incidunt necessitatibus debitis quaerat deserunt enim unde expedita repudiandae! Nisi dolorum sit at saepe blanditiis! Doloremque, magnam.
+      Sint quibusdam facere recusandae iusto voluptatum, dolores, ipsa aperiam quae cum explicabo nihil voluptatibus sit odio ducimus praesentium minima. Qui quos ipsam animi neque atque adipisci necessitatibus nihil, temporibus alias?
+      Recusandae deserunt dignissimos asperiores numquam voluptatum labore perspiciatis nisi repudiandae doloremque mollitia quisquam explicabo impedit dolor laudantium reprehenderit molestiae, veritatis corrupti at alias optio debitis aspernatur, distinctio unde! Illum, aperiam!
+      Optio placeat nostrum vel perspiciatis voluptatibus enim nisi, magni nesciunt. Neque ipsum, ut, vero et qui ea tempora repellendus est non deleniti atque voluptatem animi magnam dignissimos officia cumque soluta.
+      Aliquam dolore asperiores deleniti perspiciatis cupiditate? Deleniti incidunt distinctio, fugit adipisci tempore accusantium illum consequatur, praesentium rem eius voluptates eum, officia eveniet fuga quas aspernatur ipsum quis inventore repellendus? Aut?
+      Animi saepe voluptatum esse, sapiente obcaecati dolorum, nostrum ad ducimus quasi porro quod nobis! Minima laborum saepe voluptate ducimus illum fugit praesentium culpa maxime eum. Nostrum soluta repellendus saepe natus!
+      Vero aspernatur temporibus quam voluptatem atque, fugiat cumque, dolorum nostrum consequuntur labore nam incidunt unde tenetur commodi ducimus quidem iure aliquam id enim eveniet molestias impedit repudiandae eos deserunt! Omnis!
+      Dolorum minima aspernatur voluptas nesciunt aliquid quasi facilis illum, facere qui nobis labore? Saepe minus earum mollitia? Sunt, quidem non? Rerum quis officiis eveniet ullam ea ad nam maxime dolore!
+      Esse beatae totam cum expedita reprehenderit ullam repudiandae voluptatem veritatis dignissimos, temporibus eum nam a quae maiores. Impedit eius tempora debitis! Non optio ipsa perferendis. Tenetur blanditiis natus expedita ea!
+      Provident illum exercitationem mollitia vel corporis aliquam! Voluptates aut eius illum? Magnam ipsa, impedit ea nihil fuga quas distinctio facere, ab reprehenderit deserunt officia doloribus deleniti recusandae alias sit. Reiciendis.
+      Quaerat dolor, saepe ducimus sequi assumenda eos. Quia, doloribus distinctio. Asperiores cum, sint consectetur nostrum numquam magni eum vero delectus labore alias sapiente quis tempora culpa illo aperiam dolorum est.
+      Minus provident deserunt aliquid culpa accusantium earum distinctio quod atque consequatur soluta officia libero quasi temporibus illo tenetur iusto, id modi delectus, incidunt impedit harum eum ratione commodi. Quos, autem.
+      Dolorem reprehenderit mollitia, in omnis atque hic corrupti, facere esse maiores praesentium iure pariatur unde harum debitis laborum neque amet minima, voluptates fugiat nostrum accusantium magnam tenetur. Vel, et iusto.
+      Reiciendis, veritatis nesciunt quaerat quidem, similique laboriosam vero laborum quisquam magni quos aliquam numquam, ut sed. Consequatur possimus magni eligendi soluta culpa rerum unde doloribus, ullam cumque nisi, ratione ad!
+      Ratione laudantium autem officia. Delectus facere tenetur repudiandae ullam explicabo, ea, blanditiis hic iusto porro corrupti sed nobis laborum ex accusantium voluptates dolores obcaecati iure, maxime nemo totam illum. Consequuntur.
+      Vel exercitationem veritatis, officia praesentium accusamus adipisci sapiente nesciunt itaque, omnis culpa voluptatibus veniam nihil excepturi quaerat odit ipsum porro quas harum sit corporis facilis ducimus voluptatem quidem! Accusantium, minima.
+      Beatae molestiae nostrum error nam dolore non cum perspiciatis laborum doloribus labore est odit ipsum at laboriosam dicta, distinctio voluptas mollitia omnis. Reprehenderit, sint illum quaerat reiciendis eos odio accusantium.
+      Ad odit tenetur non officia praesentium, incidunt quo laborum, consequuntur sit excepturi suscipit commodi vero mollitia quasi fugit maiores quaerat voluptatem. Molestiae ab sit esse delectus, exercitationem dolorum similique provident!</p>
+      
+      <h3 class="comment-title">Оставьте свой комментарий</h3>
+      <form action="#" class="topic-comment-wrap">
+         <p class="symbol-count">0/500</p>
+         <textarea name="#" id="#" class="topic-comment"></textarea>
+         <button type="submit" class="comment-submit">Отправить</button>
+      </form>
+      <div class="comments-topic-wrap">
+         <figure class="comments-topic">
+            <img src="../img/comment-ava.png" alt="Аватарка" class="topic-comment-ava">
+            <figcaption>  
+               <p class="author">Lorem </p>
+               <p class="one-topic-comm">Новый коммментарий</p>
+               <p class="date">12.11.2020 </p>
+            </figcaption> 
+         </figure>
+      </div>
+   </div>
 
-			<h3 class="comment-title">Оставьте свой комментарий</h3>
-			<form action="" class="topic-comment-wrap">
-				<p class="symbol-count">0/500</p>
-				<textarea name="" id="" class="topic-comment"></textarea>
-				<button type="submit" class="comment-submit">Отправить</button>
-			</form>
-			<div class="comments-topic-wrap">
-				<figure class="comments-topic">
-					<img src="../img/comment-ava.png" alt="" class="topic-comment-ava" />
-					<figcaption>
-						<p class="author">Lorem</p>
-						<p class="one-topic-comm">Новый коммментарий</p>
-						<p class="date">12.11.2020</p>
-					</figcaption>
-				</figure>
-			</div>
-		</div>
+   <aside class="sidebar">
+      <h3 class="aside-title">
+         Рубрики
+      </h3>
+      <div class="rubrick-wrap">
+         <p class="aside-button-wrap"><button class="aside-button">Кормление</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Уход</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Воспитание</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Адаптация</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">“Пора к ветеринару?”</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Коты доноры</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Коты спинальники</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Интересные факты</button></p>
+         <p class="aside-button-wrap"><button class="aside-button">Забавные истории</button></p>
+      </div>
+      <h3 class="aside-title">
+         Комментарии
+      </h3>
+      <div class="comment-wrap">
+         <figure class="comment">
+            <img src="../img/comment-img.png" alt="Аватарка" class="comment-img">
+            <figcaption class="comment-text-wrap">
+               <p class="comment-text">Какой-то коммент 1</p>
+               <p class="comment-author">L. Orem</p>
+            </figcaption>
+          </figure>  
+         <figure class="comment">
+            <img src="../img/comment-img.png" alt="Аватарка" class="comment-img">
+            <figcaption class="comment-text-wrap">
+               <p class="comment-text">Какой-то коммент 1</p>
+               <p class="comment-author">L. Orem</p>
+            </figcaption>
+         </figure>
+      </div>
+      <div class="insta"><p class="insta-text">Тут хотят виджет из инсты</p></div>         
+   </aside>
+</section>
 
-		<aside class="sidebar">
-			<h3 class="aside-title">Рубрики</h3>
-			<div class="rubrick-wrap">
-				<p class="aside-button-wrap">
-					<button class="aside-button">Кормление</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Уход</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Воспитание</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Адаптация</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">“Пора к ветеринару?”</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Коты доноры</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Коты спинальники</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Интересные факты</button>
-				</p>
-				<p class="aside-button-wrap">
-					<button class="aside-button">Забавные истории</button>
-				</p>
-			</div>
-			<h3 class="aside-title">Комментарии</h3>
-			<div class="comment-wrap">
-				<figure class="comment">
-					<img src="../img/comment-img.png" alt="" class="comment-img" />
-					<figcaption class="comment-text-wrap">
-						<p class="comment-text">Какой-то коммент 1</p>
-						<p class="comment-author">L. Orem</p>
-					</figcaption>
-				</figure>
-				<figure class="comment">
-					<img src="../img/comment-img.png" alt="" class="comment-img" />
-					<figcaption class="comment-text-wrap">
-						<p class="comment-text">Какой-то коммент 1</p>
-						<p class="comment-author">L. Orem</p>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="insta">
-				<p class="insta-text">Тут хотят виджет из инсты</p>
-			</div>
-		</aside>
-	</section>
-	{{> footer}}
+<footer>
+   <div class="footer-wrap">
+      <div class="links-wrap">
+            <a href="https://vk.com/murzatai" class="social-links">
+               <img src="../img/vk.svg" alt="Vk">                    
+               <p class="social-link-text">Вконтакте</p>
+            </a>   
+            <a href="https://zen.yandex.ru/murzatay" class="social-links">
+               <img src="/img/dzen.svg" alt="Zen">                                                        
+               <p class="social-link-text">Яндекс.Дзен</p>
+            </a>
+            <a href="https://www.instagram.com/murzatay_dakian/?igshid=18qcwqmpl98bk" class="social-links">
+               <img src="/img/ig.svg" alt="Insta">                                                        
+               <p class="social-link-text">Instagram</p>
+            </a>
+            <a href="https://t.me/murzatay" class="social-links">
+               <img src="/img/tg.svg" alt="TG">
+               <p class="social-link-text">Telegram</p>   
+            </a>
+      </div>
+      <div class="questions-form-wrap">
+         <form action="#" class="questions-wrap">
+            <textarea name="#" placeholder="Задайте нам вопрос" class="questions-area"></textarea>
+            <br>
+            <button class="question-btn">Отправить</button>
+         </form>
+      </div>
+   </div>
+</footer>
 
-	{{> popup}}
-	<script src="../js/jquery-3.4.1.min.js"></script>
-	<script src="../js/jquery.maskedinput.min.js"></script>
-	<script src="../js/jquery.fancybox.min.js"></script>
-	<script src="../js/main.js"></script>
+
+<div class="pop-up__login">
+   <form action="#" class="registration">
+      <h2 class="title">Войти</h2>
+      <input type="email" placeholder="E-mail/Login" class="input">
+      <input type="password" placeholder="Пароль" class="input">
+         <button class="submit" type="submit">Войти</button><br>
+         <!-- <button class="cansel">Отменить</button> -->
+         <a href="#" class="cansel-login" >Отменить</a>
+   </form>
+</div>
+
+<div class="pop-up__signup">
+   <h2 class="title">Регистрация</h2>
+   <form action="#" class="registration">
+      <input type="text" placeholder="Login" class="input">
+      <input type="email" placeholder="E-mail" class="input">
+      <input type="password" placeholder="Пароль" class="input">
+      <input type="password" placeholder="Повторите пароль" class="input">
+      <input type="text"  placeholder="Город" class="input">
+      <button class="submit" type="submit">Зарегестрироваться</button><br>
+      <a href="#" class="cansel-signup" >Отменить</a>
+   </form>
+</div>
+<div class="overlay"></div>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/jquery.maskedinput.min.js"></script>
+<script src="../js/jquery.fancybox.min.js"></script>
+<script src="../js/main.js"></script>
+
+
+
 </body>
-
 </html>
