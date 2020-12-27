@@ -352,20 +352,13 @@
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 35px;
+    top: 40px;
     left: 0;
     display: none;
   }
 
   .sidebar {
     display: none;
-  }
-
-  .open-rubric {
-    display: flex;
-  }
-  .open {
-    display: block;
   }
 
   body {
@@ -450,7 +443,7 @@
   .menu-list {
     list-style: none;
     position: absolute;
-    top: 40px;
+    top: 43px;
     width: 50%;
     right: 0px;
   }
@@ -492,7 +485,7 @@
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 35px;
+    top: 43px;
     left: 0;
   }
 
