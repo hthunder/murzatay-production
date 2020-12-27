@@ -758,6 +758,13 @@ form > button {
     display: none;
   }
 
+  .open-rubric {
+    display: flex;
+  }
+  .open {
+    display: block;
+  }
+
   body {
     max-width: 749px;
   }
