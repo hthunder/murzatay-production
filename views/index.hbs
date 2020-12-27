@@ -152,7 +152,7 @@
 			</div>
 		</div>
 	</footer>
-	<div class="pop-up__login">
+	{{!-- <div class="pop-up__login">
 		<form action="#" class="registration">
 			<h2 class="title">Войти</h2>
 			<input type="email" placeholder="E-mail/Login" class="input">
@@ -174,7 +174,10 @@
 			<button class="submit" type="submit">Зарегистрироваться</button><br>
 			<a href="#" class="cansel-signup">Отменить</a>
 		</form>
-	</div>
+	</div> --}}
+	
+	{{!-- так подключаются частичные представления из папки partials --}}
+	{{> popup }}
 	<div class="overlay"></div>
 	<script src="../js/jquery-3.4.1.min.js"></script>
 	<script src="../js/jquery.maskedinput.min.js"></script>
