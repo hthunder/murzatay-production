@@ -566,13 +566,20 @@ form > button {
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 40px;
+    top: 35px;
     left: 0;
     display: none;
   }
 
   .sidebar {
     display: none;
+  }
+
+  .open-rubric {
+    display: flex;
+  }
+  .open {
+    display: block;
   }
 
   body {
@@ -749,7 +756,7 @@ form > button {
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 40px;
+    top: 35px;
     left: 0;
     display: none;
   }
