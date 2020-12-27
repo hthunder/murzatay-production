@@ -280,13 +280,20 @@ h1 {
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 40px;
+    top: 35px;
     left: 0;
     display: none;
   }
 
   .sidebar {
     display: none;
+  }
+
+  .open-rubric {
+    display: flex;
+  }
+  .open {
+    display: block;
   }
 
   body {
@@ -370,7 +377,7 @@ h1 {
   .menu-list {
     list-style: none;
     position: absolute;
-    top: 43px;
+    top: 40px;
     width: 50%;
     right: 0px;
   }
@@ -412,7 +419,7 @@ h1 {
   .search-wrap {
     position: absolute;
     width: 80%;
-    top: 43px;
+    top: 35px;
     left: 0;
   }
 
