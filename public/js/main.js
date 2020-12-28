@@ -1,3 +1,5 @@
+import { sendForm } from './sendFormData.js';
+
 $('.log-in').on('click', function () {
   $('.pop-up__login').slideToggle();
   $('.overlay').fadeIn();
@@ -70,3 +72,5 @@ rubrickBtn.onclick = function () {
     rubricks.classList.add('open-rubric');
   }
 };
+
+sendForm('registration__form', '/api/auth/signup');

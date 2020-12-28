@@ -11,8 +11,8 @@ exports.signup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
-	}
-	
+  }
+
   const user = new User({
     username: req.body.username,
     email: req.body.email,
