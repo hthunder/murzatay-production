@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Мурзатай</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/global.css">
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<div class="logo-wrap">
+				<img src="../img/logo.png" alt="Лого" class="logo">
+				<img src="../img/koshkonutost.png" class="logo-phrase">
+			</div>
+		</div>
+		<nav>
+			<p><a href="/" class="nav-link">Главная</a></p>
+			<p><a href="/about" class="nav-link">Об авторе</a></p>
+			<div class="nav-button">
+				<button class="log-in">Войти</button>
+				<button class="sign-up">Зарегистрироваться</button>
+			</div>
+			<img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
+
+			<form action="#" class="search-wrap">
+				<input type="search" class="search-field" placeholder="Поиск">
+			</form>
+
+			<img src="/img/mobile-menu.svg" alt="Меню" class="mobile-menu">
+
+			<ul class="menu-list">
+				<li class="menu-item"><a href="/" class="nav-link-mobile">Главная</a></li>
+				<li class="menu-item"><a href="/about" class="nav-link-mobile">Об авторе</a></li>
+				<li class="menu-item"><button class="log-in">Войти</button></li>
+				<li class="menu-item"><button class="sign-up">Зарегистрироваться</button></li>
+			</ul>
+		</nav>
+		<div class="mobile-rubrics-wrap">
+			<p class="mobile-rubrics-btn-wrap"><button class="mobile-rubrics">
+					Рубрики
+				</button></p>
+			<div class="rubrics-mbl-container">
+				<p class="aside-button-wrap"><button class="aside-button">Кормление</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Уход</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Воспитание</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Адаптация</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">“Пора к ветеринару?”</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Коты доноры</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Коты спинальники</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Интересные факты</button></p>
+				<p class="aside-button-wrap"><button class="aside-button">Забавные истории</button></p>
+			</div>
+		</div>
+	</header>
+	<section class="main">
+		<div class="content">
+			<img src="../img/mainPicture.png" alt="Фото" class="main-img">
+			<p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
+				provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur soluta
+				doloribus in error molestiae veniam!</p>
+			<figure class="last-article">
+				<img src="../img/last-article.png" alt="Фото" class="last-article-img">
+				<figcaption class="last-article-prewiew">
+					<h2 class="prewiew-title">Последняя статья</h2>
+					<p class="prewiew-text">Отрывок из последней статьиОтрывок из последней статьиОтрывок из последней
+						статьиОтрывок из последней статьи</p>
+					<button class="read-more">Читать...</button>
+				</figcaption>
+			</figure>
+			<figure class="last-article">
+				<img src="../img/last-article.png" alt="Фото" class="last-article-img">
+				<figcaption class="last-article-prewiew">
+					<h2 class="prewiew-title">Предпоследняя статья</h2>
+					<p class="prewiew-text">Отрывок из предпоследней статьиОтрывок из последней статьиОтрывок из последней
+						статьиОтрывок из последней статьи</p>
+					<button class="read-more">Читать...</button>
+				</figcaption>
+			</figure>
+		</div>
+		{{> sidebar }}
+
+	</section>
+
+	{{> footer }}
+	{{!-- <div class="pop-up__login">
+		<form action="#" class="registration">
+			<h2 class="title">Войти</h2>
+			<input type="email" placeholder="E-mail/Login" class="input">
+			<input type="password" placeholder="Пароль" class="input">
+			<button class="submit" type="submit">Войти</button><br>
+			<!-- <button class="cansel">Отменить</button> -->
+			<a href="#" class="cansel-login">Отменить</a>
+		</form>
+	</div>
+
+	<div class="pop-up__signup">
+		<h2 class="title">Регистрация</h2>
+		<form action="#" class="registration">
+			<input type="text" placeholder="Login" class="input">
+			<input type="email" placeholder="E-mail" class="input">
+			<input type="password" placeholder="Пароль" class="input">
+			<input type="password" placeholder="Повторите пароль" class="input">
+			<input type="text" placeholder="Город" class="input">
+			<button class="submit" type="submit">Зарегистрироваться</button><br>
+			<a href="#" class="cansel-signup">Отменить</a>
+		</form>
+	</div> --}}
+
+	{{!-- так подключаются частичные представления из папки partials --}}
+	{{> popup }}
+	{{!<div class="overlay"></div>--}}
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/jquery.maskedinput.min.js"></script>
+	<script src="/js/jquery.fancybox.min.js"></script>
+	<script type="module" src="/js/main.js"></script>
+
+</body>
+
+</html>
