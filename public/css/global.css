@@ -18,8 +18,8 @@
 
 @font-face {
   font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-regular.woff2") format("woff2"),
-    url("../fonts/raleway/Raleway-regular.woff") format("woff"),
+  src: url("../fonts/raleway/Raleway-Regular.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-Regular.woff") format("woff"),
     url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
@@ -93,7 +93,7 @@ nav > p {
   font-family: Raleway;
   font-weight: 400;
   font-size: 18px;
-  align: Center;
+  text-align: center;
   text-decoration: none;
   color: #fff;
 }
@@ -103,11 +103,11 @@ nav > p {
 }
 
 .nav-button {
-  width: 23.5%;
+  width: 40%;
   text-align: center;
   vertical-align: middle;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .nav-button > button {
@@ -118,6 +118,7 @@ nav > p {
   font-family: Raleway;
   font-weight: 400;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .nav-button > button.log-in:focus,
@@ -343,7 +344,7 @@ footer {
 
 .social-links:hover > .social-link-text {
   color: rgba(242, 138, 46, 0.8);
-  text-shadow: rgb(255, 188, 4);
+  text-shadow: rgba(255, 188, 4, 0.274) 1px 0px;
 }
 
 .social-link-text {
