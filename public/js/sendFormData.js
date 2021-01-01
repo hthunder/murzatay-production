@@ -15,9 +15,12 @@ export const sendForm = (formId, url) => {
       body: JSON.stringify(Object.fromEntries(formData))
     })
       .then((res) => {
-        return res.text();
+        console.log(res);
+        return res.json();
       })
       .then((text) => {
+        if (url === '/api/auth/signin')
+          localStorage.setItem('accessToken', text.accessToken);
         console.log(text);
       })
       .catch((err) => {

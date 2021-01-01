@@ -73,4 +73,5 @@ rubrickBtn.onclick = function () {
   }
 };
 
-sendForm('registration__form', '/api/auth/signup');
+sendForm('signup__form', '/api/auth/signup');
+sendForm('signin__form', '/api/auth/signin');
