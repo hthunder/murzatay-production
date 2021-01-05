@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
-
-require('dotenv').config();
+const apiAuth = require('./routes/auth.routes');
 
 const blogRoutes = require('./routes/blog');
 
@@ -29,8 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+app.use('/api/auth', apiAuth);
+// require('./routes/auth.routes')(app);
+// require('./routes/user.routes')(app);
 app.use(blogRoutes);
 app.use(express.static('public'));
 

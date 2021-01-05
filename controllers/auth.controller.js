@@ -106,7 +106,7 @@ exports.signin = (req, res) => {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
 
-      // res.cookie('token', token, { httpOnly: true });
+      res.cookie('token', token, { httpOnly: true });
 
       // res.status(200).send({
       //   id: user._id,
@@ -115,11 +115,11 @@ exports.signin = (req, res) => {
       //   roles: authorities,
       //   accessToken: token
       // });
-      // res.redirect('/about');
+      res.redirect('/');
       // res.status(302).setHeader('Location', '/about');
-      res.statusCode = 302;
-      res.setHeader('Location', '/');
-      return res.end();
+      // res.statusCode = 302;
+      // res.setHeader('Location', '/');
+      // return res.end();
       // return res.end();
     });
 };
