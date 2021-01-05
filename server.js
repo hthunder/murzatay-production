@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-// const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const apiAuth = require('./routes/auth.routes');
+const articleRouter = require('./routes/articles');
 
 const blogRoutes = require('./routes/blog');
 
@@ -13,7 +13,11 @@ const Role = db.role;
 const app = express();
 const hbs = exphbs.create({
   defaultLayout: 'main',
-  extname: 'hbs'
+  extname: 'hbs',
+  runtimeOption: {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true
+  }
 });
 
 app.engine('hbs', hbs.engine);
@@ -26,11 +30,11 @@ app.use(cookieParser());
 app.use(express.json());
 
 //parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 //routes
 app.use('/api/auth', apiAuth);
-// require('./routes/auth.routes')(app);
+app.use('/articles', articleRouter);
 // require('./routes/user.routes')(app);
 app.use(blogRoutes);
 app.use(express.static('public'));

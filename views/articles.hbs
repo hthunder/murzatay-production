@@ -63,6 +63,21 @@
 	</header>
 	<section class="main">
 		<div class="content">
+			{{!-- test markdown --}}
+			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
+			<a href="/articles/new">New article</a>
+			{{#each articles}}
+			<figure class="article">
+				<img src="../img/article.png" alt="Фото" class="article-img">
+				<figcaption class="article-prewiew">
+					<h2 class="article-title">{{this.title}}</h2>
+					<span class="unread">Прочти меня</span>
+					<p class="article-text">{{this.description}}</p>
+					<a href="/articles/{{this._id}}" class="read-more">Читать...</a>
+				</figcaption>
+			</figure>
+			{{/each}}
+			{{!-- test markdown --}}
 			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
 			<figure class="article">
 				<img src="../img/article.png" alt="Фото" class="article-img">
