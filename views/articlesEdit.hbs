@@ -11,7 +11,20 @@
 	<div>
 		<h1>Редактировать статью</h1>
 		<form action="/articles/{{id}}?_method=PUT" method="post">
-			{{> form_fields title=title markdown=markdown description=description}}
+			<div>
+				<label for="title">Название статьи</label>
+				<input required value="{{article.title}}" type="text" name="title" id="title" />
+			</div>
+			<div>
+				<label for="description">Описание</label>
+				<textarea required name="description" id="description">{{article.description}}</textarea>
+			</div>
+			<div>
+				<label for="markdown">Разметка</label>
+				<textarea required name="markdown" id="markdown">{{article.markdown}}</textarea>
+			</div>
+			<a href="/articles">Отменить</a>
+			<button type="submit">Сохранить</button>
 		</form>
 	</div>
 </body>

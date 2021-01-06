@@ -15,13 +15,10 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/edit/:id', async (req, res) => {
-  const article = await Article.findById(req.params.id);
-	console.log(article);
+  const article = await Article.findById(req.params.id).lean();
   res.render('articlesEdit', {
     layout: false,
-    title: article.title,
-    markdown: article.markdown,
-    description: article.description,
+    article: article,
     id: req.params.id
   });
 });
@@ -67,18 +64,20 @@ function saveArticleAndRedirect(path) {
     article.title = req.body.title;
     article.markdown = req.body.markdown;
     article.description = req.body.description;
-
     article
       .save()
       .then((article) => {
         res.redirect(`/articles/${article.slug}`);
       })
       .catch((err) => {
-        res.render(`articles${path}`, {
-          layout: false,
-          title: article.title,
+				const article_copy = {
+					title: article.title,
           markdown: article.markdown,
           description: article.description
+				}
+        res.render(`articles${path}`, {
+					layout: false,
+					article: article_copy
         });
       });
   };
