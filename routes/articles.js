@@ -3,47 +3,85 @@ const Article = require('./../models/article');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	const articles = await Article.find().lean();
+  const articles = await Article.find().lean();
   res.render('articles', { layout: false, articles: articles });
 });
 
 router.get('/new', (req, res) => {
-  res.render('articlesNew', { layout: false });
+  res.render('articlesNew', {
+    layout: false,
+    article: new Article()
+  });
 });
 
-router.get('/:id', (req, res) => {
-  Article.findById(req.params.id, (err, article) => {
-		if (article == null) res.redirect('/');
+router.get('/edit/:id', async (req, res) => {
+  const article = await Article.findById(req.params.id);
+	console.log(article);
+  res.render('articlesEdit', {
+    layout: false,
+    title: article.title,
+    markdown: article.markdown,
+    description: article.description,
+    id: req.params.id
+  });
+});
+
+router.get('/:slug', (req, res) => {
+  Article.findOne({ slug: req.params.slug }, (err, article) => {
+    if (article == null) res.redirect('/');
     res.render('topic', {
       layout: false,
       title: article.title,
-      description: article.description,
-      markdown: article.markdown,
-      id: req.params.id
+      sanitizedHTML: article.sanitizedHTML,
+      id: article.id
     });
   });
 });
 
-router.post('/new', (req, res) => {
-  const article = new Article({
-    title: req.body.title,
-    markdown: req.body.markdown,
-    description: req.body.description
-  });
+router.put(
+  '/:id',
+  async (req, res, next) => {
+    req.article = await Article.findById(req.params.id);
+    next();
+  },
+  saveArticleAndRedirect('Edit')
+);
 
-  article
-    .save()
-    .then((article) => {
-      res.redirect(`/articles/${article.id}`);
-    })
-    .catch((err) => {
-      res.render('articlesNew', {
-        layout: false,
-        title: article.title,
-        markdown: article.markdown,
-        description: article.description
+router.delete('/:id', async (req, res) => {
+  await Article.findByIdAndDelete(req.params.id);
+  res.redirect('/articles');
+});
+
+router.post(
+  '/new',
+  (req, res, next) => {
+    req.article = new Article();
+    next();
+  },
+  saveArticleAndRedirect('New')
+);
+
+function saveArticleAndRedirect(path) {
+  return (req, res) => {
+    let article = req.article;
+    article.title = req.body.title;
+    article.markdown = req.body.markdown;
+    article.description = req.body.description;
+
+    article
+      .save()
+      .then((article) => {
+        res.redirect(`/articles/${article.slug}`);
+      })
+      .catch((err) => {
+        res.render(`articles${path}`, {
+          layout: false,
+          title: article.title,
+          markdown: article.markdown,
+          description: article.description
+        });
       });
-    });
-});
+  };
+}
 
 module.exports = router;

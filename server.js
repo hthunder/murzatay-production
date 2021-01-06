@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 const apiAuth = require('./routes/auth.routes');
 const articleRouter = require('./routes/articles');
 
@@ -31,6 +32,7 @@ app.use(express.json());
 
 //parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 
 //routes
 app.use('/api/auth', apiAuth);
@@ -50,7 +52,8 @@ async function start() {
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true
       }
     );
     initial();
