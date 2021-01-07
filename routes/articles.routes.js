@@ -1,26 +1,10 @@
 const express = require('express');
-const Article = require('./../models/article');
+const Article = require('../models/article.model');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   const articles = await Article.find().lean();
   res.render('articles', { layout: false, articles: articles });
-});
-
-router.get('/new', (req, res) => {
-  res.render('articlesNew', {
-    layout: false,
-    article: new Article()
-  });
-});
-
-router.get('/edit/:id', async (req, res) => {
-  const article = await Article.findById(req.params.id).lean();
-  res.render('articlesEdit', {
-    layout: false,
-    article: article,
-    id: req.params.id
-  });
 });
 
 router.get('/:slug', (req, res) => {
@@ -32,6 +16,22 @@ router.get('/:slug', (req, res) => {
       sanitizedHTML: article.sanitizedHTML,
       id: article.id
     });
+  });
+});
+
+router.get('/add', (req, res) => {
+  res.render('articlesNew', {
+    layout: false,
+    article: new Article()
+  });
+});
+
+router.get('/:id/edit', async (req, res) => {
+  const article = await Article.findById(req.params.id).lean();
+  res.render('articlesEdit', {
+    layout: false,
+    article: article,
+    id: req.params.id
   });
 });
 
@@ -70,14 +70,14 @@ function saveArticleAndRedirect(path) {
         res.redirect(`/articles/${article.slug}`);
       })
       .catch((err) => {
-				const article_copy = {
-					title: article.title,
+        const article_copy = {
+          title: article.title,
           markdown: article.markdown,
           description: article.description
-				}
+        };
         res.render(`articles${path}`, {
-					layout: false,
-					article: article_copy
+          layout: false,
+          article: article_copy
         });
       });
   };

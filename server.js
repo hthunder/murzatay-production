@@ -4,9 +4,9 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const apiAuth = require('./routes/auth.routes');
-const articleRouter = require('./routes/articles');
+const articleRouter = require('./routes/articles.routes');
 
-const blogRoutes = require('./routes/blog');
+const blogRoutes = require('./routes/blog.routes');
 
 const db = require('./models');
 const Role = db.role;
