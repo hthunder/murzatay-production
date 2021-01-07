@@ -1,30 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+	<title>Новая статья</title>
+	<link rel="stylesheet" type="text/css" href="/css/admin.css">
+
 </head>
 
 <body>
 	<div>
-		<h1>Новая статья</h1>
+
+		<h1 class="edit_title">Новая статья</h1>
+		<span>Рубрика</span><select name="" id="" required class="edit__select">
+			<option class="edit__select-item" value="Кормление" selected>Кормление</option>
+			<option class="edit__select-item" value="Уход">Уход</option>
+			<option class="edit__select-item" value="Воспитание">Воспитание</option>
+			<option class="edit__select-item" value="Адаптация">Адаптация</option>
+			<option class="edit__select-item" value="Пора к ветеринару?">“Пора к ветеринару?”</option>
+			<option class="edit__select-item" value="Коты доноры">Коты доноры</option>
+			<option class="edit__select-item" value="Коты спинальники">Коты спинальники</option>
+			<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
+			<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
+		</select>
 		<form action="/articles/new" method="post">
 			<div>
 				<label for="title">Название статьи</label>
-				<input required value="{{article.title}}" type="text" name="title" id="title" />
+				<input required value="{{article.title}}" type="text" class="edit__article-title" name="title" id="title" />
 			</div>
 			<div>
 				<label for="description">Описание</label>
-				<textarea required name="description" id="description">{{article.description}}</textarea>
+				<textarea required name="description" class="description"
+					id="description">{{article.description}}</textarea>
 			</div>
 			<div>
 				<label for="markdown">Разметка</label>
-				<textarea required name="markdown" id="markdown">{{article.markdown}}</textarea>
+				<textarea required name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
 			</div>
-			<a href="/articles">Отменить</a>
-			<button type="submit">Сохранить</button>
+			<a href="/articles" class="edit__cancel">Отменить</a>
+			<button type="submit" class="edit__submit">Сохранить</button>
 		</form>
 	</div>
 </body>

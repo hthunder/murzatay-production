@@ -1,44 +1,44 @@
 @font-face {
-  font-family: 'Lora';
-  src: url('../fonts/lora/Lora-Regular.woff2') format('woff2'),
-    url('../fonts/lora/Lora-Regular.woff') format('woff'),
-    url('../fonts/lora/Lora-Regular.ttf') format('ttf');
+  font-family: "Lora";
+  src: url("../fonts/lora/Lora-Regular.woff2") format("woff2"),
+    url("../fonts/lora/Lora-Regular.woff") format("woff"),
+    url("../fonts/lora/Lora-Regular.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Lora';
-  src: url('../fonts/lora/Lora-Medium.woff2') format('woff2'),
-    url('../fonts/lora/Lora-Medium.woff') format('woff'),
-    url('../fonts/lora/Lora-Medium.ttf') format('ttf');
+  font-family: "Lora";
+  src: url("../fonts/lora/Lora-Medium.woff2") format("woff2"),
+    url("../fonts/lora/Lora-Medium.woff") format("woff"),
+    url("../fonts/lora/Lora-Medium.ttf") format("ttf");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Raleway';
-  src: url('../fonts/raleway/Raleway-Regular.woff2') format('woff2'),
-    url('../fonts/raleway/Raleway-Regular.woff') format('woff'),
-    url('../fonts/raleway/Raleway-Regular.ttf') format('ttf');
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-Regular.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-Regular.woff") format("woff"),
+    url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Raleway';
-  src: url('../fonts/raleway/Raleway-Medium.woff2') format('woff2'),
-    url('../fonts/raleway/Raleway-Medium.woff') format('woff'),
-    url('../fonts/raleway/Raleway-Medium.ttf') format('ttf');
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-Medium.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-Medium.woff") format("woff"),
+    url("../fonts/raleway/Raleway-Medium.ttf") format("ttf");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Raleway';
-  src: url('../fonts/raleway/Raleway-SemiBold.woff2') format('woff2'),
-    url('../fonts/raleway/Raleway-SemiBold.woff') format('woff'),
-    url('../fonts/raleway/Raleway-SemiBold.ttf') format('ttf');
+  font-family: "Raleway";
+  src: url("../fonts/raleway/Raleway-SemiBold.woff2") format("woff2"),
+    url("../fonts/raleway/Raleway-SemiBold.woff") format("woff"),
+    url("../fonts/raleway/Raleway-SemiBold.ttf") format("ttf");
   font-weight: 600;
   font-style: normal;
 }
@@ -83,7 +83,7 @@ nav {
   align-items: center;
 }
 
-nav > p {
+.nav__link-wrap {
   width: 14.5%;
   text-align: center;
   vertical-align: middle;
@@ -102,33 +102,29 @@ nav > p {
   color: #401f09;
 }
 
-.nav-button {
-  width: 23.5%;
-  text-align: center;
-  vertical-align: middle;
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav-button > button {
+.log-in,
+.sign-up,
+.log-out {
   background-color: transparent;
   background: transparent;
   border: none;
   color: #fff;
   font-family: Raleway;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-.nav-button > button.log-in:focus,
-.nav-button > button.sign-up:focus {
+button.log-in:focus,
+button.sign-up:focus {
   color: #401f09;
   border: 1px solid #401f09;
   border-radius: 3px;
   outline: none;
 }
 
-.nav-button > button:hover {
+button.log-in:hover,
+button.sign-up:hover {
   color: #401f09;
 }
 
@@ -442,7 +438,7 @@ footer {
   margin-right: -15px;
 }
 
-form > textarea {
+.questions-area {
   resize: none;
   width: 100%;
   height: 75px;
@@ -455,7 +451,7 @@ form > textarea {
   outline: none;
 }
 
-form > button {
+.question-btn {
   width: 40%;
   padding: 2px;
   margin-top: 12px;
@@ -468,6 +464,17 @@ form > button {
   font-size: 13px;
   font-weight: 400;
   text-align: left;
+}
+
+.overlay {
+  background: rgba(155, 143, 143, 0.445);
+  width: 100%;
+  height: 200vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
 }
 
 @media screen and (min-width: 750px) and (max-width: 1024px) {
@@ -855,15 +862,4 @@ form > button {
     max-width: 100%;
     display: none;
   }
-}
-
-.overlay {
-  background: rgba(155, 143, 143, 0.445);
-  width: 100%;
-  height: 200vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99;
-  display: none;
-}
+} ;
