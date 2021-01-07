@@ -83,7 +83,7 @@ nav {
   align-items: center;
 }
 
-nav > p {
+.nav__link-wrap {
   width: 14.5%;
   text-align: center;
   vertical-align: middle;
@@ -102,15 +102,9 @@ nav > p {
   color: #401f09;
 }
 
-.nav-button {
-  width: 40%;
-  text-align: center;
-  vertical-align: middle;
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav-button > button {
+.log-in,
+.sign-up,
+.log-out {
   background-color: transparent;
   background: transparent;
   border: none;
@@ -121,15 +115,16 @@ nav > p {
   cursor: pointer;
 }
 
-.nav-button > button.log-in:focus,
-.nav-button > button.sign-up:focus {
+button.log-in:focus,
+button.sign-up:focus {
   color: #401f09;
   border: 1px solid #401f09;
   border-radius: 3px;
   outline: none;
 }
 
-.nav-button > button:hover {
+button.log-in:hover,
+button.sign-up:hover {
   color: #401f09;
 }
 
@@ -241,6 +236,7 @@ nav > p {
 }
 
 .aside-button {
+  display: block;
   background-color: rgba(140, 91, 62, 0.25);
   border: none;
   outline: none;
@@ -255,6 +251,7 @@ nav > p {
   margin-bottom: 11px;
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
 }
 
 .aside-button:hover {
@@ -366,7 +363,7 @@ footer {
   margin-right: -15px;
 }
 
-form > textarea {
+.questions-area {
   resize: none;
   width: 100%;
   height: 75px;
@@ -379,7 +376,7 @@ form > textarea {
   outline: none;
 }
 
-form > button {
+.question-btn {
   width: 40%;
   padding: 2px;
   margin-top: 12px;
@@ -464,7 +461,7 @@ form > button {
   font-weight: 400;
 }
 
-.registration button,
+.pop-up__submit,
 .cansel-login,
 .cansel-signup {
   width: 230px;
@@ -482,11 +479,16 @@ form > button {
   text-align: center;
   color: #fff;
   user-select: none;
+  cursor: pointer;
 }
 
 .cansel-login,
 .cansel-signup {
   padding: 3px 81px;
+}
+
+.pop-up__submit:active {
+  background-color: rgba(134, 92, 68, 0.671);
 }
 
 @media screen and (max-width: 750px) {

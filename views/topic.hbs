@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
@@ -21,12 +21,16 @@
 			</div>
 		</div>
 		<nav>
-			<p><a href="/" class="nav-link">Главная</a></p>
-			<p><a href="/about" class="nav-link">Об авторе</a></p>
-			<div class="nav-button">
-				<button class="log-in">Войти</button>
-				<button class="sign-up">Зарегистрироваться</button>
-			</div>
+			<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
+			<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
+
+			{{#if authorized}}
+			<button class="log-out">Выйти</button>
+			{{else}}
+			<button class="log-in">Войти</button>
+			<button class="sign-up">Зарегистрироваться</button>
+			{{/if}}
+
 			<img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
 
 			<form action="#" class="search-wrap">
