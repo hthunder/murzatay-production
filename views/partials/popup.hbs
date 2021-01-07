@@ -1,9 +1,9 @@
 <div class="pop-up__login">
-	<form action="/api/auth/signin" class="registration" method="post">
+	<form class="registration" id="signin__form">
 		<h2 class="title">Войти</h2>
-		<input type="text" placeholder="E-mail/Login" class="input" name="username" />
-		<input type="password" placeholder="Пароль" class="input" name="password" />
-		<button class="submit" type="submit">Войти</button><br />
+		<input type="text" placeholder="E-mail/Login" class="input" name="username" required />
+		<input type="password" placeholder="Пароль" class="input" name="password" required />
+		<button class="pop-up__submit" type="submit">Войти</button><br />
 		<!-- <button class="cansel">Отменить</button> -->
 		<a href="#" class="cansel-login">Отменить</a>
 	</form>
@@ -11,13 +11,13 @@
 
 <div class="pop-up__signup">
 	<h2 class="title">Регистрация</h2>
-	<form class="registration" id="registration__form">
-		<input type="text" placeholder="Login" class="input" name="username" />
-		<input type="email" placeholder="E-mail" class="input" name="email" />
-		<input type="password" placeholder="Пароль" class="input" name="password1" />
-		<input type="password" placeholder="Повторите пароль" class="input" name="password2" />
+	<form class="registration" id="signup__form">
+		<input type="text" placeholder="Login" class="input" name="username" required />
+		<input type="email" placeholder="E-mail" class="input" name="email" required />
+		<input type="password" placeholder="Пароль" class="input" name="password1" required />
+		<input type="password" placeholder="Повторите пароль" class="input" name="password2" required />
 		<input type="text" placeholder="Город" class="input" name="city" />
-		<button class="submit" type="submit">Зарегистрироваться</button><br />
+		<button class="pop-up__submit" type="submit">Зарегистрироваться</button><br />
 		<a href="#" class="cansel-signup">Отменить</a>
 	</form>
 </div>

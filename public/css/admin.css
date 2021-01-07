@@ -1,3 +1,8 @@
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
+}
 .admin-input {
   margin-top: 10px;
   background: #fff;
@@ -81,4 +86,67 @@
   background-color: #fff;
   border: 1px solid gray;
   width: 500px;
+}
+
+.edit_title {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 40%;
+}
+
+.edit__select {
+  margin-left: 25px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+
+.edit__article-title {
+  width: 400px;
+  background-color: rgb(202, 201, 201);
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.description {
+  max-width: 80%;
+  min-width: 80%;
+  min-height: 100px;
+  background-color: rgb(202, 201, 201);
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.markdown {
+  max-width: 80%;
+  min-width: 80%;
+  min-height: 400px;
+  background-color: rgb(202, 201, 201);
+  border: 2px solid gray;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+.edit__cancel {
+  display: inline-block;
+  border: 2px solid gray;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 2px;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: 30px;
+  color: black;
+  background-color: #fff;
+}
+
+.edit__submit {
+  outline: none;
+  border: 2px solid gray;
+  border-radius: 3px;
+  padding: 2px;
+  background-color: #fff;
 }

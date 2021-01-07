@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
@@ -21,12 +21,16 @@
 			</div>
 		</div>
 		<nav>
-			<p><a href="/" class="nav-link">Главная</a></p>
-			<p><a href="/about" class="nav-link">Об авторе</a></p>
-			<div class="nav-button">
-				<button class="log-in">Войти</button>
-				<button class="sign-up">Зарегистрироваться</button>
-			</div>
+			<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
+			<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
+
+			{{#if authorized}}
+			<button class="log-out">Выйти</button>
+			{{else}}
+			<button class="log-in">Войти</button>
+			<button class="sign-up">Зарегистрироваться</button>
+			{{/if}}
+
 			<img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
 
 			<form action="#" class="search-wrap">
@@ -67,93 +71,9 @@
 </svg>
 -->
 			</button>
-			<h1 class="topic-title"> Lorem ipsum dolor sit amet. </h1>
-			<p class="topic-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium pariatur quam harum
-				error laboriosam recusandae fugit quaerat necessitatibus repellendus provident corrupti illo, inventore non
-				aperiam vel velit eum repellat quo.
-				Et, reiciendis! Deserunt ad aperiam harum id hic distinctio, assumenda consequuntur est, incidunt voluptatum
-				sed
-				ab molestiae architecto nulla. Culpa explicabo nihil facilis minima enim officiis optio mollitia repellendus
-				ut.
-				Nisi voluptatum inventore nobis numquam, ducimus in cumque! Amet corrupti officiis veniam reprehenderit
-				dolorum
-				natus aut delectus molestias, quis alias recusandae, quisquam sed maxime temporibus nemo nobis optio?
-				Minima,
-				obcaecati!
-				Perferendis consequuntur ipsam aperiam eius odit repellat dolores sapiente amet aspernatur inventore, quia,
-				esse
-				veniam dignissimos, suscipit nulla praesentium rerum delectus fugiat provident deserunt. Dolore sint
-				doloribus
-				praesentium quae animi.
-				Autem esse deserunt maiores optio fugit. Fuga nihil ex enim magni cumque laborum. Incidunt necessitatibus
-				debitis quaerat deserunt enim unde expedita repudiandae! Nisi dolorum sit at saepe blanditiis! Doloremque,
-				magnam.
-				Sint quibusdam facere recusandae iusto voluptatum, dolores, ipsa aperiam quae cum explicabo nihil
-				voluptatibus
-				sit odio ducimus praesentium minima. Qui quos ipsam animi neque atque adipisci necessitatibus nihil,
-				temporibus
-				alias?
-				Recusandae deserunt dignissimos asperiores numquam voluptatum labore perspiciatis nisi repudiandae
-				doloremque
-				mollitia quisquam explicabo impedit dolor laudantium reprehenderit molestiae, veritatis corrupti at alias
-				optio
-				debitis aspernatur, distinctio unde! Illum, aperiam!
-				Optio placeat nostrum vel perspiciatis voluptatibus enim nisi, magni nesciunt. Neque ipsum, ut, vero et qui
-				ea
-				tempora repellendus est non deleniti atque voluptatem animi magnam dignissimos officia cumque soluta.
-				Aliquam dolore asperiores deleniti perspiciatis cupiditate? Deleniti incidunt distinctio, fugit adipisci
-				tempore
-				accusantium illum consequatur, praesentium rem eius voluptates eum, officia eveniet fuga quas aspernatur
-				ipsum
-				quis inventore repellendus? Aut?
-				Animi saepe voluptatum esse, sapiente obcaecati dolorum, nostrum ad ducimus quasi porro quod nobis! Minima
-				laborum saepe voluptate ducimus illum fugit praesentium culpa maxime eum. Nostrum soluta repellendus saepe
-				natus!
-				Vero aspernatur temporibus quam voluptatem atque, fugiat cumque, dolorum nostrum consequuntur labore nam
-				incidunt unde tenetur commodi ducimus quidem iure aliquam id enim eveniet molestias impedit repudiandae eos
-				deserunt! Omnis!
-				Dolorum minima aspernatur voluptas nesciunt aliquid quasi facilis illum, facere qui nobis labore? Saepe
-				minus
-				earum mollitia? Sunt, quidem non? Rerum quis officiis eveniet ullam ea ad nam maxime dolore!
-				Esse beatae totam cum expedita reprehenderit ullam repudiandae voluptatem veritatis dignissimos, temporibus
-				eum
-				nam a quae maiores. Impedit eius tempora debitis! Non optio ipsa perferendis. Tenetur blanditiis natus
-				expedita
-				ea!
-				Provident illum exercitationem mollitia vel corporis aliquam! Voluptates aut eius illum? Magnam ipsa,
-				impedit ea
-				nihil fuga quas distinctio facere, ab reprehenderit deserunt officia doloribus deleniti recusandae alias
-				sit.
-				Reiciendis.
-				Quaerat dolor, saepe ducimus sequi assumenda eos. Quia, doloribus distinctio. Asperiores cum, sint
-				consectetur
-				nostrum numquam magni eum vero delectus labore alias sapiente quis tempora culpa illo aperiam dolorum est.
-				Minus provident deserunt aliquid culpa accusantium earum distinctio quod atque consequatur soluta officia
-				libero
-				quasi temporibus illo tenetur iusto, id modi delectus, incidunt impedit harum eum ratione commodi. Quos,
-				autem.
-				Dolorem reprehenderit mollitia, in omnis atque hic corrupti, facere esse maiores praesentium iure pariatur
-				unde
-				harum debitis laborum neque amet minima, voluptates fugiat nostrum accusantium magnam tenetur. Vel, et
-				iusto.
-				Reiciendis, veritatis nesciunt quaerat quidem, similique laboriosam vero laborum quisquam magni quos aliquam
-				numquam, ut sed. Consequatur possimus magni eligendi soluta culpa rerum unde doloribus, ullam cumque nisi,
-				ratione ad!
-				Ratione laudantium autem officia. Delectus facere tenetur repudiandae ullam explicabo, ea, blanditiis hic
-				iusto
-				porro corrupti sed nobis laborum ex accusantium voluptates dolores obcaecati iure, maxime nemo totam illum.
-				Consequuntur.
-				Vel exercitationem veritatis, officia praesentium accusamus adipisci sapiente nesciunt itaque, omnis culpa
-				voluptatibus veniam nihil excepturi quaerat odit ipsum porro quas harum sit corporis facilis ducimus
-				voluptatem
-				quidem! Accusantium, minima.
-				Beatae molestiae nostrum error nam dolore non cum perspiciatis laborum doloribus labore est odit ipsum at
-				laboriosam dicta, distinctio voluptas mollitia omnis. Reprehenderit, sint illum quaerat reiciendis eos odio
-				accusantium.
-				Ad odit tenetur non officia praesentium, incidunt quo laborum, consequuntur sit excepturi suscipit commodi
-				vero
-				mollitia quasi fugit maiores quaerat voluptatem. Molestiae ab sit esse delectus, exercitationem dolorum
-				similique provident!</p>
+			<h1 class="topic-title"> {{ title}} </h1>
+			<p class="topic-text">{{{sanitizedHTML}}}</p>
+			<a href="/articles/edit/{{ id }}">Редактировать</a>
 
 			<h3 class="comment-title">Оставьте свой комментарий</h3>
 			<form action="#" class="topic-comment-wrap">

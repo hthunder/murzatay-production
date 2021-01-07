@@ -9,16 +9,12 @@ export const sendForm = (formId, url) => {
     fetch(url, {
       method: 'post',
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(Object.fromEntries(formData))
     })
       .then((res) => {
-        return res.text();
-      })
-      .then((text) => {
-        console.log(text);
+        if (res.redirected) window.location.href = res.url;
       })
       .catch((err) => {
         console.error(err);
