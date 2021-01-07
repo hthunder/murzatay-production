@@ -7,7 +7,16 @@ router.get('/', async (req, res) => {
   res.render('articles', { layout: false, articles: articles });
 });
 
+router.get('/add', (req, res) => {
+  console.log('add route');
+  res.render('articlesNew', {
+    layout: false,
+    article: new Article()
+  });
+});
+
 router.get('/:slug', (req, res) => {
+  console.log('slug route');
   Article.findOne({ slug: req.params.slug }, (err, article) => {
     if (article == null) res.redirect('/');
     res.render('topic', {
@@ -16,13 +25,6 @@ router.get('/:slug', (req, res) => {
       sanitizedHTML: article.sanitizedHTML,
       id: article.id
     });
-  });
-});
-
-router.get('/add', (req, res) => {
-  res.render('articlesNew', {
-    layout: false,
-    article: new Article()
   });
 });
 
