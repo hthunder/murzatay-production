@@ -1,8 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const exphbs = require('express-handlebars');
-
 require('dotenv').config();
+const express = require('express');
+const exphbs = require('express-handlebars');
+const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
+const apiAuth = require('./routes/auth.routes');
+const articleRouter = require('./routes/articles');
 
 const blogRoutes = require('./routes/blog');
 
@@ -12,22 +14,30 @@ const Role = db.role;
 const app = express();
 const hbs = exphbs.create({
   defaultLayout: 'main',
-  extname: 'hbs'
+  extname: 'hbs',
+  runtimeOption: {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true
+  }
 });
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
+app.use(cookieParser());
+
 //parse request of content-type - application/json
 app.use(express.json());
 
 //parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 
 //routes
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+app.use('/api/auth', apiAuth);
+app.use('/articles', articleRouter);
+// require('./routes/user.routes')(app);
 app.use(blogRoutes);
 app.use(express.static('public'));
 
@@ -42,7 +52,8 @@ async function start() {
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true
       }
     );
     initial();

@@ -63,6 +63,25 @@
 	</header>
 	<section class="main">
 		<div class="content">
+			{{!-- test markdown --}}
+			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
+			<a href="/articles/new">Новая статья</a>
+			{{#each articles}}
+			<figure class="article">
+				<img src="../img/article.png" alt="Фото" class="article-img">
+				<figcaption class="article-prewiew">
+					<h2 class="article-title">{{this.title}}</h2>
+					<span class="unread">Прочти меня</span>
+					<p class="article-text">{{this.description}}</p>
+					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
+					<a href="/articles/edit/{{this._id}}" class="read-more">Редактировать</a>
+					<form action="/articles/{{this._id}}?_method=DELETE" method="POST">
+						<button type="submit">Удалить</button>
+					</form>
+				</figcaption>
+			</figure>
+			{{/each}}
+			{{!-- test markdown --}}
 			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
 			<figure class="article">
 				<img src="../img/article.png" alt="Фото" class="article-img">

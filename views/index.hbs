@@ -22,8 +22,14 @@
 			<p><a href="/" class="nav-link">Главная</a></p>
 			<p><a href="/about" class="nav-link">Об авторе</a></p>
 			<div class="nav-button">
+				{{!-- <button class="log-in">Войти</button>
+				<button class="sign-up">Зарегистрироваться</button> --}}
+				{{#if authorized}}
+				<button class="log-out">Выйти</button>
+				{{else}}
 				<button class="log-in">Войти</button>
 				<button class="sign-up">Зарегистрироваться</button>
+				{{/if}}
 			</div>
 			<img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
 
