@@ -2,10 +2,12 @@ const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 const router = Router();
+const Article = require('../models/article.model');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // if ()
   // app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+  const articles = await Article.find().sort('-createdAt').limit(2).lean();
   const token = req.cookies.token;
   let authorized = false;
   if (token) {
@@ -19,9 +21,13 @@ router.get('/', (req, res) => {
     });
   }
   if (authorized) {
-    res.render('index', { layout: false, authorized: true });
+    res.render('index', {
+      layout: false,
+      authorized: true,
+      articles: articles
+    });
   } else {
-    res.render('index', { layout: false });
+    res.render('index', { layout: false, articles: articles });
   }
 });
 
@@ -29,9 +35,9 @@ router.get('/about', (req, res) => {
   res.render('about', { layout: false });
 });
 
-router.get('/articles', (req, res) => {
-  res.render('articles', { layout: false });
-});
+// router.get('/articles', (req, res) => {
+//   res.render('articles', { layout: false });
+// });
 
 router.get('/my-page', (req, res) => {
   res.render('my-page', { layout: false });

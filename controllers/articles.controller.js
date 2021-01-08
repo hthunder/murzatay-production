@@ -1,7 +1,7 @@
 const Article = require('../models/article.model');
 
 exports.articles_list = async (req, res) => {
-  const articles = await Article.find().lean();
+  const articles = await Article.find().sort('-createdAt').lean();
   res.render('articles', { layout: false, articles: articles });
 };
 

@@ -21,6 +21,7 @@
 		</div>
 		<nav>
 			<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
+			<p class="nav__link-wrap"><a href="/articles" class="nav-link">Статьи</a></p>
 			<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
 
 			{{!-- <button class="log-in">Войти</button>
@@ -70,7 +71,17 @@
 			<p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
 				provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur soluta
 				doloribus in error molestiae veniam!</p>
+			{{#each articles}}
 			<figure class="last-article">
+				<img src="../img/last-article.png" alt="Фото" class="last-article-img">
+				<figcaption class="last-article-prewiew">
+					<h2 class="prewiew-title">{{this.title}}</h2>
+					<p class="prewiew-text">{{this.description}}</p>
+					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
+				</figcaption>
+			</figure>
+			{{/each}}
+			{{!-- <figure class="last-article">
 				<img src="../img/last-article.png" alt="Фото" class="last-article-img">
 				<figcaption class="last-article-prewiew">
 					<h2 class="prewiew-title">Последняя статья</h2>
@@ -87,7 +98,7 @@
 						статьиОтрывок из последней статьи</p>
 					<button class="read-more">Читать...</button>
 				</figcaption>
-			</figure>
+			</figure> --}}
 		</div>
 		{{> sidebar }}
 
