@@ -1,8 +1,55 @@
 const Article = require('../models/article.model');
+const Rubric = require('../models/rubric.model');
 
 exports.articles_list = async (req, res) => {
   const articles = await Article.find().sort('-createdAt').lean();
   res.render('articles', { layout: false, articles: articles });
+};
+
+exports.article_category = async (req, res) => {
+  try {
+    let category;
+    switch (req.params.category) {
+      case 'kormlenie':
+        category = 'Кормление';
+        break;
+      case 'uhod':
+        category = 'Уход';
+        break;
+      case 'vospitanie':
+        category = 'Воспитание';
+        break;
+      case 'adaptaciya':
+        category = 'Адаптация';
+        break;
+      case 'pora-k-veterinaru':
+        category = 'Пора к ветеринару?';
+        break;
+      case 'koty-donory':
+        category = 'Коты доноры';
+        break;
+      case 'koty-spinalniki':
+        category = 'Коты спинальники';
+        break;
+      case 'interesnye-fakty':
+        category = 'Интересные факты';
+        break;
+      case 'zabavnye-istorii':
+        category = 'Забавные истории';
+        break;
+      default:
+        res.redirect('/articles');
+        return;
+    }
+    const rubric = await Rubric.findOne({ name: category });
+    const articles = await Article.find({ rubric }).lean();
+    res.render('articles', {
+      layout: false,
+      articles
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.article_page = (req, res) => {
@@ -47,21 +94,3 @@ exports.article_remove = async (req, res) => {
   await Article.findByIdAndDelete(req.params.id);
   res.redirect('/articles');
 };
-
-// router.put(
-//   '/:id',
-//   async (req, res, next) => {
-//     req.article = await Article.findById(req.params.id);
-//     next();
-//   },
-//   saveArticleAndRedirect('Edit')
-// );
-
-// router.post(
-//   '/new',
-// (req, res, next) => {
-//   req.article = new Article();
-//   next();
-// },
-//   saveArticleAndRedirect('New')
-// );

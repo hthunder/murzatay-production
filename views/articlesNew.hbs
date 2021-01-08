@@ -14,7 +14,7 @@
 	<div>
 
 		<h1 class="edit_title">Новая статья</h1>
-		<span>Рубрика</span><select name="" id="" required class="edit__select">
+		{{!-- <span>Рубрика</span><select name="" id="" required class="edit__select">
 			<option class="edit__select-item" value="Кормление" selected>Кормление</option>
 			<option class="edit__select-item" value="Уход">Уход</option>
 			<option class="edit__select-item" value="Воспитание">Воспитание</option>
@@ -24,16 +24,27 @@
 			<option class="edit__select-item" value="Коты спинальники">Коты спинальники</option>
 			<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
 			<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
-		</select>
+		</select> --}}
 		<form action="/articles/add" method="post">
+			<span>Рубрика</span>
+			<select name="rubric" id="" required class="edit__select">
+				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
+				<option class="edit__select-item" value="Уход">Уход</option>
+				<option class="edit__select-item" value="Воспитание">Воспитание</option>
+				<option class="edit__select-item" value="Адаптация">Адаптация</option>
+				<option class="edit__select-item" value="Пора к ветеринару?">Пора к ветеринару?</option>
+				<option class="edit__select-item" value="Коты доноры">Коты доноры</option>
+				<option class="edit__select-item" value="Коты спинальники">Коты спинальники</option>
+				<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
+				<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
+			</select>
 			<div>
 				<label for="title">Название статьи</label>
 				<input required value="{{article.title}}" type="text" class="edit__article-title" name="title" id="title" />
 			</div>
 			<div>
 				<label for="description">Описание</label>
-				<textarea required name="description" class="description"
-					id="description">{{article.description}}</textarea>
+				<textarea required name="description" class="description" id="description">{{article.description}}</textarea>
 			</div>
 			<div>
 				<label for="markdown">Разметка</label>

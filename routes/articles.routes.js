@@ -7,6 +7,8 @@ router.get('/', controller.articles_list);
 
 router.get('/add', controller.article_create_get);
 
+router.get('/category/:category', controller.article_category);
+
 router.get('/:slug', controller.article_page);
 
 router.get('/:id/edit', controller.article_edit_get);

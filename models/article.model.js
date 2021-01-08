@@ -31,7 +31,17 @@ const articleSchema = new mongoose.Schema(
     sanitizedHTML: {
       type: String,
       required: true
+    },
+    rubric: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Rubric'
     }
+    // rubrics: [
+    // 	{
+    // 		type: mongoose.Schema.Types.ObjectId,
+    // 		ref: "Rubric"
+    // 	}
+    // ]
   },
   { timestamps: true }
 );
