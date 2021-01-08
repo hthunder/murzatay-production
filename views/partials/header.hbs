@@ -1,0 +1,58 @@
+<header>
+	<div class="header">
+		<div class="logo-wrap">
+			<img src="../img/logo.png" alt="Лого" class="logo">
+			<img src="../img/koshkonutost.png" class="logo-phrase">
+		</div>
+	</div>
+	<nav>
+		<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
+		<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
+
+		{{!-- <button class="log-in">Войти</button>
+		<button class="sign-up">Зарегистрироваться</button> --}}
+		{{#if authorized}}
+		<button class="log-out">Выйти</button>
+		{{else}}
+		<button class="log-in">Войти</button>
+		<button class="sign-up">Зарегистрироваться</button>
+		{{/if}}
+
+		<img src="../img/svg-search.svg" alt="Поиск" class="search-icon">
+
+		<form action="#" class="search-wrap">
+			<input type="search" class="search-field" placeholder="Поиск">
+		</form>
+
+		<img src="/img/mobile-menu.svg" alt="Меню" class="mobile-menu">
+
+		<ul class="menu-list">
+			<li class="menu-item"><a href="/" class="nav-link-mobile">Главная</a></li>
+			<li class="menu-item"><a href="/about" class="nav-link-mobile">Об авторе</a></li>
+			{{#if authorized}}
+			<li class="menu-item"><button class="log-out-mbl">Выйти</button></li>
+			{{else}}
+			<li class="menu-item"><button class="log-in-mbl">Войти</button></li>
+			<li class="menu-item"><button class="sign-up-mbl">Зарегистрироваться</button></li>
+			{{/if}}
+		</ul>
+	</nav>
+	<div class="mobile-rubrics-wrap">
+		<p class="mobile-rubrics-btn-wrap"><button class="mobile-rubrics">
+				Рубрики
+			</button></p>
+		<div class="rubrics-mbl-container">
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Читать все</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Кормление</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Уход</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Воспитание</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Адаптация</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">“Пора к ветеринару?”</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Коты доноры</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Коты спинальники</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Интересные факты</a></p>
+			<p class="aside-button-wrap"><a href="/articles" class="aside-button">Забавные истории</a></p>
+		</div>
+	</div>
+
+</header>

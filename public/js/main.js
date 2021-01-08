@@ -38,6 +38,44 @@ $('.overlay').on('click', function () {
   $('.overlay').fadeOut();
 });
 
+$('.log-in-mbl').on('click', function () {
+  $('.pop-up__login').slideToggle();
+  $('.overlay').fadeIn();
+});
+
+$('.cansel-login').on('click', function () {
+  $('.pop-up__login').slideToggle();
+  $('.overlay').fadeOut();
+});
+
+$('.cansel-login').on('click', function (e) {
+  e.preventDefault();
+});
+
+$('.overlay').on('click', function () {
+  $('.pop-up__login').fadeOut();
+  $('.overlay').fadeOut();
+});
+
+$('.sign-up-mbl').on('click', function () {
+  $('.pop-up__signup').slideToggle();
+  $('.overlay').fadeIn();
+});
+
+$('.cansel-signup').on('click', function () {
+  $('.pop-up__signup').slideToggle();
+  $('.overlay').fadeOut();
+});
+
+$('.cansel-signup').on('click', function (e) {
+  e.preventDefault();
+});
+
+$('.overlay').on('click', function () {
+  $('.pop-up__signup').fadeOut();
+  $('.overlay').fadeOut();
+});
+
 /*Не закрываются выпадающие элементы при повторном клике*/
 
 let burger = document.querySelector('.mobile-menu');
