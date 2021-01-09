@@ -115,6 +115,19 @@ nav {
   cursor: pointer;
 }
 
+.log-out-mbl,
+.log-in-mbl,
+.sign-up-mbl {
+  background-color: transparent;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 button.log-in:focus,
 button.sign-up:focus {
   color: #401f09;
@@ -124,7 +137,8 @@ button.sign-up:focus {
 }
 
 button.log-in:hover,
-button.sign-up:hover {
+button.sign-up:hover,
+button.log-out:hover {
   color: #401f09;
 }
 

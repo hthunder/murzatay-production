@@ -110,7 +110,9 @@
     display: none;
   }
 
-  .nav-button {
+  .log-in,
+  .sign-up,
+  .log-out {
     display: none;
   }
 
@@ -148,7 +150,8 @@
   }
 
   .log-in,
-  .sign-up {
+  .sign-up,
+  .log-out {
     background-color: transparent;
     background: transparent;
     border: none;
@@ -263,7 +266,9 @@
     display: none;
   }
 
-  .nav-button {
+  .log-in,
+  .sign-up,
+  .log-out {
     display: none;
   }
 
@@ -301,7 +306,8 @@
   }
 
   .log-in,
-  .sign-up {
+  .sign-up,
+  .log-out {
     background-color: transparent;
     background: transparent;
     border: none;
