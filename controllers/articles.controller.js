@@ -2,12 +2,39 @@ const Article = require('../models/article.model');
 const Rubric = require('../models/rubric.model');
 
 exports.articles_list = async (req, res) => {
-  const articles = await Article.find().sort('-createdAt').lean();
+  res.redirect('/articles/category/all/page/1');
+  return;
+};
+
+exports.articles_pagination = async (req, res) => {
+  const page = req.params.page;
+  const size = 1;
+  if (page < 0 || page === 0) {
+    res.redirect('/articles/page/1');
+  }
+  const skip = size * (page - 1);
+  const articles = await Article.find()
+    .sort('-createdAt')
+    .skip(skip)
+    .limit(size)
+    .lean();
   res.render('articles', { layout: false, articles: articles });
 };
 
 exports.article_category = async (req, res) => {
+  res.redirect(`/articles/category/${req.params.category}/page/1`);
+  return;
+};
+
+exports.articles_category_pagination = async (req, res) => {
   try {
+    const page = req.params.page;
+    const size = 2;
+    if (page < 0 || page == 0) {
+      res.redirect(`/articles/category/${req.params.category}/page/1`);
+      return;
+    }
+    const skip = size * (page - 1);
     let category;
     switch (req.params.category) {
       case 'kormlenie':
@@ -37,15 +64,63 @@ exports.article_category = async (req, res) => {
       case 'zabavnye-istorii':
         category = 'Забавные истории';
         break;
+      case 'all':
+        category = 'all';
+        break;
       default:
         res.redirect('/articles');
         return;
     }
-    const rubric = await Rubric.findOne({ name: category });
-    const articles = await Article.find({ rubric }).lean();
+    let rubric;
+    let articles;
+    let numberOfArticles;
+    if (category != 'all') {
+      rubric = await Rubric.findOne({ name: category });
+      articles = await Article.find({ rubric })
+        .sort('-createdAt')
+        .skip(skip)
+        .limit(size)
+        .lean();
+      numberOfArticles = await Article.countDocuments({ rubric });
+    } else {
+      articles = await Article.find()
+        .sort('-createdAt')
+        .skip(skip)
+        .limit(size)
+        .lean();
+      numberOfArticles = await Article.countDocuments();
+    }
+
+    const last = Math.ceil(numberOfArticles / size);
+    const pages = [];
+    const pagesBefore = [];
+    const pagesAfter = [];
+    let index = 2;
+    while (index < last) {
+      pages.push(index);
+      index++;
+    }
+    index = 2;
+    while (index < page) {
+      pagesBefore.push(index);
+      index++;
+    }
+
+    index = +page + 1;
+    while (index < last) {
+      pagesAfter.push(index);
+      index++;
+    }
     res.render('articles', {
       layout: false,
-      articles
+      articles,
+      page,
+      category: req.params.category,
+      notIsFirst: page == 1 ? false : true,
+      notIsLast: page == last ? false : true,
+      pagesBefore,
+      pagesAfter,
+      last
     });
   } catch (err) {
     console.log(err);

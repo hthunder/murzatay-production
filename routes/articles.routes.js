@@ -5,7 +5,14 @@ const util = require('../util/saveArticleAndRedirect');
 
 router.get('/', controller.articles_list);
 
+router.get('/page/:page', controller.articles_pagination);
+
 router.get('/add', controller.article_create_get);
+
+router.get(
+  '/category/:category/page/:page',
+  controller.articles_category_pagination
+);
 
 router.get('/category/:category', controller.article_category);
 
