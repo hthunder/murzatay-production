@@ -49,9 +49,12 @@
 				{{#each pagesAfter}}
 				<a href="/articles/category/{{../category}}/page/{{this}}" class="pgn">{{this}}</a>
 				{{/each}}
+				{{#if last}}
 				{{#if notIsLast}}
 				<a href="/articles/category/{{category}}/page/{{last}}" class="pgn">{{last}}</a>
 				{{/if}}
+				{{/if}}
+
 			</div>
 
 			{{!-- <div class="pgn-wrap">
