@@ -15,7 +15,7 @@ exports.saveArticleAndRedirect = function (path) {
     article
       .save()
       .then((article) => {
-        res.redirect(`/articles/${article.slug}`);
+				res.redirect(`/articles/${article.slug}`);
       })
       .catch((err) => {
         console.log(err);

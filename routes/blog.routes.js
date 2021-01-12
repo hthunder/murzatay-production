@@ -1,10 +1,13 @@
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
+const { verifyToken } = require('../middlewares/authJwt');
 const router = Router();
 const Article = require('../models/article.model');
+const User = require('../models/user.model');
 
 router.get('/', async (req, res) => {
+  console.log('main page');
   // if ()
   // app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
   const articles = await Article.find().sort('-createdAt').limit(2).lean();
@@ -39,8 +42,12 @@ router.get('/about', (req, res) => {
 //   res.render('articles', { layout: false });
 // });
 
-router.get('/my-page', (req, res) => {
-  res.render('my-page', { layout: false });
+router.get('/my-page', verifyToken, async (req, res) => {
+  const user = await User.findOne({ _id: req.userId })
+    .select('-password')
+    .lean();
+  console.log(user);
+  res.render('my-page', { layout: false, user });
 });
 
 router.get('/topic', (req, res) => {

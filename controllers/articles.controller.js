@@ -1,32 +1,61 @@
 const Article = require('../models/article.model');
 const Rubric = require('../models/rubric.model');
 
-exports.articles_list = async (req, res) => {
-  res.redirect('/articles/category/all/page/1');
-  return;
-};
+// exports.articles_list = async (req, res) => {
+//   res.redirect('/articles/category/all/page/1');
+//   return;
+// };
 
-exports.articles_pagination = async (req, res) => {
-  const page = req.params.page;
-  const size = 1;
-  if (page < 0 || page === 0) {
-    res.redirect('/articles/page/1');
-  }
-  const skip = size * (page - 1);
-  const articles = await Article.find()
-    .sort('-createdAt')
-    .skip(skip)
-    .limit(size)
-    .lean();
-  res.render('articles', { layout: false, articles: articles });
-};
+// exports.articles_pagination = async (req, res) => {
+//   const page = req.params.page;
+//   const size = 1;
+//   if (page < 0 || page === 0) {
+//     res.redirect('/articles/page/1');
+//   }
+//   const skip = size * (page - 1);
+//   const articles = await Article.find()
+//     .sort('-createdAt')
+//     .skip(skip)
+//     .limit(size)
+//     .lean();
+//   res.render('articles', { layout: false, articles: articles });
+// };
 
 exports.article_category = async (req, res) => {
   res.redirect(`/articles/category/${req.params.category}/page/1`);
   return;
 };
 
+// const verifyToken = (req, res, next) => {
+//   // let token = req.headers['x-access-token'];
+//   const token = req.cookies.token;
+
+//   if (!token) {
+//     return res.redirect('/');
+//     // return res.status(403).send({ message: 'No token provided!' });
+//   }
+
+//   jwt.verify(token, config.secret, (err, decoded) => {
+//     if (err) {
+//       return res.status(401).send({ message: 'Unauthorized' });
+//     }
+//     req.userId = decoded.id;
+//     next();
+//   });
+// };
+
 exports.articles_category_pagination = async (req, res) => {
+  // const token = req.cookies.token;
+  // if (token) {
+  //   jwt.verify(token, config.secret, (err, decoded) => {
+  //     if (err) {
+  //       return res.status(401).send({ message: 'Unauthorized' });
+  //     }
+  //     req.userId = decoded.id;
+  //     next();
+  //   });
+  // }
+
   try {
     const page = req.params.page;
     const size = 2;
@@ -68,7 +97,7 @@ exports.articles_category_pagination = async (req, res) => {
         category = 'all';
         break;
       default:
-        res.redirect('/articles');
+        res.redirect('/articles/category/all');
         return;
     }
     let rubric;
@@ -120,7 +149,9 @@ exports.articles_category_pagination = async (req, res) => {
       notIsLast: page == last ? false : true,
       pagesBefore,
       pagesAfter,
-      last
+      last,
+      isAdmin: req.isAdmin,
+      isLoggedIn: req.isLoggedIn
     });
   } catch (err) {
     console.log(err);
@@ -167,5 +198,5 @@ exports.article_edit_put = async (req, res, next) => {
 
 exports.article_remove = async (req, res) => {
   await Article.findByIdAndDelete(req.params.id);
-  res.redirect('/articles');
+  res.redirect('/articles/category/all');
 };

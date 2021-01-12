@@ -69,9 +69,8 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  User.findOne({
-    username: req.body.username
-  })
+  User.findOne()
+    .or([{ email: req.body.username }, { username: req.body.username }])
     .populate('roles', '-__v')
     .exec((err, user) => {
       if (err) {
@@ -105,6 +104,7 @@ exports.signin = (req, res) => {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
 
+      console.log('hi');
       res.cookie('token', token, { httpOnly: true });
 
       // res.status(200).send({
@@ -121,4 +121,9 @@ exports.signin = (req, res) => {
       // return res.end();
       // return res.end();
     });
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/');
 };

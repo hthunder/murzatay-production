@@ -15,12 +15,14 @@
 </head>
 
 <body>
-	{{> header }}
+	{{> header isLoggedIn=isLoggedIn}}
 	<section class="main">
 		<div class="content">
-			{{!-- test markdown --}}
 			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
+			{{#if isAdmin}}
 			<a href="/articles/add">Новая статья</a>
+			{{/if}}
+
 			{{#each articles}}
 			<figure class="article">
 				<img src="/img/article.png" alt="Фото" class="article-img">
@@ -29,14 +31,17 @@
 					<span class="unread">Прочти меня</span>
 					<p class="article-text">{{this.description}}</p>
 					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
-					<a href="/articles/{{this._id}}/edit" class="read-more">Редактировать</a>
+					{{#if isAdmin}}
+					<a href="/articles/{{this._id}}/edit" class="read-more">
+						Редактировать
+					</a>
 					<form action="/articles/{{this._id}}?_method=DELETE" method="POST">
 						<button type="submit">Удалить</button>
 					</form>
+					{{/if}}
 				</figcaption>
 			</figure>
 			{{/each}}
-			{{!-- test markdown --}}
 
 			<div class="pgn-wrap">
 				{{#if notIsFirst}}

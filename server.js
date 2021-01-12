@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const apiAuth = require('./routes/auth.routes');
 const articleRouter = require('./routes/articles.routes');
+const { isLoggedIn } = require('./middlewares/authJwt');
 
 const blogRoutes = require('./routes/blog.routes');
 
@@ -36,9 +37,9 @@ app.use(methodOverride('_method'));
 
 //routes
 app.use('/api/auth', apiAuth);
-app.use('/articles', articleRouter);
+app.use('/articles', isLoggedIn, articleRouter);
 // require('./routes/user.routes')(app);
-app.use(blogRoutes);
+app.use('/', isLoggedIn, blogRoutes);
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 5000;
