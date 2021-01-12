@@ -22,6 +22,7 @@ const Rubric = require('../models/rubric.model');
 // };
 
 exports.article_category = async (req, res) => {
+  console.log('article_category');
   res.redirect(`/articles/category/${req.params.category}/page/1`);
   return;
 };
@@ -45,6 +46,7 @@ exports.article_category = async (req, res) => {
 // };
 
 exports.articles_category_pagination = async (req, res) => {
+  console.log('article_category_pagination');
   // const token = req.cookies.token;
   // if (token) {
   //   jwt.verify(token, config.secret, (err, decoded) => {
@@ -140,6 +142,7 @@ exports.articles_category_pagination = async (req, res) => {
       pagesAfter.push(index);
       index++;
     }
+    console.log(req.isAdmin);
     res.render('articles', {
       layout: false,
       articles,
@@ -159,6 +162,7 @@ exports.articles_category_pagination = async (req, res) => {
 };
 
 exports.article_page = (req, res) => {
+  console.log('article_category');
   Article.findOne({ slug: req.params.slug }, (err, article) => {
     if (article == null) res.redirect('/');
     res.render('topic', {
@@ -171,6 +175,7 @@ exports.article_page = (req, res) => {
 };
 
 exports.article_create_get = (req, res) => {
+  console.log('article_category');
   res.render('articlesNew', {
     layout: false,
     article: new Article()
@@ -178,11 +183,13 @@ exports.article_create_get = (req, res) => {
 };
 
 exports.article_create_post = (req, res, next) => {
+  console.log('article_category');
   req.article = new Article();
   next();
 };
 
 exports.article_edit_get = async (req, res) => {
+  console.log('article_category');
   const article = await Article.findById(req.params.id).lean();
   res.render('articlesEdit', {
     layout: false,
@@ -192,11 +199,13 @@ exports.article_edit_get = async (req, res) => {
 };
 
 exports.article_edit_put = async (req, res, next) => {
+  console.log('article_category');
   req.article = await Article.findById(req.params.id);
   next();
 };
 
 exports.article_remove = async (req, res) => {
+  console.log('article_category');
   await Article.findByIdAndDelete(req.params.id);
   res.redirect('/articles/category/all');
 };

@@ -104,7 +104,6 @@ exports.signin = (req, res) => {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
 
-      console.log('hi');
       res.cookie('token', token, { httpOnly: true });
 
       // res.status(200).send({

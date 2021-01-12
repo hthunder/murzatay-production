@@ -31,7 +31,7 @@
 					<span class="unread">Прочти меня</span>
 					<p class="article-text">{{this.description}}</p>
 					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
-					{{#if isAdmin}}
+					{{#if ../isAdmin}}
 					<a href="/articles/{{this._id}}/edit" class="read-more">
 						Редактировать
 					</a>
