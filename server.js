@@ -101,9 +101,9 @@ function initial() {
         }
         User.create({
           roles: [role.id],
-          username: 'admin',
-          email: 'admin@mail.ru',
-          password: bcrypt.hashSync('admin', 8)
+          username: '',
+          email: '@mail.ru',
+          password: bcrypt.hashSync('', 8)
         });
         console.log(`added 'admin' to roles collection`);
       });
