@@ -6,21 +6,24 @@
 		</div>
 	</div>
 	<nav>
-		<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
-		<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
+		<div class="nav__link-wrapper">
+			<p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
+			<p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
 
-		{{!-- <button class="log-in">Войти</button>
-		<button class="sign-up">Зарегистрироваться</button> --}}
-		{{!-- #if authorized --}}
-		{{#if isLoggedIn}}
-		{{!-- <button class="log-out">Выйти</button> --}}
-		<form action="/api/auth/logout" method="post">
-			<input class="log-out" type="submit" value="Выйти">
-		</form>
-		{{else}}
-		<button class="log-in">Войти</button>
-		<button class="sign-up">Зарегистрироваться</button>
-		{{/if}}
+			{{!-- <button class="log-in">Войти</button>
+			<button class="sign-up">Зарегистрироваться</button> --}}
+			{{!-- #if authorized --}}
+			{{#if isLoggedIn}}
+			{{!-- <button class="log-out">Выйти</button> --}}
+			<form action="/api/auth/logout" method="post">
+				<input class="log-out" type="submit" value="Выйти">
+			</form>
+			{{else}}
+			<button class="log-in">Войти</button>
+			<button class="sign-up">Зарегистрироваться</button>
+			{{/if}}
+		</div>
+
 
 		<img src="/img/svg-search.svg" alt="Поиск" class="search-icon">
 
