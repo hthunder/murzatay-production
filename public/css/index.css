@@ -1,44 +1,44 @@
 @font-face {
-  font-family: "Lora";
-  src: url("../fonts/lora/Lora-Regular.woff2") format("woff2"),
-    url("../fonts/lora/Lora-Regular.woff") format("woff"),
-    url("../fonts/lora/Lora-Regular.ttf") format("ttf");
+  font-family: 'Lora';
+  src: url('../fonts/lora/Lora-Regular.woff2') format('woff2'),
+    url('../fonts/lora/Lora-Regular.woff') format('woff'),
+    url('../fonts/lora/Lora-Regular.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Lora";
-  src: url("../fonts/lora/Lora-Medium.woff2") format("woff2"),
-    url("../fonts/lora/Lora-Medium.woff") format("woff"),
-    url("../fonts/lora/Lora-Medium.ttf") format("ttf");
+  font-family: 'Lora';
+  src: url('../fonts/lora/Lora-Medium.woff2') format('woff2'),
+    url('../fonts/lora/Lora-Medium.woff') format('woff'),
+    url('../fonts/lora/Lora-Medium.ttf') format('ttf');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-Regular.woff2") format("woff2"),
-    url("../fonts/raleway/Raleway-Regular.woff") format("woff"),
-    url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
+  font-family: 'Raleway';
+  src: url('../fonts/raleway/Raleway-Regular.woff2') format('woff2'),
+    url('../fonts/raleway/Raleway-Regular.woff') format('woff'),
+    url('../fonts/raleway/Raleway-Regular.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-Medium.woff2") format("woff2"),
-    url("../fonts/raleway/Raleway-Medium.woff") format("woff"),
-    url("../fonts/raleway/Raleway-Medium.ttf") format("ttf");
+  font-family: 'Raleway';
+  src: url('../fonts/raleway/Raleway-Medium.woff2') format('woff2'),
+    url('../fonts/raleway/Raleway-Medium.woff') format('woff'),
+    url('../fonts/raleway/Raleway-Medium.ttf') format('ttf');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-SemiBold.woff2") format("woff2"),
-    url("../fonts/raleway/Raleway-SemiBold.woff") format("woff"),
-    url("../fonts/raleway/Raleway-SemiBold.ttf") format("ttf");
+  font-family: 'Raleway';
+  src: url('../fonts/raleway/Raleway-SemiBold.woff2') format('woff2'),
+    url('../fonts/raleway/Raleway-SemiBold.woff') format('woff'),
+    url('../fonts/raleway/Raleway-SemiBold.ttf') format('ttf');
   font-weight: 600;
   font-style: normal;
 }
@@ -208,10 +208,10 @@ button.log-out:hover {
 }
 
 .main-img {
+  display: block;
+  margin: 31px auto 0;
   object-fit: cover;
   max-height: 400px;
-  margin-top: 31px;
-  margin-right: 10px;
   max-width: 850px;
 }
 
