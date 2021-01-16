@@ -142,7 +142,6 @@ exports.articles_category_pagination = async (req, res) => {
       pagesAfter.push(index);
       index++;
     }
-    console.log(req.isAdmin);
     res.render('articles', {
       layout: false,
       articles,
@@ -184,6 +183,7 @@ exports.article_create_get = (req, res) => {
 
 exports.article_create_post = (req, res, next) => {
   console.log('article_category');
+	console.log('File: ', req.file);
   req.article = new Article();
   next();
 };

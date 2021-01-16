@@ -25,7 +25,7 @@
 			<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
 			<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
 		</select> --}}
-		<form action="/articles/add" method="post">
+		<form action="/articles/add" method="post" enctype="multipart/form-data">
 			<span>Рубрика</span>
 			<select name="rubric" id="" required class="edit__select">
 				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
@@ -49,6 +49,10 @@
 			<div>
 				<label for="markdown">Разметка</label>
 				<textarea required name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
+			</div>
+			<div>
+				<label for="image">Выберите изображение</label>
+				<input type="file" id="image" name="img" accept="image/*" />
 			</div>
 			<a href="/articles/category/all" class="edit__cancel">Отменить</a>
 			<button type="submit" class="edit__submit">Сохранить</button>

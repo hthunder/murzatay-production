@@ -3,6 +3,18 @@ const router = express.Router();
 const controller = require('../controllers/articles.controller');
 const util = require('../util/saveArticleAndRedirect');
 const { isAdmin } = require('../middlewares/authJwt');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, process.cwd() + '/public/uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + '.jpeg');
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // router.get('/', controller.articles_list);
 
@@ -33,6 +45,7 @@ router.delete('/:id', controller.article_remove);
 
 router.post(
   '/add',
+  upload.single('img'),
   controller.article_create_post,
   util.saveArticleAndRedirect('New')
 );

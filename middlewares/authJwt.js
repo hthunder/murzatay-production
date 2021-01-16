@@ -45,7 +45,6 @@ const isLoggedIn = (req, res, next) => {
 const isAdmin = (req, res, next) => {
   req.isAdmin = false;
   req.errors = [];
-  console.log(req.userId);
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       req.errors.push(err);

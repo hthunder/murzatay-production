@@ -6,6 +6,8 @@ exports.saveArticleAndRedirect = function (path) {
     article.title = req.body.title;
     article.markdown = req.body.markdown;
     article.description = req.body.description;
+    if (req.hasOwnProperty('file'))
+      article.img = `/uploads/${req.file.filename}`;
 
     const rubric = await Rubric.findOne({
       name: req.body.rubric
@@ -15,7 +17,7 @@ exports.saveArticleAndRedirect = function (path) {
     article
       .save()
       .then((article) => {
-				res.redirect(`/articles/${article.slug}`);
+        res.redirect(`/articles/${article.slug}`);
       })
       .catch((err) => {
         console.log(err);

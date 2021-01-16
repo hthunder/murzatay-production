@@ -19,10 +19,6 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now
-    // },
     slug: {
       type: String,
       required: true,
@@ -35,13 +31,10 @@ const articleSchema = new mongoose.Schema(
     rubric: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Rubric'
+    },
+    img: {
+      type: String
     }
-    // rubrics: [
-    // 	{
-    // 		type: mongoose.Schema.Types.ObjectId,
-    // 		ref: "Rubric"
-    // 	}
-    // ]
   },
   { timestamps: true }
 );

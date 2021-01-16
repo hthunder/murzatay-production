@@ -25,7 +25,12 @@
 
 			{{#each articles}}
 			<figure class="article">
+				{{#if this.img}}
+				<img src="{{this.img}}" alt="Фото" class="article-img">
+				{{else}}
 				<img src="/img/article.png" alt="Фото" class="article-img">
+				{{/if}}
+
 				<figcaption class="article-prewiew">
 					<h2 class="article-title">{{this.title}}</h2>
 					<span class="unread">Прочти меня</span>
