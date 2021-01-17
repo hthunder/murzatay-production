@@ -38,11 +38,7 @@ router.get('/:slug', controller.article_page);
 // only for admins
 router.get('/:id/edit', controller.article_edit_get);
 
-router.put(
-  '/:id',
-  controller.article_edit_put,
-  util.saveArticleAndRedirect('Edit')
-);
+router.put('/:id', controller.article_edit_put, util.saveArticleAndRedirect());
 
 router.delete('/:id', controller.article_remove);
 
@@ -52,7 +48,7 @@ router.post(
     upload(req, res, (err) => {
       if (err instanceof multer.MulterError) {
         // if (req.originalUrl == '/articles/add') {
-				//TODO вынести в отдельную мидлвару с определением откуда запрос
+        //TODO вынести в отдельную мидлвару с определением откуда запрос
         return res.render('article_create_edit', {
           layout: false,
           page_title: 'Новая статья',
@@ -70,7 +66,7 @@ router.post(
     });
   },
   controller.article_create_post,
-  util.saveArticleAndRedirect('New')
+  util.saveArticleAndRedirect()
 );
 
 module.exports = router;

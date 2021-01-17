@@ -1,6 +1,6 @@
 const Rubric = require('../models/rubric.model');
 
-exports.saveArticleAndRedirect = function (path) {
+exports.saveArticleAndRedirect = function () {
   return async (req, res) => {
     let article = req.article;
     article.title = req.body.title;
