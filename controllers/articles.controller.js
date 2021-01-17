@@ -2,63 +2,12 @@ const Article = require('../models/article.model');
 const Rubric = require('../models/rubric.model');
 const util = require('../util/saveArticleAndRedirect');
 
-// exports.articles_list = async (req, res) => {
-//   res.redirect('/articles/category/all/page/1');
-//   return;
-// };
-
-// exports.articles_pagination = async (req, res) => {
-//   const page = req.params.page;
-//   const size = 1;
-//   if (page < 0 || page === 0) {
-//     res.redirect('/articles/page/1');
-//   }
-//   const skip = size * (page - 1);
-//   const articles = await Article.find()
-//     .sort('-createdAt')
-//     .skip(skip)
-//     .limit(size)
-//     .lean();
-//   res.render('articles', { layout: false, articles: articles });
-// };
-
 exports.article_category = async (req, res) => {
-  console.log('article_category');
   res.redirect(`/articles/category/${req.params.category}/page/1`);
   return;
 };
 
-// const verifyToken = (req, res, next) => {
-//   // let token = req.headers['x-access-token'];
-//   const token = req.cookies.token;
-
-//   if (!token) {
-//     return res.redirect('/');
-//     // return res.status(403).send({ message: 'No token provided!' });
-//   }
-
-//   jwt.verify(token, config.secret, (err, decoded) => {
-//     if (err) {
-//       return res.status(401).send({ message: 'Unauthorized' });
-//     }
-//     req.userId = decoded.id;
-//     next();
-//   });
-// };
-
 exports.articles_category_pagination = async (req, res) => {
-  console.log('article_category_pagination');
-  // const token = req.cookies.token;
-  // if (token) {
-  //   jwt.verify(token, config.secret, (err, decoded) => {
-  //     if (err) {
-  //       return res.status(401).send({ message: 'Unauthorized' });
-  //     }
-  //     req.userId = decoded.id;
-  //     next();
-  //   });
-  // }
-
   try {
     const page = req.params.page;
     const size = 2;
@@ -143,7 +92,6 @@ exports.articles_category_pagination = async (req, res) => {
       pagesAfter.push(index);
       index++;
     }
-    console.log(articles);
     res.render('articles', {
       layout: false,
       articles,
@@ -163,7 +111,6 @@ exports.articles_category_pagination = async (req, res) => {
 };
 
 exports.article_page = (req, res) => {
-  console.log('article_category');
   Article.findOne({ slug: req.params.slug }, (err, article) => {
     if (article == null) res.redirect('/');
     res.render('topic', {

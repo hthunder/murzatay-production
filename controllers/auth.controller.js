@@ -105,20 +105,7 @@ exports.signin = (req, res) => {
       }
 
       res.cookie('token', token, { httpOnly: true });
-
-      // res.status(200).send({
-      //   id: user._id,
-      //   username: user.username,
-      //   email: user.email,
-      //   roles: authorities,
-      //   accessToken: token
-      // });
       res.redirect('/');
-      // res.status(302).setHeader('Location', '/about');
-      // res.statusCode = 302;
-      // res.setHeader('Location', '/');
-      // return res.end();
-      // return res.end();
     });
 };
 
