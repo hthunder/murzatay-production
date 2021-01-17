@@ -7,7 +7,7 @@ exports.saveArticleAndRedirect = function (path) {
     article.markdown = req.body.markdown;
     article.description = req.body.description;
     if (req.hasOwnProperty('file'))
-      article.img = `/uploads/${req.file.filename}`;
+      article.img = `/img/previews/${req.file.filename}`;
 
     const rubric = await Rubric.findOne({
       name: req.body.rubric
@@ -26,10 +26,21 @@ exports.saveArticleAndRedirect = function (path) {
           markdown: article.markdown,
           description: article.description
         };
-        res.render(`articles${path}`, {
-          layout: false,
-          article: article_copy
-        });
+        if (req.originalUrl == '/articles/add') {
+          res.render(`article_create_edit`, {
+            layout: false,
+            page_title: 'Новая статья',
+            page_action: '/articles/add',
+            article: article_copy
+          });
+        } else {
+          res.render(`article_create_edit`, {
+            layout: false,
+            page_title: 'Редактировать статью',
+            page_action: `/articles/${req.params.id}?_method=PUT`,
+            article: article_copy
+          });
+        }
       });
   };
 };

@@ -5,22 +5,22 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-	<title>Редактировать статью</title>
+	<title>{{page_title}}</title>
 	<link rel="stylesheet" type="text/css" href="/css/admin.css">
 
 </head>
 
 <body>
 	<div>
-		<h1 class="edit_title">Редактировать статью</h1>
-		<form action="/articles/{{id}}?_method=PUT" method="post">
+		<h1 class="edit_title">{{page_title}}</h1>
+		<form action="{{page_action}}" method="post" enctype="multipart/form-data">
 			<span>Рубрика</span>
 			<select name="rubric" id="" required class="edit__select">
 				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
 				<option class="edit__select-item" value="Уход">Уход</option>
 				<option class="edit__select-item" value="Воспитание">Воспитание</option>
 				<option class="edit__select-item" value="Адаптация">Адаптация</option>
-				<option class="edit__select-item" value="Пора к ветеринару?">“Пора к ветеринару?”</option>
+				<option class="edit__select-item" value="Пора к ветеринару?">Пора к ветеринару?</option>
 				<option class="edit__select-item" value="Коты доноры">Коты доноры</option>
 				<option class="edit__select-item" value="Коты спинальники">Коты спинальники</option>
 				<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
@@ -38,9 +38,16 @@
 				<label for="markdown">Разметка</label>
 				<textarea required name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
 			</div>
+			<div>
+				<label for="image">Выберите изображение</label>
+				<input type="file" id="image" name="img" accept="image/*" />
+			</div>
 			<a href="/articles/category/all" class="edit__cancel">Отменить</a>
 			<button type="submit" class="edit__submit">Сохранить</button>
 		</form>
+		{{#if article.errors}}
+		<p>{{article.errors}}</p>
+		{{/if}}
 	</div>
 </body>
 

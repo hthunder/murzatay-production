@@ -175,9 +175,10 @@ exports.article_page = (req, res) => {
 };
 
 exports.article_create_get = (req, res) => {
-  console.log('article_category');
-  res.render('articlesNew', {
+  res.render('article_create_edit', {
     layout: false,
+    page_title: 'Новая статья',
+    page_action: '/articles/add',
     article: new Article()
   });
 };
@@ -190,12 +191,12 @@ exports.article_create_post = (req, res, next) => {
 };
 
 exports.article_edit_get = async (req, res) => {
-  console.log('article_category');
   const article = await Article.findById(req.params.id).lean();
-  res.render('articlesEdit', {
+  res.render('article_create_edit', {
     layout: false,
-    article: article,
-    id: req.params.id
+    page_title: 'Редактировать статью',
+    page_action: `/articles/${req.params.id}?_method=PUT`,
+    article: article
   });
 };
 
