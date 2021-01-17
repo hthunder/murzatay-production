@@ -1,5 +1,6 @@
 const Article = require('../models/article.model');
 const Rubric = require('../models/rubric.model');
+const util = require('../util/saveArticleAndRedirect');
 
 // exports.articles_list = async (req, res) => {
 //   res.redirect('/articles/category/all/page/1');
@@ -175,39 +176,42 @@ exports.article_page = (req, res) => {
 };
 
 exports.article_create_get = (req, res) => {
+  let context = req.cookies['context'];
+  res.clearCookie('context', { httpOnly: true });
+  if (!context) context = {};
+
   res.render('article_create_edit', {
     layout: false,
     page_title: 'Новая статья',
     page_action: '/articles/add',
-    article: new Article()
+    article: context
   });
 };
 
-exports.article_create_post = (req, res, next) => {
-  console.log('article_category');
-  console.log('File: ', req.file);
+exports.article_create_post = (req, res) => {
   req.article = new Article();
-  next();
+  util.saveArticleAndRedirect(req, res, req.headers.referer);
 };
 
 exports.article_edit_get = async (req, res) => {
   const article = await Article.findById(req.params.id).lean();
+  let context = req.cookies['context'];
+  res.clearCookie('context', { httpOnly: true });
+
   res.render('article_create_edit', {
     layout: false,
     page_title: 'Редактировать статью',
     page_action: `/articles/${req.params.id}?_method=PUT`,
-    article: article
+    article: context ? context : article
   });
 };
 
-exports.article_edit_put = async (req, res, next) => {
-  console.log('article_category');
+exports.article_edit_put = async (req, res) => {
   req.article = await Article.findById(req.params.id);
-  next();
+  util.saveArticleAndRedirect(req, res, req.headers.referer);
 };
 
 exports.article_remove = async (req, res) => {
-  console.log('article_category');
   await Article.findByIdAndDelete(req.params.id);
   res.redirect('/articles/category/all');
 };
