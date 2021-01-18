@@ -7,5 +7,6 @@ const validators = require('../middlewares/validators');
 router.use(checkHeaders);
 router.post('/signup', validators.signup, controller.signup);
 router.post('/signin', controller.signin);
+router.post('/logout', controller.logout);
 
 module.exports = router;
