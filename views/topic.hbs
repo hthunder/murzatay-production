@@ -13,50 +13,50 @@
 <body>
 
 
-	<header>
-		{{> header }}
-		<section class="main">
-			<div class="content">
-				<button class="add-favorite">
-					<!--Сердечко добавляет статью в изьранное зарегестрированным пользователем. Свгшка, на которую дожно меняться сердечко при нажатии: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+	{{> header }}
+	<section class="main">
+		<div class="content">
+			<button class="add-favorite">
+				<!--Сердечко добавляет статью в изьранное зарегестрированным пользователем. Свгшка, на которую дожно меняться сердечко при нажатии: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M20 6.99526C20 8.682 19.2731 10.199 18.1154 11.25H18.125L11.875 17.5C11.25 18.125 10.625 18.75 10 18.75C9.37501 18.75 8.75003 18.125 8.12502 17.5L1.875 11.25H1.88456C0.7269 10.199 0 8.682 0 6.99526C0 3.82223 2.57224 1.25 5.74523 1.25C7.43198 1.25 8.94893 1.9769 9.99998 3.13456C11.051 1.9769 12.568 1.25 14.2547 1.25C17.4278 1.25 20 3.82223 20 6.99526Z" fill="#D95204"/>
 					</svg>
 					-->
-				</button>
-				<h1 class="topic-title"> {{ title}} </h1>
-				<p class="topic-text">{{{sanitizedHTML}}}</p>
-				<a href="/articles/{{ id }}/edit/">Редактировать</a>
+			</button>
+			<h1 class="topic-title"> {{ title}} </h1>
+			<p class="topic-text">{{{sanitizedHTML}}}</p>
+			<a href="/articles/{{ id }}/edit/">Редактировать</a>
 
-				<h3 class="comment-title">Оставьте свой комментарий</h3>
-				<form action="#" class="topic-comment-wrap">
-					<p class="symbol-count">0/500</p>
-					<textarea name="#" id="#" class="topic-comment"></textarea>
-					<button type="submit" class="comment-submit">Отправить</button>
-				</form>
-				<div class="comments-topic-wrap">
-					<figure class="comments-topic">
-						<img src="/img/comment-ava.png" alt="Аватарка" class="topic-comment-ava">
-						<figcaption>
-							<p class="author">Lorem </p>
-							<p class="one-topic-comm">Новый коммментарий</p>
-							<p class="date">12.11.2020 </p>
-						</figcaption>
-					</figure>
-				</div>
+			<h3 class="comment-title">Оставьте свой комментарий</h3>
+			<form action="#" class="topic-comment-wrap">
+				<p class="symbol-count">0/500</p>
+				<textarea name="#" id="#" class="topic-comment"></textarea>
+				<button type="submit" class="comment-submit">Отправить</button>
+			</form>
+			<div class="comments-topic-wrap">
+				<figure class="comments-topic">
+					<img src="/img/comment-ava.png" alt="Аватарка" class="topic-comment-ava">
+					<figcaption>
+						<p class="author">Lorem </p>
+						<p class="one-topic-comm">Новый коммментарий</p>
+						<p class="date">12.11.2020 </p>
+					</figcaption>
+				</figure>
 			</div>
+		</div>
 
-			{{> sidebar }}
-		</section>
+		{{> sidebar }}
+	</section>
 
-		{{> footer }}
+	{{> footer }}
 
 
-		{{> popup }}
+	{{> popup }}
 
-		<script src="/js/jquery-3.4.1.min.js"></script>
-		<script src="/js/jquery.maskedinput.min.js"></script>
-		<script src="/js/jquery.fancybox.min.js"></script>
-		<script type="module" src="/js/main.js"></script>
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/jquery.maskedinput.min.js"></script>
+	<script src="/js/jquery.fancybox.min.js"></script>
+	<script type="module" src="/js/main.js"></script>
 
 
 

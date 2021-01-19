@@ -32,7 +32,8 @@
 			</div>
 			<div>
 				<label for="description">Описание</label>
-				<textarea required name="description" class="description" id="description">{{article.description}}</textarea>
+				<textarea required name="description" class="description"
+					id="description">{{article.description}}</textarea>
 			</div>
 			<div>
 				<label for="markdown">Разметка</label>
@@ -49,6 +50,7 @@
 		<p>{{article.errors}}</p>
 		{{/if}}
 	</div>
+	<script type="module" src="/js/imgsize_control.js"></script>
 </body>
 
 </html>
