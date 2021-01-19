@@ -7,188 +7,67 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 	<title>Мурзатай</title>
-	<link rel="stylesheet" type="text/css" href="../css/global.css">
-	<link rel="stylesheet" type="text/css" href="../css/articles-style.css">
+	<link rel="stylesheet" type="text/css" href="/css/global.css">
+	<link rel="stylesheet" type="text/css" href="/css/articles-style.css">
 
 </head>
 
 <body>
-	{{> header }}
+	{{> header isLoggedIn=isLoggedIn}}
 	<section class="main">
 		<div class="content">
-			{{!-- test markdown --}}
 			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
-			<a href="/articles/new">Новая статья</a>
+			{{#if isAdmin}}
+			<a href="/articles/add">Новая статья</a>
+			{{/if}}
+
 			{{#each articles}}
 			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
+				{{#if this.img}}
+				<img src="{{this.img}}" alt="Фото" class="article-img">
+				{{else}}
+				<img src="/img/article.png" alt="Фото" class="article-img">
+				{{/if}}
+
 				<figcaption class="article-prewiew">
 					<h2 class="article-title">{{this.title}}</h2>
 					<span class="unread">Прочти меня</span>
 					<p class="article-text">{{this.description}}</p>
 					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
-					<a href="/articles/edit/{{this._id}}" class="read-more">Редактировать</a>
+					{{#if ../isAdmin}}
+					<a href="/articles/{{this._id}}/edit" class="read-more">
+						Редактировать
+					</a>
 					<form action="/articles/{{this._id}}?_method=DELETE" method="POST">
 						<button type="submit">Удалить</button>
 					</form>
+					{{/if}}
 				</figcaption>
 			</figure>
 			{{/each}}
-			{{!-- test markdown --}}
-			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="article">
-				<img src="../img/article.png" alt="Фото" class="article-img">
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">Название статьи</h2>
-					<span class="unread">Прочти меня</span>
-					<p class="article-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-						tincidunt
-						lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi. Quisque pulvinar
-						tortor
-						in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque volutpat, urna arcu
-						placerat
-						magna, at placerat lectus arcu sit amet lorem...</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
+
 			<div class="pgn-wrap">
+				{{#if notIsFirst}}
+				<a href="/articles/category/{{category}}/page/1" class="pgn">1</a>
+				{{/if}}
+				{{#each pagesBefore}}
+				<a href="/articles/category/{{../category}}/page/{{this}}" class="pgn">{{this}}</a>
+				{{/each}}
+				<a href="/articles/category/{{category}}/page/{{page}}" class="pgn" style="color: red;">{{page}}</a>
+				{{#each pagesAfter}}
+				<a href="/articles/category/{{../category}}/page/{{this}}" class="pgn">{{this}}</a>
+				{{/each}}
+				{{#if last}}
+				{{#if notIsLast}}
+				<a href="/articles/category/{{category}}/page/{{last}}" class="pgn">{{last}}</a>
+				{{/if}}
+				{{/if}}
+
+			</div>
+
+			{{!-- <div class="pgn-wrap">
 				<button class="pgn">1</button>
 				<button class="pgn">2</button>
 				<button class="pgn">3</button>
@@ -200,7 +79,7 @@
 				<button class="pgn">9</button>
 				<span class="pgn-dot">...</span>
 				<button class="pgn">0</button>
-			</div>
+			</div> --}}
 
 
 		</div>

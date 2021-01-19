@@ -4,12 +4,15 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const apiAuth = require('./routes/auth.routes');
-const articleRouter = require('./routes/articles');
+const articleRouter = require('./routes/articles.routes');
+const { isLoggedIn, isAdmin } = require('./middlewares/authJwt');
+const bcrypt = require('bcryptjs');
 
-const blogRoutes = require('./routes/blog');
+const blogRoutes = require('./routes/blog.routes');
 
 const db = require('./models');
 const Role = db.role;
+const User = db.user;
 
 const app = express();
 const hbs = exphbs.create({
@@ -36,9 +39,10 @@ app.use(methodOverride('_method'));
 
 //routes
 app.use('/api/auth', apiAuth);
-app.use('/articles', articleRouter);
+app.use('/articles', isLoggedIn, isAdmin, articleRouter);
 // require('./routes/user.routes')(app);
-app.use(blogRoutes);
+app.use('/', isLoggedIn, blogRoutes);
+
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 5000;
@@ -91,10 +95,16 @@ function initial() {
 
       new Role({
         name: 'admin'
-      }).save((err) => {
+      }).save((err, role) => {
         if (err) {
           console.log('error', err);
         }
+        User.create({
+          roles: [role.id],
+          username: '',
+          email: '@mail.ru',
+          password: bcrypt.hashSync('', 8)
+        });
         console.log(`added 'admin' to roles collection`);
       });
     }

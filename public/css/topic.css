@@ -65,6 +65,19 @@
   margin-bottom: 10px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
+}
+
+.add-favorite-active {
+  background-color: transparent;
+  background-image: url(/img/heart-added.svg);
+  outline: none;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 h1 {
