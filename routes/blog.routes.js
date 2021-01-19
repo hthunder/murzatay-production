@@ -26,7 +26,7 @@ router.get('/my-page', async (req, res) => {
     const user = await User.findOne({ _id: req.userId })
       .select('-password')
       .lean();
-    res.render('my-page', { layout: false, user });
+    res.render('my-page', { layout: false, user, isLoggedIn: req.isLoggedIn });
   }
 });
 

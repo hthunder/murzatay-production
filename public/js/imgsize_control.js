@@ -1,12 +1,15 @@
-let imgInput = document.getElementById("image");
+let imgInput = document.getElementById('image');
 let submitBtn = document.querySelector('.edit__submit');
 
-imgInput.onchange = function(){
-   if(this.files[0].size > 20500){
-      alert("Размер файла превышает допусимые 20кб");
+const imgsize_control = (size_kb) => {
+  return function () {
+    if (this.files[0].size > size_kb * 1024) {
+      alert('Размер файла превышает допустимые 20кб');
       submitBtn.disabled = true;
-   } else {
+    } else {
       submitBtn.disabled = false;
-   }
-}
+    }
+  };
+};
 
+imgInput.onchange = imgsize_control(20);
