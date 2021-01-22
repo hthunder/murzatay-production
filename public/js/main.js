@@ -111,19 +111,17 @@ rubrickBtn.onclick = function () {
   }
 };
 
-
 let favouriteBtn = document.querySelector('.add-favorite');
 
-favouriteBtn.onclick = function () {
-  if (favouriteBtn.classList.contains('add-favorite-active')) {
-    favouriteBtn.classList.remove('add-favorite-active');
-  } else {
-    favouriteBtn.classList.add('add-favorite-active');
-  }
-};
-
-
-
+if (favouriteBtn) {
+  favouriteBtn.onclick = function () {
+    if (favouriteBtn.classList.contains('add-favorite-active')) {
+      favouriteBtn.classList.remove('add-favorite-active');
+    } else {
+      favouriteBtn.classList.add('add-favorite-active');
+    }
+  };
+}
 
 sendForm('signup__form', '/api/auth/signup');
 sendForm('signin__form', '/api/auth/signin');

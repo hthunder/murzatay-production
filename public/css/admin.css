@@ -3,6 +3,7 @@
   padding: 0 0 0 0;
   box-sizing: border-box;
 }
+
 .admin-input {
   margin-top: 10px;
   background: #fff;
@@ -88,10 +89,14 @@
   width: 500px;
 }
 
+.edit__body {
+  margin: 10px 5px 15px 10px;
+}
+
 .edit_title {
   margin: 0 auto;
   margin-bottom: 20px;
-  width: 40%;
+  width: 25%;
 }
 
 .edit__select {

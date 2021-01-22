@@ -53,8 +53,8 @@
 
 .content {
   max-width: 870px;
+  width: 100%;
 }
-
 .foto-information-wrap {
   display: flex;
   max-width: 900px;
