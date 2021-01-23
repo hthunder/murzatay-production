@@ -114,7 +114,7 @@ exports.article_page = (req, res) => {
   Article.findOne({ slug: req.params.slug }, (err, article) => {
     if (article == null) res.redirect('/');
     res.render('topic', {
-      layout: false,
+			layout: false,
       title: article.title,
       sanitizedHTML: article.sanitizedHTML,
       id: article.id

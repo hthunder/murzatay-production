@@ -69,6 +69,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  console.log('signin');
   User.findOne()
     .or([{ email: req.body.username }, { username: req.body.username }])
     .populate('roles', '-__v')

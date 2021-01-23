@@ -9,6 +9,7 @@ const { isLoggedIn, isAdmin } = require('./middlewares/authJwt');
 const bcrypt = require('bcryptjs');
 
 const blogRoutes = require('./routes/blog.routes');
+const userRoutes = require('./routes/user.routes');
 
 const db = require('./models');
 const Role = db.role;
@@ -40,6 +41,7 @@ app.use(methodOverride('_method'));
 //routes
 app.use('/api/auth', apiAuth);
 app.use('/articles', isLoggedIn, isAdmin, articleRouter);
+app.use('/users', isLoggedIn, userRoutes);
 // require('./routes/user.routes')(app);
 app.use('/', isLoggedIn, blogRoutes);
 

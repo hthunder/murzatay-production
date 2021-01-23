@@ -1,28 +1,36 @@
 const { authJwt } = require('../middlewares');
 const controller = require('../controllers/user.controller');
+const User = require('../models/user.model');
+const Article = require('../models/article.model');
+const express = require('express');
+const router = express.Router();
 
-module.exports = function (app) {
-  app.use(function (req, res, next) {
-    res.header(
-      'Access-Control-Allow-Headers',
-      'x-access-token, Origin, Content-Type, Accept'
-    );
-    next();
-  });
+router.put('/:id', async (req, res) => {
+  try {
+    const userId = req.params.id;
 
-  app.get('/api/test/all', controller.allAccess);
+    if (req.userId != userId) {
+      return res.status(403).json({ message: 'This action is forbidden' });
+    }
 
-  app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+    const user = await User.findById(userId);
+    const updates = req.body;
 
-  app.get(
-    '/api/test/mod',
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
-  );
+    if (user == null) {
+      return res.status(404).json({ message: 'Cannot find user' });
+    }
 
-  app.get(
-    '/api/test/admin',
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
-  );
-};
+    if (user.favourites.indexOf(updates.favourites) != -1) {
+      return res.status(409).json({ message: `It's already liked` });
+    } else {
+      user.favourites.push(updates.favourites);
+    }
+
+    const updatedUser = await user.save();
+    return res.status(200).json({ message: 'Success', user: updatedUser });
+  } catch (e) {
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+module.exports = router;

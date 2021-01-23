@@ -1,3 +1,4 @@
+import { addFavourite } from './addFavourite.js';
 import { sendForm } from './sendFormData.js';
 
 $('.log-in').on('click', function () {
@@ -111,17 +112,6 @@ rubrickBtn.onclick = function () {
   }
 };
 
-let favouriteBtn = document.querySelector('.add-favorite');
-
-if (favouriteBtn) {
-  favouriteBtn.onclick = function () {
-    if (favouriteBtn.classList.contains('add-favorite-active')) {
-      favouriteBtn.classList.remove('add-favorite-active');
-    } else {
-      favouriteBtn.classList.add('add-favorite-active');
-    }
-  };
-}
-
+addFavourite();
 sendForm('signup__form', '/api/auth/signup');
 sendForm('signin__form', '/api/auth/signin');
