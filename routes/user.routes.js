@@ -19,15 +19,18 @@ router.put('/:id', async (req, res) => {
     if (user == null) {
       return res.status(404).json({ message: 'Cannot find user' });
     }
-
-    if (user.favourites.indexOf(updates.favourites) != -1) {
-      return res.status(409).json({ message: `It's already liked` });
+    const index = user.favourites.indexOf(updates.favourites);
+    let message;
+    if (index != -1) {
+      message = 'Removed from favourites';
+      user.favourites.splice(index, 1);
     } else {
+      message = 'Added to favourites';
       user.favourites.push(updates.favourites);
     }
 
     const updatedUser = await user.save();
-    return res.status(200).json({ message: 'Success', user: updatedUser });
+    return res.status(200).json({ message, user: updatedUser });
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }
