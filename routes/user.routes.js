@@ -18,19 +18,24 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Cannot find user' });
     }
 
+    const resJSON = {};
     if (updates.favourites) {
       const index = user.favourites.indexOf(updates.favourites);
       if (index != -1) {
         message = 'Removed from favourites';
         user.favourites.splice(index, 1);
+        resJSON.favourites = false;
       } else {
         message = 'Added to favourites';
         user.favourites.push(updates.favourites);
+        resJSON.favourites = true;
       }
     }
 
     const updatedUser = await user.save();
-    return res.status(200).json({ message, user: updatedUser });
+    resJSON.message = message;
+    resJSON.user = updatedUser;
+    return res.status(200).json(resJSON);
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }

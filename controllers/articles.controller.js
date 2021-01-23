@@ -1,5 +1,6 @@
 const Article = require('../models/article.model');
 const Rubric = require('../models/rubric.model');
+const User = require('../models/user.model');
 const util = require('../util/saveArticleAndRedirect');
 
 exports.article_category = async (req, res) => {
@@ -110,14 +111,26 @@ exports.articles_category_pagination = async (req, res) => {
   }
 };
 
-exports.article_page = (req, res) => {
-  Article.findOne({ slug: req.params.slug }, (err, article) => {
+exports.article_page = async (req, res) => {
+  let favourite = false;
+  Article.findOne({ slug: req.params.slug }, async (err, article) => {
     if (article == null) res.redirect('/');
+
+    if (req.isLoggedIn) {
+      const user = await User.findById(req.userId);
+      if (user.favourites.indexOf(article._id) != -1) {
+        favourite = true;
+      }
+    }
+
     res.render('topic', {
-			layout: false,
+      layout: false,
+      favourite,
+      isLoggedIn: req.isLoggedIn,
       title: article.title,
       sanitizedHTML: article.sanitizedHTML,
-      id: article.id
+      articleId: article.id,
+      userId: req.userId
     });
   });
 };
