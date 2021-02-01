@@ -35,45 +35,21 @@
 			<div class="favorite">
 				<!--Избранные статьи-->
 				<h3 class="favorite-wrap-title"> Избранные статьи</h3>
+				{{#each articles}}
 				<figure class="favorite-article">
-					<img src="/img/comment-ava.png" class="favorite-img">
+					{{#if this.img}}
+					<img src={{this.img}} class="favorite-img">
+					{{else}}
+					<img src="/img/article.png" class="favorite-img">
+					{{/if}}
 					<figcaption class="favorite-prewiew">
-						<h4 class="favorite-title">Название статьи</h4>
-						<p class="favorite-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-							tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-							Quisque
-							pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque
-							volutpat,
-							urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
-						<button class="read-more">Читать...</button>
+						<h4 class="favorite-title">{{this.title}}</h4>
+						<p class="favorite-text">{{this.description}}</p>
+						<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
+						{{!-- <button class="read-more">Читать...</button> --}}
 					</figcaption>
 				</figure>
-				<figure class="favorite-article">
-					<img src="/img/comment-ava.png" class="favorite-img">
-					<figcaption class="favorite-prewiew">
-						<h4 class="favorite-title">Название статьи</h4>
-						<p class="favorite-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-							tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-							Quisque
-							pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque
-							volutpat,
-							urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
-						<button class="read-more">Читать...</button>
-					</figcaption>
-				</figure>
-				<figure class="favorite-article">
-					<img src="/img/comment-ava.png" class="favorite-img">
-					<figcaption class="favorite-prewiew">
-						<h4 class="favorite-title">Название статьи</h4>
-						<p class="favorite-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend
-							tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-							Quisque
-							pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed scelerisque
-							volutpat,
-							urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
-						<button class="read-more">Читать...</button>
-					</figcaption>
-				</figure>
+				{{/each}}
 			</div>
 			<div class="user-comment">
 				<!--Два последних комментария оставленных пользователем-->
