@@ -1,5 +1,6 @@
 import { addFavourite } from './addFavourite.js';
 import { sendForm } from './sendFormData.js';
+import nodemailer from 'nodemailer';
 
 $('.log-in').on('click', function () {
   $('.pop-up__login').slideToggle();
@@ -115,3 +116,4 @@ rubrickBtn.onclick = function () {
 addFavourite();
 sendForm('signup__form', '/api/auth/signup');
 sendForm('signin__form', '/api/auth/signin');
+let transporter = nodemailer.createTransport('');
