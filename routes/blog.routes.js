@@ -61,6 +61,7 @@ router.get('/my-page', async (req, res) => {
         const articles = await Article.find({
             _id: { $in: user.favourites }
         }).lean();
+        console.log(user);
         res.render('my-page', {
             layout: false,
             user,

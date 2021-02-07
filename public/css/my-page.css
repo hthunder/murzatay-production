@@ -43,6 +43,14 @@
   font-style: normal;
 }
 
+.about-form {
+    display: none;
+}
+
+.about-form__shown {
+    display: initial;
+}
+
 .main {
   max-width: 1140px;
   padding: 0 15px;
@@ -82,6 +90,7 @@
 }
 
 .information-button {
+    cursor: pointer;
   margin-left: 5px;
   background-color: rgba(140, 91, 62, 0.25);
   outline: none;
@@ -633,4 +642,4 @@
     max-width: 100%;
     display: none;
   }
-} ;
+}
