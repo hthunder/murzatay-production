@@ -3,42 +3,37 @@ const express = require('express');
 const router = express.Router();
 
 router.put('/:id', async (req, res) => {
-  try {
-    const userId = req.params.id;
-    let message = '';
+    try {
+        const userId = req.params.id;
+        const errors = [];
 
-    if (req.userId != userId) {
-      return res.status(403).json({ message: 'This action is forbidden' });
+        if (req.userId != userId) {
+            return res.sendStatus(403);
+        }
+
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.sendStatus(404);
+        }
+
+        user.about = req.body.about;
+        user.city = req.body.city;
+        if (user.username != req.body.username) {
+            const count = await User.countDocuments({ username: req.body.username });
+            if (count == 0) {
+                user.username = req.body.username;
+            } else {
+                errors.push('Пользователь с таким именем уже существует');
+                res.cookie('errors', errors, { httpOnly: true });
+            }
+        }
+        await user.save();
+
+        return res.redirect(req.headers.referer);
+    } catch (e) {
+        return res.sendStatus(500);
     }
-
-    const user = await User.findById(userId);
-    const updates = req.body;
-
-    if (user == null) {
-      return res.status(404).json({ message: 'Cannot find user' });
-    }
-
-    const resJSON = {};
-    if (updates.favourites) {
-      const index = user.favourites.indexOf(updates.favourites);
-      if (index != -1) {
-        message = 'Removed from favourites';
-        user.favourites.splice(index, 1);
-        resJSON.favourites = false;
-      } else {
-        message = 'Added to favourites';
-        user.favourites.push(updates.favourites);
-        resJSON.favourites = true;
-      }
-    }
-
-    const updatedUser = await user.save();
-    resJSON.message = message;
-    resJSON.user = updatedUser;
-    return res.status(200).json(resJSON);
-  } catch (e) {
-    return res.status(500).json({ message: e.message });
-  }
 });
 
 module.exports = router;

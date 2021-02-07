@@ -55,16 +55,19 @@ router.get('/my-page', async (req, res) => {
     if (!req.isLoggedIn) {
         return res.redirect('/');
     } else {
+        const errors = req.cookies['errors'];
+        res.clearCookie('errors');
         const user = await User.findOne({ _id: req.userId })
             .select('-password')
             .lean();
         const articles = await Article.find({
             _id: { $in: user.favourites }
         }).lean();
-        console.log(user);
+
         res.render('my-page', {
             layout: false,
             user,
+            errors,
             articles,
             isLoggedIn: req.isLoggedIn
         });

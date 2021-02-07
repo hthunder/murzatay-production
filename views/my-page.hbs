@@ -20,18 +20,37 @@
                     <img src="/img/ava.jpg" alt="Ваше фото" class="ava">
                 </div>
                 <div class="information-wrap">
-                    <p class="information">Ник: {{user.username}}</p>
+                    <button class="information-button">Редактировать</button>
+                    {{!-- <p class="information">Ник: {{user.username}}</p>
                     <p class="information">Город: {{user.city}}</p>
-                    <p class="information ">Расскажите о себе или своих питомцах
-                        <button class="information-button">Редактировать</button>
-                    </p>
+                    <p class="information">Расскажите о себе или своих питомцах</p> --}}
                     {{!-- Должно вылезать при нажатии на кнопку с классом .information-button --}}
-                    <form action="#" class="about-form">
-                        <textarea name="about" id="#" placeholder="Расскажите о себе или своих питомцах">
-                            {{user.about}}
-                        </textarea>
-                        <button type="submit">Готово</button>
+                    {{!-- <p class="about-text">{{user.about}}</p> --}}
+                    <form class="about-form" action="/users/{{user._id}}?_method=PUT" method="POST">
+                        <label class="about-form__label">
+                            Ник:
+                            <span class="about-form__text">{{user.username}}</span>
+                            <input name="username" type="text" value={{user.username}} class="about-form__input">
+                        </label>
+                        <label class="about-form__label">
+                            Город:
+                            <span class="about-form__text">{{user.city}}</span>
+                            <input name="city" type="text" value={{user.city}} class="about-form__input">
+                        </label>
+                        <label class="about-form__label">
+                            <p>Расскажите о себе или своих питомцах:</p>
+                            <p class="about-form__text about-form__about">{{user.about}}</p>
+                            <textarea maxlength="250" name="about" id="#"
+                                placeholder="Расскажите о себе или своих питомцах"
+                                class="about-form__input about-form__textarea">{{user.about}}</textarea>
+                        </label>
+                        <button type="submit" class="about-form__input">Готово</button>
                     </form>
+                    {{#each errors}}
+                    <p class="errors">
+                        {{this}}
+                    </p>
+                    {{/each}}
                 </div>
             </div>
             <div class="favorite">
