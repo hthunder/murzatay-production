@@ -47,7 +47,7 @@ app.use('/', isLoggedIn, blogRoutes);
 
 app.use(express.static('public'));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 const username = process.env.DB_ADMIN_USERNAME;
 const password = process.env.DB_ADMIN_PASSWORD;
 
