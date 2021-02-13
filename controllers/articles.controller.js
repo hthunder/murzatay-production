@@ -126,8 +126,9 @@ exports.articles_search = async (req, res) => {
 }
 
 exports.article_page = async (req, res) => {
-    let favourite = false;
-    Article.findOne({ slug: req.params.slug }, async (err, article) => {
+    try {
+        let favourite = false;
+        const article = await Article.findOne({ slug: req.params.slug }).lean();
         if (article == null) res.redirect('/');
 
         if (req.isLoggedIn) {
@@ -136,17 +137,49 @@ exports.article_page = async (req, res) => {
                 favourite = true;
             }
         }
+        console.log(article.comments[0].date.toLocaleString('en-GB'));
+
+        article.comments = article.comments.map((comment) => {
+            comment.date = comment.date.toLocaleString('en-GB').split(',')[0].replace(/\//g, '.');
+            return comment;
+        })
 
         res.render('topic', {
             layout: false,
             favourite,
             isLoggedIn: req.isLoggedIn,
-            title: article.title,
-            sanitizedHTML: article.sanitizedHTML,
-            articleId: article.id,
+            article,
+            // title: article.title,
+            // sanitizedHTML: article.sanitizedHTML,
+            // articleId: article.id,
             userId: req.userId
         });
-    });
+    } catch (e) {
+        console.error(e);
+        return res.status(500).end();
+    }
+
+
+    // Article.findOne({ slug: req.params.slug }, async (err, article) => {
+    //     if (article == null) res.redirect('/');
+
+    //     if (req.isLoggedIn) {
+    //         const user = await User.findById(req.userId);
+    //         if (user.favourites.indexOf(article._id) != -1) {
+    //             favourite = true;
+    //         }
+    //     }
+
+    //     res.render('topic', {
+    //         layout: false,
+    //         favourite,
+    //         isLoggedIn: req.isLoggedIn,
+    //         title: article.title,
+    //         sanitizedHTML: article.sanitizedHTML,
+    //         articleId: article.id,
+    //         userId: req.userId
+    //     });
+    // });
 };
 
 exports.article_create_get = (req, res) => {
@@ -166,6 +199,24 @@ exports.article_create_post = (req, res) => {
     req.article = new Article();
     util.saveArticleAndRedirect(req, res, req.headers.referer);
 };
+
+exports.comment_add = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password');
+        const article = await Article.findById(req.params.id);
+        const comment = {
+            user: req.userId,
+            text: req.body.text,
+        }
+        article.comments.unshift(comment);
+        await article.save();
+        return res.redirect(req.headers.referer);
+    } catch (e) {
+        console.error(e.message);
+        return res.status(500).send('Ошибка сервера');
+    }
+
+}
 
 exports.article_edit_get = async (req, res) => {
     const article = await Article.findById(req.params.id).lean();

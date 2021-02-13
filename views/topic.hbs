@@ -17,37 +17,39 @@
         <div class="content">
             {{#if isLoggedIn}}
             {{#if favourite}}
-            <button data-article-id="{{articleId}}" data-user-id="{{userId}}"
+            <button data-article-id="{{article._id}}" data-user-id="{{userId}}"
                 class="add-favourite add-favourite-active"></button>
             {{else}}
-            <button data-article-id="{{articleId}}" data-user-id="{{userId}}" class="add-favourite"></button>
+            <button data-article-id="{{article._id}}" data-user-id="{{userId}}" class="add-favourite"></button>
             {{/if}}
             {{/if}}
 
-            <h1 class="topic-title"> {{ title}} </h1>
-            <p class="topic-text">{{{sanitizedHTML}}}</p>
-            <a href="/articles/{{ articleId }}/edit/">Редактировать</a>
+            <h1 class="topic-title"> {{article.title}} </h1>
+            <p class="topic-text">{{{article.sanitizedHTML}}}</p>
+            <a href="/articles/{{article._id}}/edit/">Редактировать</a>
 
             {{#if isLoggedIn}}
             <h3 class="comment-title">Оставьте свой комментарий</h3>
-            <form action="#" class="topic-comment-wrap">
+            <form action="/articles/{{article._id}}/comments" class="topic-comment-wrap" method="POST">
                 <p class="symbol-count">0/500</p>
-                <textarea name="#" id="#" class="topic-comment"></textarea>
+                <textarea name="text" id="#" class="topic-comment"></textarea>
                 <button type="submit" class="comment-submit">Отправить</button>
             </form>
             {{else}}
             <p class="comment-unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
             {{/if}}
+            {{#each article.comments}}
             <div class="comments-topic-wrap">
                 <figure class="comments-topic">
                     <img src="/img/comment-ava.png" alt="Аватарка" class="topic-comment-ava">
                     <figcaption>
                         <p class="author">Lorem </p>
-                        <p class="one-topic-comm">Новый коммментарий</p>
-                        <p class="date">12.11.2020 </p>
+                        <p class="one-topic-comm">{{this.text}}</p>
+                        <p class="date">{{this.date}}</p>
                     </figcaption>
                 </figure>
             </div>
+            {{/each}}
         </div>
 
         {{> sidebar }}

@@ -6,49 +6,64 @@ const { JSDOM } = require('jsdom');
 const dompurify = createDomPurify(new JSDOM().window);
 
 const articleSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true
+    {
+        title: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        markdown: {
+            type: String,
+            required: true
+        },
+        slug: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        sanitizedHTML: {
+            type: String,
+            required: true
+        },
+        rubric: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Rubric'
+        },
+        img: {
+            type: String
+        },
+        comments: [
+            {
+                user: {
+                    type: mongoose.Schema.Types.ObjectId
+                },
+                text: {
+                    type: String,
+                    required: true
+                },
+                date: {
+                    type: Date,
+                    default: Date.now
+                }
+            }
+        ]
     },
-    description: {
-      type: String,
-      required: true
-    },
-    markdown: {
-      type: String,
-      required: true
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    sanitizedHTML: {
-      type: String,
-      required: true
-    },
-    rubric: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Rubric'
-    },
-    img: {
-      type: String
-    }
-  },
-  { timestamps: true }
+    { timestamps: true }
 );
 
 articleSchema.pre('validate', function (next) {
-  if (this.title) {
-    this.slug = slugify(this.title, { lower: true, strict: true });
-  }
+    if (this.title) {
+        this.slug = slugify(this.title, { lower: true, strict: true });
+    }
 
-  if (this.markdown) {
-    this.sanitizedHTML = dompurify.sanitize(marked(this.markdown));
-  }
+    if (this.markdown) {
+        this.sanitizedHTML = dompurify.sanitize(marked(this.markdown));
+    }
 
-  next();
+    next();
 });
 
 module.exports = mongoose.model('Article', articleSchema);

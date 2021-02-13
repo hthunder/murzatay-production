@@ -36,4 +36,8 @@ router.post(
     controller.article_create_post
 );
 
+router.post('/:id/comments',
+    controller.comment_add
+)
+
 module.exports = router;
