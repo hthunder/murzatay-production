@@ -6,12 +6,12 @@ $('.log-in').on('click', function () {
     $('.overlay').fadeIn();
 });
 
-$('.cansel-login').on('click', function () {
+$('.cancel-login').on('click', function () {
     $('.pop-up__login').slideToggle();
     $('.overlay').fadeOut();
 });
 
-$('.cansel-login').on('click', function (e) {
+$('.cancel-login').on('click', function (e) {
     e.preventDefault();
 });
 
@@ -25,12 +25,12 @@ $('.sign-up').on('click', function () {
     $('.overlay').fadeIn();
 });
 
-$('.cansel-signup').on('click', function () {
+$('.cancel-signup').on('click', function () {
     $('.pop-up__signup').slideToggle();
     $('.overlay').fadeOut();
 });
 
-$('.cansel-signup').on('click', function (e) {
+$('.cancel-signup').on('click', function (e) {
     e.preventDefault();
 });
 
