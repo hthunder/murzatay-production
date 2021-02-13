@@ -7,8 +7,12 @@ const fileHandling = require('../middlewares/fileHandling');
 router.get('/add', controller.article_create_get);
 
 router.get(
-  '/category/:category/page/:page',
-  controller.articles_category_pagination
+    '/category/:category/page/:page',
+    controller.articles_category_pagination
+);
+
+router.get(
+    '/search', controller.articles_search
 );
 
 router.get('/category/:category', controller.article_category);
@@ -19,17 +23,17 @@ router.get('/:id/edit', controller.article_edit_get);
 router.get('/:slug', controller.article_page);
 
 router.put(
-  '/:id',
-  fileHandling,
-  controller.article_edit_put
+    '/:id',
+    fileHandling,
+    controller.article_edit_put
 );
 
 router.delete('/:id', controller.article_remove);
 
 router.post(
-  '/add',
-  fileHandling,
-  controller.article_create_post
+    '/add',
+    fileHandling,
+    controller.article_create_post
 );
 
 module.exports = router;
