@@ -530,3 +530,8 @@ h1 {
     display: none;
   }
 }
+
+.comment-unauthorized {
+    margin: 12px 0;
+    font-size: 14px;
+}
