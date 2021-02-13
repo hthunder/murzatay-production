@@ -2,62 +2,45 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-	<title>Мурзатай</title>
-	<link rel="stylesheet" type="text/css" href="/css/global.css">
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Мурзатай</title>
+    <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 
 </head>
 
 <body>
-	{{> header }}
-	<section class="main">
-		<div class="content">
-			<img src="/img/mainPicture.png" alt="Фото" class="main-img">
-			<p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
-				provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur soluta
-				doloribus in error molestiae veniam!</p>
-			{{#each articles}}
-			<figure class="last-article">
-				<img src="/img/last-article.png" alt="Фото" class="last-article-img">
-				<figcaption class="last-article-prewiew">
-					<h2 class="prewiew-title">{{this.title}}</h2>
-					<p class="prewiew-text">{{this.description}}</p>
-					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
-				</figcaption>
-			</figure>
-			{{/each}}
-			{{!-- <figure class="last-article">
-				<img src="/img/last-article.png" alt="Фото" class="last-article-img">
-				<figcaption class="last-article-prewiew">
-					<h2 class="prewiew-title">Последняя статья</h2>
-					<p class="prewiew-text">Отрывок из последней статьиОтрывок из последней статьиОтрывок из последней
-						статьиОтрывок из последней статьи</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure>
-			<figure class="last-article">
-				<img src="/img/last-article.png" alt="Фото" class="last-article-img">
-				<figcaption class="last-article-prewiew">
-					<h2 class="prewiew-title">Предпоследняя статья</h2>
-					<p class="prewiew-text">Отрывок из предпоследней статьиОтрывок из последней статьиОтрывок из последней
-						статьиОтрывок из последней статьи</p>
-					<button class="read-more">Читать...</button>
-				</figcaption>
-			</figure> --}}
-		</div>
-		{{> sidebar }}
+    {{> header }}
+    <section class="main">
+        <div class="content">
+            <img src="/img/mainPicture.png" alt="Фото" class="main-img">
+            <p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
+                provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur
+                soluta
+                doloribus in error molestiae veniam!</p>
+            {{#each articles}}
+            <figure class="last-article">
+                <img width="160" height="160" src={{this.img}} alt="Фото" class="last-article-img">
+                <figcaption class="last-article-prewiew">
+                    <h2 class="prewiew-title">{{this.title}}</h2>
+                    <p class="prewiew-text">{{this.description}}</p>
+                    <a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
+                </figcaption>
+            </figure>
+            {{/each}}
+        </div>
+        {{> sidebar }}
 
-	</section>
+    </section>
 
-	{{> footer }}
-	{{> popup }}
-	<script src="/js/jquery-3.4.1.min.js"></script>
-	<script src="/js/jquery.maskedinput.min.js"></script>
-	<script src="/js/jquery.fancybox.min.js"></script>
-	<script type="module" src="/js/main.js"></script>
+    {{> footer }}
+    {{> popup }}
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.maskedinput.min.js"></script>
+    <script src="/js/jquery.fancybox.min.js"></script>
+    <script type="module" src="/js/main.js"></script>
 
 </body>
 
