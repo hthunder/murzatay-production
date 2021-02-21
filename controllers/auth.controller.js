@@ -1,117 +1,93 @@
-const config = require('../config/auth.config');
-const db = require('../models');
-const { validationResult } = require('express-validator');
-const User = db.user;
-const Role = db.role;
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
+const { validationResult } = require("express-validator")
+const config = require("../config/auth.config")
+const db = require("../models")
 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const User = db.user
+const Role = db.role
 
-exports.signup = (req, res) => {
-    const errors = validationResult(req);
+exports.signup = async (req, res) => {
+    const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array() })
     }
 
-    const user = new User({
+    let user = new User({
         username: req.body.username,
         email: req.body.email,
         city: req.body.city,
         password: bcrypt.hashSync(req.body.password1, 8)
-    });
+    })
 
-    user.save((err, user) => {
-        if (err) {
-            res.status(500).send({ message: err });
-            return;
-        }
+    try {
+        user = await user.save()
 
         if (req.body.roles) {
-            Role.find(
-                {
-                    name: { $in: req.body.roles }
-                },
-                (err, roles) => {
-                    if (err) {
-                        res.status(500).send({ message: err });
-                        return;
-                    }
+            const roles = await Role.find({
+                name: { $in: req.body.roles }
+            })
 
-                    user.roles = roles.map((role) => role._id);
-                    user.save((err) => {
-                        if (err) {
-                            res.status(500).send({ message: err });
-                            return;
-                        }
+            // eslint-disable-next-line no-underscore-dangle
+            user.roles = roles.map((role) => role._id)
 
-                        res.send({ message: 'User was registered successfully!' });
-                    });
-                }
-            );
-        } else {
-            Role.findOne({ name: 'user' }, (err, role) => {
-                if (err) {
-                    res.status(500).send({ message: err });
-                    return;
-                }
-
-                user.roles = [role._id];
-                user.save((err) => {
-                    if (err) {
-                        res.status(500).send({ message: err });
-                        return;
-                    }
-
-                    res.send({ message: 'User was registered successfully!' });
-                });
-            });
+            await user.save()
+            return res.send({
+                message: "User was registered successfully!"
+            })
         }
-    });
-};
+        const role = await Role.findOne({ name: "user" })
 
-exports.signin = (req, res) => {
-    console.log('signin');
-    User.findOne()
-        .or([{ email: req.body.username }, { username: req.body.username }])
-        .populate('roles', '-__v')
-        .exec((err, user) => {
-            if (err) {
-                res.status(500).send({ message: err });
-                return;
-            }
+        // eslint-disable-next-line no-underscore-dangle
+        user.roles = [role._id]
+        await user.save()
+        return res.send({ message: "User was registered successfully!" })
+    } catch (e) {
+        return res.status(500).send({ message: e })
+    }
+}
 
-            if (!user) {
-                return res.status(404).send({ message: 'User not found.' });
-            }
+exports.signin = async (req, res) => {
+    try {
+        const user = await User.findOne()
+            .or([{ email: req.body.username }, { username: req.body.username }])
+            .populate("roles", "-__v")
+            .exec()
 
-            const passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                user.password
-            );
+        if (!user) {
+            return res.status(404).send({ message: "User not found." })
+        }
 
-            if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: 'Invalid password!'
-                });
-            }
+        const passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        )
 
-            const token = jwt.sign({ id: user.id }, config.secret, {
-                expiresIn: 86400
-            });
+        if (!passwordIsValid) {
+            return res.status(401).send({
+                accessToken: null,
+                message: "Invalid password!"
+            })
+        }
 
-            const authorities = [];
+        const token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 86400
+        })
 
-            for (let i = 0; i < user.roles.length; i++) {
-                authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
-            }
+        const authorities = []
 
-            res.cookie('token', token, { httpOnly: true });
-            res.redirect('/');
-        });
-};
+        for (let i = 0; i < user.roles.length; i += 1) {
+            authorities.push(`ROLE_${user.roles[i].name.toUpperCase()}`)
+        }
+
+        res.cookie("token", token, { httpOnly: true })
+        return res.redirect("/")
+    } catch (e) {
+        return res.status(500).send({ message: e })
+    }
+}
 
 exports.logout = (req, res) => {
-    res.clearCookie('token');
-    res.redirect('/');
-};
+    res.clearCookie("token")
+    res.redirect("/")
+}

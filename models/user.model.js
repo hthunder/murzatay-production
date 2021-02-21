@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const User = mongoose.model(
-    'User',
+    "User",
     new mongoose.Schema({
         username: {
             type: String,
@@ -21,13 +21,13 @@ const User = mongoose.model(
         roles: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Role'
+                ref: "Role"
             }
         ],
         favourites: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Article',
+                ref: "Article"
             }
         ],
         about: String

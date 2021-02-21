@@ -1,31 +1,31 @@
-const Rubric = require('../models/rubric.model');
+const Rubric = require("../models/rubric.model")
 
-exports.saveArticleAndRedirect = async function (req, res, redirect) {
-  let article = req.article;
-  article.title = req.body.title;
-  article.markdown = req.body.markdown;
-  article.description = req.body.description;
-  if (req.hasOwnProperty('file'))
-    article.img = `/img/previews/${req.file.filename}`;
+exports.saveArticleAndRedirect = async (req, res, redirect) => {
+    let { article } = req
+    article.title = req.body.title
+    article.markdown = req.body.markdown
+    article.description = req.body.description
 
-  const rubric = await Rubric.findOne({
-    name: req.body.rubric
-  });
-  article.rubric = rubric._id;
+    if (Object.prototype.hasOwnProperty.call(req, "file"))
+        article.img = `/img/previews/${req.file.filename}`
 
-  article
-    .save()
-    .then((article) => {
-      res.redirect(`/articles/${article.slug}`);
+    const rubric = await Rubric.findOne({
+        name: req.body.rubric
     })
-    .catch((err) => {
-      const article_copy = {
-        title: article.title,
-        markdown: article.markdown,
-        description: article.description
-      };
-      res
-        .cookie('context', article_copy, { httpOnly: true })
-        .redirect(redirect);
-    });
-};
+    // eslint-disable-next-line no-underscore-dangle
+    article.rubric = rubric._id
+
+    try {
+        article = await article.save()
+        res.redirect(`/articles/${article.slug}`)
+    } catch (e) {
+        const articleCopy = {
+            title: article.title,
+            markdown: article.markdown,
+            description: article.description
+        }
+        res.cookie("context", articleCopy, { httpOnly: true }).redirect(
+            redirect
+        )
+    }
+}

@@ -1,28 +1,27 @@
-const mongoose = require('mongoose');
-const marked = require('marked');
-const slugify = require('slugify');
-const createDomPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
+const mongoose = require("mongoose");
+const marked = require("marked");
+const slugify = require("slugify");
+const createDomPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+
 const dompurify = createDomPurify(new JSDOM().window);
 
-const rubricSchema = new mongoose.Schema(
-  {
+const rubricSchema = new mongoose.Schema({
     name: {
-      type: String,
-      enum: [
-        'Кормление',
-        'Уход',
-        'Адаптация',
-        'Пора к ветеринару?',
-        'Коты доноры',
-        'Коты спинальники',
-        'Интересные факты',
-        'Забавные истории'
-      ],
-      required: true
+        type: String,
+        enum: [
+            "Кормление",
+            "Уход",
+            "Адаптация",
+            "Пора к ветеринару?",
+            "Коты доноры",
+            "Коты спинальники",
+            "Интересные факты",
+            "Забавные истории"
+        ],
+        required: true
     }
-  }
-);
+});
 
 // rubricSchema.pre('validate', function (next) {
 //   if (this.title) {
@@ -36,4 +35,4 @@ const rubricSchema = new mongoose.Schema(
 //   next();
 // });
 
-module.exports = mongoose.model('Rubric', rubricSchema);
+module.exports = mongoose.model("Rubric", rubricSchema);

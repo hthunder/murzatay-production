@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
-const marked = require('marked');
-const slugify = require('slugify');
-const createDomPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
-const dompurify = createDomPurify(new JSDOM().window);
+const mongoose = require("mongoose")
+const marked = require("marked")
+const slugify = require("slugify")
+const createDomPurify = require("dompurify")
+const { JSDOM } = require("jsdom")
+
+const dompurify = createDomPurify(new JSDOM().window)
 
 const articleSchema = new mongoose.Schema(
     {
@@ -30,7 +31,7 @@ const articleSchema = new mongoose.Schema(
         },
         rubric: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Rubric'
+            ref: "Rubric"
         },
         img: {
             type: String
@@ -52,18 +53,18 @@ const articleSchema = new mongoose.Schema(
         ]
     },
     { timestamps: true }
-);
+)
 
-articleSchema.pre('validate', function (next) {
+articleSchema.pre("validate", function validate(next) {
     if (this.title) {
-        this.slug = slugify(this.title, { lower: true, strict: true });
+        this.slug = slugify(this.title, { lower: true, strict: true })
     }
 
     if (this.markdown) {
-        this.sanitizedHTML = dompurify.sanitize(marked(this.markdown));
+        this.sanitizedHTML = dompurify.sanitize(marked(this.markdown))
     }
 
-    next();
-});
+    next()
+})
 
-module.exports = mongoose.model('Article', articleSchema);
+module.exports = mongoose.model("Article", articleSchema)
