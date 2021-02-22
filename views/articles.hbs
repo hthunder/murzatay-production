@@ -48,38 +48,27 @@
 			</figure>
 			{{/each}}
 
-			<div class="pgn-wrap">
-				{{#if notIsFirst}}
-				<a href="/articles/category/{{category}}/page/1" class="pgn">1</a>
-				{{/if}}
-				{{#each pagesBefore}}
-				<a href="/articles/category/{{../category}}/page/{{this}}" class="pgn">{{this}}</a>
-				{{/each}}
-				<a href="/articles/category/{{category}}/page/{{page}}" class="pgn" style="color: red;">{{page}}</a>
-				{{#each pagesAfter}}
-				<a href="/articles/category/{{../category}}/page/{{this}}" class="pgn">{{this}}</a>
-				{{/each}}
-				{{#if last}}
-				{{#if notIsLast}}
-				<a href="/articles/category/{{category}}/page/{{last}}" class="pgn">{{last}}</a>
-				{{/if}}
-				{{/if}}
-			</div>
-
-			{{!-- <div class="pgn-wrap">
-				<button class="pgn">1</button>
-				<button class="pgn">2</button>
-				<button class="pgn">3</button>
-				<button class="pgn">4</button>
-				<button class="pgn">5</button>
-				<button class="pgn">6</button>
-				<button class="pgn">7</button>
-				<button class="pgn">8</button>
-				<button class="pgn">9</button>
-				<span class="pgn-dot">...</span>
-				<button class="pgn">0</button>
-			</div> --}}
-
+            <div class="pgn-wrap">
+                {{#if first}}
+                <a href="/articles?page={{first}}&category={{category}}" class="pgn">{{first}}</a>
+                {{/if}}
+                {{#if pointsBefore}}
+                    <span>...</span>
+                {{/if}}
+                {{#each rangeBefore}}
+                <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
+                {{/each}}
+                <a href="/articles?page={{current}}&category={{category}}" class="pgn" style="color: red;">{{current}}</a>
+                {{#each rangeAfter}}
+                <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
+                {{/each}}
+                {{#if pointsAfter}}
+                    <span>...</span>
+                {{/if}}
+                {{#if last}}
+                <a href="/articles?page={{last}}&category={{category}}" class="pgn">{{last}}</a>
+                {{/if}}
+            </div>
 
 		</div>
 		{{> sidebar }}

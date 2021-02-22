@@ -5,9 +5,8 @@ const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 
 exports.article_list = async (req, res) => {
-    console.log("article_list")
     try {
-        const limit = 2
+        const limit = 1
         const { page = 1, category = "all" } = req.query
 
         if (page < 0 || page === 0) {
@@ -18,12 +17,14 @@ exports.article_list = async (req, res) => {
         const skip = limit * (page - 1)
 
         let articles
+        let numberOfArticles = 0
         if (category === "all") {
             articles = await Article.find()
                 .sort("-createdAt")
                 .skip(skip)
                 .limit(limit)
                 .lean()
+            numberOfArticles = await Article.countDocuments()
         } else {
             const rubric = await Rubric.findOne({ slug: category })
             if (rubric) {
@@ -33,156 +34,48 @@ exports.article_list = async (req, res) => {
                     .skip(skip)
                     .limit(limit)
                     .lean()
+                numberOfArticles = await Article.countDocuments({
+                    // eslint-disable-next-line no-underscore-dangle
+                    rubric: rubric._id
+                })
             } else {
+                // eslint-disable-next-line consistent-return
                 return res.redirect(`/articles`)
             }
         }
 
-        console.log(articles)
-        const numberOfArticles = articles.length
+        const current = parseInt(page, 10)
+        let first = 1
+        let last = Math.ceil(numberOfArticles / limit)
+        const rangeBegin = Math.max(first, current - 2)
+        const rangeEnd = Math.min(last, current + 2)
+        const rangeBefore = []
+        const rangeAfter = []
+        for (let i = rangeBegin; i <= rangeEnd; i += 1) {
+            if (i !== 1 && i !== last) {
+                if (i < current) rangeBefore.push(i)
+                else if (i > current) rangeAfter.push(i)
+            }
+        }
+        if (last === 1 || last === current) last = null
+        if (first === current) first = null
 
-        const last = Math.ceil(numberOfArticles / limit)
-        const pages = []
-        const pagesBefore = []
-        const pagesAfter = []
-        let index = 2
-        while (index < last) {
-            pages.push(index)
-            index += 1
-        }
-        index = 2
-        while (index < page) {
-            pagesBefore.push(index)
-            index += 1
-        }
-
-        index = +page + 1
-        while (index < last) {
-            pagesAfter.push(index)
-            index += 1
-        }
         res.render("articles", {
             layout: false,
-            articles,
-            page,
-            category: req.params.category,
-            notIsFirst: page !== 1,
-            notIsLast: page !== last,
-            pagesBefore,
-            pagesAfter,
+            rangeBefore,
+            rangeAfter,
+            first,
             last,
+            current,
+            articles,
+            category,
+            pointsBefore: first && rangeBegin > first + 1,
+            pointsAfter: last && rangeEnd < last - 1,
             isAdmin: req.isAdmin,
             isLoggedIn: req.isLoggedIn
         })
     } catch (e) {
         console.log(e)
-    }
-}
-
-exports.article_category = async (req, res) => {
-    res.redirect(`/articles/category/${req.params.category}/page/1`)
-}
-
-exports.articles_category_pagination = async (req, res) => {
-    try {
-        const { page } = req.params
-        const size = 2
-        if (page < 0 || page === 0) {
-            res.redirect(`/articles/category/${req.params.category}/page/1`)
-            return
-        }
-        const skip = size * (page - 1)
-        let category
-        switch (req.params.category) {
-            case "kormlenie":
-                category = "Кормление"
-                break
-            case "uhod":
-                category = "Уход"
-                break
-            case "vospitanie":
-                category = "Воспитание"
-                break
-            case "adaptaciya":
-                category = "Адаптация"
-                break
-            case "pora-k-veterinaru":
-                category = "Пора к ветеринару?"
-                break
-            case "koty-donory":
-                category = "Коты доноры"
-                break
-            case "koty-spinalniki":
-                category = "Коты спинальники"
-                break
-            case "interesnye-fakty":
-                category = "Интересные факты"
-                break
-            case "zabavnye-istorii":
-                category = "Забавные истории"
-                break
-            case "all":
-                category = "all"
-                break
-            default:
-                res.redirect("/articles/category/all")
-                return
-        }
-        let rubric
-        let articles
-        let numberOfArticles
-        if (category !== "all") {
-            rubric = await Rubric.findOne({ name: category })
-            articles = await Article.find({ rubric })
-                .sort("-createdAt")
-                .skip(skip)
-                .limit(size)
-                .lean()
-            numberOfArticles = await Article.countDocuments({ rubric })
-        } else {
-            articles = await Article.find()
-                .sort("-createdAt")
-                .skip(skip)
-                .limit(size)
-                .lean()
-            numberOfArticles = await Article.countDocuments()
-        }
-
-        const last = Math.ceil(numberOfArticles / size)
-        const pages = []
-        const pagesBefore = []
-        const pagesAfter = []
-        let index = 2
-        while (index < last) {
-            pages.push(index)
-            index += 1
-        }
-        index = 2
-        while (index < page) {
-            pagesBefore.push(index)
-            index += 1
-        }
-
-        index = +page + 1
-        while (index < last) {
-            pagesAfter.push(index)
-            index += 1
-        }
-        res.render("articles", {
-            layout: false,
-            articles,
-            page,
-            category: req.params.category,
-            notIsFirst: page !== 1,
-            notIsLast: page !== last,
-            pagesBefore,
-            pagesAfter,
-            last,
-            isAdmin: req.isAdmin,
-            isLoggedIn: req.isLoggedIn
-        })
-    } catch (err) {
-        res.status(500).end()
     }
 }
 
