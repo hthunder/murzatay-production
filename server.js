@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs")
 const apiAuth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn, isAdmin } = require("./middlewares/authJwt")
+const Rubric = require("./models/rubric.model")
 
 const blogRoutes = require("./routes/blog.routes")
 const userRoutes = require("./routes/user.routes")
@@ -56,6 +57,24 @@ const password = process.env.DB_ADMIN_PASSWORD
 
 const initial = async () => {
     try {
+        const rubrics = [
+            "Кормление",
+            "Воспитание",
+            "Уход",
+            "Адаптация",
+            "Пора к ветеринару?",
+            "Коты доноры",
+            "Коты спинальники",
+            "Интересные факты",
+            "Забавные истории"
+        ]
+        rubrics.forEach(async (rubricName) => {
+            const rubric = await Rubric.find({ name: rubricName })
+            if (rubric.length === 0) {
+                await new Rubric({ name: rubricName }).save()
+            }
+        })
+
         const count = await Role.estimatedDocumentCount()
         if (count === 0) {
             await new Role({

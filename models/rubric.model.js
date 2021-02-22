@@ -1,16 +1,17 @@
-const mongoose = require("mongoose");
-const marked = require("marked");
-const slugify = require("slugify");
-const createDomPurify = require("dompurify");
-const { JSDOM } = require("jsdom");
+const mongoose = require("mongoose")
+// const marked = require("marked")
+const slugify = require("slugify")
+// const createDomPurify = require("dompurify")
+// const { JSDOM } = require("jsdom")
 
-const dompurify = createDomPurify(new JSDOM().window);
+// const dompurify = createDomPurify(new JSDOM().window)
 
 const rubricSchema = new mongoose.Schema({
     name: {
         type: String,
         enum: [
             "Кормление",
+            "Воспитание",
             "Уход",
             "Адаптация",
             "Пора к ветеринару?",
@@ -20,19 +21,19 @@ const rubricSchema = new mongoose.Schema({
             "Забавные истории"
         ],
         required: true
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
     }
-});
+})
 
-// rubricSchema.pre('validate', function (next) {
-//   if (this.title) {
-//     this.slug = slugify(this.title, { lower: true, strict: true });
-//   }
+rubricSchema.pre("validate", function validate(next) {
+    if (this.name) {
+        this.slug = slugify(this.name, { lower: true, strict: true })
+    }
+    next()
+})
 
-//   if (this.markdown) {
-//     this.sanitizedHTML = dompurify.sanitize(marked(this.markdown));
-//   }
-
-//   next();
-// });
-
-module.exports = mongoose.model("Rubric", rubricSchema);
+module.exports = mongoose.model("Rubric", rubricSchema)

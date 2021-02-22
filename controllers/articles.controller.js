@@ -1,7 +1,83 @@
+// const { ObjectId } = require("mongoose").Types
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
+
+exports.article_list = async (req, res) => {
+    console.log("article_list")
+    try {
+        const limit = 2
+        const { page = 1, category = "all" } = req.query
+
+        if (page < 0 || page === 0) {
+            res.redirect(`/articles`)
+            return
+        }
+
+        const skip = limit * (page - 1)
+
+        let articles
+        if (category === "all") {
+            articles = await Article.find()
+                .sort("-createdAt")
+                .skip(skip)
+                .limit(limit)
+                .lean()
+        } else {
+            const rubric = await Rubric.findOne({ slug: category })
+            if (rubric) {
+                // eslint-disable-next-line no-underscore-dangle
+                articles = await Article.find({ rubric: rubric._id })
+                    .sort("-createdAt")
+                    .skip(skip)
+                    .limit(limit)
+                    .lean()
+            } else {
+                return res.redirect(`/articles`)
+            }
+        }
+
+        console.log(articles)
+        const numberOfArticles = articles.length
+
+        const last = Math.ceil(numberOfArticles / limit)
+        const pages = []
+        const pagesBefore = []
+        const pagesAfter = []
+        let index = 2
+        while (index < last) {
+            pages.push(index)
+            index += 1
+        }
+        index = 2
+        while (index < page) {
+            pagesBefore.push(index)
+            index += 1
+        }
+
+        index = +page + 1
+        while (index < last) {
+            pagesAfter.push(index)
+            index += 1
+        }
+        res.render("articles", {
+            layout: false,
+            articles,
+            page,
+            category: req.params.category,
+            notIsFirst: page !== 1,
+            notIsLast: page !== last,
+            pagesBefore,
+            pagesAfter,
+            last,
+            isAdmin: req.isAdmin,
+            isLoggedIn: req.isLoggedIn
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 exports.article_category = async (req, res) => {
     res.redirect(`/articles/category/${req.params.category}/page/1`)
