@@ -41,9 +41,9 @@
             {{#each article.comments}}
             <div class="comments-topic-wrap">
                 <figure class="comments-topic">
-                    <img src="/img/comment-ava.png" alt="Аватарка" class="topic-comment-ava">
+                    <img src="/img/user-profile.svg" alt="Аватарка" class="topic-comment-ava">
                     <figcaption>
-                        <p class="author">Lorem </p>
+                        <p class="author">{{../user.username}}</p>
                         <p class="one-topic-comm">{{this.text}}</p>
                         <p class="date">{{this.date}}</p>
                     </figcaption>

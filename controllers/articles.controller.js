@@ -98,9 +98,9 @@ exports.article_page = async (req, res) => {
         let favourite = false
         const article = await Article.findOne({ slug: req.params.slug }).lean()
         if (article == null) res.redirect("/")
-
+        let user
         if (req.isLoggedIn) {
-            const user = await User.findById(req.userId)
+            user = await User.findById(req.userId).select("-password").lean()
             // eslint-disable-next-line no-underscore-dangle
             if (user.favourites.indexOf(article._id) !== -1) {
                 favourite = true
@@ -113,13 +113,14 @@ exports.article_page = async (req, res) => {
                 .toLocaleString("en-GB")
                 .split(",")[0]
                 .replace(/\//g, ".")
-            return comment
+            return newComment
         })
 
         return res.render("topic", {
             layout: false,
             favourite,
             isLoggedIn: req.isLoggedIn,
+            user,
             article,
             userId: req.userId
         })
