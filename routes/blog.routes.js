@@ -4,12 +4,19 @@ const router = Router()
 const nodemailer = require("nodemailer")
 const Article = require("../models/article.model")
 const User = require("../models/user.model")
+const Comment = require("../models/comment.model")
 
 router.get("/", async (req, res) => {
     const articles = await Article.find().sort("-createdAt").limit(2).lean()
+    const lastComments = await Comment.find()
+        .sort({ date: -1 })
+        .limit(2)
+        .populate("user")
+        .lean()
     res.render("index", {
         layout: false,
         isLoggedIn: req.isLoggedIn,
+        lastComments,
         articles
     })
 })
@@ -45,11 +52,21 @@ router.post("/mails", async (req, res) => {
     return res.redirect(referer)
 })
 
-router.get("/about", (req, res) => {
-    res.render("about", {
-        layout: false,
-        isLoggedIn: req.isLoggedIn
-    })
+router.get("/about", async (req, res) => {
+    try {
+        const lastComments = await Comment.find()
+            .sort({ date: -1 })
+            .limit(2)
+            .populate("user")
+            .lean()
+        res.render("about", {
+            layout: false,
+            lastComments,
+            isLoggedIn: req.isLoggedIn
+        })
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.get("/my-page", async (req, res) => {
@@ -64,12 +81,20 @@ router.get("/my-page", async (req, res) => {
     const articles = await Article.find({
         _id: { $in: user.favourites }
     }).lean()
+    const comments = await Comment.find({ user: req.userId }).lean()
+    const lastComments = await Comment.find()
+        .sort({ date: -1 })
+        .limit(2)
+        .populate("user")
+        .lean()
 
     return res.render("my-page", {
         layout: false,
         user,
         errors,
         articles,
+        comments,
+        lastComments,
         isLoggedIn: req.isLoggedIn
     })
 })

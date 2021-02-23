@@ -30,10 +30,12 @@
 
             {{#if isLoggedIn}}
             <h3 class="comment-title">Оставьте свой комментарий</h3>
-            <form action="/articles/{{article._id}}/comments" class="topic-comment-wrap" method="POST">
+            {{!-- <form action="/articles/{{article._id}}/comments" class="topic-comment-wrap" method="POST"> --}}
+            <form action="/comments" class="topic-comment-wrap" method="POST">
                 <p class="symbol-count">0/500</p>
                 <textarea name="text" id="#" class="topic-comment"></textarea>
                 <button type="submit" class="comment-submit">Отправить</button>
+                <input name="articleId" value="{{article._id}}" type="hidden" />
             </form>
             {{else}}
             <p class="comment-unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>

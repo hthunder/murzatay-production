@@ -37,19 +37,24 @@ const articleSchema = new mongoose.Schema(
             type: String
         },
         comments: [
+            // {
             {
-                user: {
-                    type: mongoose.Schema.Types.ObjectId
-                },
-                text: {
-                    type: String,
-                    required: true
-                },
-                date: {
-                    type: Date,
-                    default: Date.now
-                }
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Comment"
             }
+            // user: {
+            //     type: mongoose.Schema.Types.ObjectId
+            //     ref: "User"
+            // },
+            // text: {
+            //     type: String,
+            //     required: true
+            // },
+            // date: {
+            //     type: Date,
+            //     default: Date.now
+            // }
+            // }
         ]
     },
     { timestamps: true }

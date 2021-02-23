@@ -1,5 +1,6 @@
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
+const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 
@@ -59,6 +60,11 @@ exports.article_list = async (req, res) => {
         if (last === 1 || last === current) last = null
         if (first === current) first = null
 
+        const lastComments = await Comment.find()
+            .sort({ date: -1 })
+            .limit(2)
+            .populate("user")
+            .lean()
         res.render("articles", {
             layout: false,
             rangeBefore,
@@ -68,6 +74,7 @@ exports.article_list = async (req, res) => {
             current,
             articles,
             category,
+            lastComments,
             pointsBefore: first && rangeBegin > first + 1,
             pointsAfter: last && rangeEnd < last - 1,
             isAdmin: req.isAdmin,
@@ -84,8 +91,14 @@ exports.articles_search = async (req, res) => {
         const articles = await Article.find({
             title: { $regex: searchRule, $options: "i" }
         }).lean()
+        const lastComments = await Comment.find()
+            .sort({ date: -1 })
+            .limit(2)
+            .populate("user")
+            .lean()
         res.render("articles", {
             layout: false,
+            lastComments,
             articles
         })
     } catch (e) {
@@ -96,7 +109,9 @@ exports.articles_search = async (req, res) => {
 exports.article_page = async (req, res) => {
     try {
         let favourite = false
-        const article = await Article.findOne({ slug: req.params.slug }).lean()
+        const article = await Article.findOne({ slug: req.params.slug })
+            .populate("comments")
+            .lean()
         if (article == null) res.redirect("/")
         let user
         if (req.isLoggedIn) {

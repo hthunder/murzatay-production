@@ -74,51 +74,21 @@
             </div>
             <div class="user-comment">
                 <!--Два последних комментария оставленных пользователем-->
+                
                 <h3 class="usercomment-title"> Последние комментарии</h3>
+                {{#each comments}}
                 <figure class="usercomment">
                     <img src="/img/usercomment.png" alt="Автарка" class="usercomment-img">
                     <figcaption class="usercomment-prewiew">
-                        <p class="usercomment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                            eleifend
-                            tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-                            Quisque
-                            pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed
-                            scelerisque
-                            volutpat,
-                            urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
+                        <p class="usercomment-text">{{this.text}}</p>
                     </figcaption>
                 </figure>
-                <figure class="usercomment">
-                    <img src="/img/usercomment.png" alt="Автарка" class="usercomment-img">
-                    <figcaption class="usercomment-prewiew">
-                        <p class="usercomment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                            eleifend
-                            tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-                            Quisque
-                            pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed
-                            scelerisque
-                            volutpat,
-                            urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
-                    </figcaption>
-                </figure>
-                <figure class="usercomment">
-                    <img src="/img/usercomment.png" alt="Автарка" class="usercomment-img">
-                    <figcaption class="usercomment-prewiew">
-                        <p class="usercomment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                            eleifend
-                            tincidunt lectus euismod sodales. Etiam sodales nisi a ipsum congue aliquam. Nulla facilisi.
-                            Quisque
-                            pulvinar tortor in massa viverra, ac venenatis ex venenatis. Duis dictum, neque sed
-                            scelerisque
-                            volutpat,
-                            urna arcu placerat magna, at placerat lectus arcu sit amet lorem...</p>
-                    </figcaption>
-                </figure>
+                {{/each}}
             </div>
         </div>
 
 
-        {{> sidebar }}
+        {{> sidebar this}}
     </section>
 
 
