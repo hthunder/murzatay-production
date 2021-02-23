@@ -1,4 +1,3 @@
-// const { ObjectId } = require("mongoose").Types
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
 const User = require("../models/user.model")
