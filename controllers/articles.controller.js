@@ -179,11 +179,12 @@ exports.comment_add = async (req, res) => {
 }
 
 exports.article_edit_get = async (req, res) => {
+    if (!req.isAdmin) return res.redirect("/")
     const article = await Article.findById(req.params.id).lean()
     const { context } = req.cookies
     res.clearCookie("context", { httpOnly: true })
 
-    res.render("article_create_edit", {
+    return res.render("article_create_edit", {
         layout: false,
         page_title: "Редактировать статью",
         page_action: `/articles/${req.params.id}?_method=PUT`,
