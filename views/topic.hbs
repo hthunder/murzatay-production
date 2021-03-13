@@ -26,8 +26,9 @@
 
             <h1 class="topic-title"> {{article.title}} </h1>
             <p class="topic-text">{{{article.sanitizedHTML}}}</p>
+            {{#if isAdmin}}
             <a href="/articles/{{article._id}}/edit/">Редактировать</a>
-
+            {{/if}}
             {{#if isLoggedIn}}
             <h3 class="comment-title">Оставьте свой комментарий</h3>
             {{!-- <form action="/articles/{{article._id}}/comments" class="topic-comment-wrap" method="POST"> --}}

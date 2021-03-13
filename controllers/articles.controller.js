@@ -135,6 +135,7 @@ exports.article_page = async (req, res) => {
             layout: false,
             favourite,
             isLoggedIn: req.isLoggedIn,
+            isAdmin: req.isAdmin,
             user,
             article,
             userId: req.userId
