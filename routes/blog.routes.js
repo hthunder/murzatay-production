@@ -2,6 +2,8 @@ const { Router } = require("express")
 
 const router = Router()
 const nodemailer = require("nodemailer")
+const { readdir } = require("fs/promises")
+const path = require("path")
 const Article = require("../models/article.model")
 const User = require("../models/user.model")
 const Comment = require("../models/comment.model")
@@ -13,11 +15,36 @@ router.get("/", async (req, res) => {
         .limit(2)
         .populate("user")
         .lean()
+    let fileIndex = null
+    let files = null
+    try {
+        const appDir = path.dirname(require.main.filename)
+        files = await readdir(`${appDir}/public/img/tmps`)
+        
+        if (files.length) {
+            fileIndex = Math.floor(Math.random() * files.length)
+        }
+
+        console.log(typeof files)
+        console.log(files)
+        console.log(files.length)
+        console.log(Math.floor(Math.random() * files.length))
+        // for await (const file of files) console.log(file)
+    } catch (err) {
+        console.error(err)
+    }
+    // const appDir = path.dirname(require.main.filename)
+    // fs.readdir(appDir, (err, files) => {
+    //     files.forEach((file) => {
+    //         console.log(file)
+    //     })
+    // })
     res.render("index", {
         layout: false,
         isLoggedIn: req.isLoggedIn,
         lastComments,
-        articles
+        articles,
+        fileName: files[fileIndex]
     })
 })
 
