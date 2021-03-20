@@ -87,7 +87,7 @@ exports.signin = async (req, res) => {
     }
 }
 
-exports.logout = (req, res) => {
+exports.logout = (_req, res) => {
     res.clearCookie("token")
     res.redirect("/")
 }

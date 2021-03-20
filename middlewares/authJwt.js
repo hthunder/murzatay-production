@@ -5,7 +5,7 @@ const db = require("../models")
 const User = db.user
 const Role = db.role
 
-const isLoggedIn = (req, res, next) => {
+const isLoggedIn = (req, _res, next) => {
     const { token } = req.cookies
     req.isLoggedIn = false
 
@@ -42,7 +42,7 @@ const isLoggedIn = (req, res, next) => {
 //   });
 // };
 
-const isAdmin = async (req, res, next) => {
+const isAdmin = async (req, _res, next) => {
     try {
         req.isAdmin = false
         const user = await User.findById(req.userId)
