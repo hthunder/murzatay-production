@@ -47,59 +47,29 @@
         {{/each}}
     </div>
 
-    <div style="text-align: center;" class="insta">
-        <a style="margin-bottom: 15px; display: flex; align-items: center; text-decoration: none; color: black; font-weight: 500; font-size: 16px; font-family: 'Montserrat', sans-serif;"
-            href="https://www.instagram.com"><img style="margin-right: 10px;" width="50" height="50"
-                src="/img/icons/instagram.svg" />murzatay_dakian</a>
-        <div style="display: flex; width: 100%; flex-wrap: wrap;">
-            
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps/img_00.jpg" /></a>
-
-
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                    style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-            <div class="instagram-widget__hidden-photos" style="display: none;">
-                <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                        style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-                <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                        style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
-                <a href="https://www.instagram.com" style="width: calc(100% / 3); margin: 5px 0; padding: 3px"><img
-                        style="width: 100%; height: 65px; object-fit: contain;" src="/img/tmps1/img_14.jpg" /></a>
+    <div class="instagram-widget">
+        <a class="instagram-widget__profile-link" href="https://www.instagram.com">
+            <img class="instagram-widget__profile-icon" width="50" height="50"
+                src="/img/icons/instagram.svg" />murzatay_dakian
+        </a>
+        <div class="instagram-widget__photos">
+            {{#each shownPhotos}}
+            <a class="instagram-widget__photo-link" href="https://www.instagram.com">
+                <img class="instagram-widget__photo-img" src="/img/tmps/{{this}}" />
+            </a>
+            {{/each}}
+            <div class="instagram-widget__hidden-photos hidden">
+                {{#each hiddenPhotos}}
+                <a class="instagram-widget__photo-link" href="https://www.instagram.com">
+                    <img class="instagram-widget__photo-img" src="/img/tmps/{{this}}" />
+                </a>
+                {{/each}}
             </div>
         </div>
         <button class="instagram-widget__hide-button" onclick="const photos = document.querySelector('.instagram-widget__hidden-photos');
             const button = document.querySelector('.instagram-widget__hide-button')
-            if(photos.style.display === 'none') {
-                photos.style.display = 'flex';
-                button.style.display = 'none'
-            }"
+            photos.classList.remove('hidden')
+            button.remove()"
             style="background: rgb(224,224,224); border: none; padding: 7px 14px; margin-top: 15px; border-radius: 4px; line-height: 19.5px;">Показать
             больше фото...</button>
         <button
