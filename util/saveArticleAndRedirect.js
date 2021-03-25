@@ -10,7 +10,7 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
         article.img = `/img/previews/${req.file.filename}`
 
     const rubric = await Rubric.findOne({
-        name: req.body.rubric
+        name: req.body.rubric,
     })
     // eslint-disable-next-line no-underscore-dangle
     article.rubric = rubric._id
@@ -22,7 +22,7 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
         const articleCopy = {
             title: article.title,
             markdown: article.markdown,
-            description: article.description
+            description: article.description,
         }
         res.cookie("context", articleCopy, { httpOnly: true }).redirect(
             redirect

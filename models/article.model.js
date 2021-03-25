@@ -10,38 +10,38 @@ const articleSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            required: true
+            required: true,
         },
         description: {
             type: String,
-            required: true
+            required: true,
         },
         markdown: {
             type: String,
-            required: true
+            required: true,
         },
         slug: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
         },
         sanitizedHTML: {
             type: String,
-            required: true
+            required: true,
         },
         rubric: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Rubric"
+            ref: "Rubric",
         },
         img: {
-            type: String
+            type: String,
         },
         comments: [
             // {
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Comment"
-            }
+                ref: "Comment",
+            },
             // user: {
             //     type: mongoose.Schema.Types.ObjectId
             //     ref: "User"
@@ -55,7 +55,7 @@ const articleSchema = new mongoose.Schema(
             //     default: Date.now
             // }
             // }
-        ]
+        ],
     },
     { timestamps: true }
 )

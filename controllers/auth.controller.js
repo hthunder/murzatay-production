@@ -17,7 +17,7 @@ exports.signup = async (req, res) => {
         username: req.body.username,
         email: req.body.email,
         city: req.body.city,
-        password: bcrypt.hashSync(req.body.password1, 8)
+        password: bcrypt.hashSync(req.body.password1, 8),
     })
 
     try {
@@ -25,7 +25,7 @@ exports.signup = async (req, res) => {
 
         if (req.body.roles) {
             const roles = await Role.find({
-                name: { $in: req.body.roles }
+                name: { $in: req.body.roles },
             })
 
             // eslint-disable-next-line no-underscore-dangle
@@ -33,7 +33,7 @@ exports.signup = async (req, res) => {
 
             await user.save()
             return res.send({
-                message: "User was registered successfully!"
+                message: "User was registered successfully!",
             })
         }
         const role = await Role.findOne({ name: "user" })
@@ -66,12 +66,12 @@ exports.signin = async (req, res) => {
         if (!passwordIsValid) {
             return res.status(401).send({
                 accessToken: null,
-                message: "Invalid password!"
+                message: "Invalid password!",
             })
         }
 
         const token = jwt.sign({ id: user.id }, config.secret, {
-            expiresIn: 86400
+            expiresIn: 86400,
         })
 
         const authorities = []

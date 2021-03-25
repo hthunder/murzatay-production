@@ -36,7 +36,7 @@ exports.article_list = async (req, res) => {
                     .lean()
                 numberOfArticles = await Article.countDocuments({
                     // eslint-disable-next-line no-underscore-dangle
-                    rubric: rubric._id
+                    rubric: rubric._id,
                 })
             } else {
                 // eslint-disable-next-line consistent-return
@@ -78,7 +78,7 @@ exports.article_list = async (req, res) => {
             pointsBefore: first && rangeBegin > first + 1,
             pointsAfter: last && rangeEnd < last - 1,
             isAdmin: req.isAdmin,
-            isLoggedIn: req.isLoggedIn
+            isLoggedIn: req.isLoggedIn,
         })
     } catch (e) {
         console.log(e)
@@ -89,7 +89,7 @@ exports.articles_search = async (req, res) => {
     const searchRule = req.query?.text
     try {
         const articles = await Article.find({
-            title: { $regex: searchRule, $options: "i" }
+            title: { $regex: searchRule, $options: "i" },
         }).lean()
         const lastComments = await Comment.find()
             .sort({ date: -1 })
@@ -99,7 +99,7 @@ exports.articles_search = async (req, res) => {
         res.render("articles", {
             layout: false,
             lastComments,
-            articles
+            articles,
         })
     } catch (e) {
         res.status(500).end()
@@ -138,7 +138,7 @@ exports.article_page = async (req, res) => {
             isAdmin: req.isAdmin,
             user,
             article,
-            userId: req.userId
+            userId: req.userId,
         })
     } catch (e) {
         return res.status(500).end()
@@ -154,7 +154,7 @@ exports.article_create_get = (req, res) => {
         layout: false,
         page_title: "Новая статья",
         page_action: "/articles/add",
-        article: context
+        article: context,
     })
 }
 
@@ -168,7 +168,7 @@ exports.comment_add = async (req, res) => {
         const article = await Article.findById(req.params.id)
         const comment = {
             user: req.userId,
-            text: req.body.text
+            text: req.body.text,
         }
         article.comments.unshift(comment)
         await article.save()
@@ -188,7 +188,7 @@ exports.article_edit_get = async (req, res) => {
         layout: false,
         page_title: "Редактировать статью",
         page_action: `/articles/${req.params.id}?_method=PUT`,
-        article: context || article
+        article: context || article,
     })
 }
 

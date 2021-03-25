@@ -9,7 +9,7 @@ exports.comment_add = async (req, res) => {
         const comment = new Comment({
             _id: new mongoose.Types.ObjectId(),
             user: req.userId,
-            text: req.body.text
+            text: req.body.text,
         })
         await comment.save()
         const article = await Article.findById(articleId)

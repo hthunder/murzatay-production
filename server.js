@@ -25,8 +25,8 @@ const hbs = exphbs.create({
     extname: "hbs",
     runtimeOption: {
         allowProtoPropertiesByDefault: true,
-        allowProtoMethodsByDefault: true
-    }
+        allowProtoMethodsByDefault: true,
+    },
 })
 
 app.engine("hbs", hbs.engine)
@@ -68,7 +68,7 @@ const initial = async () => {
             "Коты доноры",
             "Коты спинальники",
             "Интересные факты",
-            "Забавные истории"
+            "Забавные истории",
         ]
         rubrics.forEach(async (rubricName) => {
             const rubric = await Rubric.find({ name: rubricName })
@@ -80,21 +80,21 @@ const initial = async () => {
         const count = await Role.estimatedDocumentCount()
         if (count === 0) {
             await new Role({
-                name: "user"
+                name: "user",
             }).save()
 
             await new Role({
-                name: "moderator"
+                name: "moderator",
             }).save()
 
             const role = await new Role({
-                name: "admin"
+                name: "admin",
             }).save()
             User.create({
                 roles: [role.id],
                 username: "",
                 email: "@mail.ru",
-                password: bcrypt.hashSync("", 8)
+                password: bcrypt.hashSync("", 8),
             })
         }
     } catch (e) {
@@ -110,7 +110,7 @@ async function start() {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 useFindAndModify: false,
-                useCreateIndex: true
+                useCreateIndex: true,
             }
         )
         initial()

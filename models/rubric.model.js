@@ -18,15 +18,15 @@ const rubricSchema = new mongoose.Schema({
             "Коты доноры",
             "Коты спинальники",
             "Интересные факты",
-            "Забавные истории"
+            "Забавные истории",
         ],
-        required: true
+        required: true,
     },
     slug: {
         type: String,
         required: true,
-        unique: true
-    }
+        unique: true,
+    },
 })
 
 rubricSchema.pre("validate", function validate(next) {

@@ -22,7 +22,7 @@ router.put("/:id", async (req, res) => {
         user.city = req.body.city
         if (user.username !== req.body.username) {
             const count = await User.countDocuments({
-                username: req.body.username
+                username: req.body.username,
             })
             if (count === 0) {
                 user.username = req.body.username
