@@ -1,7 +1,7 @@
 export const sendForm = (formId, url) => {
     const myForm = document.getElementById(formId)
 
-    myForm.addEventListener("submit", function (e) {
+    myForm.addEventListener("submit", function fetchFormDataRequest(e) {
         e.preventDefault()
 
         const formData = new FormData(this)

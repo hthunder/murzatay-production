@@ -1,5 +1,5 @@
 const { check } = require("express-validator")
-const { verifySignUp } = require("./")
+const { verifySignUp } = require(".")
 
 exports.signup = [
     check("username", "Введите логин").not().isEmpty(),

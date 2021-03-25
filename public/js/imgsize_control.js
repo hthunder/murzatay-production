@@ -1,9 +1,9 @@
-let imgInput = document.getElementById("image")
-let submitBtn = document.querySelector(".edit__submit")
+const imgInput = document.getElementById("image")
+const submitBtn = document.querySelector(".edit__submit")
 
-const imgsize_control = (size_kb) => {
-    return function () {
-        if (this.files[0].size > size_kb * 1024) {
+const imgsizeControlClosure = (sizeKb) => {
+    return function imgsizeControl() {
+        if (this.files[0].size > sizeKb * 1024) {
             alert("Размер файла превышает допустимые 20кб")
             submitBtn.disabled = true
         } else {
@@ -12,4 +12,4 @@ const imgsize_control = (size_kb) => {
     }
 }
 
-imgInput.onchange = imgsize_control(20)
+imgInput.onchange = imgsizeControlClosure(20)

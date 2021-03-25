@@ -5,6 +5,7 @@
         "node": true
     },
     "extends": [
+        "airbnb-base",
         "plugin:prettier/recommended"
     ],
     "plugins": [
@@ -15,6 +16,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "import/prefer-default-export": "off"
     }
 }

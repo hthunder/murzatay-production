@@ -152,7 +152,7 @@ const isModerator = (req, res, next) => {
                     return
                 }
 
-                for (let i = 0; i < roles.length; i++) {
+                for (let i = 0; i < roles.length; i += 1) {
                     if (roles[i].name === "moderator") {
                         next()
                         return

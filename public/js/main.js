@@ -1,6 +1,6 @@
-import { addFavourite } from "./addFavourite.js"
-import { sendForm } from "./sendFormData.js"
-import { showMore } from "./instagram_widget.js"
+import { addFavourite } from "./addFavourite"
+import { sendForm } from "./sendFormData"
+import { showMore } from "./instagram_widget"
 
 $(".log-in").on("click", function () {
     $(".pop-up__login").slideToggle()
@@ -60,10 +60,10 @@ $(".overlay").on("click", function () {
     $(".overlay").fadeOut()
 })
 
-/*Не закрываются выпадающие элементы при повторном клике*/
+/* Не закрываются выпадающие элементы при повторном клике */
 
-let burger = document.querySelector(".mobile-menu")
-let mbMenu = document.querySelector(".menu-list")
+const burger = document.querySelector(".mobile-menu")
+const mbMenu = document.querySelector(".menu-list")
 
 burger.onclick = function () {
     if (mbMenu.classList.contains("open")) {
@@ -73,8 +73,8 @@ burger.onclick = function () {
     }
 }
 
-let search = document.querySelector(".search-icon")
-let searchField = document.querySelector(".search-wrap")
+const search = document.querySelector(".search-icon")
+const searchField = document.querySelector(".search-wrap")
 
 search.onclick = function () {
     if (searchField.classList.contains("open")) {
@@ -84,8 +84,8 @@ search.onclick = function () {
     }
 }
 
-let rubrickBtn = document.querySelector(".mobile-rubrics-btn-wrap")
-let rubricks = document.querySelector(".rubrics-mbl-container")
+const rubrickBtn = document.querySelector(".mobile-rubrics-btn-wrap")
+const rubricks = document.querySelector(".rubrics-mbl-container")
 
 rubrickBtn.onclick = function () {
     if (rubricks.classList.contains("open-rubric")) {
