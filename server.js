@@ -56,6 +56,7 @@ app.use(express.static("public"))
 const PORT = process.env.PORT || 3000
 const username = process.env.DB_ADMIN_USERNAME
 const password = process.env.DB_ADMIN_PASSWORD
+const email = process.env.DB_ADMIN_EMAIL
 
 const initial = async () => {
     try {
@@ -92,9 +93,9 @@ const initial = async () => {
             }).save()
             User.create({
                 roles: [role.id],
-                username: "",
-                email: "@mail.ru",
-                password: bcrypt.hashSync("", 8),
+                username,
+                email,
+                password: bcrypt.hashSync(password, 8),
             })
         }
     } catch (e) {
@@ -105,7 +106,8 @@ const initial = async () => {
 async function start() {
     try {
         await db.mongoose.connect(
-            `mongodb+srv://${username}:${password}@cluster0.m6k5m.mongodb.net/blog`,
+            // `mongodb+srv://${username}:${password}@cluster0.m6k5m.mongodb.net/blog`,
+            'mongodb://127.0.0.1:27017/murzatay',
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -118,6 +120,7 @@ async function start() {
             console.log(`Server started on port ${PORT}`)
         })
     } catch (e) {
+        console.log('hey')
         console.log(e)
         process.exit()
     }

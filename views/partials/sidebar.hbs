@@ -32,6 +32,8 @@
             <a href="/articles?category=zabavnye-istorii" class="aside-button">Забавные истории</a>
         </p>
     </div>
+
+    {{#if lastComments}}
     <h3 class="aside-title">
         Комментарии
     </h3>
@@ -46,6 +48,7 @@
         </figure>
         {{/each}}
     </div>
+    {{/if}}
 
     <div class="instagram-widget">
         <a class="instagram-widget__profile-link" href="https://www.instagram.com">

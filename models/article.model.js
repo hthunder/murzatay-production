@@ -37,24 +37,10 @@ const articleSchema = new mongoose.Schema(
             type: String,
         },
         comments: [
-            // {
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Comment",
-            },
-            // user: {
-            //     type: mongoose.Schema.Types.ObjectId
-            //     ref: "User"
-            // },
-            // text: {
-            //     type: String,
-            //     required: true
-            // },
-            // date: {
-            //     type: Date,
-            //     default: Date.now
-            // }
-            // }
+            }
         ],
     },
     { timestamps: true }

@@ -1,6 +1,6 @@
-import { addFavourite } from "./addFavourite"
-import { sendForm } from "./sendFormData"
-import { showMore } from "./instagram_widget"
+import { addFavourite } from "./addFavourite.js"
+import { sendForm } from "./sendFormData.js"
+import { showMore } from "./instagram_widget.js"
 
 $(".log-in").on("click", function () {
     $(".pop-up__login").slideToggle()
