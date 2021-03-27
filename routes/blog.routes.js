@@ -2,11 +2,10 @@ const { Router } = require("express")
 
 const router = Router()
 const nodemailer = require("nodemailer")
-const { readdir } = require("fs/promises")
-const path = require("path")
 const Article = require("../models/article.model")
 const User = require("../models/user.model")
 const Comment = require("../models/comment.model")
+const { getPhotosList } = require("../util/getPhotosList")
 
 router.get("/", async (req, res) => {
     const articles = await Article.find().sort("-createdAt").limit(2).lean()
@@ -15,17 +14,8 @@ router.get("/", async (req, res) => {
         .limit(2)
         .populate("user")
         .lean()
-    let files = null
-    let shownPhotos
-    let hiddenPhotos
-    try {
-        const appDir = path.dirname(require.main.filename)
-        files = await readdir(`${appDir}/public/img/tmps`)
-        shownPhotos = files.slice(0, 15)
-        hiddenPhotos = files.slice(15, 18)
-    } catch (err) {
-        console.error(err)
-    }
+
+    const [shownPhotos, hiddenPhotos] = await getPhotosList()
     res.render("index", {
         layout: false,
         isLoggedIn: req.isLoggedIn,
