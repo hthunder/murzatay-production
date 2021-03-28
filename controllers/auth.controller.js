@@ -55,7 +55,7 @@ exports.signin = async (req, res) => {
             .exec()
 
         if (!user) {
-            return res.status(404).send({ message: "User not found." })
+            return res.status(401).send({ error: "Пользователь с такими данным не найден." })
         }
 
         const passwordIsValid = bcrypt.compareSync(
@@ -65,8 +65,8 @@ exports.signin = async (req, res) => {
 
         if (!passwordIsValid) {
             return res.status(401).send({
-                accessToken: null,
-                message: "Invalid password!",
+                // accessToken: null,
+                error: "Пользователь с такими данным не найден.",
             })
         }
 

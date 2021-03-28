@@ -452,6 +452,13 @@ footer {
   z-index: 100;
 }
 
+.pop-up__errors {
+  color: red;
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
 .title {
   font-family: Raleway;
   font-size: 20px;
