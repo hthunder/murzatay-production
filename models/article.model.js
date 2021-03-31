@@ -52,7 +52,8 @@ articleSchema.pre("validate", function validate(next) {
     }
 
     if (this.markdown) {
-        this.sanitizedHTML = dompurify.sanitize(marked(this.markdown))
+        // this.sanitizedHTML = dompurify.sanitize(marked(this.markdown))
+        this.sanitizedHTML = dompurify.sanitize(this.markdown)
     }
 
     next()

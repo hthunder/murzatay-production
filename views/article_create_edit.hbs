@@ -7,14 +7,20 @@
 	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 	<title>{{page_title}}</title>
 	<link rel="stylesheet" type="text/css" href="/css/admin.css">
-
+	<script src="/js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript">
+		tinymce.init({
+			selector: '#markdown',
+			plugins: 'image'
+		});
+  </script>
 </head>
 
 <body class="edit__body">
 	<div>
 		<h1 class="edit_title">{{page_title}}</h1>
 		<form action="{{page_action}}" method="post" enctype="multipart/form-data">
-			<span>Рубрика</span>
+			<div>Рубрика</div>
 			<select name="rubric" id="" required class="edit__select">
 				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
 				<option class="edit__select-item" value="Уход">Уход</option>
@@ -27,21 +33,21 @@
 				<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
 			</select>
 			<div>
-				<label for="title">Название статьи</label>
+				<label class="article-form__title" for="title">Название статьи</label>
 				<input required value="{{article.title}}" type="text" class="edit__article-title" name="title" id="title" />
 			</div>
 			<div>
-				<label for="description">Описание</label>
+				<label class="article-form__description" for="description">Описание</label>
 				<textarea required name="description" class="description"
 					id="description">{{article.description}}</textarea>
 			</div>
 			<div>
-				<label for="markdown">Разметка</label>
+				<label for="markdown" class="markdown__title">Разметка</label>
 				<textarea required name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
 			</div>
-			<div>
-				<label for="image">Выберите изображение</label>
-				<input type="file" id="image" name="img" accept="image/*" />
+			<div class="article-form__img-container">
+				<label class="article-form__img-label" for="image">Выберите изображение</label>
+				<input class="article-form__img-input" type="file" id="image" name="img" accept="image/*" />
 			</div>
 			<a href="/articles/category/all" class="edit__cancel">Отменить</a>
 			<button type="submit" class="edit__submit">Сохранить</button>
@@ -51,6 +57,7 @@
 		{{/if}}
 	</div>
 	<script type="module" src="/js/imgsize_control.js"></script>
+	<script src="/js/tinymce.min.js"></script>
 </body>
 
 </html>

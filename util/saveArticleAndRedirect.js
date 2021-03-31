@@ -2,6 +2,7 @@ const Rubric = require("../models/rubric.model")
 
 exports.saveArticleAndRedirect = async (req, res, redirect) => {
     let { article } = req
+    console.log(req.body.markdown)
     article.title = req.body.title
     article.markdown = req.body.markdown
     article.description = req.body.description
