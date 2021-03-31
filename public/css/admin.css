@@ -94,9 +94,8 @@
 }
 
 .edit_title {
-  margin: 0 auto;
   margin-bottom: 20px;
-  width: 25%;
+  text-align: center;
 }
 
 .edit__select {
