@@ -259,6 +259,8 @@ button.log-out:hover {
 .read-more {
   background-color: transparent;
   background: transparent;
+  text-decoration: none;
+  color: #8c5b3e;
   border: none;
   font-family: Raleway;
   font-size: 14px;
