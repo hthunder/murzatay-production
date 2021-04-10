@@ -64,10 +64,13 @@ router.get("/about", async (req, res) => {
             .limit(2)
             .populate("user")
             .lean()
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         res.render("about", {
             layout: false,
             lastComments,
             isLoggedIn: req.isLoggedIn,
+            shownPhotos,
+            hiddenPhotos,
         })
     } catch (e) {
         console.log(e)
@@ -93,6 +96,7 @@ router.get("/my-page", async (req, res) => {
         .populate("user")
         .lean()
 
+    const [shownPhotos, hiddenPhotos] = await getPhotosList()
     return res.render("my-page", {
         layout: false,
         user,
@@ -101,6 +105,8 @@ router.get("/my-page", async (req, res) => {
         comments,
         lastComments,
         isLoggedIn: req.isLoggedIn,
+        shownPhotos,
+        hiddenPhotos,
     })
 })
 

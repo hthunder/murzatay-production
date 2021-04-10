@@ -256,14 +256,15 @@
 }
 
 .usercomment-title {
-  max-width: 480px;
+  width: 100%;
   font-family: Lora;
   font-size: 20px;
   font-weight: 500;
   text-align: left;
   margin-top: 8px;
-  margin-left: 12%;
   margin-bottom: 4px;
+  display: block;
+  text-align: center;
 }
 
 .usercomment {
@@ -634,12 +635,12 @@
     max-width: 100%;
   }
 
-  .usercomment-title {
+  /* .usercomment-title {
     max-width: 70%;
     margin-left: 0%;
     text-align: center;
     margin: 0 auto;
-  }
+  } */
 
   .usercomment {
     display: block;

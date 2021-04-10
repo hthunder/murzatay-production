@@ -3,6 +3,7 @@ const Rubric = require("../models/rubric.model")
 const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
+const { getPhotosList } = require("../util/getPhotosList")
 
 exports.article_list = async (req, res) => {
     try {
@@ -65,6 +66,7 @@ exports.article_list = async (req, res) => {
             .limit(2)
             .populate("user")
             .lean()
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         res.render("articles", {
             layout: false,
             rangeBefore,
@@ -79,6 +81,8 @@ exports.article_list = async (req, res) => {
             pointsAfter: last && rangeEnd < last - 1,
             isAdmin: req.isAdmin,
             isLoggedIn: req.isLoggedIn,
+            shownPhotos,
+            hiddenPhotos,
         })
     } catch (e) {
         console.log(e)
@@ -130,7 +134,7 @@ exports.article_page = async (req, res) => {
                 .replace(/\//g, ".")
             return newComment
         })
-
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("topic", {
             layout: false,
             favourite,
@@ -139,6 +143,8 @@ exports.article_page = async (req, res) => {
             user,
             article,
             userId: req.userId,
+            shownPhotos,
+            hiddenPhotos,
         })
     } catch (e) {
         return res.status(500).end()
