@@ -48,24 +48,24 @@
 			{{/each}}
 
             <div class="pgn-wrap">
-                {{#if first}}
-                <a href="/articles?page={{first}}&category={{category}}" class="pgn">{{first}}</a>
+                {{#if pagination.first}}
+                <a href="/articles?page={{pagination.first}}&category={{category}}" class="pgn">{{pagination.first}}</a>
                 {{/if}}
-                {{#if pointsBefore}}
+                {{#if pagination.pointsBefore}}
                     <span>...</span>
                 {{/if}}
-                {{#each rangeBefore}}
+                {{#each pagination.rangeBefore}}
                 <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
                 {{/each}}
-                <a href="/articles?page={{current}}&category={{category}}" class="pgn" style="color: red;">{{current}}</a>
-                {{#each rangeAfter}}
+                <a href="/articles?page={{pagination.current}}&category={{category}}" class="pgn" style="color: red;">{{pagination.current}}</a>
+                {{#each pagination.rangeAfter}}
                 <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
                 {{/each}}
-                {{#if pointsAfter}}
+                {{#if pagination.pointsAfter}}
                     <span>...</span>
                 {{/if}}
-                {{#if last}}
-                <a href="/articles?page={{last}}&category={{category}}" class="pgn">{{last}}</a>
+                {{#if pagination.last}}
+                <a href="/articles?page={{pagination.last}}&category={{category}}" class="pgn">{{pagination.last}}</a>
                 {{/if}}
             </div>
 

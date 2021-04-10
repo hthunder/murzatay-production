@@ -5,22 +5,48 @@ const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { getPhotosList } = require("../util/getPhotosList")
 
+const getPaginationData = (page, numberOfArticles, limit) => {
+    const current = parseInt(page, 10)
+    let first = 1
+    let last = Math.ceil(numberOfArticles / limit)
+    const rangeBegin = Math.max(first, current - 2)
+    const rangeEnd = Math.min(last, current + 2)
+    const rangeBefore = []
+    const rangeAfter = []
+    for (let i = rangeBegin; i <= rangeEnd; i += 1) {
+        if (i !== 1 && i !== last) {
+            if (i < current) rangeBefore.push(i)
+            else if (i > current) rangeAfter.push(i)
+        }
+    }
+    if (last === 1 || last === current) last = null
+    if (first === current) first = null
+    const pointsBefore = first && rangeBegin > first + 1
+    const pointsAfter = last && rangeEnd < last - 1
+    return {
+        first,
+        current,
+        last,
+        pointsBefore,
+        pointsAfter,
+        rangeBefore,
+        rangeAfter,
+    }
+}
+
 exports.article_list = async (req, res) => {
     try {
         const limit = 1
         const { page = 1, category = "all" } = req.query
+        let numberOfArticles
 
-        if (page < 0 || page === 0) {
-            res.redirect(`/articles`)
-            return
-        }
+        if (page < 0 || page === 0) return res.redirect(`/articles`)
 
         const skip = limit * (page - 1)
 
         let articles
-        let numberOfArticles = 0
 
-        const findArticles = (request) => {
+        const findPageArticles = (request) => {
             return Article.find(request)
                 .sort("-createdAt")
                 .skip(skip)
@@ -29,38 +55,20 @@ exports.article_list = async (req, res) => {
         }
 
         if (category === "all") {
-            articles = await findArticles({})
+            articles = await findPageArticles({})
             numberOfArticles = await Article.countDocuments()
         } else {
             const rubric = await Rubric.findOne({ slug: category })
-            if (rubric) {
+            if (!rubric) return res.redirect(`/articles`)
+            // eslint-disable-next-line no-underscore-dangle
+            articles = await findPageArticles({ rubric: rubric._id })
+            numberOfArticles = await Article.countDocuments({
                 // eslint-disable-next-line no-underscore-dangle
-                articles = await findArticles({ rubric: rubric._id })
-                numberOfArticles = await Article.countDocuments({
-                    // eslint-disable-next-line no-underscore-dangle
-                    rubric: rubric._id,
-                })
-            } else {
-                // eslint-disable-next-line consistent-return
-                return res.redirect(`/articles`)
-            }
+                rubric: rubric._id,
+            })
         }
 
-        const current = parseInt(page, 10)
-        let first = 1
-        let last = Math.ceil(numberOfArticles / limit)
-        const rangeBegin = Math.max(first, current - 2)
-        const rangeEnd = Math.min(last, current + 2)
-        const rangeBefore = []
-        const rangeAfter = []
-        for (let i = rangeBegin; i <= rangeEnd; i += 1) {
-            if (i !== 1 && i !== last) {
-                if (i < current) rangeBefore.push(i)
-                else if (i > current) rangeAfter.push(i)
-            }
-        }
-        if (last === 1 || last === current) last = null
-        if (first === current) first = null
+        const pagination = getPaginationData(page, numberOfArticles, limit)
 
         const lastComments = await Comment.find()
             .sort({ date: -1 })
@@ -68,18 +76,12 @@ exports.article_list = async (req, res) => {
             .populate("user")
             .lean()
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
-        res.render("articles", {
+        return res.render("articles", {
             layout: false,
-            rangeBefore,
-            rangeAfter,
-            first,
-            last,
-            current,
+            pagination,
             articles,
             category,
             lastComments,
-            pointsBefore: first && rangeBegin > first + 1,
-            pointsAfter: last && rangeEnd < last - 1,
             isAdmin: req.isAdmin,
             isLoggedIn: req.isLoggedIn,
             shownPhotos,
@@ -87,6 +89,7 @@ exports.article_list = async (req, res) => {
         })
     } catch (e) {
         console.log(e)
+        return res.redirect(`/articles`)
     }
 }
 
