@@ -19,22 +19,23 @@ exports.article_list = async (req, res) => {
 
         let articles
         let numberOfArticles = 0
-        if (category === "all") {
-            articles = await Article.find()
+
+        const findArticles = (request) => {
+            return Article.find(request)
                 .sort("-createdAt")
                 .skip(skip)
                 .limit(limit)
                 .lean()
+        }
+
+        if (category === "all") {
+            articles = await findArticles({})
             numberOfArticles = await Article.countDocuments()
         } else {
             const rubric = await Rubric.findOne({ slug: category })
             if (rubric) {
                 // eslint-disable-next-line no-underscore-dangle
-                articles = await Article.find({ rubric: rubric._id })
-                    .sort("-createdAt")
-                    .skip(skip)
-                    .limit(limit)
-                    .lean()
+                articles = await findArticles({ rubric: rubric._id })
                 numberOfArticles = await Article.countDocuments({
                     // eslint-disable-next-line no-underscore-dangle
                     rubric: rubric._id,
