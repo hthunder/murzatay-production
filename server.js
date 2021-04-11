@@ -6,7 +6,7 @@ const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
 const apiAuth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
-const { isLoggedIn, isAdmin } = require("./middlewares/authJwt")
+const { isLoggedIn } = require("./middlewares/authJwt")
 const Rubric = require("./models/rubric.model")
 
 const blogRoutes = require("./routes/blog.routes")
@@ -44,7 +44,7 @@ app.use(methodOverride("_method"))
 
 // routes
 app.use("/api/auth", apiAuth)
-app.use("/articles", isLoggedIn, isAdmin, articleRouter)
+app.use("/articles", isLoggedIn, articleRouter)
 app.use("/users", isLoggedIn, userRoutes)
 app.use("/api", isLoggedIn, apiRoutes)
 app.use("/comments", isLoggedIn, commentRoutes)
@@ -80,19 +80,19 @@ const initial = async () => {
 
         const count = await Role.estimatedDocumentCount()
         if (count === 0) {
-            await new Role({
+            const roleUser = await new Role({
                 name: "user",
             }).save()
 
-            await new Role({
+            const roleModerator = await new Role({
                 name: "moderator",
             }).save()
 
-            const role = await new Role({
+            const roleAdmin = await new Role({
                 name: "admin",
             }).save()
             User.create({
-                roles: [role.id],
+                roles: [roleUser.id, roleModerator.id, roleAdmin.id],
                 username,
                 email,
                 password: bcrypt.hashSync(password, 8),

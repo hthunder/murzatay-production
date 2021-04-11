@@ -47,6 +47,7 @@ exports.signup = async (req, res) => {
     }
 }
 
+// .exec() gives you better stack traces
 exports.signin = async (req, res) => {
     try {
         const user = await User.findOne()
@@ -54,31 +55,20 @@ exports.signin = async (req, res) => {
             .populate("roles", "-__v")
             .exec()
 
-        if (!user) {
-            return res.status(401).send({ error: "Пользователь с такими данным не найден." })
+        if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
+            return res
+                .status(401)
+                .send({ error: "Пользователь с такими данным не найден." })
         }
 
-        const passwordIsValid = bcrypt.compareSync(
-            req.body.password,
-            user.password
-        )
-
-        if (!passwordIsValid) {
-            return res.status(401).send({
-                // accessToken: null,
-                error: "Пользователь с такими данным не найден.",
-            })
+        const authorities = {}
+        for (let i = 0; i < user.roles.length; i += 1) {
+            authorities[user.roles[i].name] = true
         }
 
-        const token = jwt.sign({ id: user.id }, config.secret, {
+        const token = jwt.sign({ id: user.id, authorities }, config.secret, {
             expiresIn: 86400,
         })
-
-        const authorities = []
-
-        for (let i = 0; i < user.roles.length; i += 1) {
-            authorities.push(`ROLE_${user.roles[i].name.toUpperCase()}`)
-        }
 
         res.cookie("token", token, { httpOnly: true })
         return res.redirect("/")
