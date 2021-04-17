@@ -1,4 +1,5 @@
 const express = require("express")
+const upload = require("../middlewares/articleImgHandler")
 
 const router = express.Router()
 const User = require("../models/user.model")
@@ -40,6 +41,16 @@ router.put("/users/:id", async (req, res) => {
     } catch (e) {
         return res.status(500).json({ message: e.message })
     }
+})
+
+// article images upload handler
+// url: /api/images
+// method: post
+// private
+
+router.post("/images", upload.single("file"), async (req, res) => {
+    const location = req.file.path.substring("public".length)
+    return res.json({ location })
 })
 
 module.exports = router

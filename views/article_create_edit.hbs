@@ -11,8 +11,16 @@
 	<script type="text/javascript">
 		tinymce.init({
 			selector: '#markdown',
-			plugins: 'image'
-		});
+			height: 500,
+			width: 1400,
+			plugins: ['advlist lists image'],
+			toolbar: 'undo redo | formatselect | ' +
+			'bold italic backcolor | alignleft aligncenter ' +
+			'alignright alignjustify | bullist numlist outdent indent | ' +
+			'removeformat',
+			images_upload_url: '/api/images',
+			automatic_uploads: true
+		})
   </script>
 </head>
 
