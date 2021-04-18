@@ -7,6 +7,7 @@ const User = require("../models/user.model")
 
 router.put("/users/:id", async (req, res) => {
     try {
+        console.log('i tried')
         const userId = req.params.id
         let message = ""
 
@@ -36,6 +37,7 @@ router.put("/users/:id", async (req, res) => {
         }
 
         const updatedUser = await user.save()
+        console.log(updatedUser)
         resJSON.message = message
         resJSON.user = updatedUser
         return res.status(200).json(resJSON)

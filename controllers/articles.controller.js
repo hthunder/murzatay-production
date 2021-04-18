@@ -124,8 +124,11 @@ exports.article_page = async (req, res) => {
         let user
         if (req.isLoggedIn) {
             user = await User.findById(req.userId).select("-password").lean()
+            const favouriteArray = user.favourites.map((val) => {
+                return val.toString()
+            })
             // eslint-disable-next-line no-underscore-dangle
-            if (user.favourites.indexOf(article._id) !== -1) {
+            if (favouriteArray.indexOf(article._id.toString()) !== -1) {
                 favourite = true
             }
         }
