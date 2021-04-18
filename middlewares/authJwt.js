@@ -21,8 +21,16 @@ const isLoggedIn = (req, _res, next) => {
     return next()
 }
 
+const isAdmin = (req, res, next) => {
+    if (req.authorities?.admin) {
+        return next()
+    }
+    return res.redirect("/")
+}
+
 const authJwt = {
     isLoggedIn,
+    isAdmin,
 }
 
 module.exports = authJwt

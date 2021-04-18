@@ -1,5 +1,6 @@
 const express = require("express")
 const upload = require("../middlewares/articleImgHandler")
+const { isAdmin } = require("../middlewares/authJwt")
 
 const router = express.Router()
 const User = require("../models/user.model")
@@ -46,9 +47,10 @@ router.put("/users/:id", async (req, res) => {
 // article images upload handler
 // url: /api/images
 // method: post
+// admin route
 // private
 
-router.post("/images", upload.single("file"), async (req, res) => {
+router.post("/images", isAdmin, upload.single("file"), async (req, res) => {
     const location = req.file.path.substring("public".length)
     return res.json({ location })
 })

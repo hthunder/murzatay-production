@@ -110,9 +110,4 @@ router.get("/my-page", async (req, res) => {
     })
 })
 
-// router.post("/images", async (req, res) => {
-//     console.log("i was here")
-//     return res.json({ location: "/img/articles/doggie.jpg" })
-// })
-
 module.exports = router
