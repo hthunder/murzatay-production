@@ -23,3 +23,16 @@ exports.comment_add = async (req, res) => {
         console.log(e)
     }
 }
+
+exports.comment_delete = async (req, res) => {
+    const { referer } = req.headers
+    try {
+        const { commentId } = req.params
+        if (req.body.authorId === req.userId || req.authorities?.admin) {
+            await Comment.findByIdAndRemove(commentId)
+        }
+        return res.redirect(referer)
+    } catch {
+        return res.redirect(referer)
+    }
+}

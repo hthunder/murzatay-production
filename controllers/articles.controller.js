@@ -5,6 +5,7 @@ const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { getPhotosList } = require("../util/getPhotosList")
 const { convertDate } = require("../util/convertDate")
+const { addCanDeleteField } = require("../util/addCanDeleteField")
 
 const getPaginationData = (page, numberOfArticles, limit) => {
     const current = parseInt(page, 10)
@@ -137,6 +138,7 @@ exports.article_page = async (req, res) => {
         }
 
         article.comments = convertDate(article.comments)
+        article.comments = addCanDeleteField(article.comments, req.userId)
 
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("topic", {
