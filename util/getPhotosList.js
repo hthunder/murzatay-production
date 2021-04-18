@@ -14,6 +14,5 @@ exports.getPhotosList = async () => {
     } catch (err) {
         console.error(err)
         return [[], []]
-    }    
+    }
 }
-

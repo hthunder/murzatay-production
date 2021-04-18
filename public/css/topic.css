@@ -11,9 +11,15 @@
   width: 100%;
 }
 
-.content img {
+.topic-text img {
   max-width: 100%;
   height: auto;
+}
+
+.topic__comment-info {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 95px);
 }
 
 .add-favourite {
@@ -130,31 +136,26 @@ h1 {
   margin-bottom: 10px;
 }
 
-.comments-topic > figcaption {
-  width: 87%;
-  position: relative;
-}
-
-.author {
+.topic__comment-author {
   font-family: Lora;
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-.one-topic-comm {
+.topic__comment-text {
+  flex-grow: 1;
+  word-wrap: break-word;
   font-family: Raleway;
   font-size: 14px;
   font-weight: 400;
   outline: none;
 }
 
-.date {
+.topic__comment-date {
   font-family: Raleway;
   font-size: 12px;
   font-weight: 400;
-  position: absolute;
-  bottom: 0px;
 }
 
 @media screen and (min-width: 750px) and (max-width: 1024px) {
@@ -462,10 +463,6 @@ h1 {
 
   .comments-topic-wrap {
     max-width: 98%;
-  }
-
-  .one-topic-comm {
-    max-width: 100%;
   }
 
   .footer-wrap {

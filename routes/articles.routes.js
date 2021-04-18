@@ -20,7 +20,5 @@ router.delete("/:id", controller.article_remove)
 
 router.post("/add", fileHandling, controller.article_create_post)
 
-router.post("/:id/comments", controller.comment_add)
-
 router.get("/", controller.article_list)
 module.exports = router

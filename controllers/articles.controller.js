@@ -4,6 +4,7 @@ const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { getPhotosList } = require("../util/getPhotosList")
+const { convertDate } = require("../util/convertDate")
 
 const getPaginationData = (page, numberOfArticles, limit) => {
     const current = parseInt(page, 10)
@@ -116,12 +117,14 @@ exports.articles_search = async (req, res) => {
 
 exports.article_page = async (req, res) => {
     try {
+        const { slug } = req.params
         let favourite = false
-        const article = await Article.findOne({ slug: req.params.slug })
+        const article = await Article.findOne({ slug })
             .populate("comments")
             .lean()
-        if (article == null) res.redirect("/")
+        if (article == null) return res.redirect("/")
         let user
+
         if (req.isLoggedIn) {
             user = await User.findById(req.userId).select("-password").lean()
             const favouriteArray = user.favourites.map((val) => {
@@ -133,14 +136,8 @@ exports.article_page = async (req, res) => {
             }
         }
 
-        article.comments = article.comments.map((comment) => {
-            const newComment = { ...comment }
-            newComment.date = comment.date
-                .toLocaleString("en-GB")
-                .split(",")[0]
-                .replace(/\//g, ".")
-            return newComment
-        })
+        article.comments = convertDate(article.comments)
+
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("topic", {
             layout: false,
