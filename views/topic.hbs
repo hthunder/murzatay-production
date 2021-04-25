@@ -51,7 +51,7 @@
                         {{#if this.canDelete}}
                         <form action="/comments/{{this._id}}" method="post">
                             <input type="hidden" name="authorId" value="{{../userId}}" />
-                            <button type="submit" style="width: 70px;">Удалить</button>  
+                            <button type="submit" class="comment-submit" style="width: 70px;">Удалить</button>  
                         </form>
                         {{/if}}
                     </figcaption>
