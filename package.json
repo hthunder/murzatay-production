@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node server",
         "server": "nodemon server",
+        "mongo": "mkdir -p /workspace/data && mongod --dbpath /workspace/data",
         "eslint": "eslint",
         "eslint:fix": "eslint --fix"
     },

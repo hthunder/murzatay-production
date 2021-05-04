@@ -4,10 +4,10 @@ const { isAdmin } = require("../middlewares/authJwt")
 
 const router = express.Router()
 const User = require("../models/user.model")
+const Comment = require("../models/comment.model")
 
 router.put("/users/:id", async (req, res) => {
     try {
-        console.log('i tried')
         const userId = req.params.id
         let message = ""
 
@@ -55,6 +55,61 @@ router.put("/users/:id", async (req, res) => {
 router.post("/images", isAdmin, upload.single("file"), async (req, res) => {
     const location = req.file.path.substring("public".length)
     return res.json({ location })
+})
+
+// todo добавить возможность редактировать комменты админу
+
+// comment editing
+// url: /api/comments/:id
+// method: put
+// user route
+// private
+
+router.put("/comments/:id", async (req, res) => {
+    try {
+        if (req.isLoggedInErrors) {
+            throw new Error("You are not logged in")
+        }
+        const comment = await Comment.findOneAndUpdate(
+            { _id: req.params.id, user: req.userId },
+            {
+                text: req.body.text,
+            },
+            { new: true }
+        ).lean()
+        if (!comment) {
+            throw new Error("You can't edit the comment")
+        }
+        return res.status(200).send(comment)
+    } catch (e) {
+        return res.status(403).send(e.message)
+    }
+})
+
+// todo добавить возможность удалять комменты админу
+
+// comment deleting
+// url: /api/comment/:id
+// method: delete
+// user route
+// private
+
+router.delete("/comments/:id", async (req, res) => {
+    try {
+        if (req.isLoggedInErrors) {
+            throw new Error("You are not logged in")
+        }
+        const comment = await Comment.findOneAndDelete({
+            _id: req.params.id,
+            user: req.userId,
+        })
+        if (!comment) {
+            throw new Error("You can't delete the comment or it is not existed")
+        }
+        return res.status(200).send("The comment is deleted successfully")
+    } catch (e) {
+        return res.status(403).send(e.message)
+    }
 })
 
 module.exports = router
