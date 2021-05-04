@@ -34,24 +34,25 @@
             <form action="/comments" class="topic-comment-wrap" method="POST">
                 <p class="symbol-count">0/500</p>
                 <textarea name="text" class="topic-comment" maxlength="500"></textarea>
-                <button type="submit" class="comment-submit">Отправить</button>
+                <button type="submit" class="comments__send-button">Отправить</button>
                 <input name="articleId" value="{{article._id}}" type="hidden" />
             </form>
             {{else}}
             <p class="comment-unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
             {{/if}}
             {{#each article.comments}}
-            <div class="comments-topic-wrap">
+            <div class="comments__instance-wrapper comments-topic-wrap" data-id="{{this._id}}">
                 <figure class="comments-topic">
                     <img src="/img/icons/user-profile.svg" alt="Аватарка" class="topic-comment-ava">
                     <figcaption class="topic__comment-info">
                         <p class="topic__comment-author">{{../user.username}}</p>
-                        <p class="topic__comment-text">{{this.text}}</p>
+                        <p class="comments__instance-text topic__comment-text">{{this.text}}</p>
                         <p class="topic__comment-date">{{this.date}}</p>
                         {{#if this.canDelete}}
-                        <form action="/comments/{{this._id}}" method="post">
+                        <form class="comments__form">
                             <input type="hidden" name="authorId" value="{{../userId}}" />
-                            <button type="submit" class="comment-submit" style="width: 70px;">Удалить</button>  
+                            <button type="button" class="comments__delete-button">Удалить</button>
+                            <button type="button" class="comments__edit-button">Редактировать</button> 
                         </form>
                         {{/if}}
                     </figcaption>
@@ -68,22 +69,11 @@
 
     {{> popup }}
 
-    <script>(
-        function() {
-            const counter = document.querySelector(".symbol-count")
-            const textarea = document.querySelector(".topic-comment")
-            counter.innerHTML = `${textarea.value.length}/500`
-            textarea.addEventListener("input", (event) => {
-                const target = event.currentTarget
-                counter.innerHTML = `${target.value.length}/500`
-            })
-        }
-    )()
-    </script>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.maskedinput.min.js"></script>
     <script src="/js/jquery.fancybox.min.js"></script>
     <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/comments.js"></script>
 
 
 

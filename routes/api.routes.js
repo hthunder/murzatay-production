@@ -37,7 +37,6 @@ router.put("/users/:id", async (req, res) => {
         }
 
         const updatedUser = await user.save()
-        console.log(updatedUser)
         resJSON.message = message
         resJSON.user = updatedUser
         return res.status(200).json(resJSON)
@@ -80,7 +79,7 @@ router.put("/comments/:id", async (req, res) => {
         if (!comment) {
             throw new Error("You can't edit the comment")
         }
-        return res.status(200).send(comment)
+        return res.status(200).json({ text: comment.text })
     } catch (e) {
         return res.status(403).send(e.message)
     }
@@ -89,7 +88,7 @@ router.put("/comments/:id", async (req, res) => {
 // todo добавить возможность удалять комменты админу
 
 // comment deleting
-// url: /api/comment/:id
+// url: /api/comments/:id
 // method: delete
 // user route
 // private
