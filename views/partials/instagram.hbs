@@ -6,12 +6,14 @@
     <div class="instagram-widget__photos">
         {{#each shownPhotos}}
         <a class="instagram-widget__photo-link" href="https://www.instagram.com">
+        {{!-- <img class="instagram-widget__photo-img" src="/img/placeholders/comment-img.png" /> --}}
             <img class="instagram-widget__photo-img" src="/img/tmps/{{this}}" />
         </a>
         {{/each}}
         <div class="instagram-widget__hidden-photos hidden">
             {{#each hiddenPhotos}}
             <a class="instagram-widget__photo-link" href="https://www.instagram.com">
+            {{!-- <img class="instagram-widget__photo-img" src="/img/placeholders/comment-img.png" /> --}}
                 <img class="instagram-widget__photo-img" src="/img/tmps/{{this}}" />
             </a>
             {{/each}}

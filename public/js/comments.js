@@ -1,4 +1,5 @@
 import { countSymbols } from "./counter.js"
+import { Comment } from "../components/comment.js"
 
 export const deleteCommentRequest = async (comment) => {
     const { parentNode, id, wrapper } = comment
@@ -88,8 +89,48 @@ export const editComment = (comment) => {
     // Добавляем всплывающий алерт(неблокирующий), который говорит, что произошла ошибка
 }
 
+export const addCommentRequest = async (button, textarea) => {
+    const textareaPtr = textarea
+    const data = {
+        articleId: button.dataset.id,
+        text: textarea.value,
+    }
+    const res = await fetch(`/api/comments`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    if (res.status === 200) {
+        const commentData = await res.json()
+        textareaPtr.value = ""
+        const event = new Event("input")
+        textareaPtr.dispatchEvent(event)
+        const wrapper = Comment(commentData)
+        document.querySelector(".comments__add-form").after(wrapper)
+
+        const comment = {
+            id: wrapper.dataset.id,
+            wrapper,
+        }
+        comment.deleteButton = wrapper.querySelector(".comments__delete-button")
+        comment.editButton = wrapper.querySelector(".comments__edit-button")
+        comment.parentNode = wrapper.parentNode
+
+        comment.deleteButton.onclick = () => {
+            deleteCommentRequest(comment)
+        }
+        comment.editButton.onclick = () => {
+            editComment(comment)
+        }
+    }
+}
+
 export const setListeners = () => {
     const wrappers = document.querySelectorAll(".comments__instance-wrapper")
+    const addCommentButton = document.querySelector(".comments__add-button")
+    const addCommentTextarea = document.querySelector(".comments__add-textarea")
     wrappers.forEach((wrapper) => {
         const comment = {
             id: wrapper.dataset.id,
@@ -106,6 +147,9 @@ export const setListeners = () => {
             editComment(comment)
         }
     })
+    addCommentButton.onclick = () => {
+        addCommentRequest(addCommentButton, addCommentTextarea)
+    }
 }
 
 setListeners()

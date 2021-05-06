@@ -23,6 +23,7 @@ body {
 .logo {
   object-fit: cover;
   width: 15%;
+  height: auto;
 }
 
 .logo-phrase {
@@ -380,14 +381,12 @@ footer {
   border-radius: 25px;
   text-align: center;
   padding: 10px;
-
-  margin: 0 auto;
-  margin-top: 20px;
   /* -------- */
   display: none;
   position: absolute;
-  top: 50%;
-  left: 37%;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 100;
 }
 
@@ -398,14 +397,12 @@ footer {
   border-radius: 25px;
   text-align: center;
   padding: 10px;
-
-  margin: 0 auto;
-  margin-top: 20px;
   /* -------- */
   display: none;
   position: absolute;
-  top: 50%;
-  left: 37%;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 100;
 }
 
@@ -472,15 +469,15 @@ footer {
 @media screen and (max-width: 750px) {
   .pop-up__signup {
     max-width: 250px;
-    top: 40%;
-    left: 18vw;
+    /* top: 40%;
+    left: 18vw; */
     border: 2px solid rgb(150, 133, 108);
   }
 
   .pop-up__login {
     max-width: 250px;
-    top: 40%;
-    left: 18vw;
+    /* top: 40%; */
+    /* left: 18vw; */
     border: 2px solid rgb(150, 133, 108);
   }
 
@@ -611,4 +608,41 @@ footer {
   .cookie_accept{
     margin: 10px 0 0 0;
   }
+}
+
+.link {
+  background-color: transparent;
+  text-decoration: none;
+  color: #8c5b3e;
+  border: none;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: right;
+  width: 100%;
+  max-width: 640px;
+  padding-right: 20px;
+}
+
+.link:hover {
+  color: rgba(190, 108, 35, 1);
+  cursor: pointer;
+}
+
+.button {
+  cursor: pointer;
+  padding: 4px 10px;
+  margin-top: 12px;
+  background-color: rgba(217, 182, 139, 0.651);
+  outline: none;
+  border: 2px solid rgba(140, 91, 62, 1);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-family: Lora;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
 }

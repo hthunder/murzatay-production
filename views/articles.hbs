@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 	<title>Мурзатай</title>
+	{{!-- <link rel="preload" href="/css/fonts.css" as="font"> --}}
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<link rel="stylesheet" type="text/css" href="/css/articles-style.css">
 </head>
@@ -19,7 +20,7 @@
 		<div class="content">
 			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
 			{{#if isAdmin}}
-			<a href="/articles/add">Новая статья</a>
+			<a href="/articles/add" class="link">Новая статья</a>
 			{{/if}}
 
 			{{#each articles}}
@@ -34,13 +35,13 @@
 					<h2 class="article-title">{{this.title}}</h2>
 					<span class="unread">Прочти меня</span>
 					<p class="article-text">{{this.description}}</p>
-					<a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
+					<a href="/articles/{{this.slug}}" class="link">Читать...</a>
 					{{#if ../isAdmin}}
-					<a href="/articles/{{this._id}}/edit" class="read-more">
+					<a href="/articles/{{this._id}}/edit" class="link">
 						Редактировать
 					</a>
 					<form action="/articles/{{this._id}}?_method=DELETE" method="POST">
-						<button type="submit">Удалить</button>
+						<button type="submit" class="button">Удалить</button>
 					</form>
 					{{/if}}
 				</figcaption>
@@ -78,9 +79,6 @@
 
 	{{> popup }}
 
-	<script src="/js/jquery-3.4.1.min.js"></script>
-	<script src="/js/jquery.maskedinput.min.js"></script>
-	<script src="/js/jquery.fancybox.min.js"></script>
 	<script type="module" src="/js/main.js"></script>
 
 

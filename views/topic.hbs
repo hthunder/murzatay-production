@@ -14,7 +14,7 @@
 
     {{> header }}
     <section class="main">
-        <div class="content">
+        <div class="topic__content">
             {{#if isLoggedIn}}
             {{#if favourite}}
             <button data-article-id="{{article._id}}" data-user-id="{{userId}}"
@@ -27,15 +27,16 @@
             <h1 class="topic-title"> {{article.title}} </h1>
             <p class="topic-text">{{{article.sanitizedHTML}}}</p>
             {{#if isAdmin}}
-            <a href="/articles/{{article._id}}/edit/">Редактировать</a>
+            <a class="post__edit-button" href="/articles/{{article._id}}/edit/">Редактировать пост</a>
             {{/if}}
             {{#if isLoggedIn}}
             <h3 class="comment-title">Оставьте свой комментарий</h3>
-            <form action="/comments" class="topic-comment-wrap" method="POST">
+            {{!-- <form class="topic-comment-wrap"> --}}
+            <form class="comments__add-form">
                 <p class="symbol-count">0/500</p>
-                <textarea name="text" class="topic-comment" maxlength="500"></textarea>
-                <button type="submit" class="comments__send-button">Отправить</button>
-                <input name="articleId" value="{{article._id}}" type="hidden" />
+                <textarea name="text" class="comments__add-textarea topic-comment" maxlength="500"></textarea>
+                <button type="button" class="comments__add-button comments__send-button" data-id="{{article._id}}">Отправить</button>
+                {{!-- <input name="articleId" value="{{article._id}}" type="hidden" /> --}}
             </form>
             {{else}}
             <p class="comment-unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
@@ -50,7 +51,7 @@
                         <p class="topic__comment-date">{{this.date}}</p>
                         {{#if this.canDelete}}
                         <form class="comments__form">
-                            <input type="hidden" name="authorId" value="{{../userId}}" />
+                            {{!-- <input type="hidden" name="authorId" value="{{../userId}}" /> --}}
                             <button type="button" class="comments__delete-button">Удалить</button>
                             <button type="button" class="comments__edit-button">Редактировать</button> 
                         </form>
@@ -69,9 +70,6 @@
 
     {{> popup }}
 
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/jquery.maskedinput.min.js"></script>
-    <script src="/js/jquery.fancybox.min.js"></script>
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/comments.js"></script>
 

@@ -139,6 +139,7 @@ exports.article_page = async (req, res) => {
 
         article.comments = convertDate(article.comments)
         article.comments = addCanDeleteField(article.comments, req.userId)
+        article.comments.reverse()
 
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("topic", {

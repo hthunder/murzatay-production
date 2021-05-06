@@ -5,6 +5,7 @@
       url("../fonts/lora/Lora-Regular.ttf") format("ttf");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
   
   @font-face {
@@ -14,6 +15,7 @@
       url("../fonts/lora/Lora-Medium.ttf") format("ttf");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
   }
   
   @font-face {
@@ -23,6 +25,7 @@
       url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
   
   @font-face {
@@ -32,6 +35,7 @@
       url("../fonts/raleway/Raleway-Medium.ttf") format("ttf");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
   }
   
   @font-face {
@@ -41,4 +45,5 @@
       url("../fonts/raleway/Raleway-SemiBold.ttf") format("ttf");
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
   }

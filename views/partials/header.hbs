@@ -1,8 +1,8 @@
 <header>
     <div class="header">
         <div class="logo-wrap">
-            <img src="/img/logo.png" alt="Лого" class="logo">
-            <img src="/img/koshkonutost.png" class="logo-phrase">
+            <img src="/img/logo.png" width="1000" height="1299" alt="Лого" class="logo">
+            <img src="/img/koshkonutost.png" width="308" height="110" class="logo-phrase">
         </div>
     </div>
     <nav>
@@ -10,11 +10,7 @@
             <p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
             <p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
             <p class="nav__link-wrap"><a href="/articles" class="nav-link">Блог</a></p>
-            {{!-- <button class="log-in">Войти</button>
-			<button class="sign-up">Зарегистрироваться</button> --}}
-            {{!-- #if authorized --}}
             {{#if isLoggedIn}}
-            {{!-- <button class="log-out">Выйти</button> --}}
             <p class="nav__link-wrap"><a href="/my-page" class="nav-link">Профиль</a></p>
             <form action="/api/auth/logout" method="post">
                 <input class="log-out" type="submit" value="Выйти">
@@ -39,11 +35,7 @@
             <li class="menu-item"><a href="/about" class="nav-link-mobile">Об авторе</a></li>
             {{#if isLoggedIn}}
             <li class="menu-item">
-                {{!-- <form action="/api/auth/logout" method="post"> --}}
-                {{!-- <input class="log-out-mbl" type="submit" value="Выйти"> --}}
                 <button class="log-out-mbl">Выйти</button>
-                {{!--
-				</form> --}}
             </li>
             {{else}}
             <li class="menu-item"><button class="log-in-mbl">Войти</button></li>

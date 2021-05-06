@@ -1,5 +1,6 @@
 .about-form__label {
     display: block;
+    margin: 5px 0;
 }
 
 .about-form__input {
@@ -26,19 +27,6 @@
 .errors {
     color: red;
 }
-/* .about-text {
-    width: 415px;
-    word-wrap: break-word;
-}
-
-.about-form,
-.about-text_hidden {
-    display: none;
-}
-
-.about-form_shown {
-    display: initial;
-} */
 
 .main {
   max-width: 1140px;

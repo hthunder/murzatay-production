@@ -1,10 +1,14 @@
 const express = require("express")
+const mongoose = require("mongoose")
 const upload = require("../middlewares/articleImgHandler")
 const { isAdmin } = require("../middlewares/authJwt")
 
 const router = express.Router()
 const User = require("../models/user.model")
 const Comment = require("../models/comment.model")
+const Article = require("../models/article.model")
+const { LONG_COMMENT, NOT_LOGGED_IN } = require("../constants")
+const { errorHandler } = require("../util/errorHandler")
 
 router.put("/users/:id", async (req, res) => {
     try {
@@ -108,6 +112,49 @@ router.delete("/comments/:id", async (req, res) => {
         return res.status(200).send("The comment is deleted successfully")
     } catch (e) {
         return res.status(403).send(e.message)
+    }
+})
+
+// comment adding
+// url: /api/comments
+// method: post
+// user route
+// private
+
+router.post("/comments", async (req, res) => {
+    try {
+        const { articleId } = req.body
+        let comment
+        if (!req.userId) {
+            throw new Error(NOT_LOGGED_IN)
+        }
+        let populatedComment
+        if (req.body.text.length <= 500) {
+            comment = new Comment({
+                _id: new mongoose.Types.ObjectId(),
+                user: req.userId,
+                text: req.body.text,
+            })
+            await comment.save()
+            populatedComment = await (await Comment.findById(comment._id))
+                .populate("user")
+                .execPopulate()
+
+            const article = await Article.findById(articleId)
+            // eslint-disable-next-line no-underscore-dangle
+            article.comments.push(comment._id)
+            await article.save()
+        } else {
+            throw new Error(LONG_COMMENT)
+        }
+        return res.status(200).json({
+            commentId: populatedComment._id,
+            author: populatedComment.user.username,
+            comment: populatedComment.text,
+            date: populatedComment.date,
+        })
+    } catch (e) {
+        return errorHandler(e.message, res)
     }
 })
 

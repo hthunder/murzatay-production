@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "it's a blog about cats",
     "main": "server.js",
+    "private": true,
     "scripts": {
         "start": "node server",
         "server": "nodemon server",
@@ -48,6 +49,8 @@
         "eslint-plugin-prettier": "^3.3.1",
         "nodemon": "^2.0.6",
         "prettier": "^2.2.1",
-        "sass": "^1.32.8"
+        "sass": "^1.32.8",
+        "webpack": "^5.36.2",
+        "webpack-cli": "^4.6.0"
     }
 }

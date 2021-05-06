@@ -12,7 +12,6 @@ const Rubric = require("./models/rubric.model")
 const blogRoutes = require("./routes/blog.routes")
 const userRoutes = require("./routes/user.routes")
 const apiRoutes = require("./routes/api.routes")
-const commentRoutes = require("./routes/comment.routes")
 
 const db = require("./models")
 
@@ -47,7 +46,6 @@ app.use("/api/auth", apiAuth)
 app.use("/articles", isLoggedIn, articleRouter)
 app.use("/users", isLoggedIn, userRoutes)
 app.use("/api", isLoggedIn, apiRoutes)
-app.use("/comments", isLoggedIn, commentRoutes)
 // require('./routes/user.routes')(app);
 app.use("/", isLoggedIn, blogRoutes)
 
