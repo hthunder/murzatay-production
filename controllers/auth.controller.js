@@ -58,7 +58,7 @@ exports.signin = async (req, res) => {
         if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
             return res
                 .status(401)
-                .send({ error: "Пользователь с такими данным не найден." })
+                .json({ error: "Пользователь с такими данным не найден." })
         }
 
         const authorities = {}
@@ -70,10 +70,10 @@ exports.signin = async (req, res) => {
             expiresIn: 86400,
         })
 
-        res.cookie("token", token, { httpOnly: true })
-        return res.redirect("/")
+        res.cookie("token", token, { httpOnly: true, sameSite: 'lax' })
+        return res.status(200).json({ redirectUrl: "/", redirected: true })
     } catch (e) {
-        return res.status(500).send({ message: e })
+        return res.status(500).json({ message: e })
     }
 }
 

@@ -1,7 +1,7 @@
 import { addFavourite } from "./addFavourite.js"
 import { sendForm } from "./sendFormData.js"
 import { showMore } from "./instagram_widget.js"
-import { slideToggle, fadeIn, fadeOut } from './animations.js'
+import { slideToggle, fadeIn, fadeOut } from "./animations.js"
 
 const login = document.querySelector(".log-in")
 const popupLogin = document.querySelector(".pop-up__login")
@@ -13,42 +13,58 @@ const cancelSignup = document.querySelector(".cancel-signup")
 const loginMbl = document.querySelector(".log-in-mbl")
 const signupMbl = document.querySelector(".sign-up-mbl")
 
-login.onclick = function () {
-    slideToggle(popupLogin)
-    fadeIn(overlay)
+if (login) {
+    login.onclick = function () {
+        slideToggle(popupLogin)
+        fadeIn(overlay)
+    }
 }
 
-cancelLogin.addEventListener("click", function (e) {
-    e.preventDefault()
-    slideToggle(popupLogin)
-    fadeOut(overlay)
-})
-
-overlay.addEventListener("click", function (e) {
-    fadeOut(popupLogin)
-    fadeOut(overlay)
-    fadeOut(popupSignup)
-})
-
-signup.onclick = function () {
-    slideToggle(popupSignup)
-    fadeIn(overlay)
+if (cancelLogin) {
+    cancelLogin.addEventListener("click", function (e) {
+        e.preventDefault()
+        slideToggle(popupLogin)
+        fadeOut(overlay)
+    })
 }
 
-cancelSignup.addEventListener("click", function (e) {
-    e.preventDefault()
-    slideToggle(popupSignup)
-    fadeOut(overlay)
-})
-
-loginMbl.onclick = function () {
-    slideToggle(popupLogin)
-    fadeIn(overlay)
+if (overlay) {
+    overlay.addEventListener("click", function (e) {
+        fadeOut(popupLogin)
+        fadeOut(overlay)
+        fadeOut(popupSignup)
+    })   
 }
 
-signupMbl.onclick = function () {
-    slideToggle(popupSignup)
-    fadeIn(overlay)
+
+if (signup) {
+    signup.onclick = function () {
+        slideToggle(popupSignup)
+        fadeIn(overlay)
+    }
+}
+
+if (cancelSignup) {
+    cancelSignup.addEventListener("click", function (e) {
+        e.preventDefault()
+        slideToggle(popupSignup)
+        fadeOut(overlay)
+    })  
+}
+
+
+if (loginMbl) {
+    loginMbl.onclick = function () {
+        slideToggle(popupLogin)
+        fadeIn(overlay)
+    }
+}
+
+if (signupMbl) {
+    signupMbl.onclick = function () {
+        slideToggle(popupSignup)
+        fadeIn(overlay)
+    }
 }
 
 /* Не закрываются выпадающие элементы при повторном клике */
@@ -110,3 +126,7 @@ function checkCookies() {
     })
 }
 checkCookies()
+// if (module.hot) {
+//     // Accept hot update
+//     module.hot.accept();
+// }

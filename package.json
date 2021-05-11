@@ -27,7 +27,7 @@
         "express-handlebars": "^5.2.0",
         "express-validator": "^6.8.0",
         "gravatar": "^1.8.1",
-        "hbs": "^4.1.1",
+        "hbs": "^4.1.2",
         "jsdom": "^16.4.0",
         "jsonwebtoken": "^8.5.1",
         "marked": "^2.0.1",

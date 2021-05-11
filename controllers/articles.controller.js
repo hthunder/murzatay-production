@@ -213,5 +213,5 @@ exports.article_edit_put = async (req, res) => {
 
 exports.article_remove = async (req, res) => {
     await Article.findByIdAndDelete(req.params.id)
-    res.redirect("/articles/category/all")
+    res.redirect("/articles")
 }

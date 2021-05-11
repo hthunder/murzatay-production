@@ -46,12 +46,11 @@
 			</div>
 			<div>
 				<label class="article-form__description" for="description">Описание</label>
-				<textarea required name="description" class="description"
-					id="description">{{article.description}}</textarea>
+				<textarea required name="description" class="description" id="description">{{article.description}}</textarea>
 			</div>
 			<div>
 				<label for="markdown" class="markdown__title">Разметка</label>
-				<textarea required name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
+				<textarea name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
 			</div>
 			<div class="article-form__img-container">
 				<label class="article-form__img-label" for="image">Выберите изображение</label>
@@ -65,7 +64,6 @@
 		{{/if}}
 	</div>
 	<script type="module" src="/js/imgsize_control.js"></script>
-	<script src="/js/tinymce.min.js"></script>
 </body>
 
 </html>
