@@ -1,5 +1,5 @@
 import { countSymbols } from "./counter.js"
-import { Comment } from "../components/comment.js"
+import { Comment, EditForm } from "./components/comment.js"
 
 export const deleteCommentRequest = async (comment) => {
     const { parentNode, id, wrapper } = comment
@@ -47,7 +47,6 @@ const saveEditing = async (toggledElems, form, textarea, id) => {
 
 export const editComment = (comment) => {
     const { deleteButton, editButton, wrapper, id } = comment
-    const commentPtr = comment
 
     const paragraphComment = wrapper.querySelector(".comments__instance-text")
     const paragraphText = paragraphComment.textContent
@@ -55,33 +54,26 @@ export const editComment = (comment) => {
 
     setDisplayValue(toggledElements, "none")
 
-    let form = wrapper.querySelector(".comments__temp-form")
-    if (form) {
-        form.style.display = "initial"
-        commentPtr.textarea.value = paragraphText
-        commentPtr.counter.innerHTML = `${paragraphText.length}/500`
+    let form
+    let formNode
+
+    if (!form) {
+        form = EditForm(paragraphText)
+        ;({ form: formNode } = form)
+        paragraphComment.after(formNode)
+
+        form.saveButton.onclick = () => {
+            saveEditing(toggledElements, formNode, form.textarea, id)
+        }
+        form.cancelButton.onclick = () => {
+            cancelEditing(toggledElements, formNode)
+        }
+
+        countSymbols(form.counter, form.textarea)
     } else {
-        form = document.createElement("form")
-        form.classList.add("comments__temp-form")
-
-        form.innerHTML = `<p class="symbol-count">0/500</p>
-        <textarea class="topic-comment" maxlength="500">${paragraphText}</textarea>
-        <button type="button" class="comments__save-button">Сохранить</button>
-        <button type="button" class="comments__cancel-button">Отменить</button>`
-        paragraphComment.after(form)
-        commentPtr.textarea = wrapper.querySelector(".topic-comment")
-        commentPtr.counter = wrapper.querySelector(".symbol-count")
-        const cancelButton = wrapper.querySelector(".comments__cancel-button")
-        const saveButton = wrapper.querySelector(".comments__save-button")
-
-        saveButton.onclick = () => {
-            saveEditing(toggledElements, form, commentPtr.textarea, id)
-        }
-        cancelButton.onclick = () => {
-            cancelEditing(toggledElements, form)
-        }
-
-        countSymbols(commentPtr.counter, commentPtr.textarea)
+        form.style.display = "initial"
+        form.textarea.value = paragraphText
+        form.counter.innerHTML = `${paragraphText.length}/500`
     }
 
     // Санитайзим пользовательский ввод

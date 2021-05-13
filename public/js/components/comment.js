@@ -22,3 +22,17 @@ export const Comment = (
     </figure>`
     return div
 }
+
+export const EditForm = (paragraphText) => {
+    const form = document.createElement("form")
+    form.classList.add("comments__temp-form")
+    form.innerHTML = `<p class="symbol-count">0/500</p>
+        <textarea class="topic-comment" maxlength="500">${paragraphText}</textarea>
+        <button type="button" class="comments__save-button">Сохранить</button>
+        <button type="button" class="comments__cancel-button">Отменить</button>`
+    const textarea = form.querySelector(".topic-comment")
+    const counter = form.querySelector(".symbol-count")
+    const cancelButton = form.querySelector(".comments__cancel-button")
+    const saveButton = form.querySelector(".comments__save-button")
+    return { form, textarea, counter, cancelButton, saveButton }
+}
