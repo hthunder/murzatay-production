@@ -1,38 +1,5 @@
-@font-face {
-  font-family: "Lora";
-  src: url("../fonts/lora/Lora-Regular.woff2") format("woff2"), url("../fonts/lora/Lora-Regular.woff") format("woff"), url("../fonts/lora/Lora-Regular.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Lora";
-  src: url("../fonts/lora/Lora-Medium.woff2") format("woff2"), url("../fonts/lora/Lora-Medium.woff") format("woff"), url("../fonts/lora/Lora-Medium.ttf") format("ttf");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-Regular.woff2") format("woff2"), url("../fonts/raleway/Raleway-Regular.woff") format("woff"), url("../fonts/raleway/Raleway-Regular.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-Medium.woff2") format("woff2"), url("../fonts/raleway/Raleway-Medium.woff") format("woff"), url("../fonts/raleway/Raleway-Medium.ttf") format("ttf");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/Raleway-SemiBold.woff2") format("woff2"), url("../fonts/raleway/Raleway-SemiBold.woff") format("woff"), url("../fonts/raleway/Raleway-SemiBold.ttf") format("ttf");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+@use 'fonts';
+
 * {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
@@ -40,7 +7,7 @@
 }
 
 body {
-  background-color: #d9b68b;
+  background-color: rgba(217, 182, 139, 1);
 }
 
 .header {
@@ -360,8 +327,8 @@ footer {
   resize: none;
   width: 100%;
   height: 75px;
-  background-color: #d9b68b;
-  border: 3px solid #8c5b3e;
+  background-color: rgba(217, 182, 139, 1);
+  border: 3px solid rgba(140, 91, 62, 1);
   border-radius: 5px;
   font-family: Raleway;
   font-size: 16px;
@@ -372,8 +339,8 @@ footer {
 .questions_email {
   resize: none;
   width: 100%;
-  background-color: #d9b68b;
-  border: 3px solid #8c5b3e;
+  background-color: rgba(217, 182, 139, 1);
+  border: 3px solid rgba(140, 91, 62, 1);
   border-radius: 5px;
   font-family: Raleway;
   font-size: 16px;
@@ -386,9 +353,9 @@ footer {
   width: 40%;
   padding: 2px;
   margin-top: 8px;
-  background-color: #d9b68b;
+  background-color: rgba(217, 182, 139, 1);
   outline: none;
-  border: 3px solid #8c5b3e;
+  border: 3px solid rgba(140, 91, 62, 1);
   border-radius: 5px;
   margin-bottom: 15px;
   font-family: Lora;
@@ -410,8 +377,8 @@ footer {
 
 .pop-up__login {
   width: 300px;
-  background-color: #d8c1a6;
-  border: 4px solid #96856c;
+  background-color: rgb(216, 193, 166);
+  border: 4px solid rgb(150, 133, 108);
   border-radius: 25px;
   text-align: center;
   padding: 10px;
@@ -426,8 +393,8 @@ footer {
 
 .pop-up__signup {
   width: 300px;
-  background-color: #d8c1a6;
-  border: 4px solid #96856c;
+  background-color: rgb(216, 193, 166);
+  border: 4px solid rgb(150, 133, 108);
   border-radius: 25px;
   text-align: center;
   padding: 10px;
@@ -462,7 +429,7 @@ footer {
   height: 30px;
   padding: 5px;
   outline: none;
-  border: 1px solid #6b6154;
+  border: 1px solid rgb(107, 97, 84);
   border-radius: 3px;
   font-family: Raleway;
   font-size: 14px;
@@ -482,7 +449,7 @@ footer {
   font-weight: 500;
   background-color: rgba(134, 92, 68, 0.336);
   outline: none;
-  border: 0.5px solid #6b6154;
+  border: 0.5px solid rgb(107, 97, 84);
   border-radius: 6px;
   text-decoration: none;
   text-align: center;
@@ -505,24 +472,24 @@ footer {
     max-width: 250px;
     /* top: 40%;
     left: 18vw; */
-    border: 2px solid #96856c;
+    border: 2px solid rgb(150, 133, 108);
   }
 
   .pop-up__login {
     max-width: 250px;
     /* top: 40%; */
     /* left: 18vw; */
-    border: 2px solid #96856c;
+    border: 2px solid rgb(150, 133, 108);
   }
 
   .registration button,
-.cancel-login,
-.cancel-signup {
+  .cancel-login,
+  .cancel-signup {
     max-width: 200px;
   }
 
   .cancel-login,
-.cancel-signup {
+  .cancel-signup {
     padding: 3px 65px;
   }
 
@@ -530,6 +497,7 @@ footer {
     max-width: 200px;
   }
 }
+
 /* .insta {
   max-width: 235px;
   width: 100%;
@@ -537,6 +505,7 @@ footer {
   background-color: #fff;
   margin: 0 auto;
 } */
+
 /* .insta-text {
   font-family: Raleway;
   font-size: 18px;
@@ -546,57 +515,58 @@ footer {
   letter-spacing: 0em;
   text-align: left;
 } */
+
 .instagram-widget {
-  max-width: 235px;
-  width: 100%;
-  padding: 50px 15px;
-  background-color: #fff;
-  margin: 0 auto;
-  text-align: center;
+    max-width: 235px;
+    width: 100%;
+    padding: 50px 15px;
+    background-color: #fff;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .instagram-widget__profile-link {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px; 
+    display: flex; 
+    align-items: center; 
+    text-decoration: none; 
+    color: black; 
+    font-weight: 500; 
+    font-size: 16px; 
+    font-family: 'Montserrat', sans-serif;
 }
 
 .instagram-widget__profile-icon {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .instagram-widget__photos {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
+    display: flex; 
+    width: 100%; 
+    flex-wrap: wrap;
 }
 
 .instagram-widget__photo-link {
-  width: calc(100% / 3);
-  margin: 5px 0;
-  padding: 3px;
+    width: calc(100% / 3); 
+    margin: 5px 0; 
+    padding: 3px
 }
 
 .instagram-widget__photo-img {
-  width: 100%;
-  height: 65px;
-  object-fit: contain;
+    width: 100%; 
+    height: 65px; 
+    object-fit: contain;
 }
 
 .instagram-widget__hidden-photos {
-  display: flex;
+    display: flex;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
-#cookie_notification {
+#cookie_notification{
   display: none;
   justify-content: space-between;
   align-items: center;
@@ -612,34 +582,35 @@ footer {
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
-#cookie_notification p {
+#cookie_notification p{
   margin: 0;
   font-size: 0.9rem;
   text-align: left;
 }
 
-@media (min-width: 576px) {
-  #cookie_notification.show {
+
+@media (min-width: 576px){
+  #cookie_notification.show{
     display: flex;
   }
-
-  .cookie_accept {
+  .cookie_accept{
     margin: 0 0 0 25px;
     padding: 5px;
     border-color: rgba(140, 91, 62, 0.6);
     background-color: rgba(140, 91, 62, 0.6);
   }
 }
-@media (max-width: 575px) {
-  #cookie_notification.show {
+
+@media (max-width: 575px){
+  #cookie_notification.show{
     display: block;
     text-align: left;
   }
-
-  .cookie_accept {
+  .cookie_accept{
     margin: 10px 0 0 0;
   }
 }
+
 .link {
   background-color: transparent;
   text-decoration: none;
@@ -655,7 +626,7 @@ footer {
 }
 
 .link:hover {
-  color: #be6c23;
+  color: rgba(190, 108, 35, 1);
   cursor: pointer;
 }
 
@@ -665,7 +636,7 @@ footer {
   margin-top: 12px;
   background-color: rgba(217, 182, 139, 0.651);
   outline: none;
-  border: 2px solid #8c5b3e;
+  border: 2px solid rgba(140, 91, 62, 1);
   border-radius: 10px;
   margin-bottom: 15px;
   font-family: Lora;
@@ -676,5 +647,3 @@ footer {
   color: black;
   display: inline-block;
 }
-
-/*# sourceMappingURL=global.css.map */
