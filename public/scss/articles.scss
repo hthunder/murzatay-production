@@ -1,5 +1,4 @@
 @use 'global';
-@use 'common-media';
 
 .main {
   max-width: 1140px;
@@ -7,6 +6,8 @@
   margin: 0 auto;
   background-color: #fff;
   display: flex;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .content {

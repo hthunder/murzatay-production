@@ -10,8 +10,6 @@ const overlay = document.querySelector(".overlay")
 const signup = document.querySelector(".sign-up")
 const popupSignup = document.querySelector(".pop-up__signup")
 const cancelSignup = document.querySelector(".cancel-signup")
-const loginMbl = document.querySelector(".log-in-mbl")
-const signupMbl = document.querySelector(".sign-up-mbl")
 
 if (login) {
     login.onclick = function () {
@@ -36,7 +34,6 @@ if (overlay) {
     })   
 }
 
-
 if (signup) {
     signup.onclick = function () {
         slideToggle(popupSignup)
@@ -52,32 +49,13 @@ if (cancelSignup) {
     })  
 }
 
-
-if (loginMbl) {
-    loginMbl.onclick = function () {
-        slideToggle(popupLogin)
-        fadeIn(overlay)
-    }
-}
-
-if (signupMbl) {
-    signupMbl.onclick = function () {
-        slideToggle(popupSignup)
-        fadeIn(overlay)
-    }
-}
-
 /* Не закрываются выпадающие элементы при повторном клике */
 
 const burger = document.querySelector(".mobile-menu")
-const mbMenu = document.querySelector(".menu-list")
+const menu = document.querySelector(".nav__link-wrapper")
 
 burger.onclick = function () {
-    if (mbMenu.classList.contains("open")) {
-        mbMenu.classList.remove("open")
-    } else {
-        mbMenu.classList.add("open")
-    }
+    menu.classList.toggle("open")
 }
 
 const search = document.querySelector(".search-icon")

@@ -1,3 +1,5 @@
+
+
 @media screen and (min-width: 750px) and (max-width: 1024px) {
     .logo-phrase {
       width: 24%;
@@ -17,16 +19,6 @@
       position: relative;
     }
   
-    .nav-link {
-      display: none;
-    }
-  
-    .log-in,
-    .sign-up,
-    .log-out {
-      display: none;
-    }
-  
     .search-wrap {
       display: block;
     }
@@ -38,38 +30,35 @@
       border: none;
     }
   
-    .menu-list {
-      list-style: none;
-      position: absolute;
-      top: 40px;
-      width: 50%;
-      right: 0px;
+    .mobile-menu {
+      margin-left: auto;
+      display: block;
+      background-color: transparent;
+      outline: none;
+      border: none;
     }
   
-    .nav-link-mobile {
+    .nav__link-wrapper {
+      position: absolute;
+      flex-direction: column;
+      display: none;
+      right: 0;
+      top: 40px;
+      width: 50%;
+    }
+
+    .nav__link-wrap {
+      border: 2px solid #96684d;
+      display: inline-block;
+      width: 100%;
+      background-color: #96684d;
+      padding: 5px;
+      cursor: pointer;
       font-family: Raleway;
       font-weight: 400;
       font-size: 16px;
       text-decoration: none;
       color: #fff;
-    }
-  
-    .menu-item {
-      background-color: rgb(150, 104, 77);
-      padding: 5px;
-      text-align: center;
-    }
-  
-    .log-in,
-    .sign-up,
-    .log-out {
-      background-color: transparent;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-family: Raleway;
-      font-weight: 400;
-      font-size: 16px;
     }
   
     .mobile-rubrics-btn-wrap {
@@ -112,7 +101,7 @@
       display: flex;
     }
     .open {
-      display: block;
+      display: flex;
     }
   
     body {
@@ -123,8 +112,8 @@
     .main {
       min-width: 751px;
       max-width: 1023px;
+      width: 100%;
       padding: 0px;
-      width: auto;
     }
   
     .content {
@@ -175,56 +164,31 @@
       position: relative;
     }
   
-    .nav-link {
-      display: none;
-    }
-  
-    .log-in,
-    .sign-up,
-    .log-out {
-      display: none;
-    }
-  
-  
     .mobile-menu {
+      margin-left: auto;
       display: block;
       background-color: transparent;
       outline: none;
       border: none;
     }
   
-    .menu-list {
-      list-style: none;
+    .nav__link-wrapper {
       position: absolute;
+      flex-direction: column;
+      display: none;
+      right: 0;
       top: 40px;
       width: 50%;
-      right: 0px;
     }
-  
-    .nav-link-mobile {
-      font-family: Raleway;
-      font-weight: 400;
-      font-size: 16px;
-      text-decoration: none;
-      color: #fff;
-    }
-  
-    .menu-item {
-      background-color: rgb(150, 104, 77);
+
+    .nav__link-wrap {
+      border: 2px solid #96684d;
+      display: inline-block;
+      width: 100%;
+      background-color: #96684d;
       padding: 5px;
-      text-align: center;
-    }
-  
-    .log-in,
-    .sign-up,
-    .log-out {
-      background-color: transparent;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-family: Raleway;
-      font-weight: 400;
-      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
     }
   
     .mobile-rubrics-btn-wrap {
@@ -252,7 +216,7 @@
       display: flex;
     }
     .open {
-      display: block;
+      display: flex;
     }
   
     body {
@@ -333,13 +297,6 @@
       margin-top: 15px;
       max-width: 100%;
     }
-  
-    /* .usercomment-title {
-      max-width: 70%;
-      margin-left: 0%;
-      text-align: center;
-      margin: 0 auto;
-    } */
   
     .usercomment {
       display: block;

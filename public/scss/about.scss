@@ -1,5 +1,4 @@
 @use 'global';
-@use 'common-media';
 
 .main {
   max-width: 1140px;
@@ -80,6 +79,8 @@
   }
 
   .about-text {
+    margin: 16px 0;
+    padding: 0 16px;
     max-width: 98%;
     text-align: justify;
     margin-bottom: 10px;
