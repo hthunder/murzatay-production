@@ -1,0 +1,71 @@
+@use '../abstracts/variables';
+
+.about {
+  &__title {
+    font-family: Lora;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    padding: 21px 0 0 0;  
+  }
+
+  &__author-info {
+    margin-top: 34px;
+    display: flex;
+    align-items: flex-start;  
+  }
+
+  &__author-img {
+    object-fit: cover;
+    margin-right: 30px;
+    max-width: 300px;
+    max-height: 300px;  
+  }
+
+  &__author-text {
+    max-width: 568px;
+    font-family: Raleway;
+    font-size: 14px;
+    text-indent: 18px;
+    line-height: 18px;  
+  }
+
+  @media #{variables.$media-md} {
+    &__text {
+      max-width: 98%;
+      text-align: justify;
+      margin-bottom: 20px;  
+    }
+  }
+
+  @media #{variables.$media-sm} {
+    &__title {
+      font-size: 24px;
+      text-align: center;
+      width: 80%;
+      max-width: 81%;
+      margin-bottom: -10px;
+    }
+
+    &__author-info {
+      margin-top: 34px;
+      display: block;
+      text-align: center;
+    }
+
+    &__author-img {
+      margin-right: 0px;
+      margin-bottom: 10px;
+    }
+
+    &__author-text {
+      margin: 16px 0;
+      padding: 0 16px;
+      max-width: 98%;
+      text-align: justify;
+      margin-bottom: 10px;
+    }
+  }
+}

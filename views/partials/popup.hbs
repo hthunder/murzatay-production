@@ -1,25 +1,22 @@
-<div class="pop-up__login">
-	<form class="registration" id="signin__form">
-		<h2 class="title">Войти</h2>
-		<input type="text" placeholder="E-mail/Login" class="input" name="username" required />
-		<input type="password" placeholder="Пароль" class="input" name="password" required />
+<article class="pop-up">
+	<form class="pop-up__login" id="signin__form">
+		<h2 class="pop-up__title">Войти</h2>
+		<input class="pop-up__input" type="text" placeholder="E-mail/Login"  name="username" required/>
+		<input class="pop-up__input" type="password" placeholder="Пароль"  name="password" required/>
 		<p class="pop-up__errors"></p>
 		<button class="pop-up__submit" type="submit">Войти</button><br />
-		<a href="#" class="cancel-login">Отменить</a>
+		<button class="pop-up__cancel-btn" type="button">Отменить</button>
 	</form>
-</div>
-
-<div class="pop-up__signup">
-	<h2 class="title">Регистрация</h2>
-	<form class="registration" id="signup__form">
-		<input type="text" placeholder="Login" class="input" name="username" required />
-		<input type="email" placeholder="E-mail" class="input" name="email" required />
-		<input type="password" placeholder="Пароль" class="input" name="password1" required />
-		<input type="password" placeholder="Повторите пароль" class="input" name="password2" required />
-		<input type="text" placeholder="Город" class="input" name="city" />
+	<form class="pop-up__signup" id="signup__form">
+		<h2 class="pop-up__title">Регистрация</h2>
+		<input class="pop-up__input" type="text" placeholder="Login"  name="username" required />
+		<input class="pop-up__input" type="email" placeholder="E-mail"  name="email" required />
+		<input class="pop-up__input" type="password" placeholder="Пароль"  name="password1" required />
+		<input class="pop-up__input" type="password" placeholder="Повторите пароль"  name="password2" required />
+		<input class="pop-up__input" type="text" placeholder="Город"  name="city" />
 		<p class="pop-up__errors"></p>
 		<button class="pop-up__submit" type="submit">Зарегистрироваться</button><br />
-		<a href="#" class="cancel-signup">Отменить</a>
+		<button class="pop-up__cancel-btn" type="button">Отменить</button>
 	</form>
-</div>
-<div class="overlay"></div>
+	<div class="pop-up__overlay"></div>	
+</article>

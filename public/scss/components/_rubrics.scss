@@ -1,0 +1,54 @@
+@use '../abstracts/variables';
+
+.rubrics {
+    font-family: Raleway;
+    list-style: none;
+    background-color: #fff;
+    border: 10px solid rgba(140, 91, 62, 0.6);
+    padding: 12px 3px 1px 3px;
+    
+    &__item {
+        max-width: 210px;
+        margin: 0 auto;
+    }
+    
+    &__link {
+        display: block;
+        background-color: rgba(140, 91, 62, 0.25);
+        padding: 11px;
+        color: #8c5b3e;
+        font-size: 17px;
+        margin-bottom: 11px;
+        cursor: pointer;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+    }
+    
+    &__link:hover {
+        color: #401f09;
+    }
+
+    @media #{variables.$media-md} {
+        display: flex;
+        flex-wrap: wrap;
+
+        &__item {
+            flex-basis: 33%;
+        }
+    }
+
+    @media #{variables.$media-sm} {
+        display: none;
+        background-color: initial;
+        border: none;
+
+        &_opened {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        &__item {
+            width: 100%;
+        }
+    }
+}

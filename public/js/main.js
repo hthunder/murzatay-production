@@ -3,13 +3,13 @@ import { sendForm } from "./sendFormData.js"
 import { showMore } from "./instagram_widget.js"
 import { slideToggle, fadeIn, fadeOut } from "./animations.js"
 
-const login = document.querySelector(".log-in")
+const login = document.querySelector(".nav__button_login")
 const popupLogin = document.querySelector(".pop-up__login")
-const cancelLogin = document.querySelector(".cancel-login")
-const overlay = document.querySelector(".overlay")
-const signup = document.querySelector(".sign-up")
+const cancelLogin = document.querySelector(".pop-up__login .pop-up__cancel-btn")
+const overlay = document.querySelector(".pop-up__overlay")
+const signup = document.querySelector(".nav__button_signup")
 const popupSignup = document.querySelector(".pop-up__signup")
-const cancelSignup = document.querySelector(".cancel-signup")
+const cancelSignup = document.querySelector(".pop-up__signup .pop-up__cancel-btn")
 
 if (login) {
     login.onclick = function () {
@@ -20,7 +20,6 @@ if (login) {
 
 if (cancelLogin) {
     cancelLogin.addEventListener("click", function (e) {
-        e.preventDefault()
         slideToggle(popupLogin)
         fadeOut(overlay)
     })
@@ -43,7 +42,6 @@ if (signup) {
 
 if (cancelSignup) {
     cancelSignup.addEventListener("click", function (e) {
-        e.preventDefault()
         slideToggle(popupSignup)
         fadeOut(overlay)
     })  
@@ -51,33 +49,25 @@ if (cancelSignup) {
 
 /* Не закрываются выпадающие элементы при повторном клике */
 
-const burger = document.querySelector(".mobile-menu")
-const menu = document.querySelector(".nav__link-wrapper")
+const burger = document.querySelector(".nav__burger")
+const menu = document.querySelector(".nav__list")
 
 burger.onclick = function () {
-    menu.classList.toggle("open")
+    menu.classList.toggle("nav__list_opened")
 }
 
-const search = document.querySelector(".search-icon")
-const searchField = document.querySelector(".search-wrap")
+const search = document.querySelector(".nav__search")
+const searchField = document.querySelector(".nav__search-form")
 
 search.onclick = function () {
-    if (searchField.classList.contains("open")) {
-        searchField.classList.remove("open")
-    } else {
-        searchField.classList.add("open")
-    }
+    searchField.classList.toggle("nav__search-form_opened")
 }
 
-const rubrickBtn = document.querySelector(".mobile-rubrics-btn-wrap")
-const rubricks = document.querySelector(".rubrics-mbl-container")
+const rubricBtn = document.querySelector(".header__rubrics-btn")
+const rubrics = document.querySelector(".rubrics")
 
-rubrickBtn.onclick = function () {
-    if (rubricks.classList.contains("open-rubric")) {
-        rubricks.classList.remove("open-rubric")
-    } else {
-        rubricks.classList.add("open-rubric")
-    }
+rubricBtn.onclick = function () {
+    rubrics.classList.toggle("rubrics_opened")
 }
 
 addFavourite()
@@ -90,7 +80,7 @@ widget.onclick = showMore
 function checkCookies() {
     const cookieDate = localStorage.getItem("cookieDate")
     const cookieNotification = document.getElementById("cookie_notification")
-    const cookieBtn = cookieNotification.querySelector(".cookie_accept")
+    const cookieBtn = cookieNotification.querySelector(".cookie__button")
 
     // Если записи про кукисы нет или она просрочена на 1 год, то показываем информацию про кукисы
     if (!cookieDate || +cookieDate + 31536000000 < Date.now()) {
@@ -104,7 +94,3 @@ function checkCookies() {
     })
 }
 checkCookies()
-// if (module.hot) {
-//     // Accept hot update
-//     module.hot.accept();
-// }

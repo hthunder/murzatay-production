@@ -1,0 +1,92 @@
+@use '../abstracts/variables';
+
+.pop-up {
+    font-family: Raleway;
+    font-style: normal;
+
+    &__login, &__signup {
+        width: 300px;
+        background-color: rgb(216, 193, 166);
+        border: 4px solid rgb(150, 133, 108);
+        border-radius: 25px;
+        text-align: center;
+        padding: 10px;
+        display: none;
+        position: absolute;
+        top: 50vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
+    
+    &__title {
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    &__input {
+        width: 250px;
+        margin-bottom: 15px;
+        height: 30px;
+        padding: 5px;
+        outline: none;
+        border: 1px solid rgb(107, 97, 84);
+        border-radius: 3px;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    &__errors {
+        color: red;
+        text-align: left;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    &__submit, &__cancel-btn {
+        width: 230px;
+        margin-bottom: 10px;
+        padding: 3px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: rgba(134, 92, 68, 0.336);
+        outline: none;
+        border: 0.5px solid rgb(107, 97, 84);
+        border-radius: 6px;
+        color: #fff;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    &__submit:active {
+        background-color: rgba(134, 92, 68, 0.671);
+    }
+
+    &__overlay {
+        background: rgba(155, 143, 143, 0.445);
+        width: 100%;
+        height: 200vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        display: none;
+    }
+    
+    @media #{variables.$media-sm} {
+        &__signup, &__login {
+            max-width: 250px;
+            border: 2px solid rgb(150, 133, 108);
+        }
+
+        &__cancel-btn, &__submit {
+            max-width: 200px;
+            padding: 3px 65px;   
+        }
+
+        &__input {
+            max-width: 200px;
+        }
+    }
+}

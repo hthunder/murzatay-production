@@ -1,0 +1,55 @@
+@use '../abstracts/variables';
+
+.sidebar {
+    font-family: Raleway;
+    text-align: center;
+
+    &__comments-item {
+        display: flex;
+        max-width: 210px;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+      
+    &__comments-img {
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 11px;
+        border: 1px solid rgba(242, 138, 46, 0.6);
+    }
+      
+    &__comments-text {
+        font-family: Raleway;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+    }
+      
+    &__comments-author {
+        font-family: Lora;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: left;
+    }
+
+    &__title {
+        margin-top: 15px;
+        margin-bottom: 7px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__comments {
+        background-color: #fff;
+        border: 10px solid rgba(140, 91, 62, 0.6);
+        padding: 26px 3px 0 3px;
+    }
+
+    @media #{variables.$media-md} {
+        display: none;
+    }
+
+    @media #{variables.$media-sm} {
+        display: none;
+    }
+}

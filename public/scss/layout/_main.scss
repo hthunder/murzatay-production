@@ -1,0 +1,17 @@
+.main {
+    max-width: 1140px;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+  
+    &__content {
+      padding: 0px 37px;
+    }
+  
+    &__sidebar {
+      flex-shrink: 0;
+      flex-basis: 240px;
+      max-width: 240px;
+      background-color: rgba(140, 91, 62, 0.6);
+    }
+}

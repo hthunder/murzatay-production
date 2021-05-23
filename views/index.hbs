@@ -6,29 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Мурзатай</title>
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/common-media.css">
 </head>
 
-<body>
+<body class="body">
     {{> header }}
     <section class="main">
-        <div class="content">
-            <img src="/img/placeholders/mainPicture.png" width="825" height="400" alt="Фото" class="main-img">
-            <p class="special-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
-                provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur
-                soluta
-                doloribus in error molestiae veniam!</p>
+        <div class="main__content">
+            <figure class="banner">
+                <img src="/img/placeholders/mainPicture.png" width="825" alt="Фото" class="banner__img">
+                <figcaption class="banner__caption">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
+                    provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur
+                    soluta doloribus in error molestiae veniam!
+                </figcaption>
+            </figure>
             {{#each articles}}
-            <figure class="last-article">
+            <figure class="last-articles">
                 {{#if this.img}}
-                <img width="160" height="160" src={{this.img}} alt="Фото" class="last-article-img">
+                <img width="160" height="160" src={{this.img}} alt="Фото" class="last-articles__img">
                 {{else}}
-                <img width="160" height="160" src="/img/placeholders/last-article.png" alt="Фото" class="last-article-img">
+                <img width="160" height="160" src="/img/placeholders/last-article.png" alt="Фото" class="last-articles__img">
                 {{/if}}
-                <figcaption class="last-article-prewiew">
-                    <h2 class="prewiew-title">{{this.title}}</h2>
-                    <p class="prewiew-text">{{this.description}}</p>
+                <figcaption class="last-articles__preview">
+                    <h2 class="last-articles__preview-title">{{this.title}}</h2>
+                    <p class="last-articles__preview-text">{{this.description}}</p>
                     <a href="/articles/{{this.slug}}" class="read-more">Читать...</a>
                 </figcaption>
             </figure>

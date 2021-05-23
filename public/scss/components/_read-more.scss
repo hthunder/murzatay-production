@@ -1,0 +1,36 @@
+@use '../abstracts/variables';
+
+.read-more {
+    background-color: transparent;
+    background: transparent;
+    text-decoration: none;
+    color: #8c5b3e;
+    border: none;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+    width: 100%;
+    max-width: 640px;
+    padding-right: 20px;
+
+    &:hover {
+        color: rgba(190, 108, 35, 1);
+    }
+
+    &:active, &:focus {
+        outline: none;
+    }
+
+    @media #{variables.$media-md} {
+        text-align: left;
+        max-width: 100%;
+        padding: 0px;
+    }
+
+    @media #{variables.$media-md} {
+        text-align: left;
+        max-width: 100%;
+        padding: 0px;
+    }
+}

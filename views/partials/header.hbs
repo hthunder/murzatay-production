@@ -1,42 +1,45 @@
-<header>
-    <div class="header">
-        <div class="logo-wrap">
-            <img src="/img/logo.png" width="1000" height="1299" alt="Лого" class="logo">
-            <img src="/img/koshkonutost.png" width="308" height="110" class="logo-phrase">
-        </div>
+<header class="header">
+    <div class="header__logo-wrapper">
+        <img src="/img/logo.png" width="1000" height="1299" alt="Лого" class="header__logo-img">
+        <img src="/img/koshkonutost.png" width="308" class="header__logo-slogan">
     </div>
-    <nav>
-        <div class="nav__link-wrapper">
-            <p class="nav__link-wrap"><a href="/" class="nav-link">Главная</a></p>
-            <p class="nav__link-wrap"><a href="/about" class="nav-link">Об авторе</a></p>
-            <p class="nav__link-wrap"><a href="/articles" class="nav-link">Блог</a></p>
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="/" class="nav__link">Главная</a>
+            </li>
+            <li class="nav__item">
+                <a href="/about" class="nav__link">Об авторе</a>
+            </li>
+            <li class="nav__item">
+                <a href="/articles" class="nav__link">Блог</a>
+            </li>
             {{#if isLoggedIn}}
-            <p class="nav__link-wrap"><a href="/my-page" class="nav-link">Профиль</a></p>
-            <form action="/api/auth/logout" method="post">
-                <input class="log-out nav__link-wrap" type="submit" value="Выйти">
-            </form>
+            <li class="nav__item">
+                <a href="/my-page" class="nav__link">Профиль</a>
+            </li>
+            <li class="nav__item">
+                <a href="/api/auth/logout" class="nav__link">Выйти</a>
+            </li>
             {{else}}
-            <button class="log-in nav__link-wrap">Войти</button>
-            <button class="sign-up nav__link-wrap">Зарегистрироваться</button>
+            <li class="nav__item">
+                <button class="nav__button nav__button_login">Войти</button>   
+            </li>
+            <li class="nav__item">
+                <button class="nav__button nav__button_signup">Зарегистрироваться</button>   
+            </li>
             {{/if}}
-        </div>
-
-
-        <img src="/img/icons/svg-search.svg" alt="Поиск" class="search-icon">
-
-        <form action="/articles/search" class="search-wrap">
-            <input type="search" name="text" class="search-field" placeholder="Поиск">
+        </ul>
+        <img src="/img/icons/svg-search.svg" alt="Поиск" class="nav__search">
+        <form action="/articles/search" class="nav__search-form">
+            <input type="search" name="text" class="nav__search-field" placeholder="Поиск">
         </form>
-
-        <img src="/img/icons/mobile-menu.svg" alt="Меню" class="mobile-menu">
+        <img src="/img/icons/mobile-menu.svg" alt="Меню" class="nav__burger">
     </nav>
-    <div class="mobile-rubrics-wrap">
-        <p class="mobile-rubrics-btn-wrap"><button class="mobile-rubrics">
-                Рубрики
-            </button></p>
-        <div class="rubrics-mbl-container">
-            {{> rubrics }}
-        </div>
+    <div class="header__rubrics">
+        <button class="header__rubrics-btn">
+            Рубрики
+        </button>
+        {{> rubrics}}
     </div>
-
 </header>
