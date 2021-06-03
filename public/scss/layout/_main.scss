@@ -1,11 +1,15 @@
+@use '../abstracts/variables';
+
 .main {
     max-width: 1140px;
+    width: 100%;
     margin: 0 auto;
     background-color: #fff;
     display: flex;
   
     &__content {
       padding: 0px 37px;
+      width: 100%;
     }
   
     &__sidebar {
@@ -13,5 +17,18 @@
       flex-basis: 240px;
       max-width: 240px;
       background-color: rgba(140, 91, 62, 0.6);
+    }
+
+    @media #{variables.$media-md} {
+      min-width: 751px;
+      max-width: 1023px;
+      width: 100%;
+      padding: 0px;
+    }
+
+    @media #{variables.$media-sm} {
+      max-width: 749px;
+      padding: 0px;
+      width: auto;
     }
 }

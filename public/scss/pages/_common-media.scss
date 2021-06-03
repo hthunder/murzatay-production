@@ -1,32 +1,6 @@
-@media #{$media-md} {
-  
-    .aside-button {
-      padding: 8px;
-      font-family: Raleway;
-      color: #8c5b3e;
-      font-size: 15px;
-    }
-  
-    .sidebar {
-      display: none;
-    }
-  
-    .open-rubric {
-      display: flex;
-    }
-  
-    body {
-      min-width: 751px;
-      max-width: 1023px;
-    }
-  
-    .main {
-      min-width: 751px;
-      max-width: 1023px;
-      width: 100%;
-      padding: 0px;
-    }
-  
+@use '../abstracts/variables';
+
+@media #{variables.$media-md} {
     .content {
       max-width: 100%;
       padding: 3px;
@@ -34,25 +8,7 @@
     }
 }
   
-  @media  #{$media-sm} {
-    .sidebar {
-      display: none;
-    }
-  
-    .open-rubric {
-      display: flex;
-    }
-  
-    body {
-      max-width: 749px;
-    }
-  
-    .main {
-      max-width: 749px;
-      padding: 0px;
-      width: auto;
-    }
-  
+@media #{variables.$media-sm} {
     .content {
       max-width: 100%;
       padding: 5px;

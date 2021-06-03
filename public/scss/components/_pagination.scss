@@ -1,0 +1,35 @@
+.pagination {
+    max-width: 854px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+      
+    &__page {
+        background-color: transparent;
+        border: none;
+        font-family: Lora;
+        font-size: 14px;
+        font-weight: 400;
+        margin-right: 5px;
+    }
+
+    &__page_current {
+        color: red;
+    }
+      
+    &__page:hover {
+        color: rgba(190, 108, 35, 1);
+        cursor: pointer;
+    }
+      
+    &__page:focus {
+        outline: none;
+    }
+      
+    &__dots {
+        font-family: Lora;
+        font-size: 14px;
+        font-weight: 400;
+        margin-right: 5px;
+    }
+}

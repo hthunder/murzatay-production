@@ -9,31 +9,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 	<title>Мурзатай</title>
-	<link rel="stylesheet" type="text/css" href="/css/articles.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/common-media.css">
 </head>
 
-<body>
+<body class="body">
 	{{> header isLoggedIn=isLoggedIn}}
 	<section class="main">
-		<div class="content">
-			<h1 class="articles-title">Lorem ipsum dolor sit amet</h1>
+		<div class="main__content articles">
+			<h1 class="articles__title_main">Lorem ipsum dolor sit amet</h1>
 			{{#if isAdmin}}
 			<a href="/articles/add" class="link">Новая статья</a>
 			{{/if}}
 
 			{{#each articles}}
-			<figure class="article">
+			<figure class="articles__item">
 				{{#if this.img}}
-				<img src="{{this.img}}" alt="Фото" class="article-img">
+				<img class="articles__img" src="{{this.img}}" alt="Фото" >
 				{{else}}
-				<img src="/img/placeholders/article.png" alt="Фото" class="article-img">
+				<img class="articles__img" src="/img/placeholders/article.png" alt="Фото" >
 				{{/if}}
 
-				<figcaption class="article-prewiew">
-					<h2 class="article-title">{{this.title}}</h2>
+				<figcaption class="articles__preview">
+					<h2 class="articles__title">{{this.title}}</h2>
 					<span class="unread">Прочти меня</span>
-					<p class="article-text">{{this.description}}</p>
+					<p class="articles__text">{{this.description}}</p>
 					<a href="/articles/{{this.slug}}" class="link">Читать...</a>
 					{{#if ../isAdmin}}
 					<a href="/articles/{{this._id}}/edit" class="link">
@@ -47,25 +47,25 @@
 			</figure>
 			{{/each}}
 
-            <div class="pgn-wrap">
+            <div class="pagination">
                 {{#if pagination.first}}
-                <a href="/articles?page={{pagination.first}}&category={{category}}" class="pgn">{{pagination.first}}</a>
+                <a class="pagination__page" href="/articles?page={{pagination.first}}&category={{category}}" >{{pagination.first}}</a>
                 {{/if}}
                 {{#if pagination.pointsBefore}}
                     <span>...</span>
                 {{/if}}
                 {{#each pagination.rangeBefore}}
-                <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
+                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}" >{{this}}</a>
                 {{/each}}
-                <a href="/articles?page={{pagination.current}}&category={{category}}" class="pgn" style="color: red;">{{pagination.current}}</a>
+                <a class="pagination__page pagination__page_current" href="/articles?page={{pagination.current}}&category={{category}}">{{pagination.current}}</a>
                 {{#each pagination.rangeAfter}}
-                <a href="/articles?page={{this}}&category={{../category}}" class="pgn">{{this}}</a>
+                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}" >{{this}}</a>
                 {{/each}}
                 {{#if pagination.pointsAfter}}
-                    <span>...</span>
+                    <span class="pagination__dots">...</span>
                 {{/if}}
                 {{#if pagination.last}}
-                <a href="/articles?page={{pagination.last}}&category={{category}}" class="pgn">{{pagination.last}}</a>
+                <a class="pagination__page" href="/articles?page={{pagination.last}}&category={{category}}" >{{pagination.last}}</a>
                 {{/if}}
             </div>
 

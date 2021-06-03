@@ -120,7 +120,7 @@ export const addCommentRequest = async (button, textarea) => {
 }
 
 export const setListeners = () => {
-    const wrappers = document.querySelectorAll(".comments__instance-wrapper")
+    const wrappers = document.querySelectorAll(".comments__instance")
     const addCommentButton = document.querySelector(".comments__add-button")
     const addCommentTextarea = document.querySelector(".comments__add-textarea")
     wrappers.forEach((wrapper) => {

@@ -1,5 +1,5 @@
 export const addFavourite = () => {
-    const favouriteBtn = document.querySelector(".add-favourite")
+    const favouriteBtn = document.querySelector(".topic__add-favourite")
 
     async function fetchRequest() {
         const { articleId } = favouriteBtn.dataset
@@ -13,11 +13,11 @@ export const addFavourite = () => {
             const data = await res.json()
             if (
                 (data.favourites &&
-                    !favouriteBtn.classList.contains("add-favourite-active")) ||
+                    !favouriteBtn.classList.contains("topic__add-favourite_active")) ||
                 (!data.favourites &&
-                    favouriteBtn.classList.contains("add-favourite-active"))
+                    favouriteBtn.classList.contains("topic__add-favourite_active"))
             ) {
-                favouriteBtn.classList.toggle("add-favourite-active")
+                favouriteBtn.classList.toggle("topic__add-favourite_active")
             }
         } catch (e) {
             console.log(e)

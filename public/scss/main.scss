@@ -23,6 +23,8 @@
 @use 'components/cookie';
 @use 'components/button';
 @use 'components/link';
+@use 'components/unread';
+@use 'components/pagination';
 // @import 'components/carousel';
 // @import 'components/cover';
 // @import 'components/dropdown';
@@ -30,3 +32,5 @@
 // @import 'pages/contact';
 @use 'pages/index';
 @use 'pages/about';
+@use 'pages/articles';
+@use 'pages/topic';

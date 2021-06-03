@@ -3,35 +3,35 @@ export const Comment = (
     avatar = "/img/icons/user-profile.svg"
 ) => {
     const { commentId, author, comment, date } = commentData
-    const div = document.createElement("div")
-    div.classList.add("comments__instance-wrapper", "comments-topic-wrap")
-    div.dataset.id = commentId
-    div.innerHTML = `<figure class="comments-topic">
-        <img src="${avatar}" alt="Аватарка" class="topic-comment-ava">
-        <figcaption class="topic__comment-info">
-            <p class="topic__comment-author">${author}</p>
-            <p class="comments__instance-text topic__comment-text">${comment}</p>
-            <p class="topic__comment-date">${new Date(date).toLocaleString(
-                "en-GB"
-            )}</p>
+    const article = document.createElement("article")
+    article.classList.add("comments__instance")
+    article.dataset.id = commentId
+    article.innerHTML = `
+        <img src="${avatar}" alt="Аватарка" class="comments__instance-ava">
+        <div class="comments__instance-content">
+            <p class="comments__instance-author">${author}</p>
+            <p class="comments__instance-text">${comment}</p>
+            <time class="comments__instance-date" datetime="{{${date.toISOString()}}}">
+            ${new Date(date).toLocaleString("en-GB")}
+            </time>
             <form class="comments__form">
                 <button type="button" class="comments__delete-button">Удалить</button>
                 <button type="button" class="comments__edit-button">Редактировать</button> 
             </form>
-        </figcaption>
-    </figure>`
-    return div
+        </div>
+    `
+    return article
 }
 
 export const EditForm = (paragraphText) => {
     const form = document.createElement("form")
     form.classList.add("comments__temp-form")
-    form.innerHTML = `<p class="symbol-count">0/500</p>
-        <textarea class="topic-comment" maxlength="500">${paragraphText}</textarea>
-        <button type="button" class="comments__save-button">Сохранить</button>
-        <button type="button" class="comments__cancel-button">Отменить</button>`
-    const textarea = form.querySelector(".topic-comment")
-    const counter = form.querySelector(".symbol-count")
+    form.innerHTML = `<p class="comments__symbol-counter">0/500</p>
+        <textarea class="comments__add-textarea" maxlength="500">${paragraphText}</textarea>
+        <button class="comments__save-button button" type="button">Сохранить</button>
+        <button class="comments__cancel-button button" type="button">Отменить</button>`
+    const textarea = form.querySelector("comments__add-textarea")
+    const counter = form.querySelector(".comments__symbol-counter")
     const cancelButton = form.querySelector(".comments__cancel-button")
     const saveButton = form.querySelector(".comments__save-button")
     return { form, textarea, counter, cancelButton, saveButton }

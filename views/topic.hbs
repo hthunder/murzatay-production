@@ -4,63 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/topic.css">
-    <link rel="stylesheet" type="text/css" href="/css/common-media.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    {{!-- <link rel="stylesheet" type="text/css" href="/css/common-media.css"> --}}
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Мурзатай</title>
 </head>
 
-<body>
-
+<body class="body">
     {{> header }}
     <section class="main">
-        <div class="topic__content">
+        <article class="topic__content">
             {{#if isLoggedIn}}
             {{#if favourite}}
             <button data-article-id="{{article._id}}" data-user-id="{{userId}}"
-                class="add-favourite add-favourite-active"></button>
+                class="topic__add-favourite topic__add-favourite_active"></button>
             {{else}}
-            <button data-article-id="{{article._id}}" data-user-id="{{userId}}" class="add-favourite"></button>
+            <button data-article-id="{{article._id}}" data-user-id="{{userId}}" class="topic__add-favourite"></button>
             {{/if}}
             {{/if}}
 
-            <h1 class="topic-title"> {{article.title}} </h1>
-            <p class="topic-text">{{{article.sanitizedHTML}}}</p>
+            <h1 class="topic__title"> {{article.title}} </h1>
+            <div class="topic__layout">{{{article.sanitizedHTML}}}</div>
             {{#if isAdmin}}
-            <a class="post__edit-button" href="/articles/{{article._id}}/edit/">Редактировать пост</a>
+            <a class="topic__edit-button button" href="/articles/{{article._id}}/edit/">Редактировать пост</a>
             {{/if}}
-            {{#if isLoggedIn}}
-            <h3 class="comment-title">Оставьте свой комментарий</h3>
-            {{!-- <form class="topic-comment-wrap"> --}}
-            <form class="comments__add-form">
-                <p class="symbol-count">0/500</p>
-                <textarea name="text" class="comments__add-textarea topic-comment" maxlength="500"></textarea>
-                <button type="button" class="comments__add-button comments__send-button" data-id="{{article._id}}">Отправить</button>
-                {{!-- <input name="articleId" value="{{article._id}}" type="hidden" /> --}}
-            </form>
-            {{else}}
-            <p class="comment-unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
-            {{/if}}
-            {{#each article.comments}}
-            <div class="comments__instance-wrapper comments-topic-wrap" data-id="{{this._id}}">
-                <figure class="comments-topic">
-                    <img src="/img/icons/user-profile.svg" alt="Аватарка" class="topic-comment-ava">
-                    <figcaption class="topic__comment-info">
-                        <p class="topic__comment-author">{{../user.username}}</p>
-                        <p class="comments__instance-text topic__comment-text">{{this.text}}</p>
-                        <p class="topic__comment-date">{{this.date}}</p>
+
+            <section class="topic__comments comments">
+                {{#if isLoggedIn}}
+                <h3 class="comments__welcome-message">Оставьте свой комментарий</h3>
+                <form class="comments__add-form">
+                    <p class="comments__symbol-counter">0/500</p>
+                    <textarea class="comments__add-textarea" name="text"  maxlength="500"></textarea>
+                    <button class="comments__add-button comments__send-button button" type="button"  data-id="{{article._id}}">Отправить</button>
+                </form>
+                {{else}}
+                <p class="comments__unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
+                {{/if}}
+                {{#each article.comments}}
+                <article class="comments__instance" data-id="{{this._id}}">
+                    <img class="comments__instance-ava" src="/img/icons/user-profile.svg" alt="Аватарка">
+                    <div class="comments__instance-content">
+                        <p class="comments__instance-author">{{../user.username}}</p>
+                        <p class="comments__instance-text">{{this.text}}</p>
+                        <time class="comments__instance-date" datetime="{{this.machineDate}}">{{this.humanDate}}</time>
                         {{#if this.canDelete}}
                         <form class="comments__form">
-                            {{!-- <input type="hidden" name="authorId" value="{{../userId}}" /> --}}
-                            <button type="button" class="comments__delete-button">Удалить</button>
-                            <button type="button" class="comments__edit-button">Редактировать</button> 
+                            <button class="comments__delete-button button" type="button">Удалить</button>
+                            <button class="comments__edit-button button" type="button">Редактировать</button> 
                         </form>
                         {{/if}}
-                    </figcaption>
-                </figure>
-            </div>
-            {{/each}}
-        </div>
+                    </div>
+                </article>
+                {{/each}}
+            </section>
+        </article>
 
         {{> sidebar }}
     </section>
