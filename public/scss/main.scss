@@ -1,20 +1,10 @@
-// @use 'abstracts/variables';
-// @forward 'abstracts/variables';
-// @import 'base/reset';
-// @import 'base/typography';
 @use 'base/base';
 @use 'base/fonts';
-
-// @import 'layout/navigation';
-// @import 'layout/grid';
 @use 'layout/main';
 @use 'layout/header';
 @use 'layout/footer';
 @use 'layout/nav';
 @use 'layout/sidebar';
-// @import 'layout/footer';
-// @import 'layout/sidebar';
-// @import 'layout/forms';
 @use 'components/rubrics';
 @use 'components/pop-up';
 @use 'components/feedback';
@@ -25,11 +15,6 @@
 @use 'components/link';
 @use 'components/unread';
 @use 'components/pagination';
-// @import 'components/carousel';
-// @import 'components/cover';
-// @import 'components/dropdown';
-// @import 'pages/home';
-// @import 'pages/contact';
 @use 'pages/index';
 @use 'pages/about';
 @use 'pages/articles';

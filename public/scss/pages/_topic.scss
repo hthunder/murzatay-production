@@ -9,7 +9,6 @@
   &__add-favourite {
     background-color: transparent;
     background-image: url(/img/icons/heart.svg);
-    outline: none;
     border: none;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -19,15 +18,7 @@
   }
 
   &__add-favourite_active {
-    background-color: transparent;
     background-image: url(/img/icons/heart-added.svg);
-    outline: none;
-    border: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
   }
 
   &__title {
@@ -78,8 +69,6 @@
   }
 
   &__instance-content {
-    display: flex;
-    flex-direction: column;
     width: calc(100% - 95px);
   }
 
@@ -91,7 +80,6 @@
   }
 
   &__instance-text {
-    flex-grow: 1;
     word-wrap: break-word;
     font-family: Raleway;
     font-size: 14px;
@@ -148,10 +136,6 @@
   }
 
   @media #{variables.$media-sm} {
-    &__instance {
-       max-width: 98%;
-    }
-
     &__welcome-message {
       margin-top: 10px;
       max-width: 70%;
@@ -164,5 +148,4 @@
       border: 1px solid rgba(140, 91, 62, 1);
     }
   }
-  
 }

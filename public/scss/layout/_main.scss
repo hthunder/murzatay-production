@@ -20,15 +20,12 @@
     }
 
     @media #{variables.$media-md} {
-      min-width: 751px;
-      max-width: 1023px;
-      width: 100%;
+      max-width: 100%;
       padding: 0px;
     }
 
     @media #{variables.$media-sm} {
-      max-width: 749px;
+      max-width: 100%;
       padding: 0px;
-      width: auto;
     }
 }

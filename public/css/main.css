@@ -73,17 +73,14 @@
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .main {
-    min-width: 751px;
-    max-width: 1023px;
-    width: 100%;
+    max-width: 100%;
     padding: 0px;
   }
 }
 @media screen and (max-width: 750px) {
   .main {
-    max-width: 749px;
+    max-width: 100%;
     padding: 0px;
-    width: auto;
   }
 }
 
@@ -1057,7 +1054,6 @@
 .topic__add-favourite {
   background-color: transparent;
   background-image: url(/img/icons/heart.svg);
-  outline: none;
   border: none;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1066,15 +1062,7 @@
   cursor: pointer;
 }
 .topic__add-favourite_active {
-  background-color: transparent;
   background-image: url(/img/icons/heart-added.svg);
-  outline: none;
-  border: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
 }
 .topic__title {
   font-family: Lora;
@@ -1117,8 +1105,6 @@
   margin-right: 10px;
 }
 .comments__instance-content {
-  display: flex;
-  flex-direction: column;
   width: calc(100% - 95px);
 }
 .comments__instance-author {
@@ -1128,7 +1114,6 @@
   margin-bottom: 5px;
 }
 .comments__instance-text {
-  flex-grow: 1;
   word-wrap: break-word;
   font-family: Raleway;
   font-size: 14px;
@@ -1177,9 +1162,6 @@
   position: relative;
 }
 @media screen and (max-width: 750px) {
-  .comments__instance {
-    max-width: 98%;
-  }
   .comments__welcome-message {
     margin-top: 10px;
     max-width: 70%;

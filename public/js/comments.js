@@ -24,25 +24,20 @@ export const saveCommentRequest = async (commentNode, text, id) => {
     }
 }
 
-export const setDisplayValue = (elements, value) => {
+export const toggleVisibility = (elements, classname) => {
     elements.forEach((elem) => {
-        const styledElem = elem
-        styledElem.style.display = value
+        elem.classList.toggle(classname)
     })
 }
 
 const cancelEditing = (toggledElems, form) => {
-    const editingForm = form
-    editingForm.style.display = "none"
-    setDisplayValue(toggledElems, "initial")
+    toggleVisibility([...toggledElems, form], "hidden")
 }
 
 const saveEditing = async (toggledElems, form, textarea, id) => {
     const [paragraphComment] = toggledElems
-    const editingForm = form
     await saveCommentRequest(paragraphComment, textarea.value, id)
-    editingForm.style.display = "none"
-    setDisplayValue(toggledElems, "initial")
+    toggleVisibility([...toggledElems, form], "hidden")
 }
 
 export const editComment = (comment) => {
@@ -52,28 +47,27 @@ export const editComment = (comment) => {
     const paragraphText = paragraphComment.textContent
     const toggledElements = [paragraphComment, editButton, deleteButton]
 
-    setDisplayValue(toggledElements, "none")
+    toggleVisibility(toggledElements, "hidden")
 
-    let form
-    let formNode
+    const tempForm = document.querySelector(".comments__temp-form")
+    if (!tempForm) {
+        const formObj = EditForm(paragraphText)
+        paragraphComment.after(formObj.form)
 
-    if (!form) {
-        form = EditForm(paragraphText)
-        ;({ form: formNode } = form)
-        paragraphComment.after(formNode)
-
-        form.saveButton.onclick = () => {
-            saveEditing(toggledElements, formNode, form.textarea, id)
+        formObj.saveButton.onclick = () => {
+            saveEditing(toggledElements, formObj.form, formObj.textarea, id)
         }
-        form.cancelButton.onclick = () => {
-            cancelEditing(toggledElements, formNode)
+        formObj.cancelButton.onclick = () => {
+            cancelEditing(toggledElements, formObj.form)
         }
 
-        countSymbols(form.counter, form.textarea)
+        countSymbols(formObj.counter, formObj.textarea)
     } else {
-        form.style.display = "initial"
-        form.textarea.value = paragraphText
-        form.counter.innerHTML = `${paragraphText.length}/500`
+        tempForm.classList.toggle("hidden")
+        tempForm.querySelector(".comments__add-textarea").value = paragraphText
+        tempForm.querySelector(
+            ".comments__symbol-counter"
+        ).innerHTML = `${paragraphText.length}/500`
     }
 
     // Санитайзим пользовательский ввод
