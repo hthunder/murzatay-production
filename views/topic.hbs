@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    {{!-- <link rel="stylesheet" type="text/css" href="/css/common-media.css"> --}}
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Мурзатай</title>
 </head>
@@ -34,7 +33,7 @@
                 <h3 class="comments__welcome-message">Оставьте свой комментарий</h3>
                 <form class="comments__add-form">
                     <p class="comments__symbol-counter">0/500</p>
-                    <textarea class="comments__add-textarea" name="text"  maxlength="500"></textarea>
+                    <textarea class="comments__add-textarea textarea textarea_medium" name="text"  maxlength="500"></textarea>
                     <button class="comments__add-button comments__send-button button" type="button"  data-id="{{article._id}}">Отправить</button>
                 </form>
                 {{else}}

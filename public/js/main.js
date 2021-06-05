@@ -2,14 +2,18 @@ import { addFavourite } from "./addFavourite.js"
 import { sendForm } from "./sendFormData.js"
 import { showMore } from "./instagram_widget.js"
 import { slideToggle, fadeIn, fadeOut } from "./animations.js"
+import { setAboutEditFormListener } from "./about.js"
 
+setAboutEditFormListener()
 const login = document.querySelector(".nav__button_login")
 const popupLogin = document.querySelector(".pop-up__login")
 const cancelLogin = document.querySelector(".pop-up__login .pop-up__cancel-btn")
 const overlay = document.querySelector(".pop-up__overlay")
 const signup = document.querySelector(".nav__button_signup")
 const popupSignup = document.querySelector(".pop-up__signup")
-const cancelSignup = document.querySelector(".pop-up__signup .pop-up__cancel-btn")
+const cancelSignup = document.querySelector(
+    ".pop-up__signup .pop-up__cancel-btn"
+)
 
 if (login) {
     login.onclick = function () {
@@ -30,7 +34,7 @@ if (overlay) {
         fadeOut(popupLogin)
         fadeOut(overlay)
         fadeOut(popupSignup)
-    })   
+    })
 }
 
 if (signup) {
@@ -44,7 +48,7 @@ if (cancelSignup) {
     cancelSignup.addEventListener("click", function (e) {
         slideToggle(popupSignup)
         fadeOut(overlay)
-    })  
+    })
 }
 
 /* Не закрываются выпадающие элементы при повторном клике */

@@ -1,12 +1,10 @@
 .button {
     cursor: pointer;
-    padding: 4px 10px;
-    margin-top: 12px;
-    background-color: rgba(217, 182, 139, 0.651);
     outline: none;
+    padding: 4px 10px;
+    background-color: rgba(217, 182, 139, 0.651);
     border: 2px solid rgba(140, 91, 62, 1);
     border-radius: 10px;
-    margin-bottom: 15px;
     font-family: Lora;
     font-size: 13px;
     font-weight: 400;
@@ -14,4 +12,11 @@
     text-decoration: none;
     color: black;
     display: inline-block;
+
+    &_light {
+        background-color: rgba(140, 91, 62, 0.25);
+        border: 1px solid rgba(140, 91, 62, 0.4);
+        padding: 3px;
+        border-radius: 3px;  
+    }
 }

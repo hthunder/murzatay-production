@@ -8,93 +8,79 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Мурзатай</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/common-media.css">
 </head>
 
 <body class="body">
     {{> header }}
     <section class="main">
         <div class="main__content">
-            <div class="foto-information-wrap">
-                <div class="foto-wrap">
-                    <img src="/img/placeholders/ava.jpg" alt="Ваше фото" class="ava">
-                </div>
-                <div class="information-wrap">
-                    <button class="information-button">Редактировать</button>
-                    {{!-- <p class="information">Ник: {{user.username}}</p>
-                    <p class="information">Город: {{user.city}}</p>
-                    <p class="information">Расскажите о себе или своих питомцах</p> --}}
-                    {{!-- Должно вылезать при нажатии на кнопку с классом .information-button --}}
-                    {{!-- <p class="about-text">{{user.about}}</p> --}}
-                    <form class="about-form" action="/users/{{user._id}}?_method=PUT" method="POST">
-                        <label class="about-form__label">
+            <section class="my-page__about">
+                <img class="my-page__about-avatar" src="/img/placeholders/ava.jpg" alt="Ваше фото" >
+                <div class="my-page__about-info">
+                    <button class="my-page__about-edit-button button button_light" type="button">Редактировать</button>
+                    <div class="my-page__about-fields">
+                        <p class="my-page__about-field my-page__about-username">Ник: {{user.username}}</p>
+                        <p class="my-page__about-field my-page__about-city">Город: {{user.city}}</p>
+                        <p class="my-page__about-field my-page__about-me">Расскажите о себе или о своих питомцах: </p>
+                    </div>
+                    <form class="my-page__about-edit-form my-page__about-edit-form_hidden" action="/users/{{user._id}}?_method=PUT" method="POST">
+                        <label class="my-page__about-form-label">
                             Ник:
-                            <span class="about-form__text">{{user.username}}</span>
-                            <input name="username" type="text" value="{{user.username}}" class="about-form__input">
+                            <input class="my-page__about-form-input" name="username" type="text" value="{{user.username}}">
                         </label>
-                        <label class="about-form__label">
+                        <label class="my-page__about-form-label">
                             Город:
-                            <span class="about-form__text">{{user.city}}</span>
-                            <input name="city" type="text" value="{{user.city}}" class="about-form__input">
+                            <input name="city" type="text" value="{{user.city}}" class="my-page__about-form-input">
                         </label>
-                        <label class="about-form__label">
-                            <p>Расскажите о себе или своих питомцах:</p>
-                            <p class="about-form__text about-form__about">{{user.about}}</p>
+                        <label class="my-page__about-form-label">
+                            <p>
+                                Расскажите о себе или своих питомцах:
+                            </p>
                             <textarea maxlength="250" name="about" id="#"
                                 placeholder="Расскажите о себе или своих питомцах"
-                                class="about-form__input about-form__textarea">{{user.about}}</textarea>
+                                class="my-page__about-form-textarea textarea">{{user.about}}
+                            </textarea>
                         </label>
-                        <button type="submit" class="about-form__input">Готово</button>
+                        <button class="my-page__about-form-submit button button_light" type="submit" >Готово</button>
                     </form>
                     {{#each errors}}
-                    <p class="errors">
+                    <p class="error">
                         {{this}}
                     </p>
                     {{/each}}
                 </div>
-            </div>
-            <div class="favorite">
-                <!--Избранные статьи-->
-                <h3 class="favorite-wrap-title"> Избранные статьи</h3>
+            </section>
+            <section class="my-page__favourite">
+                <h3 class="my-page__favourite-section-title">Избранные статьи</h3>
                 {{#each articles}}
-                <figure class="favorite-article">
+                <article class="my-page__favourite-article">
                     {{#if this.img}}
-                    <img src={{this.img}} class="favorite-img">
+                    <img class="my-page__favourite-img" src={{this.img}}>
                     {{else}}
-                    <img src="/img/placeholders/article.png" class="favorite-img">
+                    <img class="my-page__favourite-img" src="/img/placeholders/article.png">
                     {{/if}}
-                    <figcaption class="favorite-prewiew">
-                        <h4 class="favorite-title">{{this.title}}</h4>
-                        <p class="favorite-text">{{this.description}}</p>
-                        <a href="/articles/{{this.slug}}" class="link" >Читать...</a>
-                        {{!-- <button class="read-more">Читать...</button> --}}
-                    </figcaption>
-                </figure>
+                    <div class="my-page__favourite-preview">
+                        <h4 class="my-page__favourite-preview-title">{{this.title}}</h4>
+                        <p class="my-page__favourite-preview-text">{{this.description}}</p>
+                        <a class="link" href="/articles/{{this.slug}}">Читать...</a>
+                    </div>
+                </article>
                 {{/each}}
-            </div>
-            <div class="user-comment">
+            </section>
+            <section class="my-page__comments">
                 <!--Два последних комментария оставленных пользователем-->
-                
-                <h3 class="usercomment-title"> Последние комментарии</h3>
+                <h3 class="my-page__comments-title"> Последние комментарии</h3>
                 {{#each comments}}
-                <figure class="usercomment">
-                    <img src="/img/placeholders/usercomment.png" alt="Автарка" class="usercomment-img">
-                    <figcaption class="usercomment-prewiew">
-                        <p class="usercomment-text">{{this.text}}</p>
-                    </figcaption>
-                </figure>
+                <article class="my-page__comment">
+                    <img class="my-page__comment-img" src="/img/placeholders/usercomment.png" alt="Автарка">
+                    <p class="my-page__comment-text">{{this.text}}</p>
+                </article>
                 {{/each}}
-            </div>
+            </section>
         </div>
-
-
         {{> sidebar this}}
     </section>
-
-
     {{> footer }}
-
-
     <script type="module" src="/js/dist/main.js"></script>
 </body>
 

@@ -1,14 +1,12 @@
-const editButton = document.querySelector(".information-button")
-const aboutFormInputs = document.querySelectorAll(".about-form__input")
-const aboutFormTexts = document.querySelectorAll(".about-form__text")
+export function setAboutEditFormListener() {
+    const editButton = document.querySelector(".my-page__about-edit-button")
+    const editForm = document.querySelector(".my-page__about-edit-form")
+    const aboutInfo = document.querySelector(".my-page__about-fields")
 
-function editForm() {
-    for (let i = 0; i < aboutFormInputs.length; i += 1) {
-        if (aboutFormInputs[i])
-            aboutFormInputs[i].classList.toggle("about-form__input_shown")
-        if (aboutFormTexts[i])
-            aboutFormTexts[i].classList.toggle("about-form__text_hidden")
+    if (editButton) {
+        editButton.onclick = () => {
+            editForm.classList.toggle("my-page__about-edit-form_hidden")
+            aboutInfo.classList.toggle("my-page__about-fields_hidden")
+        }
     }
 }
-
-editButton.onclick = editForm

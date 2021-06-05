@@ -27,7 +27,7 @@ export const EditForm = (paragraphText) => {
     const form = document.createElement("form")
     form.classList.add("comments__temp-form")
     form.innerHTML = `<p class="comments__symbol-counter">0/500</p>
-        <textarea class="comments__add-textarea" maxlength="500">${paragraphText}</textarea>
+        <textarea class="comments__add-textarea textarea textarea_medium" maxlength="500">${paragraphText}</textarea>
         <button class="comments__save-button button" type="button">Сохранить</button>
         <button class="comments__cancel-button button" type="button">Отменить</button>`
     const textarea = form.querySelector(".comments__add-textarea")
