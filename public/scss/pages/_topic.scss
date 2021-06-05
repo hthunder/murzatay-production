@@ -72,6 +72,10 @@
     width: calc(100% - 95px);
   }
 
+  &__instance-content_hidden {
+    display: none;
+  }
+
   &__instance-author {
     font-family: Lora;
     font-size: 15px;
@@ -133,6 +137,11 @@
 
   &__temp-form {
     position: relative;
+    width: 100%;
+  }
+
+  &__temp-form_hidden {
+    display: none;
   }
 
   @media #{variables.$media-sm} {

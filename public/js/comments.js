@@ -2,7 +2,7 @@ import { countSymbols } from "./counter.js"
 import { Comment, EditForm } from "./components/comment.js"
 
 export const deleteCommentRequest = async (comment) => {
-    const { parentNode, id, wrapper } = comment
+    const { parentNode, id, instance } = comment
     const res = await fetch(`/api/comments/${id}`, { method: "DELETE" })
     if (res.status === 200) {
         parentNode.removeChild(wrapper)
@@ -24,50 +24,56 @@ export const saveCommentRequest = async (commentNode, text, id) => {
     }
 }
 
-export const toggleVisibility = (elements, classname) => {
-    elements.forEach((elem) => {
-        elem.classList.toggle(classname)
-    })
+const cancelEditing = (comment, editingForm) => {
+    comment.classList.toggle("comments__instance-content_hidden")
+    editingForm.classList.toggle("comments__temp-form_hidden")
 }
 
-const cancelEditing = (toggledElems, form) => {
-    toggleVisibility([...toggledElems, form], "hidden")
+const saveEditing = async (comment, editingForm, textareaVal, id) => {
+    await saveCommentRequest(
+        comment.querySelector(".comments__instance-text"),
+        textareaVal,
+        id
+    )
+    comment.classList.toggle("comments__instance-content_hidden")
+    editingForm.classList.toggle("comments__temp-form_hidden")
 }
 
-const saveEditing = async (toggledElems, form, textarea, id) => {
-    const [paragraphComment] = toggledElems
-    await saveCommentRequest(paragraphComment, textarea.value, id)
-    toggleVisibility([...toggledElems, form], "hidden")
-}
+// comment {
+//     editingMode: false,
+//     stateComment: '',
+
+// }
 
 export const editComment = (comment) => {
-    const { deleteButton, editButton, wrapper, id } = comment
-
-    const paragraphComment = wrapper.querySelector(".comments__instance-text")
-    const paragraphText = paragraphComment.textContent
-    const toggledElements = [paragraphComment, editButton, deleteButton]
-
-    toggleVisibility(toggledElements, "hidden")
-
+    const { instance, id } = comment
+    const instanceText = instance.querySelector(".comments__instance-text")
+        .textContent
+    const instanceContent = instance.querySelector(
+        ".comments__instance-content"
+    )
     const tempForm = document.querySelector(".comments__temp-form")
+
+    instanceContent.classList.toggle("comments__instance-content_hidden")
     if (!tempForm) {
-        const formObj = EditForm(paragraphText)
-        paragraphComment.after(formObj.form)
+        const { form, textarea, counter, cancelButton, saveButton } = EditForm(
+            instanceText
+        )
 
-        formObj.saveButton.onclick = () => {
-            saveEditing(toggledElements, formObj.form, formObj.textarea, id)
+        instance.appendChild(form)
+        saveButton.onclick = () => {
+            saveEditing(instanceContent, form, textarea.value, id)
         }
-        formObj.cancelButton.onclick = () => {
-            cancelEditing(toggledElements, formObj.form)
+        cancelButton.onclick = () => {
+            cancelEditing(instanceContent, form)
         }
-
-        countSymbols(formObj.counter, formObj.textarea)
+        countSymbols(counter, textarea)
     } else {
-        tempForm.classList.toggle("hidden")
-        tempForm.querySelector(".comments__add-textarea").value = paragraphText
+        tempForm.classList.toggle("comments__temp-form_hidden")
+        tempForm.querySelector(".comments__add-textarea").value = instanceText
         tempForm.querySelector(
             ".comments__symbol-counter"
-        ).innerHTML = `${paragraphText.length}/500`
+        ).innerHTML = `${instanceText.length}/500`
     }
 
     // Санитайзим пользовательский ввод
@@ -100,14 +106,14 @@ export const addCommentRequest = async (button, textarea) => {
             id: wrapper.dataset.id,
             wrapper,
         }
-        comment.deleteButton = wrapper.querySelector(".comments__delete-button")
-        comment.editButton = wrapper.querySelector(".comments__edit-button")
+        const deleteButton = wrapper.querySelector(".comments__delete-button")
+        const editButton = wrapper.querySelector(".comments__edit-button")
         comment.parentNode = wrapper.parentNode
 
-        comment.deleteButton.onclick = () => {
+        deleteButton.onclick = () => {
             deleteCommentRequest(comment)
         }
-        comment.editButton.onclick = () => {
+        editButton.onclick = () => {
             editComment(comment)
         }
     }
@@ -117,14 +123,16 @@ export const setListeners = () => {
     const wrappers = document.querySelectorAll(".comments__instance")
     const addCommentButton = document.querySelector(".comments__add-button")
     const addCommentTextarea = document.querySelector(".comments__add-textarea")
-    wrappers.forEach((wrapper) => {
+    wrappers.forEach((instance) => {
         const comment = {
-            id: wrapper.dataset.id,
-            wrapper,
+            id: instance.dataset.id,
+            instance,
         }
-        comment.deleteButton = wrapper.querySelector(".comments__delete-button")
-        comment.editButton = wrapper.querySelector(".comments__edit-button")
-        comment.parentNode = wrapper.parentNode
+        comment.deleteButton = instance.querySelector(
+            ".comments__delete-button"
+        )
+        comment.editButton = instance.querySelector(".comments__edit-button")
+        comment.parentNode = instance.parentNode
 
         comment.deleteButton.onclick = () => {
             deleteCommentRequest(comment)

@@ -1107,6 +1107,9 @@
 .comments__instance-content {
   width: calc(100% - 95px);
 }
+.comments__instance-content_hidden {
+  display: none;
+}
 .comments__instance-author {
   font-family: Lora;
   font-size: 15px;
@@ -1160,6 +1163,10 @@
 }
 .comments__temp-form {
   position: relative;
+  width: 100%;
+}
+.comments__temp-form_hidden {
+  display: none;
 }
 @media screen and (max-width: 750px) {
   .comments__welcome-message {
