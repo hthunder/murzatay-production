@@ -4,7 +4,7 @@
   &__about {
     display: flex;
     max-width: 900px;
-    margin-top: 7px;
+    margin-top: 24px;
   }
 
   &__about-field {
@@ -12,7 +12,6 @@
     margin-bottom: 5px;
     font-family: Lora;
     font-size: 16px;
-    font-weight: 400;
     text-align: left;
   }
 
@@ -23,8 +22,8 @@
   }
 
   &__about-info {
+    padding: 0 10px;
     max-width: 695px;
-    padding: 10px;
   }
 
   &__about-form-label {
@@ -32,8 +31,24 @@
     margin: 5px 0;
   }
 
+  &__about-form-input {
+    padding: 2px;
+    font-size: 16px;
+    font-family: 'Lora';
+  }
+
+  &__about-form-textarea {
+    margin-top: 4px;
+  }
+
   &__about-edit-form {
     word-break: break-word;
+    font-size: 16px;
+    font-family: 'Lora';
+  }
+
+  &__about-edit-button {
+    margin-bottom: 8px;
   }
 
   &__about-edit-form_hidden,
@@ -135,13 +150,13 @@
       max-width: 100%;    
     }
 
-    &__about-field,
     &__about-info {
+      text-align: left; 
       max-width: 95%;
     }
 
     &__about-edit-button {
-      margin-top: 10px;
+      margin: 10px 0;
     }
 
     &__about-avatar {

@@ -21,7 +21,7 @@
                     <div class="my-page__about-fields">
                         <p class="my-page__about-field my-page__about-username">Ник: {{user.username}}</p>
                         <p class="my-page__about-field my-page__about-city">Город: {{user.city}}</p>
-                        <p class="my-page__about-field my-page__about-me">Расскажите о себе или о своих питомцах: </p>
+                        <p class="my-page__about-field my-page__about-me">Расскажите о себе или о своих питомцах: {{user.about}}</p>
                     </div>
                     <form class="my-page__about-edit-form my-page__about-edit-form_hidden" action="/users/{{user._id}}?_method=PUT" method="POST">
                         <label class="my-page__about-form-label">
@@ -36,8 +36,7 @@
                             <p>
                                 Расскажите о себе или своих питомцах:
                             </p>
-                            <textarea maxlength="250" name="about" id="#"
-                                placeholder="Расскажите о себе или своих питомцах"
+                            <textarea maxlength="250" name="about" placeholder="Расскажите о себе или своих питомцах"
                                 class="my-page__about-form-textarea textarea">{{user.about}}
                             </textarea>
                         </label>

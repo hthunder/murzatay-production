@@ -89,12 +89,17 @@ router.get("/my-page", async (req, res) => {
     const articles = await Article.find({
         _id: { $in: user.favourites },
     }).lean()
-    const comments = await Comment.find({ user: req.userId }).lean()
+    const comments = await Comment.find({ user: req.userId })
+        .sort({ date: -1 })
+        .limit(2)
+        .lean()
     const lastComments = await Comment.find()
         .sort({ date: -1 })
         .limit(2)
         .populate("user")
         .lean()
+    // console.log(lastComments)
+    console.log(user)
 
     const [shownPhotos, hiddenPhotos] = await getPhotosList()
     return res.render("my-page", {
