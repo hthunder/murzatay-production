@@ -76,17 +76,21 @@
     
     @media #{variables.$media-sm} {
         &__signup, &__login {
-            max-width: 250px;
+            // max-width: 250px;
+            
             border: 2px solid variables.$arrowtown;
         }
 
         &__cancel-btn, &__submit {
-            max-width: 200px;
-            padding: 3px 65px;   
+            // max-width: 200px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            padding: 6px 65px;   
         }
 
         &__input {
-            max-width: 200px;
+            font-size: 16px;
+            // max-width: 200px;
         }
     }
 }

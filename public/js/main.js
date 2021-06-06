@@ -3,8 +3,16 @@ import { sendForm } from "./sendFormData.js"
 import { showMore } from "./instagram_widget.js"
 import { slideToggle, fadeIn, fadeOut } from "./animations.js"
 import { setAboutEditFormListener } from "./about.js"
+import { areYouSurePrompt } from "./areYouSure.js"
 
 setAboutEditFormListener()
+
+const deleteArticleButton = document.querySelector(".articles__delete-button")
+const deleteArticleForm = document.querySelector(".articles__delete-form")
+areYouSurePrompt(deleteArticleButton, "Вы уверены, что хотите удалить эту статью?", () => {
+    deleteArticleForm.submit()
+})
+
 const login = document.querySelector(".nav__button_login")
 const popupLogin = document.querySelector(".pop-up__login")
 const cancelLogin = document.querySelector(".pop-up__login .pop-up__cancel-btn")

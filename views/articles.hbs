@@ -17,8 +17,11 @@
 	<section class="main">
 		<div class="main__content articles">
 			<h1 class="articles__title_main">Lorem ipsum dolor sit amet</h1>
+			{{#if isEmptyArticleList}}
+				<p class="articles__empty-list">На эту тему статей пока нет, но они очень скоро появятся!</p>
+			{{/if}}
 			{{#if isAdmin}}
-			<a href="/articles/add" class="link">Новая статья</a>
+			<a href="/articles/add" class="articles__add-button button">Новая статья</a>
 			{{/if}}
 
 			{{#each articles}}
@@ -33,14 +36,17 @@
 					<h2 class="articles__title">{{this.title}}</h2>
 					<span class="unread">Прочти меня</span>
 					<p class="articles__text">{{this.description}}</p>
-					<a href="/articles/{{this.slug}}" class="link">Читать...</a>
+					<a href="/articles/{{this.slug}}" class="articles__read-link link">Читать...</a>
 					{{#if ../isAdmin}}
-					<a href="/articles/{{this._id}}/edit" class="link">
-						Редактировать
-					</a>
-					<form action="/articles/{{this._id}}?_method=DELETE" method="POST">
-						<button type="submit" class="button">Удалить</button>
-					</form>
+					<div class="articles__admin-actions">
+						<a class="button articles__edit-button" href="/articles/{{this._id}}/edit">
+							Редактировать
+						</a>
+						<form class="articles__delete-form" action="/articles/{{this._id}}?_method=DELETE" method="POST">
+							<button class="articles__delete-button button" type="button">Удалить</button>
+						</form>	
+					</div>
+					
 					{{/if}}
 				</figcaption>
 			</figure>

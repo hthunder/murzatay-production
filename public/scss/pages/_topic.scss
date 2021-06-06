@@ -39,6 +39,7 @@
     font-weight: 500;
     text-align: justify;
     line-height: 20px;
+    margin-bottom: 12px;
   }
 
   &__layout img {
@@ -48,14 +49,20 @@
 
   @media #{variables.$media-sm} {
     &__layout {
-      margin-top: 8px;
       max-width: 100%;
-      padding: 7px;  
     }
   }
 }
 
 .comments {
+  &__add-button {
+    margin-bottom: 24px;
+  }
+
+  &__add-textarea {
+    margin-bottom: 12px;
+  }
+
   &__instance {
     display: flex;
     margin-bottom: 10px;

@@ -38,7 +38,7 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 
 exports.article_list = async (req, res) => {
     try {
-        const limit = 1
+        const limit = 2
         const { page = 1, category = "all" } = req.query
         let numberOfArticles
 
@@ -78,6 +78,7 @@ exports.article_list = async (req, res) => {
             .populate("user")
             .lean()
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
+        const isEmptyArticleList = numberOfArticles < 1
         return res.render("articles", {
             layout: false,
             pagination,
@@ -86,6 +87,7 @@ exports.article_list = async (req, res) => {
             lastComments,
             isAdmin: req.authorities?.admin,
             isLoggedIn: req.isLoggedIn,
+            isEmptyArticleList,
             shownPhotos,
             hiddenPhotos,
         })
