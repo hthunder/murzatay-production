@@ -134,15 +134,23 @@ export const setListeners = () => {
         comment.editButton = instance.querySelector(".comments__edit-button")
         comment.parentNode = instance.parentNode
 
-        comment.deleteButton.onclick = () => {
-            deleteCommentRequest(comment)
+        if (comment.deleteButton) {
+            comment.deleteButton.onclick = () => {
+                deleteCommentRequest(comment)
+            }
         }
-        comment.editButton.onclick = () => {
-            editComment(comment)
+        
+        if (comment.editButton) {
+            comment.editButton.onclick = () => {
+                editComment(comment)
+            }
         }
+        
     })
-    addCommentButton.onclick = () => {
-        addCommentRequest(addCommentButton, addCommentTextarea)
+    if (addCommentButton) {
+        addCommentButton.onclick = () => {
+            addCommentRequest(addCommentButton, addCommentTextarea)
+        }   
     }
 }
 
