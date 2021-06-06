@@ -1,9 +1,11 @@
+@use '../abstracts/variables';
+
 .button {
     cursor: pointer;
     outline: none;
     padding: 4px 10px;
-    background-color: rgba(217, 182, 139, 0.651);
-    border: 2px solid rgba(140, 91, 62, 1);
+    background-color: variables.$tumbleweed-65;
+    border: 2px solid variables.$potters-clay;
     border-radius: 10px;
     font-family: Lora;
     font-size: 13px;
@@ -14,8 +16,8 @@
     display: inline-block;
 
     &_light {
-        background-color: rgba(140, 91, 62, 0.25);
-        border: 1px solid rgba(140, 91, 62, 0.4);
+        background-color: variables.$potters-clay-25;
+        border: 1px solid variables.$potters-clay-40;
         padding: 3px;
         border-radius: 3px;  
     }

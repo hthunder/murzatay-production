@@ -1,3 +1,5 @@
+@use '../abstracts/variables';
+
 .error {
-    color: red;
+    color: variables.$torch-red;
 }

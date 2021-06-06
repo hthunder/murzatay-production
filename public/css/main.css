@@ -189,14 +189,14 @@
   font-size: 16px;
   font-weight: 500;
   text-align: center;
-  color: rgba(242, 138, 46, 0.6);
+  color: rgba(242, 138, 44, 0.6);
   text-decoration: none;
   height: 40px;
   vertical-align: middle;
 }
 .footer__link:hover {
-  color: rgba(242, 138, 46, 0.8);
-  text-shadow: rgba(255, 188, 4, 0.274) 1px 0px;
+  color: rgba(242, 138, 44, 0.8);
+  text-shadow: rgba(255, 188, 4, 0.3) 1px 0px;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .footer {
@@ -227,7 +227,7 @@
   min-height: 41px;
   padding: 3px;
   margin: 0 auto;
-  background-color: #8c5d3e;
+  background-color: #8c5b3e;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -383,7 +383,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 11px;
-  border: 1px solid rgba(242, 138, 46, 0.6);
+  border: 1px solid rgba(242, 138, 44, 0.6);
 }
 .sidebar__comments-text {
   font-family: Raleway;
@@ -420,7 +420,7 @@
 }
 
 .error {
-  color: red;
+  color: #ff0033;
 }
 
 .rubrics {
@@ -508,7 +508,7 @@
   font-weight: 400;
 }
 .pop-up__errors {
-  color: red;
+  color: #ff0033;
   text-align: left;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -519,7 +519,7 @@
   padding: 3px;
   font-size: 14px;
   font-weight: 500;
-  background-color: rgba(134, 92, 68, 0.336);
+  background-color: rgba(134, 92, 68, 0.35);
   outline: none;
   border: 0.5px solid #6b6154;
   border-radius: 6px;
@@ -528,10 +528,10 @@
   cursor: pointer;
 }
 .pop-up__submit:active {
-  background-color: rgba(134, 92, 68, 0.671);
+  background-color: rgba(134, 92, 68, 0.65);
 }
 .pop-up__overlay {
-  background: rgba(155, 143, 143, 0.445);
+  background: rgba(155, 143, 143, 0.45);
   width: 100%;
   height: 200vh;
   position: absolute;
@@ -717,7 +717,7 @@
   cursor: pointer;
   outline: none;
   padding: 4px 10px;
-  background-color: rgba(217, 182, 139, 0.651);
+  background-color: rgba(217, 182, 139, 0.65);
   border: 2px solid #8c5b3e;
   border-radius: 10px;
   font-family: Lora;
@@ -742,7 +742,7 @@
   resize: none;
   width: 100%;
   height: 75px;
-  background-color: rgba(217, 182, 139, 0.308);
+  background-color: rgba(217, 182, 139, 0.3);
   border: 1px solid #8c5b3e;
   border-radius: 5px;
   font-family: Raleway;
@@ -754,7 +754,7 @@
   padding-top: 15px;
   padding-left: 5px;
   height: 120px;
-  background-color: rgba(217, 182, 139, 0.651);
+  background-color: rgba(217, 182, 139, 0.65);
   border: 2px solid #8c5b3e;
   font-size: 14px;
   display: block;
@@ -785,7 +785,7 @@
 .unread {
   position: absolute;
   top: 0px;
-  background-color: rgba(221, 148, 83, 0.658);
+  background-color: rgba(221, 148, 83, 0.65);
   padding: 1px 3px 1px 3px;
   font-family: Raleway;
   font-size: 12px;
@@ -814,7 +814,7 @@
   margin-right: 5px;
 }
 .pagination__page_current {
-  color: red;
+  color: #8c5b3e;
 }
 .pagination__page:hover {
   color: #be6c23;
@@ -1208,8 +1208,7 @@
   object-fit: cover;
 }
 .my-page__about-info {
-  padding: 0 10px;
-  max-width: 695px;
+  margin-left: 16px;
 }
 .my-page__about-form-label {
   display: block;
@@ -1318,6 +1317,7 @@
   .my-page__about-info {
     text-align: left;
     max-width: 95%;
+    margin-left: 0;
   }
   .my-page__about-edit-button {
     margin: 10px 0;

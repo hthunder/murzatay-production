@@ -5,7 +5,7 @@
     min-height: 41px;
     padding: 3px;
     margin: 0 auto;
-    background-color: #8c5d3e;
+    background-color: variables.$potters-clay;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@
     }
       
     &__link:hover {
-        color: #401f09;
+        color: variables.$bronze;
     }
 
     &__button {
@@ -47,14 +47,14 @@
     }
 
     &__button:focus {
-        color: #401f09;
-        border: 1px solid #401f09;
+        color: variables.$bronze;
+        border: 1px solid variables.$bronze;
         border-radius: 3px;
         outline: none;  
     }
 
     &__button:hover {
-        color: #401f09;  
+        color: variables.$bronze;  
     }
 
     &__search {
@@ -109,10 +109,10 @@
         }
 
         &__item {
-            border: 2px solid #96684d;
+            border: 2px solid variables.$leather;
             display: inline-block;
             width: 100%;
-            background-color: #96684d;
+            background-color: variables.$leather;
             padding: 5px;
             cursor: pointer;
             font-family: Raleway;
@@ -151,10 +151,10 @@
         }
       
         &__item {
-            border: 2px solid #96684d;
+            border: 2px solid variables.$leather;
             display: inline-block;
             width: 100%;
-            background-color: #96684d;
+            background-color: variables.$leather;
             padding: 5px;
             cursor: pointer;
             text-decoration: none;

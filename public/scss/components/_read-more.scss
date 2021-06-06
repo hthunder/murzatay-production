@@ -4,7 +4,7 @@
     background-color: transparent;
     background: transparent;
     text-decoration: none;
-    color: #8c5b3e;
+    color: variables.$potters-clay;
     border: none;
     font-family: Raleway;
     font-size: 14px;
@@ -15,7 +15,7 @@
     padding-right: 20px;
 
     &:hover {
-        color: rgba(190, 108, 35, 1);
+        color: variables.$bourbon;
     }
 
     &:active, &:focus {

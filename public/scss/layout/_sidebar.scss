@@ -15,7 +15,7 @@
         border-radius: 50%;
         object-fit: cover;
         margin-right: 11px;
-        border: 1px solid rgba(242, 138, 46, 0.6);
+        border: 1px solid variables.$carrot-orange-60;
     }
       
     &__comments-text {
@@ -41,7 +41,7 @@
 
     &__comments {
         background-color: #fff;
-        border: 10px solid rgba(140, 91, 62, 0.6);
+        border: 10px solid variables.$potters-clay-60;
         padding: 26px 3px 0 3px;
     }
 

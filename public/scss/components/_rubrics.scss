@@ -4,7 +4,7 @@
     font-family: Raleway;
     list-style: none;
     background-color: #fff;
-    border: 10px solid rgba(140, 91, 62, 0.6);
+    border: 10px solid variables.$potters-clay-60;
     padding: 12px 3px 1px 3px;
     
     &__item {
@@ -14,7 +14,7 @@
     
     &__link {
         display: block;
-        background-color: rgba(140, 91, 62, 0.25);
+        background-color: variables.$potters-clay-25;
         padding: 11px;
         color: #8c5b3e;
         font-size: 17px;

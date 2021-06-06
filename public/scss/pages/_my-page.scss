@@ -22,8 +22,7 @@
   }
 
   &__about-info {
-    padding: 0 10px;
-    max-width: 695px;
+    margin-left: 16px;
   }
 
   &__about-form-label {
@@ -58,7 +57,7 @@
 
   &__favourite {
     margin-top: 35px;
-    background-color: rgba(140, 91, 62, 0.25);
+    background-color: variables.$potters-clay-25;
     padding: 5px;
     border-radius: 2px;
   }
@@ -75,7 +74,7 @@
   &__favourite-article {
     display: flex;
     align-items: center;
-    border: 1px solid rgba(140, 91, 62, 0.3);
+    border: 1px solid variables.$potters-clay-30;
     padding: 2px;
     margin-bottom: 5px;
     border-radius: 4px;  
@@ -113,7 +112,7 @@
 
   &__comment {
     display: flex;
-    border: 1px solid rgba(140, 91, 62, 0.3);
+    border: 1px solid variables.$potters-clay-30;
     padding: 5px;
     margin-bottom: 5px;
     border-radius: 4px;
@@ -153,6 +152,7 @@
     &__about-info {
       text-align: left; 
       max-width: 95%;
+      margin-left: 0;
     }
 
     &__about-edit-button {

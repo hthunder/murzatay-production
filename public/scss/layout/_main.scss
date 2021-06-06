@@ -16,7 +16,7 @@
       flex-shrink: 0;
       flex-basis: 240px;
       max-width: 240px;
-      background-color: rgba(140, 91, 62, 0.6);
+      background-color: variables.$potters-clay-60;
     }
 
     @media #{variables.$media-md} {

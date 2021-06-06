@@ -1,3 +1,5 @@
+@use '../abstracts/variables';
+
 * {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -13,7 +15,7 @@
 }
 
 .body {
-    background-color: rgba(217, 182, 139, 1);
+    background-color: variables.$tumbleweed;
     display: flex;
     flex-direction: column;
     min-height: 100vh;

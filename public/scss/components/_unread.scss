@@ -3,12 +3,12 @@
 .unread {
     position: absolute;
     top: 0px;
-    background-color: rgba(221, 148, 83, 0.658);
+    background-color: variables.$di-serria-65;
     padding: 1px 3px 1px 3px;
     font-family: Raleway;
     font-size: 12px;
     font-weight: 500;
-    color: rgb(92, 64, 41);
+    color: variables.$quincy;
 
     @media #{variables.$media-sm} {
         left: 0px;
