@@ -1,6 +1,5 @@
-<!--Личная страничка пользователя-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -33,9 +32,7 @@
                             <input name="city" type="text" value="{{user.city}}" class="my-page__about-form-input">
                         </label>
                         <label class="my-page__about-form-label">
-                            <p>
                                 Расскажите о себе или своих питомцах:
-                            </p>
                             <textarea maxlength="250" name="about" placeholder="Расскажите о себе или своих питомцах"
                                 class="my-page__about-form-textarea textarea">{{user.about}}
                             </textarea>
@@ -50,7 +47,7 @@
                 </div>
             </section>
             <section class="my-page__favourite">
-                <h3 class="my-page__favourite-section-title">Избранные статьи</h3>
+                <h2 class="my-page__favourite-section-title">Избранные статьи</h2>
                 {{#each articles}}
                 <article class="my-page__favourite-article">
                     {{#if this.img}}
@@ -68,7 +65,7 @@
             </section>
             <section class="my-page__comments">
                 <!--Два последних комментария оставленных пользователем-->
-                <h3 class="my-page__comments-title"> Последние комментарии</h3>
+                <h2 class="my-page__comments-title"> Последние комментарии</h2>
                 {{#each comments}}
                 <article class="my-page__comment">
                     <img class="my-page__comment-img" src="/img/placeholders/usercomment.png" alt="Автарка">

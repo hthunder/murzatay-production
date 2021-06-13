@@ -70,7 +70,7 @@ export const editComment = (comment) => {
         countSymbols(counter, textarea)
     } else {
         tempForm.classList.toggle("comments__temp-form_hidden")
-        tempForm.querySelector(".comments__add-textarea").value = instanceText
+        tempForm.querySelector(".sc-textarea__textarea").value = instanceText
         tempForm.querySelector(
             ".comments__symbol-counter"
         ).innerHTML = `${instanceText.length}/500`
@@ -122,7 +122,7 @@ export const addCommentRequest = async (button, textarea) => {
 export const setListeners = () => {
     const wrappers = document.querySelectorAll(".comments__instance")
     const addCommentButton = document.querySelector(".comments__add-button")
-    const addCommentTextarea = document.querySelector(".comments__add-textarea")
+    const addCommentTextarea = document.querySelector(".sc-textarea__textarea")
     wrappers.forEach((instance) => {
         const comment = {
             id: instance.dataset.id,

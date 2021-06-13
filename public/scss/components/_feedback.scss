@@ -6,32 +6,20 @@
     margin-top: 23px;
 
     &__email {
-        resize: none;
         width: 100%;
         background-color: variables.$tumbleweed;
         border: 2px solid variables.$dusty-gray;
         border-radius: 5px;
         font-family: Raleway;
-        font-size: 16px;
         font-weight: 400;
         outline: none;
         margin-top: 5px;
         padding: 4px;
     }
-      
+
     &__submit-button {
-        text-align: center;
-        width: 40%;
-        padding: 4px;
         margin-top: 8px;
-        background-color: variables.$tumbleweed;
-        outline: none;
         border: 2px solid variables.$dusty-gray;
-        border-radius: 5px;
-        margin-bottom: 15px;
-        font-family: Lora;
-        font-size: 13px;
-        font-weight: 400;
     }
 
     @media #{variables.$media-md} {

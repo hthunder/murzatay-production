@@ -2,7 +2,8 @@
 
 .topic {
   &__content {
-    padding: 0px 37px;
+    position: relative;
+    padding: 0px 80px 32px;
     width: 100%;
   }
 
@@ -10,11 +11,15 @@
     background-color: transparent;
     background-image: url(/img/icons/heart.svg);
     border: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 20px;
-    height: 20px;
+    margin-top: 16px;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    position: absolute;
+    left: 26px;
+    top: 50px;
   }
 
   &__add-favourite_active {
@@ -23,7 +28,6 @@
 
   &__title {
     font-family: Lora;
-    font-size: 30px;
     font-weight: 500;
     text-align: left;
     width: 100%;
@@ -34,12 +38,14 @@
 
   &__layout {
     font-family: Raleway;
-    font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    text-align: justify;
-    line-height: 20px;
     margin-bottom: 12px;
+  }
+
+  &__layout p {
+    line-height: calc(1.5 * var(--text));
+    margin: 15px 0;
   }
 
   &__layout img {
@@ -48,24 +54,39 @@
   }
 
   @media #{variables.$media-sm} {
+    &__add-favourite {
+      margin-left: auto;
+      display: block;
+      position: initial;
+    }
+
+    &__title {
+      font-size: var(--text-xl);
+    }
+
     &__layout {
       max-width: 100%;
+    }
+
+    &__content {
+      padding: 0px 20px 32px;
+      width: 100%;
     }
   }
 }
 
 .comments {
+  &__sc-textarea {
+    margin-bottom: 12px;
+  }
+
   &__add-button {
     margin-bottom: 24px;
   }
 
-  &__add-textarea {
-    margin-bottom: 12px;
-  }
-
   &__instance {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
 
   &__instance-ava {
@@ -85,7 +106,7 @@
 
   &__instance-author {
     font-family: Lora;
-    font-size: 15px;
+    font-size: var(--text-sm);
     font-weight: 600;
     margin-bottom: 5px;
   }
@@ -93,12 +114,16 @@
   &__instance-text {
     word-wrap: break-word;
     font-family: Raleway;
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 
   &__instance-date {
     font-family: Raleway;
-    font-size: 12px;
+    font-size: var(--text-xs);
+  }
+
+  &__form {
+    margin-top: 8px;
   }
 
   &__welcome-message {
@@ -106,16 +131,7 @@
     max-width: 640px;
     margin-bottom: 5px;
     font-family: Lora;
-    font-size: 18px;
     font-weight: 500;
-  }
-
-  &__symbol-counter {
-    position: absolute;
-    top: 3px;
-    left: 5px;
-    font-family: Raleway;
-    font-size: 12px;
   }
 
   &__add-form {
@@ -124,7 +140,7 @@
 
   &__unauthorized {
     margin: 12px 0;
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 
   &__temp-form {
@@ -139,8 +155,6 @@
   @media #{variables.$media-sm} {
     &__welcome-message {
       margin-top: 10px;
-      max-width: 70%;
-      font-size: 16px;
     }
   }
 }

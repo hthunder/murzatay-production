@@ -1,8 +1,7 @@
 @use '../abstracts/variables';
 
 .textarea {
-    font-size: 16px;
-    font-family: 'Lora';
+    font-size: var(--text-sm);
     padding: 4px;
     resize: none;
     width: 100%;
@@ -11,17 +10,13 @@
     border: 1px solid variables.$potters-clay;
     border-radius: 5px;
     font-family: Raleway;
-    font-size: 16px;
     font-weight: 400;
     outline: none;
 
     &_medium {
-        padding-top: 15px;
-        padding-left: 5px;
         height: 120px;
-        background-color: variables.$tumbleweed-65;
+        background-color: variables.$tumbleweed;
         border: 2px solid variables.$potters-clay;
-        font-size: 14px;
         display: block;
     }
 

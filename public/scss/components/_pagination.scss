@@ -9,8 +9,8 @@
     &__page {
         background-color: transparent;
         border: none;
-        font-family: Lora;
-        font-size: 14px;
+        font-family: 'Lora';
+        font-size: var(--text-sm);
         font-weight: 400;
         margin-right: 5px;
     }
@@ -29,8 +29,8 @@
     }
       
     &__dots {
-        font-family: Lora;
-        font-size: 14px;
+        font-family: 'Lora';
+        font-size: var(--text-sm);
         font-weight: 400;
         margin-right: 5px;
     }

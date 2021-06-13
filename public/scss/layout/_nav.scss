@@ -15,6 +15,7 @@
         justify-content: space-around;
         flex-grow: 1;
         list-style: none;
+        z-index: 1;
     }
 
     &__item {
@@ -24,8 +25,6 @@
 
     &__link {
         font-family: Raleway;
-        font-weight: 400;
-        font-size: 18px;
         text-align: center;
         text-decoration: none;
         color: #fff;
@@ -36,13 +35,12 @@
     }
 
     &__button {
+        font-family: Raleway;
+        font-size: var(--text);
         background-color: transparent;
         background: transparent;
         border: none;
         color: #fff;
-        font-family: Raleway;
-        font-weight: 400;
-        font-size: 18px;
         cursor: pointer; 
     }
 
@@ -72,7 +70,7 @@
         outline: none;
         height: 35px;
         border: none;
-        font-size: 16px;
+        font-size: var(--text-sm);
         width: 100%;
         padding: 3px;
     }
@@ -116,8 +114,6 @@
             padding: 5px;
             cursor: pointer;
             font-family: Raleway;
-            font-weight: 400;
-            font-size: 16px;
             text-decoration: none;
             color: #fff;
         }

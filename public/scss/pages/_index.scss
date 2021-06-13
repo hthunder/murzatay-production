@@ -12,13 +12,11 @@
 
   &__caption {
     font-family: Raleway;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
     text-align: left;
     margin-top: 32px;
     margin-bottom: 72px;
     text-indent: 27px;
+    line-height: calc(1.5 * var(--text));
   }
 
   @media #{variables.$media-md} {
@@ -31,7 +29,6 @@
       text-align: left;
       margin-top: 32px;
       margin-bottom: 72px;
-      font-size: 15px;
     }
   }
 
@@ -45,7 +42,6 @@
       text-align: left;
       margin-top: 32px;
       margin-bottom: 72px;
-      font-size: 15px;
     }
   }
 }
@@ -65,17 +61,16 @@
   }
 
   &__preview-title {
+    font-size: var(--text-lg);
     margin-bottom: 5px;
     font-family: Lora;
-    font-size: 28px;
     font-weight: 500;
   }
 
   &__preview-text {
     margin-bottom: 10px;
     font-family: Raleway;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: var(--text-sm);
   }
 
   @media #{variables.$media-md} {
@@ -89,12 +84,6 @@
 
     &__preview-title {
       margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    &__preview-text {
-      font-size: 14px;
-      font-weight: 400;
     }
   }
 
@@ -114,14 +103,12 @@
     &__preview-title {
       max-width: 100%;
       margin-bottom: 10px;
-      font-size: 18px;
+      font-size: var(--text-md);
       text-align: center;
     }
 
     &__preview-text {
       max-width: 100%;
-      font-size: 14px;
-      font-weight: 400;
     }
   }
 }

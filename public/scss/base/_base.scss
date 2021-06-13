@@ -14,9 +14,21 @@
     display: none;
 }
 
+html {
+    font-size: 112.5%;
+    // @media (max-width: 750px) {
+    //     font-size: 100%;
+    // }
+}
+
 .body {
     background-color: variables.$tumbleweed;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
+h1 { font-size: var(--text-xxl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-md); }

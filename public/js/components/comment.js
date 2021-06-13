@@ -26,11 +26,13 @@ export const Comment = (
 export const EditForm = (paragraphText) => {
     const form = document.createElement("form")
     form.classList.add("comments__temp-form")
-    form.innerHTML = `<p class="comments__symbol-counter">0/500</p>
-        <textarea class="comments__add-textarea textarea textarea_medium" maxlength="500">${paragraphText}</textarea>
+    form.innerHTML = `<article class="textarea textarea_medium sc-textarea comments__sc-textarea">
+        <p class="sc-textarea__counter comments__symbol-counter">0/500</p>
+        <textarea class="sc-textarea__textarea" maxlength="500">${paragraphText}</textarea>
+        </article>
         <button class="comments__save-button button" type="button">Сохранить</button>
         <button class="comments__cancel-button button" type="button">Отменить</button>`
-    const textarea = form.querySelector(".comments__add-textarea")
+    const textarea = form.querySelector(".sc-textarea__textarea")
     const counter = form.querySelector(".comments__symbol-counter")
     const cancelButton = form.querySelector(".comments__cancel-button")
     const saveButton = form.querySelector(".comments__save-button")

@@ -20,14 +20,14 @@
       
     &__comments-text {
         font-family: Raleway;
-        font-size: 14px;
+        font-size: var(--text-sm);
         font-weight: 500;
         text-align: left;
     }
       
     &__comments-author {
-        font-family: Lora;
-        font-size: 12px;
+        font-family: Raleway;
+        font-size: var(--text-xs);
         font-weight: 500;
         text-align: left;
     }
@@ -35,8 +35,8 @@
     &__title {
         margin-top: 15px;
         margin-bottom: 7px;
-        font-size: 20px;
-        font-weight: 600;
+        font-family: Lora;
+        font-weight: 500;
     }
 
     &__comments {

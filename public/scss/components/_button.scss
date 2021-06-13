@@ -4,11 +4,11 @@
     cursor: pointer;
     outline: none;
     padding: 4px 10px;
-    background-color: variables.$tumbleweed-65;
+    background-color: variables.$tumbleweed;
     border: 2px solid variables.$potters-clay;
     border-radius: 10px;
     font-family: Lora;
-    font-size: 13px;
+    font-size: var(--text-xs);
     font-weight: 400;
     text-align: center;
     text-decoration: none;
