@@ -401,11 +401,11 @@ h4 {
 }
 .sidebar__comments-item {
   display: flex;
-  margin-bottom: 16px;
-  max-width: 210px;
-  width: 100%;
+  margin: 0.5em 0.5em;
 }
 .sidebar__comments-img {
+  flex-shrink: 0;
+  align-self: center;
   border: 1px solid rgba(242, 138, 44, 0.6);
   border-radius: 50%;
   margin-right: 11px;
@@ -416,6 +416,12 @@ h4 {
   font-size: var(--text-sm);
   font-weight: 500;
   text-align: left;
+  max-height: 100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.3em;
 }
 .sidebar__comments-author {
   font-family: Raleway;
@@ -432,7 +438,7 @@ h4 {
 .sidebar__comments {
   background-color: #fff;
   border: 10px solid rgba(140, 91, 62, 0.6);
-  padding: 26px 3px 0;
+  padding: 0;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .sidebar {
@@ -1254,6 +1260,10 @@ h4 {
   margin-right: 32px;
   max-height: 100px;
   object-fit: cover;
+}
+.my-page__favourite-preview-title {
+  font-family: "Lora";
+  font-weight: 500;
 }
 .my-page__favourite-preview-text {
   font-family: Raleway;

@@ -82,6 +82,11 @@
         object-fit: cover;
     }
 
+    &__favourite-preview-title {
+        font-family: "Lora";
+        font-weight: 500;
+    }
+
     &__favourite-preview-text {
         font-family: Raleway;
         font-size: var(--text-sm);
