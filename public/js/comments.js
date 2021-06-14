@@ -5,7 +5,7 @@ export const deleteCommentRequest = async (comment) => {
     const { parentNode, id, instance } = comment
     const res = await fetch(`/api/comments/${id}`, { method: "DELETE" })
     if (res.status === 200) {
-        parentNode.removeChild(wrapper)
+        parentNode.removeChild(instance)
     }
 }
 
@@ -38,12 +38,6 @@ const saveEditing = async (comment, editingForm, textareaVal, id) => {
     comment.classList.toggle("comments__instance-content_hidden")
     editingForm.classList.toggle("comments__temp-form_hidden")
 }
-
-// comment {
-//     editingMode: false,
-//     stateComment: '',
-
-// }
 
 export const editComment = (comment) => {
     const { instance, id } = comment
@@ -139,18 +133,17 @@ export const setListeners = () => {
                 deleteCommentRequest(comment)
             }
         }
-        
+
         if (comment.editButton) {
             comment.editButton.onclick = () => {
                 editComment(comment)
             }
         }
-        
     })
     if (addCommentButton) {
         addCommentButton.onclick = () => {
             addCommentRequest(addCommentButton, addCommentTextarea)
-        }   
+        }
     }
 }
 

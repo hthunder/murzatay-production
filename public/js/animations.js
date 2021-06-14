@@ -1,12 +1,12 @@
 export const slideUp = (target, duration) => {
     /* Sliding-up logic */
-    target.style.transitionProperty = "height, margin, padding" 
-    target.style.transitionDuration = `${duration}ms` 
+    target.style.transitionProperty = "height, margin, padding"
+    target.style.transitionDuration = `${duration}ms`
     target.style.boxSizing = "border-box"
     target.style.height = `${target.offsetHeight}px`
-    target.style.height = 0 
-    target.style.paddingTop = 0 
-    target.style.paddingBottom = 0 
+    target.style.height = 0
+    target.style.paddingTop = 0
+    target.style.paddingBottom = 0
     target.style.marginTop = 0
     target.style.marginBottom = 0
     target.style.overflow = "hidden"
@@ -32,19 +32,19 @@ export const slideDown = (target, duration) => {
     }
     target.style.display = display
     const height = target.offsetHeight
-    target.style.height = 0 
-    target.style.paddingTop = 0 
+    target.style.height = 0
+    target.style.paddingTop = 0
     target.style.paddingBottom = 0
-    target.style.marginTop = 0 
-    target.style.marginBottom = 0 
+    target.style.marginTop = 0
+    target.style.marginBottom = 0
     target.style.overflow = "hidden"
     target.style.boxSizing = "border-box"
     target.style.transitionProperty = "height, margin, padding"
     target.style.transitionDuration = `${duration}ms`
     target.style.height = `${height}px`
-    target.style.removeProperty("padding-top") 
-    target.style.removeProperty("padding-bottom") 
-    target.style.removeProperty("margin-top") 
+    target.style.removeProperty("padding-top")
+    target.style.removeProperty("padding-bottom")
+    target.style.removeProperty("margin-top")
     target.style.removeProperty("margin-bottom")
     window.setTimeout(() => {
         target.style.removeProperty("height")
@@ -64,7 +64,8 @@ export const slideToggle = (target, duration = 500) => {
 export function fadeOut(el) {
     el.style.opacity = 1
     ;(function fade() {
-        if ((el.style.opacity -= 0.1) <= 0) {
+        el.style.opacity -= 0.1
+        if (el.style.opacity <= 0) {
             el.style.display = "none"
             el.style.opacity = null
         } else {
@@ -78,7 +79,8 @@ export function fadeIn(el, display) {
     el.style.display = display || "block"
     ;(function fade() {
         let val = parseFloat(el.style.opacity)
-        if (!((val += 0.1) > 1)) {
+        val += 0.1
+        if (!(val > 1)) {
             el.style.opacity = val
             requestAnimationFrame(fade)
         }

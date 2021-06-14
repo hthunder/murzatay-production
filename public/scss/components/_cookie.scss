@@ -1,47 +1,47 @@
 @use '../abstracts/variables';
 
 .cookie {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    width: 900px;
-    max-width: 90%;
-    transform: translateX(-50%);
-    padding: 25px;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
+	align-items: center;
+	background-color: var(--white);
+	border-radius: 4px;
+	bottom: 15px;
+	box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
+	display: none;
+	justify-content: space-between;
+	left: 50%;
+	max-width: 90%;
+	padding: 25px;
+	position: fixed;
+	transform: translateX(-50%);
+	width: 900px;   
       
-    &__text {
-        margin: 0;
-        font-family: Raleway;
-        text-align: left;
-    }   
-      
-    @media (min-width: 576px){
-        &.show {
-          display: flex;
-        }
+	@media (min-width: 576px) {
+		&.show {
+			display: flex;
+		}
 
-        &__button {
-          margin: 0 0 0 25px;
-          padding: 5px;
-          border-color: variables.$potters-clay-60;
-          background-color: variables.$potters-clay-60;
-        }
-    }
+		&__button {
+			background-color: variables.$potters-clay-60;
+			border-color: variables.$potters-clay-60;
+			margin: 0 0 0 25px;
+			padding: 5px;
+		}
+	}
       
-    @media (max-width: 575px){
-        &.show {
-          display: block;
-          text-align: left;
-        }
+	@media (max-width: 575px) {
+		&.show {
+			display: block;
+			text-align: left;
+		}
 
-        &__button {
-          margin: 10px 0 0 0;
-        }
-    }
+		&__button {
+			margin: 10px 0 0;
+		}
+	}
+      
+	&__text {
+		font-family: Raleway;
+		margin: 0;
+		text-align: left;
+	}
 }

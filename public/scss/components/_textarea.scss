@@ -1,29 +1,27 @@
 @use '../abstracts/variables';
 
 .textarea {
-    font-size: var(--text-sm);
-    padding: 4px;
-    resize: none;
-    width: 100%;
-    height: 75px;
-    background-color: variables.$tumbleweed-30;
-    border: 1px solid variables.$potters-clay;
-    border-radius: 5px;
-    font-family: Raleway;
-    font-weight: 400;
-    outline: none;
+	background-color: variables.$tumbleweed-30;
+	border: 1px solid variables.$potters-clay;
+	border-radius: 5px;
+	font-family: Raleway;
+	font-size: var(--text-sm);
+	font-weight: 400;
+	height: 75px;
+	outline: none;
+	padding: 4px;
+	resize: none;
+	width: 100%;
 
-    &_medium {
-        height: 120px;
-        background-color: variables.$tumbleweed;
-        border: 2px solid variables.$potters-clay;
-        display: block;
-    }
+	&_medium {
+		background-color: variables.$tumbleweed;
+		border: 2px solid variables.$potters-clay;
+		display: block;
+		height: 120px;
+	}
 
-    &_dark {
-        background-color: variables.$tumbleweed;
-        border: 2px solid variables.$dusty-gray;
-    }
+	&_dark {
+		background-color: variables.$tumbleweed;
+		border: 2px solid variables.$dusty-gray;
+	}
 }
-
-        

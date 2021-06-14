@@ -9,9 +9,13 @@ setAboutEditFormListener()
 
 const deleteArticleButton = document.querySelector(".articles__delete-button")
 const deleteArticleForm = document.querySelector(".articles__delete-form")
-areYouSurePrompt(deleteArticleButton, "Вы уверены, что хотите удалить эту статью?", () => {
-    deleteArticleForm.submit()
-})
+areYouSurePrompt(
+    deleteArticleButton,
+    "Вы уверены, что хотите удалить эту статью?",
+    () => {
+        deleteArticleForm.submit()
+    }
+)
 
 const login = document.querySelector(".nav__button_login")
 const popupLogin = document.querySelector(".pop-up__login")
@@ -24,21 +28,21 @@ const cancelSignup = document.querySelector(
 )
 
 if (login) {
-    login.onclick = function () {
+    login.onclick = () => {
         slideToggle(popupLogin)
         fadeIn(overlay)
     }
 }
 
 if (cancelLogin) {
-    cancelLogin.addEventListener("click", function (e) {
+    cancelLogin.addEventListener("click", () => {
         slideToggle(popupLogin)
         fadeOut(overlay)
     })
 }
 
 if (overlay) {
-    overlay.addEventListener("click", function (e) {
+    overlay.addEventListener("click", () => {
         fadeOut(popupLogin)
         fadeOut(overlay)
         fadeOut(popupSignup)
@@ -46,14 +50,14 @@ if (overlay) {
 }
 
 if (signup) {
-    signup.onclick = function () {
+    signup.onclick = () => {
         slideToggle(popupSignup)
         fadeIn(overlay)
     }
 }
 
 if (cancelSignup) {
-    cancelSignup.addEventListener("click", function (e) {
+    cancelSignup.addEventListener("click", () => {
         slideToggle(popupSignup)
         fadeOut(overlay)
     })
@@ -64,21 +68,21 @@ if (cancelSignup) {
 const burger = document.querySelector(".nav__burger")
 const menu = document.querySelector(".nav__list")
 
-burger.onclick = function () {
+burger.onclick = () => {
     menu.classList.toggle("nav__list_opened")
 }
 
 const search = document.querySelector(".nav__search")
 const searchField = document.querySelector(".nav__search-form")
 
-search.onclick = function () {
+search.onclick = () => {
     searchField.classList.toggle("nav__search-form_opened")
 }
 
 const rubricBtn = document.querySelector(".header__rubrics-btn")
 const rubrics = document.querySelector(".rubrics")
 
-rubricBtn.onclick = function () {
+rubricBtn.onclick = () => {
     rubrics.classList.toggle("rubrics_opened")
 }
 
@@ -100,7 +104,7 @@ function checkCookies() {
     }
 
     // При клике на кнопку, в локальное хранилище записывается текущая дата в системе UNIX
-    cookieBtn.addEventListener("click", function () {
+    cookieBtn.addEventListener("click", () => {
         localStorage.setItem("cookieDate", Date.now())
         cookieNotification.classList.remove("show")
     })

@@ -1,63 +1,63 @@
 @use '../abstracts/variables';
 
 .about {
-  &__title {
-    font-family: Lora;
-    font-weight: 500;
-    text-align: center;
-    width: 40%;
-    margin: 0 auto;
-    padding: 21px 0 0 0;  
-  }
 
-  &__author-info {
-    margin-top: 34px;
-    display: flex;
-    align-items: flex-start;  
-  }
+	@media #{variables.$media-md} {
+		&__text {
+			margin-bottom: 20px;
+			max-width: 98%;
+			text-align: justify;  
+		}
+	}
 
-  &__author-img {
-    object-fit: cover;
-    margin-right: 30px;
-    max-width: 300px;
-    max-height: 300px;  
-  }
+	@media #{variables.$media-sm} {
+		&__title {
+			text-align: center;
+			width: 80%;
+		}
 
-  &__author-text {
-    max-width: 568px;
-    font-family: Raleway;
-    text-indent: 18px;
-    line-height: calc(1.5 * var(--text));
-  }
+		&__author-info {
+			display: block;
+			margin-top: 24px;
+		}
 
-  @media #{variables.$media-md} {
-    &__text {
-      max-width: 98%;
-      text-align: justify;
-      margin-bottom: 20px;  
-    }
-  }
+		&__author-img {
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 10px;
+		}
 
-  @media #{variables.$media-sm} {
-    &__title {
-      text-align: center;
-      width: 80%;
-    }
+		&__author-text {
+			margin-top: 20px;
+			max-width: 98%;
+		}
+	}
+	&__title {
+		font-family: Lora;
+		font-weight: 500;
+		margin: 0 auto;
+		padding: 21px 0 0;
+		text-align: center;
+		width: 40%;  
+	}
 
-    &__author-info {
-      margin-top: 24px;
-      display: block;
-    }
+	&__author-info {
+		align-items: flex-start;
+		display: flex;
+		margin-top: 34px;  
+	}
 
-    &__author-img {
-      margin: 0 auto;
-      display: block;
-      margin-bottom: 10px;
-    }
+	&__author-img {
+		margin-right: 30px;
+		max-height: 300px;
+		max-width: 300px;
+		object-fit: cover;  
+	}
 
-    &__author-text {
-      margin-top: 20px;
-      max-width: 98%;
-    }
-  }
+	&__author-text {
+		font-family: Raleway;
+		line-height: calc(1.5 * var(--text));
+		max-width: 568px;
+		text-indent: 18px;
+	}
 }

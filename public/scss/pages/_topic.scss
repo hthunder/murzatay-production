@@ -1,160 +1,158 @@
 @use '../abstracts/variables';
 
 .topic {
-  &__content {
-    position: relative;
-    padding: 0px 80px 32px;
-    width: 100%;
-  }
+    @media #{variables.$media-sm} {
+        &__add-favourite {
+            display: block;
+            margin-left: auto;
+            position: initial;
+        }
 
-  &__add-favourite {
-    background-color: transparent;
-    background-image: url(/img/icons/heart.svg);
-    border: none;
-    margin-top: 16px;
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    background-size: 28px 28px;
-    position: absolute;
-    left: 26px;
-    top: 50px;
-  }
+        &__title {
+            font-size: var(--text-xl);
+        }
 
-  &__add-favourite_active {
-    background-image: url(/img/icons/heart-added.svg);
-  }
+        &__layout {
+            max-width: 100%;
+        }
 
-  &__title {
-    font-family: Lora;
-    font-weight: 500;
-    text-align: left;
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 24px;
-    margin-top: 15px;
-  }
+        &__content {
+            padding: 0 20px 32px;
+            width: 100%;
+        }
+    }
+    &__content {
+        padding: 0 80px 32px;
+        position: relative;
+        width: 100%;
+    }
 
-  &__layout {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-
-  &__layout p {
-    line-height: calc(1.5 * var(--text));
-    margin: 15px 0;
-  }
-
-  &__layout img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  @media #{variables.$media-sm} {
     &__add-favourite {
-      margin-left: auto;
-      display: block;
-      position: initial;
+        background-color: transparent;
+        background-image: url("/img/icons/heart.svg");
+        background-repeat: no-repeat;
+        background-size: 28px 28px;
+        border: 0;
+        cursor: pointer;
+        height: 28px;
+        left: 26px;
+        margin-top: 16px;
+        position: absolute;
+        top: 50px;
+        width: 28px;
+    }
+
+    &__add-favourite_active {
+        background-image: url("/img/icons/heart-added.svg");
     }
 
     &__title {
-      font-size: var(--text-xl);
+        font-family: Lora;
+        font-weight: 500;
+        margin: 0 auto;
+        margin-bottom: 24px;
+        margin-top: 15px;
+        text-align: left;
+        width: 100%;
     }
 
     &__layout {
-      max-width: 100%;
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 500;
+        margin-bottom: 12px;
     }
 
-    &__content {
-      padding: 0px 20px 32px;
-      width: 100%;
+    &__layout p {
+        line-height: calc(1.5 * var(--text));
+        margin: 15px 0;
     }
-  }
+
+    &__layout img {
+        height: auto;
+        max-width: 100%;
+    }
 }
 
 .comments {
-  &__sc-textarea {
-    margin-bottom: 12px;
-  }
-
-  &__add-button {
-    margin-bottom: 24px;
-  }
-
-  &__instance {
-    display: flex;
-    margin-bottom: 16px;
-  }
-
-  &__instance-ava {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-
-  &__instance-content {
-    width: calc(100% - 95px);
-  }
-
-  &__instance-content_hidden {
-    display: none;
-  }
-
-  &__instance-author {
-    font-family: Lora;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-
-  &__instance-text {
-    word-wrap: break-word;
-    font-family: Raleway;
-    font-size: var(--text-sm);
-  }
-
-  &__instance-date {
-    font-family: Raleway;
-    font-size: var(--text-xs);
-  }
-
-  &__form {
-    margin-top: 8px;
-  }
-
-  &__welcome-message {
-    margin-top: 24px;
-    max-width: 640px;
-    margin-bottom: 5px;
-    font-family: Lora;
-    font-weight: 500;
-  }
-
-  &__add-form {
-    position: relative;
-  }
-
-  &__unauthorized {
-    margin: 12px 0;
-    font-size: var(--text-sm);
-  }
-
-  &__temp-form {
-    position: relative;
-    width: 100%;
-  }
-
-  &__temp-form_hidden {
-    display: none;
-  }
-
-  @media #{variables.$media-sm} {
-    &__welcome-message {
-      margin-top: 10px;
+    @media #{variables.$media-sm} {
+        &__welcome-message {
+            margin-top: 10px;
+        }
     }
-  }
+    &__sc-textarea {
+        margin-bottom: 12px;
+    }
+
+    &__add-button {
+        margin-bottom: 24px;
+    }
+
+    &__instance {
+        display: flex;
+        margin-bottom: 16px;
+    }
+
+    &__instance-ava {
+        height: 85px;
+        margin-right: 10px;
+        object-fit: cover;
+        width: 85px;
+    }
+
+    &__instance-content {
+        width: calc(100% - 95px);
+    }
+
+    &__instance-content_hidden {
+        display: none;
+    }
+
+    &__instance-author {
+        font-family: Lora;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    &__instance-text {
+        font-family: Raleway;
+        font-size: var(--text-sm);
+        word-wrap: break-word;
+    }
+
+    &__instance-date {
+        font-family: Raleway;
+        font-size: var(--text-xs);
+    }
+
+    &__form {
+        margin-top: 8px;
+    }
+
+    &__welcome-message {
+        font-family: Lora;
+        font-weight: 500;
+        margin-bottom: 5px;
+        margin-top: 24px;
+        max-width: 640px;
+    }
+
+    &__add-form {
+        position: relative;
+    }
+
+    &__unauthorized {
+        font-size: var(--text-sm);
+        margin: 12px 0;
+    }
+
+    &__temp-form {
+        position: relative;
+        width: 100%;
+    }
+
+    &__temp-form_hidden {
+        display: none;
+    }
 }

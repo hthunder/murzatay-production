@@ -13,9 +13,13 @@ export const addFavourite = () => {
             const data = await res.json()
             if (
                 (data.favourites &&
-                    !favouriteBtn.classList.contains("topic__add-favourite_active")) ||
+                    !favouriteBtn.classList.contains(
+                        "topic__add-favourite_active"
+                    )) ||
                 (!data.favourites &&
-                    favouriteBtn.classList.contains("topic__add-favourite_active"))
+                    favouriteBtn.classList.contains(
+                        "topic__add-favourite_active"
+                    ))
             ) {
                 favouriteBtn.classList.toggle("topic__add-favourite_active")
             }

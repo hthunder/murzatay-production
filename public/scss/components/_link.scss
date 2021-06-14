@@ -1,20 +1,20 @@
 @use '../abstracts/variables';
 
 .link {
-    background-color: transparent;
-    text-decoration: none;
-    color: variables.$potters-clay;
-    border: none;
-    font-family: Raleway;
-    font-size: var(--text-sm);
-    font-weight: 400;
-    text-align: right;
-    width: 100%;
-    max-width: 640px;
-    padding-right: 20px;
+	background-color: transparent;
+	border: 0;
+	color: variables.$potters-clay;
+	font-family: Raleway;
+	font-size: var(--text-sm);
+	font-weight: 400;
+	max-width: 640px;
+	padding-right: 20px;
+	text-align: right;
+	text-decoration: none;
+	width: 100%;
 
-    &:hover {
-        color: variables.$bourbon;
-        cursor: pointer;
-    }
+	&:hover {
+		color: variables.$bourbon;
+		cursor: pointer;
+	}
 }

@@ -1,62 +1,62 @@
 @use '../abstracts/variables';
 
 .footer {
-    background-color: variables.$bronze;
-    max-width: 1140px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 5px 15px;
-    display: flex;
-    justify-content: space-between;
+	background-color: variables.$bronze;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	max-width: 1140px;
+	padding: 5px 15px;
+	width: 100%;
 
-    &__links-list {
-        list-style: none;
-        margin-top: 23px;
-        display: flex;
-        align-items: flex-end;
-    }
+	@media #{variables.$media-md} {
+		flex-wrap: wrap;
+		max-width: 1023px;
+		min-width: 751px;
 
-    &__links-item {
-        margin-right: 28px;
-        text-decoration: none;
-    }
+		&__links-list {
+			flex-wrap: wrap;
+			margin-top: 23px;
+			max-width: 100%;
+		}
+	}
 
-    &__link {
-        display: inline-block;
-        font-family: Lora;
-        font-weight: 500;
-        text-align: center;
-        color: variables.$di-serria;
-        text-decoration: none;
-        height: 40px;
-        vertical-align: middle;
-    }
+	@media #{variables.$media-sm} {
+		flex-wrap: wrap;
+		max-width: 749px;
 
-    &__link:hover {
-        color: variables.$carrot-orange-80;
-        text-shadow: variables.$selective-yellow-30 1px 0px;
-    }
+		&__links-list {
+			flex-wrap: wrap;
+			margin-top: 23px;
+			max-width: 100%;
+		}
+	}
 
-    @media #{variables.$media-md} {
-        min-width: 751px;
-        max-width: 1023px;
-        flex-wrap: wrap;
+	&__links-list {
+		align-items: flex-end;
+		display: flex;
+		list-style: none;
+		margin-top: 23px;
+	}
 
-        &__links-list {
-            max-width: 100%;
-            margin-top: 23px;
-            flex-wrap: wrap;
-        }
-    }
+	&__links-item {
+		margin-right: 28px;
+		text-decoration: none;
+	}
 
-    @media #{variables.$media-sm} {
-        max-width: 749px;
-        flex-wrap: wrap;
+	&__link {
+		color: variables.$di-serria;
+		display: inline-block;
+		font-family: Lora;
+		font-weight: 500;
+		height: 40px;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+	}
 
-        &__links-list {
-            max-width: 100%;
-            margin-top: 23px;
-            flex-wrap: wrap;
-        }
-    }
+	&__link:hover {
+		color: variables.$carrot-orange-80;
+		text-shadow: variables.$selective-yellow-30 1px 0;
+	}
 }

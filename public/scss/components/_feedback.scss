@@ -1,32 +1,32 @@
 @use '../abstracts/variables';
 
 .feedback {
-    max-width: 240px;
-    width: 20%;
-    margin-top: 23px;
+	margin-top: 23px;
+	max-width: 240px;
+	width: 20%;
 
-    &__email {
-        width: 100%;
-        background-color: variables.$tumbleweed;
-        border: 2px solid variables.$dusty-gray;
-        border-radius: 5px;
-        font-family: Raleway;
-        font-weight: 400;
-        outline: none;
-        margin-top: 5px;
-        padding: 4px;
-    }
+	@media #{variables.$media-md} {
+		display: none;
+	}
 
-    &__submit-button {
-        margin-top: 8px;
-        border: 2px solid variables.$dusty-gray;
-    }
+	@media #{variables.$media-sm} {
+		display: none;
+	}
 
-    @media #{variables.$media-md} {
-        display: none;
-    }
+	&__email {
+		background-color: variables.$tumbleweed;
+		border: 2px solid variables.$dusty-gray;
+		border-radius: 5px;
+		font-family: Raleway;
+		font-weight: 400;
+		margin-top: 5px;
+		outline: none;
+		padding: 4px;
+		width: 100%;
+	}
 
-    @media #{variables.$media-sm} {
-        display: none;
-    }
+	&__submit-button {
+		border: 2px solid variables.$dusty-gray;
+		margin-top: 8px;
+	}
 }

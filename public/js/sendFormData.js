@@ -13,9 +13,7 @@ export const sendForm = (formId, url) => {
                 },
                 body: JSON.stringify(Object.fromEntries(formData)),
             })
-                .then((res) => {
-                    return res.json()
-                })
+                .then((res) => res.json())
                 .then((resJson) => {
                     if (resJson.redirected) {
                         window.location.href = resJson.redirectUrl

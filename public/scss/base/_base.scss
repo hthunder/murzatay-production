@@ -1,31 +1,31 @@
 @use '../abstracts/variables';
 
 * {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 .open {
-    display: initial;
+	display: initial;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 html {
-    font-size: 112.5%;
-    // @media (max-width: 750px) {
-    //     font-size: 100%;
-    // }
+	font-size: 112.5%;
+	// @media (max-width: 750px) {
+	//     font-size: 100%;
+	// }
 }
 
 .body {
-    background-color: variables.$tumbleweed;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+	background-color: variables.$tumbleweed;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 h1 { font-size: var(--text-xxl); }

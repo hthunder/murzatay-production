@@ -1,5 +1,5 @@
-$media-md: "screen and (min-width: 750px) and (max-width: 1024px)";
-$media-sm: "screen and (max-width: 750px)";
+$media-md: 'screen and (min-width: 750px) and (max-width: 1024px)';
+$media-sm: 'screen and (max-width: 750px)';
 
 $selective-yellow: rgb(255, 188, 4);
 $torch-red: rgb(255, 0, 51);
@@ -16,12 +16,14 @@ $spicy-mix: rgb(134, 92, 68);
 $soya-bean: rgb(107, 97, 84);
 $quincy: rgb(92, 64, 41);
 $bronze: rgb(64, 31, 9);
+$black: #000;
+$white: #fff;
 
 $potters-clay-25: rgba(140, 91, 62, 0.25);
 $potters-clay-30: rgba(140, 91, 62, 0.3);
 $potters-clay-40: rgba(140, 91, 62, 0.4);
 $potters-clay-60: rgba(140, 91, 62, 0.6);
-$tumbleweed-30: rgba(217, 182, 139, 0.30);
+$tumbleweed-30: rgba(217, 182, 139, 0.3);
 $tumbleweed-65: rgba(217, 182, 139, 0.65);
 $spicy-mix-35: rgba(134, 92, 68, 0.35);
 $spicy-mix-65: rgba(134, 92, 68, 0.65);
@@ -34,28 +36,28 @@ $selective-yellow-30: rgba(255, 188, 4, 0.3);
 //typography
 
 :root {
-    /* type scale */
-    --text-scale-ratio: 1.125;
-    --text-xs: calc(var(--text-sm) / var(--text-scale-ratio)); //14.2
-    --text-sm: calc(var(--text) / var(--text-scale-ratio)); //16
-    --text: 1rem; // text-base 18
-    --text-md: calc(var(--text) * var(--text-scale-ratio)); // h4 20.25
-    --text-lg: calc(var(--text-md) * var(--text-scale-ratio)); // h3 22.8
-    --text-xl: calc(var(--text-lg) * var(--text-scale-ratio)); // h2 25.6
-    --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio)); // h1 28.8
+	/* type scale */
+	--text-scale-ratio: 1.125;
+	--text-xs: calc(var(--text-sm) / var(--text-scale-ratio)); //14.2
+	--text-sm: calc(var(--text) / var(--text-scale-ratio)); //16
+	--text: 1rem; // text-base 18
+	--text-md: calc(var(--text) * var(--text-scale-ratio)); // h4 20.25
+	--text-lg: calc(var(--text-md) * var(--text-scale-ratio)); // h3 22.8
+	--text-xl: calc(var(--text-lg) * var(--text-scale-ratio)); // h2 25.6
+	--text-xxl: calc(var(--text-xl) * var(--text-scale-ratio)); // h1 28.8
 }
 
-  // --space-unit: 1em;
-    // --space-xs:   calc(0.5 * var(--space-unit));
-    // --space-sm:   calc(0.75 * var(--space-unit));
-    // --space-md:   calc(1.25 * var(--space-unit));
-    // --space-lg:   calc(2 * var(--space-unit));
-    // --space-xl:   calc(3.25 * var(--space-unit));
-    // --space-xs:   calc(0.5 * var(--space-unit));
-    // --space-sm:   calc(0.75 * var(--space-unit));
-    // --space-md:   calc(1.25 * var(--space-unit));
-    // --space-lg:   calc(2 * var(--space-unit));
-    // --space-xl:   calc(3.25 * var(--space-unit));
+// --space-unit: 1em;
+// --space-xs:   calc(0.5 * var(--space-unit));
+// --space-sm:   calc(0.75 * var(--space-unit));
+// --space-md:   calc(1.25 * var(--space-unit));
+// --space-lg:   calc(2 * var(--space-unit));
+// --space-xl:   calc(3.25 * var(--space-unit));
+// --space-xs:   calc(0.5 * var(--space-unit));
+// --space-sm:   calc(0.75 * var(--space-unit));
+// --space-md:   calc(1.25 * var(--space-unit));
+// --space-lg:   calc(2 * var(--space-unit));
+// --space-xl:   calc(3.25 * var(--space-unit));
 // @media (max-width: 74rem) { /* responsive decision applied to all text elements */
 //     :root {
 //       --text-base-size: 1.25em;
