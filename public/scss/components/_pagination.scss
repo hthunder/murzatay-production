@@ -1,37 +1,37 @@
 @use '../abstracts/variables';
 
 .pagination {
-	margin-bottom: 10px;
-	margin-top: 40px;
-	max-width: 854px;
-	text-align: center;
-      
-	&__page {
-		background-color: transparent;
-		border: 0;
-		font-family: 'Lora';
-		font-size: var(--text-sm);
-		font-weight: 400;
-		margin-right: 5px;
-	}
+    margin-bottom: 10px;
+    margin-top: 40px;
+    max-width: 854px;
+    text-align: center;
 
-	&__page_current {
-		color: variables.$potters-clay;
-	}
-      
-	&__page:hover {
-		color: variables.$bourbon;
-		cursor: pointer;
-	}
-      
-	&__page:focus {
-		outline: none;
-	}
-      
-	&__dots {
-		font-family: 'Lora';
-		font-size: var(--text-sm);
-		font-weight: 400;
-		margin-right: 5px;
-	}
+    &__page {
+        background-color: transparent;
+        border: 0;
+        font-family: "Lora";
+        font-size: var(--text-sm);
+        font-weight: 400;
+        margin-right: 5px;
+    }
+
+    &__page_current {
+        color: variables.$potters-clay;
+    }
+
+    &__page:hover {
+        color: variables.$bourbon;
+        cursor: pointer;
+    }
+
+    &__page:focus {
+        outline: none;
+    }
+
+    &__dots {
+        font-family: "Lora";
+        font-size: var(--text-sm);
+        font-weight: 400;
+        margin-right: 5px;
+    }
 }

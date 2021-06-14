@@ -1,161 +1,161 @@
 @use '../abstracts/variables';
 
 .my-page {
+    &__about {
+        display: flex;
+        margin-top: 24px;
+        max-width: 900px;
+    }
 
-	@media #{variables.$media-sm} {
-		&__favourite-article {
-			flex-direction: column;
-			padding: 10px;
-		}
+    &__about-field {
+        font-family: Lora;
+        margin-bottom: 5px;
+        max-width: 695px;
+        text-align: left;
+    }
 
-		&__favourite-img {
-			margin-bottom: 10px;
-			margin-right: 0;
-		}
+    &__about-avatar {
+        max-height: 181px;
+        max-width: 203px;
+        object-fit: cover;
+    }
 
-		&__about {
-			display: block;
-			max-width: 100%;
-			text-align: center;    
-		}
+    &__about-info {
+        margin-left: 16px;
+    }
 
-		&__about-info {
-			margin-left: 0;
-			max-width: 95%;
-			text-align: left;
-		}
+    &__about-form-label {
+        display: block;
+        margin: 5px 0;
+    }
 
-		&__about-edit-button {
-			margin: 10px 0;
-		}
+    &__about-form-input {
+        font-family: "Lora";
+        padding: 2px;
+    }
 
-		&__about-avatar {
-			max-width: 100%;
-		}
-	}
-	&__about {
-		display: flex;
-		margin-top: 24px;
-		max-width: 900px;
-	}
+    &__about-form-textarea {
+        margin-top: 4px;
+    }
 
-	&__about-field {
-		font-family: Lora;
-		margin-bottom: 5px;
-		max-width: 695px;
-		text-align: left;
-	}
+    &__about-edit-form {
+        font-family: "Lora";
+        word-break: break-word;
+    }
 
-	&__about-avatar {
-		max-height: 181px;
-		max-width: 203px;
-		object-fit: cover;
-	}
+    &__about-edit-button {
+        margin-bottom: 8px;
+    }
 
-	&__about-info {
-		margin-left: 16px;
-	}
+    &__about-edit-form_hidden,
+    &__about-fields_hidden {
+        display: none;
+    }
 
-	&__about-form-label {
-		display: block;
-		margin: 5px 0;
-	}
+    &__favourite {
+        background-color: variables.$potters-clay-25;
+        border-radius: 2px;
+        margin-top: 35px;
+        padding: 5px;
+    }
 
-	&__about-form-input {
-		font-family: 'Lora';
-		padding: 2px;
-	}
+    &__favourite-section-title {
+        font-family: Lora;
+        font-weight: 500;
+        margin-bottom: 4px;
+        margin-top: 8px;
+        text-align: center;
+    }
 
-	&__about-form-textarea {
-		margin-top: 4px;
-	}
+    &__favourite-article {
+        align-items: center;
+        border: 1px solid variables.$potters-clay-30;
+        border-radius: 4px;
+        display: flex;
+        margin-bottom: 5px;
+        padding: 2px;
+    }
 
-	&__about-edit-form {
-		font-family: 'Lora';
-		word-break: break-word;
-	}
+    &__favourite-img {
+        margin-right: 32px;
+        max-height: 100px;
+        object-fit: cover;
+    }
 
-	&__about-edit-button {
-		margin-bottom: 8px;
-	}
+    &__favourite-preview-text {
+        font-family: Raleway;
+        font-size: var(--text-sm);
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
 
-	&__about-edit-form_hidden,
-	&__about-fields_hidden {
-		display: none;
-	}
+    &__comments {
+        background-color: rgba(64, 31, 9, 0.4);
+        border-radius: 2px;
+        margin-bottom: 10px;
+        margin-top: 35px;
+        padding: 5px;
+    }
 
-	&__favourite {
-		background-color: variables.$potters-clay-25;
-		border-radius: 2px;
-		margin-top: 35px;
-		padding: 5px;
-	}
+    &__comments-title {
+        font-family: Lora;
+        font-weight: 500;
+        margin-bottom: 4px;
+        margin-top: 8px;
+        text-align: center;
+    }
 
-	&__favourite-section-title {
-		font-family: Lora;
-		font-weight: 500;
-		margin-bottom: 4px;
-		margin-top: 8px;
-		text-align: center;
-	}
+    &__comment {
+        border: 1px solid variables.$potters-clay-30;
+        border-radius: 4px;
+        display: flex;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
 
-	&__favourite-article {
-		align-items: center;
-		border: 1px solid variables.$potters-clay-30;
-		border-radius: 4px;
-		display: flex;
-		margin-bottom: 5px;
-		padding: 2px;  
-	}
+    &__comment-img {
+        margin-right: 15px;
+        max-height: 85px;
+        max-width: 85px;
+        object-fit: cover;
+    }
 
-	&__favourite-img {
-		margin-right: 32px;
-		max-height: 100px;
-		object-fit: cover;
-	}
+    &__comment-text {
+        font-family: Raleway;
+        font-size: var(--text-sm);
+        padding: 5px;
+        word-break: break-word;
+    }
 
-	&__favourite-preview-text {
-		font-family: Raleway;
-		font-size: var(--text-sm);
-		margin-bottom: 10px;
-		margin-top: 5px;
-	}
+    @media #{variables.$media-sm} {
+        &__favourite-article {
+            flex-direction: column;
+            padding: 10px;
+        }
 
-	&__comments {
-		background-color: rgba(64, 31, 9, 0.4);
-		border-radius: 2px;
-		margin-bottom: 10px;
-		margin-top: 35px;
-		padding: 5px;
-	}
+        &__favourite-img {
+            margin-bottom: 10px;
+            margin-right: 0;
+        }
 
-	&__comments-title {
-		font-family: Lora;
-		font-weight: 500;
-		margin-bottom: 4px;
-		margin-top: 8px;
-		text-align: center;
-	}
+        &__about {
+            display: block;
+            max-width: 100%;
+            text-align: center;
+        }
 
-	&__comment {
-		border: 1px solid variables.$potters-clay-30;
-		border-radius: 4px;
-		display: flex;
-		margin-bottom: 5px;
-		padding: 5px;
-	}
+        &__about-info {
+            margin-left: 0;
+            max-width: 95%;
+            text-align: left;
+        }
 
-	&__comment-img {
-		margin-right: 15px;
-		max-height: 85px;
-		max-width: 85px;
-		object-fit: cover;
-	}
+        &__about-edit-button {
+            margin: 10px 0;
+        }
 
-	&__comment-text {
-		font-family: Raleway;
-		font-size: var(--text-sm);
-		padding: 5px;
-		word-break: break-word;
-	}
+        &__about-avatar {
+            max-width: 100%;
+        }
+    }
 }

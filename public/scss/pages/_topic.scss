@@ -1,26 +1,6 @@
 @use '../abstracts/variables';
 
 .topic {
-    @media #{variables.$media-sm} {
-        &__add-favourite {
-            display: block;
-            margin-left: auto;
-            position: initial;
-        }
-
-        &__title {
-            font-size: var(--text-xl);
-        }
-
-        &__layout {
-            max-width: 100%;
-        }
-
-        &__content {
-            padding: 0 20px 32px;
-            width: 100%;
-        }
-    }
     &__content {
         padding: 0 80px 32px;
         position: relative;
@@ -72,14 +52,30 @@
         height: auto;
         max-width: 100%;
     }
+
+    @media #{variables.$media-sm} {
+        &__add-favourite {
+            display: block;
+            margin-left: auto;
+            position: initial;
+        }
+
+        &__title {
+            font-size: var(--text-xl);
+        }
+
+        &__layout {
+            max-width: 100%;
+        }
+
+        &__content {
+            padding: 0 20px 32px;
+            width: 100%;
+        }
+    }
 }
 
 .comments {
-    @media #{variables.$media-sm} {
-        &__welcome-message {
-            margin-top: 10px;
-        }
-    }
     &__sc-textarea {
         margin-bottom: 12px;
     }
@@ -154,5 +150,11 @@
 
     &__temp-form_hidden {
         display: none;
+    }
+
+    @media #{variables.$media-sm} {
+        &__welcome-message {
+            margin-top: 10px;
+        }
     }
 }

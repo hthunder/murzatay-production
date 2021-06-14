@@ -1,22 +1,22 @@
 @use '../abstracts/variables';
 
 .sc-textarea {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-	&__counter {
-		font-family: inherit;
-		font-size: var(--text-xs);
-		padding-bottom: 0.3em;
-	}
+    &__counter {
+        font-family: inherit;
+        font-size: var(--text-xs);
+        padding-bottom: 0.3em;
+    }
 
-	&__textarea {
-		background-color: variables.$tumbleweed;
-		border: 0;
-		flex-grow: 1;
-		font-family: inherit;
-		font-size: inherit;
-		outline: none;
-		resize: none;
-	}
+    &__textarea {
+        background-color: variables.$tumbleweed;
+        border: 0;
+        flex-grow: 1;
+        font-family: inherit;
+        font-size: inherit;
+        outline: none;
+        resize: none;
+    }
 }

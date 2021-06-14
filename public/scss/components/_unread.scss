@@ -1,17 +1,17 @@
 @use '../abstracts/variables';
 
 .unread {
-	background-color: variables.$di-serria-65;
-	color: variables.$quincy;
-	font-family: Raleway;
-	font-size: var(--text-xs);
-	font-weight: 500;
-	padding: 1px 3px;
-	position: absolute;
-	top: 0;
+    background-color: variables.$di-serria-65;
+    color: variables.$quincy;
+    font-family: Raleway;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    padding: 1px 3px;
+    position: absolute;
+    top: 0;
 
-	@media #{variables.$media-sm} {
-		left: 0;
-		top: 5px;
-	}
+    @media #{variables.$media-sm} {
+        left: 0;
+        top: 5px;
+    }
 }

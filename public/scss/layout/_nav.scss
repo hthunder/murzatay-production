@@ -1,167 +1,167 @@
 @use '../abstracts/variables';
 
 .nav {
-	align-items: center;
-	background-color: variables.$potters-clay;
-	display: flex;
-	justify-content: space-between;
-	margin: 0 auto;
-	max-width: 1140px;
-	min-height: 41px;
-	padding: 3px;
+    align-items: center;
+    background-color: variables.$potters-clay;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1140px;
+    min-height: 41px;
+    padding: 3px;
 
-	@media #{variables.$media-md} {
-		position: relative;
+    &__list {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-around;
+        list-style: none;
+        z-index: 1;
+    }
 
-		&__list {
-			display: none;
-			flex-direction: column;
-			position: absolute;
-			right: 0;
-			top: 40px;
-			width: 50%;
-		}
+    &__item {
+        text-align: center;
+        vertical-align: middle;
+    }
 
-		&__search-form {
-			display: none;
-			left: 0;
-			top: 35px;
-			width: 80%;
-		}
+    &__link {
+        color: #fff;
+        font-family: Raleway;
+        text-align: center;
+        text-decoration: none;
+    }
 
-		&__list_opened,
-		&__search-form_opened {
-			display: flex;
-		}
+    &__link:hover {
+        color: variables.$bronze;
+    }
 
-		&__item {
-			background-color: variables.$leather;
-			border: 2px solid variables.$leather;
-			color: #fff;
-			cursor: pointer;
-			display: inline-block;
-			font-family: Raleway;
-			padding: 5px;
-			text-decoration: none;
-			width: 100%;
-		}
+    &__button {
+        background: transparent;
+        background-color: transparent;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        font-family: Raleway;
+        font-size: var(--text);
+    }
 
-		&__burger,
-		&__search {
-			display: block;
-		}
-	}
+    &__button:focus {
+        border: 1px solid variables.$bronze;
+        border-radius: 3px;
+        color: variables.$bronze;
+        outline: none;
+    }
 
-	@media #{variables.$media-sm} {
-		position: relative;
+    &__button:hover {
+        color: variables.$bronze;
+    }
 
-		&__list {
-			display: none;
-			flex-direction: column;
-			position: absolute;
-			right: 0;
-			top: 40px;
-			width: 50%;
-		}
+    &__search {
+        display: none;
+        margin-right: 3px;
+    }
 
-		&__search-form {
-			display: none;
-			left: 0;
-			top: 35px;
-			width: 80%;
-		}
+    &__search-form {
+        display: flex;
+        max-width: 245px;
+        width: 20.85%;
+    }
 
-		&__list_opened,
-		&__search-form_opened {
-			display: flex;
-		}
-      
-		&__item {
-			background-color: variables.$leather;
-			border: 2px solid variables.$leather;
-			cursor: pointer;
-			display: inline-block;
-			padding: 5px;
-			text-decoration: none;
-			width: 100%;
-		}
+    &__search-field {
+        border: 0;
+        font-size: var(--text-sm);
+        height: 35px;
+        outline: none;
+        padding: 3px;
+        width: 100%;
+    }
 
-		&__burger,
-		&__search {
-			display: block;
-		}
-	}
+    &__burger {
+        background-color: transparent;
+        border: 0;
+        display: none;
+        margin-left: auto;
+        outline: none;
+    }
 
-	&__list {
-		display: flex;
-		flex-grow: 1;
-		justify-content: space-around;
-		list-style: none;
-		z-index: 1;
-	}
+    @media #{variables.$media-md} {
+        position: relative;
 
-	&__item {
-		text-align: center;
-		vertical-align: middle;
-	}
+        &__list {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            width: 50%;
+        }
 
-	&__link {
-		color: #fff;
-		font-family: Raleway;
-		text-align: center;
-		text-decoration: none;
-	}
-      
-	&__link:hover {
-		color: variables.$bronze;
-	}
+        &__search-form {
+            display: none;
+            left: 0;
+            top: 35px;
+            width: 80%;
+        }
 
-	&__button {
-		background: transparent;
-		background-color: transparent;
-		border: 0;
-		color: #fff;
-		cursor: pointer;
-		font-family: Raleway;
-		font-size: var(--text); 
-	}
+        &__list_opened,
+        &__search-form_opened {
+            display: flex;
+        }
 
-	&__button:focus {
-		border: 1px solid variables.$bronze;
-		border-radius: 3px;
-		color: variables.$bronze;
-		outline: none;  
-	}
+        &__item {
+            background-color: variables.$leather;
+            border: 2px solid variables.$leather;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Raleway;
+            padding: 5px;
+            text-decoration: none;
+            width: 100%;
+        }
 
-	&__button:hover {
-		color: variables.$bronze;  
-	}
+        &__burger,
+        &__search {
+            display: block;
+        }
+    }
 
-	&__search {
-		display: none;
-		margin-right: 3px;
-	}
+    @media #{variables.$media-sm} {
+        position: relative;
 
-	&__search-form {
-		display: flex;
-		max-width: 245px;
-		width: 20.85%;
-	}
+        &__list {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            width: 50%;
+        }
 
-	&__search-field {
-		border: 0;
-		font-size: var(--text-sm);
-		height: 35px;
-		outline: none;
-		padding: 3px;
-		width: 100%;
-	}
+        &__search-form {
+            display: none;
+            left: 0;
+            top: 35px;
+            width: 80%;
+        }
 
-	&__burger {
-		background-color: transparent;
-		border: 0;
-		display: none;
-		margin-left: auto;
-		outline: none;
-	}
+        &__list_opened,
+        &__search-form_opened {
+            display: flex;
+        }
+
+        &__item {
+            background-color: variables.$leather;
+            border: 2px solid variables.$leather;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        &__burger,
+        &__search {
+            display: block;
+        }
+    }
 }

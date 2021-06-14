@@ -1,63 +1,63 @@
 @use '../abstracts/variables';
 
 .about {
+    &__title {
+        font-family: Lora;
+        font-weight: 500;
+        margin: 0 auto;
+        padding: 21px 0 0;
+        text-align: center;
+        width: 40%;
+    }
 
-	@media #{variables.$media-md} {
-		&__text {
-			margin-bottom: 20px;
-			max-width: 98%;
-			text-align: justify;  
-		}
-	}
+    &__author-info {
+        align-items: flex-start;
+        display: flex;
+        margin-top: 34px;
+    }
 
-	@media #{variables.$media-sm} {
-		&__title {
-			text-align: center;
-			width: 80%;
-		}
+    &__author-img {
+        margin-right: 30px;
+        max-height: 300px;
+        max-width: 300px;
+        object-fit: cover;
+    }
 
-		&__author-info {
-			display: block;
-			margin-top: 24px;
-		}
+    &__author-text {
+        font-family: Raleway;
+        line-height: calc(1.5 * var(--text));
+        max-width: 568px;
+        text-indent: 18px;
+    }
 
-		&__author-img {
-			display: block;
-			margin: 0 auto;
-			margin-bottom: 10px;
-		}
+    @media #{variables.$media-md} {
+        &__text {
+            margin-bottom: 20px;
+            max-width: 98%;
+            text-align: justify;
+        }
+    }
 
-		&__author-text {
-			margin-top: 20px;
-			max-width: 98%;
-		}
-	}
-	&__title {
-		font-family: Lora;
-		font-weight: 500;
-		margin: 0 auto;
-		padding: 21px 0 0;
-		text-align: center;
-		width: 40%;  
-	}
+    @media #{variables.$media-sm} {
+        &__title {
+            text-align: center;
+            width: 80%;
+        }
 
-	&__author-info {
-		align-items: flex-start;
-		display: flex;
-		margin-top: 34px;  
-	}
+        &__author-info {
+            display: block;
+            margin-top: 24px;
+        }
 
-	&__author-img {
-		margin-right: 30px;
-		max-height: 300px;
-		max-width: 300px;
-		object-fit: cover;  
-	}
+        &__author-img {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
 
-	&__author-text {
-		font-family: Raleway;
-		line-height: calc(1.5 * var(--text));
-		max-width: 568px;
-		text-indent: 18px;
-	}
+        &__author-text {
+            margin-top: 20px;
+            max-width: 98%;
+        }
+    }
 }

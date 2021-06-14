@@ -1,6 +1,4 @@
-.instagram-widget
-{
-
+.instagram-widget {
     background-color: #fff;
     margin: 0 auto;
     max-width: 235px;
@@ -9,14 +7,13 @@
     text-align: center;
     width: 100%;
 
-    &__profile-link
-    {
+    &__profile-link {
         align-items: center;
 
         color: var(--black);
 
         display: flex;
-        font-family: 'Raleway';
+        font-family: "Raleway";
         font-weight: 500;
 
         margin-bottom: 15px;
@@ -24,36 +21,31 @@
         text-decoration: none;
     }
 
-    &__profile-icon
-    {
+    &__profile-icon {
         margin-right: 10px;
     }
 
-    &__photos
-    {
+    &__photos {
         display: flex;
         flex-wrap: wrap;
 
         width: 100%;
     }
 
-    &__photo-link
-    {
+    &__photo-link {
         margin: 5px 0;
         padding: 3px;
         width: calc(100% / 3);
     }
 
-    &__photo-img
-    {
+    &__photo-img {
         height: 65px;
 
         object-fit: contain;
         width: 100%;
     }
 
-    &__hidden-photos
-    {
+    &__hidden-photos {
         display: flex;
     }
 }
