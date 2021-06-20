@@ -1,11 +1,12 @@
-import { countSymbols } from "./counter.js"
-import { Comment, EditForm } from "./components/comment.js"
+import { countSymbols } from "./counter"
+import { EditForm, CommentTextarea, CommentJS } from "./components/comment"
 
-export const deleteCommentRequest = async (comment) => {
-    const { parentNode, id, instance } = comment
-    const res = await fetch(`/api/comments/${id}`, { method: "DELETE" })
+export const deleteCommentRequest = async (commentEl) => {
+    const res = await fetch(`/api/comments/${commentEl.dataset.id}`, {
+        method: "DELETE",
+    })
     if (res.status === 200) {
-        parentNode.removeChild(instance)
+        commentEl.parentNode.removeChild(commentEl)
     }
 }
 
@@ -29,45 +30,52 @@ const cancelEditing = (comment, editingForm) => {
     editingForm.classList.toggle("comments__temp-form_hidden")
 }
 
-const saveEditing = async (comment, editingForm, textareaVal, id) => {
+const saveEditing = async (commentContent, formEl, commentEl, textareaEl) => {
     await saveCommentRequest(
-        comment.querySelector(".comments__instance-text"),
-        textareaVal,
-        id
+        commentContent.querySelector(".comments__instance-text"),
+        textareaEl.value,
+        commentEl.dataset.id
     )
-    comment.classList.toggle("comments__instance-content_hidden")
-    editingForm.classList.toggle("comments__temp-form_hidden")
+    commentContent.classList.toggle("comments__instance-content_hidden")
+    formEl.classList.toggle("comments__temp-form_hidden")
 }
 
-export const editComment = (comment) => {
-    const { instance, id } = comment
-    const instanceText = instance.querySelector(".comments__instance-text")
+const createTempForm = (commentText, commentEl, commentContentEl) => {
+    const formEl = EditForm(commentText, commentEl.dataset.id)
+    const textareaEl = formEl.querySelector(".sc-textarea__textarea")
+    const counterEl = formEl.querySelector(".comments__symbol-counter")
+    const cancelButtonEl = formEl.querySelector(".comments__cancel-button")
+    const saveButtonEl = formEl.querySelector(".comments__save-button")
+
+    commentEl.appendChild(formEl)
+    saveButtonEl.onclick = () => {
+        saveEditing(commentContentEl, formEl, commentEl, textareaEl)
+    }
+    cancelButtonEl.onclick = () => {
+        cancelEditing(commentContentEl, formEl)
+    }
+    countSymbols(counterEl, textareaEl)
+}
+
+export const editComment = (commentEl) => {
+    const commentText = commentEl.querySelector(".comments__instance-text")
         .textContent
-    const instanceContent = instance.querySelector(
+    const commentContentEl = commentEl.querySelector(
         ".comments__instance-content"
     )
-    const tempForm = document.querySelector(".comments__temp-form")
+    const tempFormEl = document.querySelector(
+        `.comments__temp-form[data-id='${commentEl.dataset.id}']`
+    )
 
-    instanceContent.classList.toggle("comments__instance-content_hidden")
-    if (!tempForm) {
-        const { form, textarea, counter, cancelButton, saveButton } = EditForm(
-            instanceText
-        )
-
-        instance.appendChild(form)
-        saveButton.onclick = () => {
-            saveEditing(instanceContent, form, textarea.value, id)
-        }
-        cancelButton.onclick = () => {
-            cancelEditing(instanceContent, form)
-        }
-        countSymbols(counter, textarea)
+    commentContentEl.classList.toggle("comments__instance-content_hidden")
+    if (!tempFormEl) {
+        createTempForm(commentText, commentEl, commentContentEl)
     } else {
-        tempForm.classList.toggle("comments__temp-form_hidden")
-        tempForm.querySelector(".sc-textarea__textarea").value = instanceText
-        tempForm.querySelector(
+        tempFormEl.classList.toggle("comments__temp-form_hidden")
+        tempFormEl.querySelector(".sc-textarea__textarea").value = commentText
+        tempFormEl.querySelector(
             ".comments__symbol-counter"
-        ).innerHTML = `${instanceText.length}/500`
+        ).innerHTML = `${commentText.length}/500`
     }
 
     // Санитайзим пользовательский ввод
@@ -75,10 +83,10 @@ export const editComment = (comment) => {
     // Добавляем всплывающий алерт(неблокирующий), который говорит, что произошла ошибка
 }
 
-export const addCommentRequest = async (button, textarea) => {
+export const addCommentRequest = async (articleId, textarea) => {
     const textareaPtr = textarea
     const data = {
-        articleId: button.dataset.id,
+        articleId,
         text: textarea.value,
     }
     const res = await fetch(`/api/comments`, {
@@ -93,59 +101,68 @@ export const addCommentRequest = async (button, textarea) => {
         textareaPtr.value = ""
         const event = new Event("input")
         textareaPtr.dispatchEvent(event)
-        const wrapper = Comment(commentData)
-        document.querySelector(".comments__add-form").after(wrapper)
+        const commentEl = CommentJS(commentData)
+        document.querySelector(".comments__add-form").after(commentEl)
 
-        const comment = {
-            id: wrapper.dataset.id,
-            wrapper,
-        }
-        const deleteButton = wrapper.querySelector(".comments__delete-button")
-        const editButton = wrapper.querySelector(".comments__edit-button")
-        comment.parentNode = wrapper.parentNode
+        const deleteButton = commentEl.querySelector(".comments__delete-button")
+        const editButton = commentEl.querySelector(".comments__edit-button")
 
         deleteButton.onclick = () => {
-            deleteCommentRequest(comment)
+            deleteCommentRequest(commentEl)
         }
         editButton.onclick = () => {
-            editComment(comment)
+            editComment(commentEl)
         }
     }
 }
 
-export const setListeners = () => {
-    const wrappers = document.querySelectorAll(".comments__instance")
-    const addCommentButton = document.querySelector(".comments__add-button")
-    const addCommentTextarea = document.querySelector(".sc-textarea__textarea")
-    wrappers.forEach((instance) => {
-        const comment = {
-            id: instance.dataset.id,
-            instance,
+const getComments = async () => {
+    const addCommentPlace = document.querySelector(".topic__js-add-comment")
+    const allCommentsPlace = document.querySelector(".topic__js-comments")
+    const articleId = allCommentsPlace.dataset.id
+    if (addCommentPlace) {
+        const formEl = CommentTextarea()
+        addCommentPlace.appendChild(formEl)
+        const addButton = formEl.querySelector(".comments__add-button")
+        const textarea = formEl.querySelector(".sc-textarea__textarea")
+        addButton.onclick = () => {
+            addCommentRequest(articleId, textarea)
         }
-        comment.deleteButton = instance.querySelector(
+    }
+
+    const res = await fetch(`/api/articles/${articleId}/comments`)
+    if (res.status === 200) {
+        const commentsData = await res.json()
+        const commentsArray = commentsData.map((commentData) =>
+            CommentJS(commentData)
+        )
+        commentsArray.forEach((el) => {
+            allCommentsPlace.appendChild(el)
+        })
+    }
+}
+
+export const commentsInit = async () => {
+    await getComments()
+    const commentsNodeList = document.querySelectorAll(".comments__instance")
+    commentsNodeList.forEach((commentEl) => {
+        const deleteButtonEl = commentEl.querySelector(
             ".comments__delete-button"
         )
-        comment.editButton = instance.querySelector(".comments__edit-button")
-        comment.parentNode = instance.parentNode
+        const editButtonEl = commentEl.querySelector(".comments__edit-button")
 
-        if (comment.deleteButton) {
-            comment.deleteButton.onclick = () => {
-                deleteCommentRequest(comment)
+        if (deleteButtonEl) {
+            deleteButtonEl.onclick = () => {
+                deleteCommentRequest(commentEl)
             }
         }
 
-        if (comment.editButton) {
-            comment.editButton.onclick = () => {
-                editComment(comment)
+        if (editButtonEl) {
+            editButtonEl.onclick = () => {
+                editComment(commentEl)
             }
         }
     })
-    if (addCommentButton) {
-        addCommentButton.onclick = () => {
-            addCommentRequest(addCommentButton, addCommentTextarea)
-        }
-    }
 }
 
-setListeners()
 countSymbols()

@@ -40,7 +40,43 @@ router.delete("/comments/:id", apiController.comment_delete)
 // method: post
 // user route
 // private
+// return format
+// [
+//     {
+//         _id: commentId,
+//         user: {
+//             _id: userId,
+//             username,
+//             avatar
+//         },
+//         text,
+//         date,
+//         isEditable: true
+//     }
+// ]
 
 router.post("/comments", apiController.comment_post)
+
+// get all comments
+// url: /api/articles/:articleId/comments
+// method: get
+// user route
+// public
+// return format
+// [
+//     {
+//         _id: commentId,
+//         user: {
+//             _id: userId,
+//             username,
+//             avatar
+//         },
+//         text,
+//         date,
+//         isEditable // only returns true if isEditable
+//     }
+// ]
+
+router.get("/articles/:articleId/comments", apiController.articleComments_get)
 
 module.exports = router

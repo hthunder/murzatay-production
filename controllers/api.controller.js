@@ -7,38 +7,57 @@ const User = require("../models/user.model")
 const { LONG_COMMENT, NOT_LOGGED_IN } = require("../constants")
 const { errorHandler } = require("../util/errorHandler")
 
+exports.articleComments_get = async (req, res) => {
+    try {
+        const { articleId } = req.params
+        const { userId } = req
+        const { comments } = await Article.findById(articleId, "comments")
+            .populate({
+                path: "comments",
+                options: { sort: { date: -1 } },
+                populate: { path: "user", select: "username avatar" },
+            })
+            .lean()
+        if (userId) {
+            const modifiedComments = comments.map((comment) => {
+                if (comment.user._id.toString() === userId.toString()) {
+                    comment.isEditable = true
+                }
+                return comment
+            })
+            return res.status(200).json(modifiedComments)
+        }
+        return res.status(200).json(comments)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 exports.comment_post = async (req, res) => {
     try {
         const { articleId } = req.body
-        let comment
         if (!req.userId) {
             throw new Error(NOT_LOGGED_IN)
         }
-
-        let populatedComment
         if (req.body.text.length <= 500) {
-            comment = new Comment({
-                _id: new mongoose.Types.ObjectId(),
+            const comment = await Comment.create({
                 user: req.userId,
                 text: req.body.text,
             })
-            await comment.save()
-            populatedComment = await (await Comment.findById(comment._id))
-                .populate("user")
-                .execPopulate()
+            const populatedComment = (
+                await comment
+                    .populate({ path: "user", select: "username avatar" })
+                    .execPopulate()
+            ).toObject()
+            populatedComment.isEditable = true
             const article = await Article.findById(articleId)
             article.comments.push(comment._id)
             await article.save()
-        } else {
-            throw new Error(LONG_COMMENT)
+            return res.status(200).json(populatedComment)
         }
-        return res.status(200).json({
-            commentId: populatedComment._id,
-            author: populatedComment.user.username,
-            comment: populatedComment.text,
-            date: populatedComment.date,
-        })
+        throw new Error(LONG_COMMENT)
     } catch (e) {
+        console.log(e)
         return errorHandler(e.message, res)
     }
 }

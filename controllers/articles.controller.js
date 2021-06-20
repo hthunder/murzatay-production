@@ -48,13 +48,11 @@ exports.article_list = async (req, res) => {
 
         let articles
 
-        const findPageArticles = (request) => {
-            return Article.find(request)
+        const findPageArticles = (request) => Article.find(request)
                 .sort("-createdAt")
                 .skip(skip)
                 .limit(limit)
                 .lean()
-        }
 
         if (category === "all") {
             articles = await findPageArticles({})
@@ -130,9 +128,7 @@ exports.article_page = async (req, res) => {
 
         if (req.isLoggedIn) {
             user = await User.findById(req.userId).select("-password").lean()
-            const favouriteArray = user.favourites.map((val) => {
-                return val.toString()
-            })
+            const favouriteArray = user.favourites.map((val) => val.toString())
             // eslint-disable-next-line no-underscore-dangle
             if (favouriteArray.indexOf(article._id.toString()) !== -1) {
                 favourite = true

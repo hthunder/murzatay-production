@@ -22,7 +22,7 @@
             {{/if}}
             {{/if}}
 
-            <h1 class="topic__title"> {{article.title}} </h1>
+            <h1 class="topic__title">{{article.title}}</h1>
             <div class="topic__layout">{{{article.sanitizedHTML}}}</div>
             {{#if isAdmin}}
             <a class="topic__edit-button button" href="/articles/{{article._id}}/edit/">Редактировать пост</a>
@@ -31,48 +31,18 @@
             <section class="topic__comments comments">
                 {{#if isLoggedIn}}
                 <p class="comments__welcome-message">Оставьте свой комментарий</p>
-                <form class="comments__add-form">
-                    <article class="textarea textarea_medium sc-textarea comments__sc-textarea">
-                        <p class="sc-textarea__counter comments__symbol-counter">0/500</p>
-                        <textarea class="sc-textarea__textarea" name="text" maxlength="500"></textarea>    
-                    </article>
-                    <button class="comments__add-button comments__send-button button" type="button"  data-id="{{article._id}}">Отправить</button>
-                </form>
+                <div class="topic__js-add-comment"></div>
                 {{else}}
                 <p class="comments__unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
                 {{/if}}
-                {{#each article.comments}}
-                <article class="comments__instance" data-id="{{this._id}}">
-                    <img class="comments__instance-ava" src="/img/icons/user-profile.svg" alt="Аватарка">
-                    <div class="comments__instance-content">
-                        <p class="comments__instance-author">{{../user.username}}</p>
-                        <p class="comments__instance-text">{{this.text}}</p>
-                        <time class="comments__instance-date" datetime="{{this.machineDate}}">{{this.humanDate}}</time>
-                        {{#if this.canDelete}}
-                        <form class="comments__form">
-                            <button class="comments__delete-button button" type="button">Удалить</button>
-                            <button class="comments__edit-button button" type="button">Редактировать</button> 
-                        </form>
-                        {{/if}}
-                    </div>
-                </article>
-                {{/each}}
+                <div class="topic__js-comments" data-id="{{article._id}}"></div>
             </section>
         </article>
-
         {{> sidebar }}
     </section>
-
     {{> footer }}
-
-
     {{> popup }}
-
     <script type="module" src="/js/dist/main.js"></script>
-    <script type="module" src="/js/comments.js"></script>
-
-
-
 </body>
 
 </html>

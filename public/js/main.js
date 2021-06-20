@@ -4,6 +4,7 @@ import { showMore } from "./instagram_widget.js"
 import { slideToggle, fadeIn, fadeOut } from "./animations.js"
 import { setAboutEditFormListener } from "./about.js"
 import { areYouSurePrompt } from "./areYouSure.js"
+import { router } from "./router.js"
 
 setAboutEditFormListener()
 
@@ -110,3 +111,5 @@ function checkCookies() {
     })
 }
 checkCookies()
+
+router(window.location.pathname)
