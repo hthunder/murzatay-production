@@ -48,8 +48,13 @@ app.use("/users", isLoggedIn, userRoutes)
 app.use("/api", isLoggedIn, apiRoutes)
 // require('./routes/user.routes')(app);
 app.use("/", isLoggedIn, blogRoutes)
-
 app.use(express.static("public"))
+
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+    if (!error.statusCode) error.statusCode = 500
+    return res.status(error.statusCode).json({ error: error.toString() })
+})
 
 const PORT = process.env.PORT || 3000
 const username = process.env.DB_ADMIN_USERNAME
@@ -105,7 +110,7 @@ async function start() {
     try {
         await db.mongoose.connect(
             // `mongodb+srv://${username}:${password}@cluster0.m6k5m.mongodb.net/blog`,
-            'mongodb://127.0.0.1:27017/murzatay',
+            "mongodb://127.0.0.1:27017/murzatay",
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -118,7 +123,7 @@ async function start() {
             console.log(`Server started on port ${PORT}`)
         })
     } catch (e) {
-        console.log('hey')
+        console.log("hey")
         console.log(e)
         process.exit()
     }

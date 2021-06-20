@@ -86,6 +86,7 @@ router.get("/my-page", async (req, res) => {
     const user = await User.findOne({ _id: req.userId })
         .select("-password")
         .lean()
+    if (!user.avatar) user.avatar = "/img/icons/user-profile.svg"
     const articles = await Article.find({
         _id: { $in: user.favourites },
     }).lean()
@@ -98,8 +99,6 @@ router.get("/my-page", async (req, res) => {
         .limit(2)
         .populate("user")
         .lean()
-    // console.log(lastComments)
-    console.log(user)
 
     const [shownPhotos, hiddenPhotos] = await getPhotosList()
     return res.render("my-page", {

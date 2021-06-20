@@ -8,9 +8,8 @@
     }
 
     &__about-field {
-        font-family: Lora;
+        font-family: "Raleway";
         margin-bottom: 5px;
-        max-width: 695px;
         text-align: left;
     }
 
@@ -30,8 +29,17 @@
     }
 
     &__about-form-input {
-        font-family: "Lora";
+        font-size: var(--text-sm);
         padding: 2px;
+    }
+
+    &__avatar-label {
+        cursor: pointer;
+        margin: 0.3em 0;
+    }
+
+    &__avatar-input {
+        display: none;
     }
 
     &__about-form-textarea {
@@ -39,7 +47,7 @@
     }
 
     &__about-edit-form {
-        font-family: "Lora";
+        font-family: "Raleway";
         word-break: break-word;
     }
 

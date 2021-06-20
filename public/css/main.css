@@ -402,6 +402,7 @@ h4 {
 .sidebar__comments-item {
   display: flex;
   margin: 0.5em 0.5em;
+  word-break: break-word;
 }
 .sidebar__comments-img {
   flex-shrink: 0;
@@ -580,25 +581,26 @@ h4 {
 }
 
 .button {
-  background-color: #d9b68b;
+  background-color: #e6cfb3;
   border: 2px solid #8c5b3e;
   border-radius: 10px;
   color: var(--black);
   cursor: pointer;
   display: inline-block;
-  font-family: Lora;
+  font-family: Raleway;
   font-size: var(--text-xs);
   font-weight: 400;
   outline: none;
   padding: 4px 10px;
   text-align: center;
   text-decoration: none;
+  letter-spacing: 0.02em;
 }
 .button_light {
   background-color: rgba(140, 91, 62, 0.25);
   border: 1px solid rgba(140, 91, 62, 0.4);
   border-radius: 3px;
-  padding: 3px;
+  padding: 0.35em 0.7em;
 }
 
 .textarea {
@@ -1201,9 +1203,8 @@ h4 {
   max-width: 900px;
 }
 .my-page__about-field {
-  font-family: Lora;
+  font-family: "Raleway";
   margin-bottom: 5px;
-  max-width: 695px;
   text-align: left;
 }
 .my-page__about-avatar {
@@ -1219,14 +1220,21 @@ h4 {
   margin: 5px 0;
 }
 .my-page__about-form-input {
-  font-family: "Lora";
+  font-size: var(--text-sm);
   padding: 2px;
+}
+.my-page__avatar-label {
+  cursor: pointer;
+  margin: 0.3em 0;
+}
+.my-page__avatar-input {
+  display: none;
 }
 .my-page__about-form-textarea {
   margin-top: 4px;
 }
 .my-page__about-edit-form {
-  font-family: "Lora";
+  font-family: "Raleway";
   word-break: break-word;
 }
 .my-page__about-edit-button {

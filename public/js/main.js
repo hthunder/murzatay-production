@@ -1,10 +1,20 @@
-import { addFavourite } from "./addFavourite.js"
-import { sendForm } from "./sendFormData.js"
-import { showMore } from "./instagram_widget.js"
-import { slideToggle, fadeIn, fadeOut } from "./animations.js"
-import { setAboutEditFormListener } from "./about.js"
-import { areYouSurePrompt } from "./areYouSure.js"
-import { router } from "./router.js"
+import { addFavourite } from "./addFavourite"
+import { sendForm } from "./sendFormData"
+import { showMore } from "./instagram_widget"
+import { slideToggle, fadeIn, fadeOut } from "./animations"
+import { setAboutEditFormListener } from "./about"
+import { areYouSurePrompt } from "./areYouSure"
+import { router } from "./router"
+import { setSizeControl } from "./imgsize_control"
+
+const imgInput = document.getElementById("image")
+const submitBtn = document.querySelector(".edit__submit")
+const myPageAboutFormSubmit = document.querySelector(
+    ".my-page__about-form-submit"
+)
+const myPageAvatarInput = document.querySelector(".my-page__avatar-input")
+setSizeControl(20, submitBtn, imgInput)
+setSizeControl(200, myPageAboutFormSubmit, myPageAvatarInput)
 
 setAboutEditFormListener()
 

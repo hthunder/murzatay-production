@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-const mongoose = require("mongoose")
-
 const Article = require("../models/article.model")
 const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
@@ -20,6 +17,7 @@ exports.articleComments_get = async (req, res) => {
             .lean()
         if (userId) {
             const modifiedComments = comments.map((comment) => {
+                // eslint-disable-next-line no-underscore-dangle
                 if (comment.user._id.toString() === userId.toString()) {
                     comment.isEditable = true
                 }
@@ -39,6 +37,7 @@ exports.comment_post = async (req, res) => {
         if (!req.userId) {
             throw new Error(NOT_LOGGED_IN)
         }
+
         if (req.body.text.length <= 500) {
             const comment = await Comment.create({
                 user: req.userId,
@@ -51,6 +50,7 @@ exports.comment_post = async (req, res) => {
             ).toObject()
             populatedComment.isEditable = true
             const article = await Article.findById(articleId)
+            // eslint-disable-next-line no-underscore-dangle
             article.comments.push(comment._id)
             await article.save()
             return res.status(200).json(populatedComment)

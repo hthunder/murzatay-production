@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const escapeHtml = require('escape-html')
 
 const commentSchema = new mongoose.Schema({
     user: {
@@ -15,6 +16,13 @@ const commentSchema = new mongoose.Schema({
         default: Date.now,
         required: true,
     },
+})
+
+commentSchema.pre("validate", function validate(next) {
+    if (this.text) {
+        this.text = escapeHtml(this.text)
+    }
+    next()
 })
 
 module.exports = mongoose.model("Comment", commentSchema)

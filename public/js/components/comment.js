@@ -1,10 +1,9 @@
 export const CommentJS = (commentData) => {
     const {
         _id,
-        user: { username },
+        user: { username, avatar = "/img/icons/user-profile.svg" },
         text,
         date,
-        avatar = "/img/icons/user-profile.svg",
         isEditable,
     } = commentData
     const article = document.createElement("article")

@@ -133,6 +133,7 @@ const getComments = async () => {
     const res = await fetch(`/api/articles/${articleId}/comments`)
     if (res.status === 200) {
         const commentsData = await res.json()
+        console.log(commentsData)
         const commentsArray = commentsData.map((commentData) =>
             CommentJS(commentData)
         )
