@@ -14,43 +14,6 @@
     <section class="main">
         <div class="main__content">
             <div class="my-page__js-about" data-user-id="{{user._id}}"></div>
-            {{!-- <section class="my-page__about">
-                <img class="my-page__about-avatar" src="{{user.avatar}}" alt="Ваше фото">
-                <div class="my-page__about-info">
-                    <button class="my-page__about-edit-button button button_light" type="button">Редактировать</button>
-                    <div class="my-page__about-fields">
-                        <p class="my-page__about-field my-page__about-username">Ник: {{user.username}}</p>
-                        <p class="my-page__about-field my-page__about-city">Город: {{user.city}}</p>
-                        <p class="my-page__about-field my-page__about-me">Расскажите о себе или о своих питомцах:</p>
-                        <p class="my-page__about-field">{{user.about}}</p>
-                    </div>
-                    <form class="my-page__about-edit-form my-page__about-edit-form_hidden" action="/users/{{user._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
-                        <label class="my-page__avatar-label button button_light">
-                            Загрузить аватар
-                            <input class="my-page__avatar-input" type="file" name="avatar" accept=".jpg, .jpeg, .png">   
-                        </label>
-                        <label class="my-page__about-form-label">
-                            Ник:
-                            <input class="my-page__about-form-input" name="username" type="text" value="{{user.username}}">
-                        </label>
-                        <label class="my-page__about-form-label">
-                            Город:
-                            <input name="city" type="text" value="{{user.city}}" class="my-page__about-form-input">
-                        </label>
-                        <label class="my-page__about-form-label">
-                                Расскажите о себе или своих питомцах:
-                            <textarea maxlength="250" name="about" placeholder="Расскажите о себе или своих питомцах"
-                                class="my-page__about-form-textarea textarea">{{user.about}}</textarea>
-                        </label>
-                        <button class="my-page__about-form-submit button button_light" type="submit" >Готово</button>
-                    </form>
-                    {{#each errors}}
-                    <p class="error">
-                        {{this}}
-                    </p>
-                    {{/each}}
-                </div>
-            </section> --}}
             <section class="my-page__favourite">
                 <h2 class="my-page__favourite-section-title">Избранные статьи</h2>
                 {{#each articles}}
