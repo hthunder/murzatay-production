@@ -8,22 +8,26 @@ const Comment = require("../models/comment.model")
 const { getPhotosList } = require("../util/getPhotosList")
 
 router.get("/", async (req, res) => {
-    const articles = await Article.find().sort("-createdAt").limit(2).lean()
-    const lastComments = await Comment.find()
-        .sort({ date: -1 })
-        .limit(2)
-        .populate("user")
-        .lean()
+    try {
+        const articles = await Article.find().sort("-createdAt").limit(2).lean()
+        const lastComments = await Comment.find()
+            .sort({ date: -1 })
+            .limit(2)
+            .populate("user")
+            .lean()
 
-    const [shownPhotos, hiddenPhotos] = await getPhotosList()
-    res.render("index", {
-        layout: false,
-        isLoggedIn: req.isLoggedIn,
-        lastComments,
-        articles,
-        shownPhotos,
-        hiddenPhotos,
-    })
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
+        return res.render("index", {
+            layout: false,
+            isLoggedIn: req.isLoggedIn,
+            lastComments,
+            articles,
+            shownPhotos,
+            hiddenPhotos,
+        })
+    } catch (e) {
+        return res.status(500).send()
+    }
 })
 
 router.post("/mails", async (req, res) => {
@@ -65,7 +69,7 @@ router.get("/about", async (req, res) => {
             .populate("user")
             .lean()
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
-        res.render("about", {
+        return res.render("about", {
             layout: false,
             lastComments,
             isLoggedIn: req.isLoggedIn,
@@ -73,7 +77,7 @@ router.get("/about", async (req, res) => {
             hiddenPhotos,
         })
     } catch (e) {
-        console.log(e)
+        return res.status(500).send()
     }
 })
 
