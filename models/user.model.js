@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const escapeHtml = require('escape-html')
+const escapeHtml = require("escape-html")
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    city: String,
+    city: { type: String, default: "" },
     roles: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
             ref: "Article",
         },
     ],
-    about: String,
+    about: { type: String, default: "" },
     avatar: String,
 })
 

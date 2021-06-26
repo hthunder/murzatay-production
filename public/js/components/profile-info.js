@@ -1,11 +1,12 @@
 export const ProfileInfo = (profileData) => {
     const {
-        username,
-        city,
-        about,
+        username = "",
+        city = "",
+        about = "",
         avatar = "/img/icons/user-profile.svg",
     } = profileData
     const section = document.createElement("section")
+
     section.classList.add("my-page__about")
     section.innerHTML = `
         <img class="my-page__about-avatar" src="${avatar}" alt="Ваше фото">
