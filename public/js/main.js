@@ -2,21 +2,14 @@ import { addFavourite } from "./addFavourite"
 import { sendForm } from "./sendFormData"
 import { showMore } from "./instagram_widget"
 import { slideToggle, fadeIn, fadeOut } from "./animations"
-import { setAboutEditFormListener } from "./about"
 import { areYouSurePrompt } from "./areYouSure"
 import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
-const myPageAboutFormSubmit = document.querySelector(
-    ".my-page__about-form-submit"
-)
-const myPageAvatarInput = document.querySelector(".my-page__avatar-input")
-setSizeControl(20, submitBtn, imgInput)
-setSizeControl(200, myPageAboutFormSubmit, myPageAvatarInput)
 
-setAboutEditFormListener()
+setSizeControl(20, submitBtn, imgInput)
 
 const deleteArticleButton = document.querySelector(".articles__delete-button")
 const deleteArticleForm = document.querySelector(".articles__delete-form")

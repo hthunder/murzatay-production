@@ -3,6 +3,7 @@ const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const { LONG_COMMENT, NOT_LOGGED_IN } = require("../constants")
 const { errorHandler } = require("../util/errorHandler")
+const { HttpError } = require("../util/HttpError")
 
 exports.articleComments_get = async (req, res) => {
     try {
@@ -98,6 +99,56 @@ exports.comment_put = async (req, res) => {
         return res.status(200).json({ text: comment.text })
     } catch (e) {
         return res.status(403).send(e.message)
+    }
+}
+
+exports.user_get = async (req, res, next) => {
+    try {
+        const userId = req.params.id
+        const user = await User.findById(
+            userId,
+            "about avatar city username"
+        ).lean()
+        if (!user) {
+            throw new HttpError("Пользователь с таким id не существует", 404)
+        }
+
+        return res.status(200).json(user)
+    } catch (e) {
+        return next(e)
+    }
+}
+
+exports.user_patch = async (req, res, next) => {
+    try {
+        const userId = req.params.id
+        const userData = req.body
+
+        const tempUser = await User.findOne({
+            username: req.body.username,
+        }).lean()
+        // eslint-disable-next-line no-underscore-dangle
+        if (tempUser && tempUser._id.toString() !== userId) {
+            throw new HttpError(
+                "Пользователь с таким именем уже существует",
+                409
+            )
+        }
+
+        if (req.file) userData.avatar = `/${req.file.path.split("public/")[1]}`
+
+        const user = await User.findByIdAndUpdate(userId, userData, {
+            new: true,
+            fields: "about avatar city username",
+        }).lean()
+
+        if (!user) {
+            throw new HttpError("Пользователь с таким id не существует", 404)
+        }
+
+        return res.status(200).json(user)
+    } catch (e) {
+        return next(e)
     }
 }
 

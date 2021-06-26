@@ -1,0 +1,84 @@
+GET https://3000-copper-hornet-8j3vlene.ws-eu08.gitpod.io/api/users/60c49623450aa7058b1c900a HTTP/1.1
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzQ5NjIzNDUwYWE3MDU4YjFjOTAwYSIsImF1dGhvcml0aWVzIjp7InVzZXIiOnRydWUsIm1vZGVyYXRvciI6dHJ1ZSwiYWRtaW4iOnRydWV9LCJpYXQiOjE2MjQzNTY1ODUsImV4cCI6MTYyNDQ0Mjk4NX0.Vgv17RiO6hkd4SSCASDNKmvEz4HpLAydFihEwdOOusw
+
+###
+
+# Правильный запрос
+PATCH https://3000-copper-hornet-8j3vlene.ws-eu08.gitpod.io/api/users/60c49623450aa7058b1c900a?_method=PATCH HTTP/1.1
+Content-Type: multipart/form-data; boundary="boundary"
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzQ5NjIzNDUwYWE3MDU4YjFjOTAwYSIsImF1dGhvcml0aWVzIjp7InVzZXIiOnRydWUsIm1vZGVyYXRvciI6dHJ1ZSwiYWRtaW4iOnRydWV9LCJpYXQiOjE2MjQzNTY1ODUsImV4cCI6MTYyNDQ0Mjk4NX0.Vgv17RiO6hkd4SSCASDNKmvEz4HpLAydFihEwdOOusw
+
+--boundary
+Content-Disposition: form-data; name="username"
+
+hthunder
+--boundary
+Content-Disposition: form-data; name="city"
+
+Солнцево
+--boundary
+Content-Disposition: form-data; name="about"
+
+Что-то о себе
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="grapefruit.jpg"
+Content-Type: image/jpeg
+
+< ./grapefruit.jpg
+--boundary--
+
+###
+
+# Id пользователя в url не совпадает с id в токене
+PATCH https://3000-copper-hornet-8j3vlene.ws-eu08.gitpod.io/api/users/60c49623450aa7058b1c900?_method=PATCH HTTP/1.1
+Content-Type: multipart/form-data; boundary="boundary"
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzQ5NjIzNDUwYWE3MDU4YjFjOTAwYSIsImF1dGhvcml0aWVzIjp7InVzZXIiOnRydWUsIm1vZGVyYXRvciI6dHJ1ZSwiYWRtaW4iOnRydWV9LCJpYXQiOjE2MjQzNTY1ODUsImV4cCI6MTYyNDQ0Mjk4NX0.Vgv17RiO6hkd4SSCASDNKmvEz4HpLAydFihEwdOOusw
+
+--boundary
+Content-Disposition: form-data; name="username"
+
+hthunder
+--boundary
+Content-Disposition: form-data; name="city"
+
+Солнцево
+--boundary
+Content-Disposition: form-data; name="about"
+
+Что-то о себе
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="grapefruit.jpg"
+Content-Type: image/jpeg
+
+< ./grapefruit.jpg
+--boundary--
+
+###
+
+# Отправка уже существуюего имени пользователя
+
+PATCH https://3000-copper-hornet-8j3vlene.ws-eu08.gitpod.io/api/users/60c49623450aa7058b1c900a?_method=PATCH HTTP/1.1
+Content-Type: multipart/form-data; boundary="boundary"
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzQ5NjIzNDUwYWE3MDU4YjFjOTAwYSIsImF1dGhvcml0aWVzIjp7InVzZXIiOnRydWUsIm1vZGVyYXRvciI6dHJ1ZSwiYWRtaW4iOnRydWV9LCJpYXQiOjE2MjQzNTY1ODUsImV4cCI6MTYyNDQ0Mjk4NX0.Vgv17RiO6hkd4SSCASDNKmvEz4HpLAydFihEwdOOusw
+
+--boundary
+Content-Disposition: form-data; name="username"
+
+testie
+--boundary
+Content-Disposition: form-data; name="city"
+
+Солнцево
+--boundary
+Content-Disposition: form-data; name="about"
+
+Что-то о себе
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="grapefruit.jpg"
+Content-Type: image/jpeg
+
+< ./grapefruit.jpg
+--boundary--
+
+###

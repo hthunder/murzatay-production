@@ -13,7 +13,8 @@
     {{> header }}
     <section class="main">
         <div class="main__content">
-            <section class="my-page__about">
+            <div class="my-page__js-about" data-user-id="{{user._id}}"></div>
+            {{!-- <section class="my-page__about">
                 <img class="my-page__about-avatar" src="{{user.avatar}}" alt="Ваше фото">
                 <div class="my-page__about-info">
                     <button class="my-page__about-edit-button button button_light" type="button">Редактировать</button>
@@ -49,7 +50,7 @@
                     </p>
                     {{/each}}
                 </div>
-            </section>
+            </section> --}}
             <section class="my-page__favourite">
                 <h2 class="my-page__favourite-section-title">Избранные статьи</h2>
                 {{#each articles}}
