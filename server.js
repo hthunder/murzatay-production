@@ -44,7 +44,6 @@ app.use(methodOverride("_method"))
 app.use("/api/auth", apiAuth)
 app.use("/articles", isLoggedIn, articleRouter)
 app.use("/api", isLoggedIn, apiRoutes)
-// require('./routes/user.routes')(app);
 app.use("/", isLoggedIn, blogRoutes)
 app.use(express.static("public"))
 

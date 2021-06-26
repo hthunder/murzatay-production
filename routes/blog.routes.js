@@ -78,19 +78,18 @@ router.get("/about", async (req, res) => {
 })
 
 router.get("/my-page", async (req, res) => {
+    const { userId } = req
+
     if (!req.isLoggedIn) {
         return res.redirect("/")
     }
     const { errors } = req.cookies
     res.clearCookie("errors")
-    const user = await User.findOne({ _id: req.userId })
-        .select("-password")
+
+    const { favourites } = await User.findById(userId, "favourites")
+        .populate("favourites", "img title description slug")
         .lean()
-    if (!user.avatar) user.avatar = "/img/icons/user-profile.svg"
-    const articles = await Article.find({
-        _id: { $in: user.favourites },
-    }).lean()
-    const comments = await Comment.find({ user: req.userId })
+    const comments = await Comment.find({ user: userId })
         .sort({ date: -1 })
         .limit(2)
         .lean()
@@ -101,11 +100,12 @@ router.get("/my-page", async (req, res) => {
         .lean()
 
     const [shownPhotos, hiddenPhotos] = await getPhotosList()
+
     return res.render("my-page", {
         layout: false,
-        user,
+        userId,
         errors,
-        articles,
+        articles: favourites,
         comments,
         lastComments,
         isLoggedIn: req.isLoggedIn,
