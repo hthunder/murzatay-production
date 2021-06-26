@@ -41,6 +41,13 @@ router.put("/users/:id", apiController.user_put)
 
 router.post("/images", isAdmin, upload.single("file"), apiController.image_post)
 
+// comments getting
+// url: /api/comments
+// method: get
+// public
+
+router.get("/comments", apiController.comments_get)
+
 // todo добавить возможность редактировать комменты админу
 
 // comment editing

@@ -10,17 +10,11 @@ const { getPhotosList } = require("../util/getPhotosList")
 router.get("/", async (req, res) => {
     try {
         const articles = await Article.find().sort("-createdAt").limit(2).lean()
-        const lastComments = await Comment.find()
-            .sort({ date: -1 })
-            .limit(2)
-            .populate("user")
-            .lean()
 
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("index", {
             layout: false,
             isLoggedIn: req.isLoggedIn,
-            lastComments,
             articles,
             shownPhotos,
             hiddenPhotos,
@@ -63,15 +57,9 @@ router.post("/mails", async (req, res) => {
 
 router.get("/about", async (req, res) => {
     try {
-        const lastComments = await Comment.find()
-            .sort({ date: -1 })
-            .limit(2)
-            .populate("user")
-            .lean()
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("about", {
             layout: false,
-            lastComments,
             isLoggedIn: req.isLoggedIn,
             shownPhotos,
             hiddenPhotos,
@@ -102,11 +90,6 @@ router.get("/my-page", async (req, res) => {
             .sort({ date: -1 })
             .limit(2)
             .lean()
-        const lastComments = await Comment.find()
-            .sort({ date: -1 })
-            .limit(2)
-            .populate("user")
-            .lean()
 
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
 
@@ -117,7 +100,6 @@ router.get("/my-page", async (req, res) => {
             errors,
             articles: favourites,
             comments,
-            lastComments,
             isLoggedIn: req.isLoggedIn,
             shownPhotos,
             hiddenPhotos,

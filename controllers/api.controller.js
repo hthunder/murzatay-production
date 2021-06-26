@@ -32,6 +32,20 @@ exports.articleComments_get = async (req, res) => {
     }
 }
 
+exports.comments_get = async (req, res, next) => {
+    try {
+        const { limit } = req.query
+        const comments = await Comment.find({}, "text user")
+            .populate("user", "avatar username")
+            .limit(parseInt(limit, 10))
+            .sort({ date: -1 })
+            .lean()
+        return res.status(200).json(comments)
+    } catch (e) {
+        return next(e)
+    }
+}
+
 exports.comment_post = async (req, res) => {
     try {
         const { articleId } = req.body

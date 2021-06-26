@@ -70,11 +70,6 @@ exports.article_list = async (req, res) => {
 
         const pagination = getPaginationData(page, numberOfArticles, limit)
 
-        const lastComments = await Comment.find()
-            .sort({ date: -1 })
-            .limit(2)
-            .populate("user")
-            .lean()
         const [shownPhotos, hiddenPhotos] = await getPhotosList()
         const isEmptyArticleList = numberOfArticles < 1
         return res.render("articles", {
@@ -82,7 +77,6 @@ exports.article_list = async (req, res) => {
             pagination,
             articles,
             category,
-            lastComments,
             isAdmin: req.authorities?.admin,
             isLoggedIn: req.isLoggedIn,
             isEmptyArticleList,
@@ -101,14 +95,8 @@ exports.articles_search = async (req, res) => {
         const articles = await Article.find({
             title: { $regex: searchRule, $options: "i" },
         }).lean()
-        const lastComments = await Comment.find()
-            .sort({ date: -1 })
-            .limit(2)
-            .populate("user")
-            .lean()
         res.render("articles", {
             layout: false,
-            lastComments,
             articles,
         })
     } catch (e) {

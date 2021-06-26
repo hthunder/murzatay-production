@@ -5,6 +5,7 @@ import { slideToggle, fadeIn, fadeOut } from "./animations"
 import { areYouSurePrompt } from "./areYouSure"
 import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
+import { sidebarComments } from "./sidebarComments"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
@@ -116,3 +117,4 @@ function checkCookies() {
 checkCookies()
 
 router(window.location.pathname)
+sidebarComments()
