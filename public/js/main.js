@@ -9,7 +9,7 @@ import { setSizeControl } from "./imgsize_control"
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
 
-setSizeControl(20, submitBtn, imgInput)
+setSizeControl(200, submitBtn, imgInput)
 
 const deleteArticleButton = document.querySelector(".articles__delete-button")
 const deleteArticleForm = document.querySelector(".articles__delete-form")
