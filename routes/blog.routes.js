@@ -78,40 +78,44 @@ router.get("/about", async (req, res) => {
 })
 
 router.get("/my-page", async (req, res) => {
-    const { userId } = req
+    try {
+        const { userId } = req
 
-    if (!req.isLoggedIn) {
-        return res.redirect("/")
+        if (!req.isLoggedIn) {
+            return res.redirect("/")
+        }
+        const { errors } = req.cookies
+        res.clearCookie("errors")
+
+        const { favourites } = await User.findById(userId, "favourites")
+            .populate("favourites", "img title description slug")
+            .lean()
+        const comments = await Comment.find({ user: userId })
+            .sort({ date: -1 })
+            .limit(2)
+            .lean()
+        const lastComments = await Comment.find()
+            .sort({ date: -1 })
+            .limit(2)
+            .populate("user")
+            .lean()
+
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
+
+        return res.render("my-page", {
+            layout: false,
+            userId,
+            errors,
+            articles: favourites,
+            comments,
+            lastComments,
+            isLoggedIn: req.isLoggedIn,
+            shownPhotos,
+            hiddenPhotos,
+        })
+    } catch (e) {
+        return res.status(500).send()
     }
-    const { errors } = req.cookies
-    res.clearCookie("errors")
-
-    const { favourites } = await User.findById(userId, "favourites")
-        .populate("favourites", "img title description slug")
-        .lean()
-    const comments = await Comment.find({ user: userId })
-        .sort({ date: -1 })
-        .limit(2)
-        .lean()
-    const lastComments = await Comment.find()
-        .sort({ date: -1 })
-        .limit(2)
-        .populate("user")
-        .lean()
-
-    const [shownPhotos, hiddenPhotos] = await getPhotosList()
-
-    return res.render("my-page", {
-        layout: false,
-        userId,
-        errors,
-        articles: favourites,
-        comments,
-        lastComments,
-        isLoggedIn: req.isLoggedIn,
-        shownPhotos,
-        hiddenPhotos,
-    })
 })
 
 module.exports = router
