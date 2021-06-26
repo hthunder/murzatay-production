@@ -36,7 +36,7 @@
                 <h2 class="my-page__comments-title"> Последние комментарии</h2>
                 {{#each comments}}
                 <article class="my-page__comment">
-                    <img class="my-page__comment-img" src="/img/placeholders/usercomment.png" alt="Автарка">
+                    <img class="my-page__comment-img" src="{{../avatar}}" alt="Автарка">
                     <p class="my-page__comment-text">{{this.text}}</p>
                 </article>
                 {{/each}}

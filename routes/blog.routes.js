@@ -91,9 +91,13 @@ router.get("/my-page", async (req, res) => {
         const { errors } = req.cookies
         res.clearCookie("errors")
 
-        const { favourites } = await User.findById(userId, "favourites")
+        const { favourites, avatar } = await User.findById(
+            userId,
+            "favourites avatar"
+        )
             .populate("favourites", "img title description slug")
             .lean()
+
         const comments = await Comment.find({ user: userId })
             .sort({ date: -1 })
             .limit(2)
@@ -109,6 +113,7 @@ router.get("/my-page", async (req, res) => {
         return res.render("my-page", {
             layout: false,
             userId,
+            avatar,
             errors,
             articles: favourites,
             comments,
