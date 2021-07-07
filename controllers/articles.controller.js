@@ -1,6 +1,5 @@
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
-const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { getPhotosList } = require("../util/getPhotosList")
