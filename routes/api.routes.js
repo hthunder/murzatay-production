@@ -9,6 +9,14 @@ const { HttpError } = require("../util/HttpError")
 const router = express.Router()
 const apiController = require("../controllers/api.controller")
 
+// get urls of widget images
+// url: /api/widget-urls
+// method: get
+// user route
+// public
+
+router.get("/widget-urls", apiController.widget_urls_get)
+
 // get user's info
 // url: /api/users/:id
 // method: get

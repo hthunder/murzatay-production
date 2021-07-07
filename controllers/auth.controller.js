@@ -19,7 +19,6 @@ exports.signup = async (req, res) => {
         city: req.body.city,
         password: bcrypt.hashSync(req.body.password1, 8),
     })
-
     try {
         user = await user.save()
 
@@ -41,9 +40,11 @@ exports.signup = async (req, res) => {
         // eslint-disable-next-line no-underscore-dangle
         user.roles = [role._id]
         await user.save()
-        return res.send({ message: "User was registered successfully!" })
+        res.redirect(req.headers.referer)
+        // return res.send({ message: "User was registered successfully!" })
     } catch (e) {
-        return res.status(500).send({ message: e })
+        res.redirect(req.headers.referer)
+        // return res.status(500).send({ message: e })
     }
 }
 
@@ -56,9 +57,10 @@ exports.signin = async (req, res) => {
             .exec()
 
         if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-            return res
-                .status(401)
-                .json({ error: "Пользователь с такими данным не найден." })
+            return res.redirect(req.headers.referer)
+            // return res
+            //     .status(401)
+            //     .json({ error: "Пользователь с такими данным не найден." })
         }
 
         const authorities = {}
@@ -70,14 +72,15 @@ exports.signin = async (req, res) => {
             expiresIn: 86400,
         })
 
-        res.cookie("token", token, { httpOnly: true, sameSite: 'lax' })
-        return res.status(200).json({ redirectUrl: "/", redirected: true })
+        return res
+            .cookie("token", token, { httpOnly: true, sameSite: "lax" })
+            .redirect(req.headers.referer)
+        // return res.status(200).json({ redirectUrl: "/", redirected: true })
+        // res.redirect(req.headers.referer)
     } catch (e) {
-        return res.status(500).json({ message: e })
+        // return res.status(500).json({ message: e })
+        return res.redirect(req.headers.referer)
     }
 }
 
-exports.logout = (_req, res) => {
-    res.clearCookie("token")
-    res.redirect("/")
-}
+exports.logout = (_req, res) => res.clearCookie("token").redirect("/")

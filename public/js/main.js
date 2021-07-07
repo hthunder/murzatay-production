@@ -1,11 +1,11 @@
 import { addFavourite } from "./addFavourite"
-import { sendForm } from "./sendFormData"
 import { showMore } from "./instagram_widget"
 import { slideToggle, fadeIn, fadeOut } from "./animations"
 import { areYouSurePrompt } from "./areYouSure"
 import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
+import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
@@ -92,11 +92,6 @@ rubricBtn.onclick = () => {
 }
 
 addFavourite()
-sendForm("signup__form", "/api/auth/signup")
-sendForm("signin__form", "/api/auth/signin")
-
-const widget = document.querySelector(".instagram-widget__hide-button")
-widget.onclick = showMore
 
 function checkCookies() {
     const cookieDate = localStorage.getItem("cookieDate")
@@ -118,3 +113,6 @@ checkCookies()
 
 router(window.location.pathname)
 sidebarComments()
+sidebarInstagramWidget().then(() => {
+    document.querySelector(".instagram-widget__hide-btn").onclick = showMore
+})

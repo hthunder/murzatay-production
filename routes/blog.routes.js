@@ -5,19 +5,15 @@ const nodemailer = require("nodemailer")
 const Article = require("../models/article.model")
 const User = require("../models/user.model")
 const Comment = require("../models/comment.model")
-const { getPhotosList } = require("../util/getPhotosList")
 
 router.get("/", async (req, res) => {
     try {
         const articles = await Article.find().sort("-createdAt").limit(2).lean()
 
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("index", {
             layout: false,
             isLoggedIn: req.isLoggedIn,
             articles,
-            shownPhotos,
-            hiddenPhotos,
         })
     } catch (e) {
         return res.status(500).send()
@@ -57,12 +53,9 @@ router.post("/mails", async (req, res) => {
 
 router.get("/about", async (req, res) => {
     try {
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("about", {
             layout: false,
             isLoggedIn: req.isLoggedIn,
-            shownPhotos,
-            hiddenPhotos,
         })
     } catch (e) {
         return res.status(500).send()
@@ -91,8 +84,6 @@ router.get("/my-page", async (req, res) => {
             .limit(2)
             .lean()
 
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
-
         return res.render("my-page", {
             layout: false,
             userId,
@@ -101,8 +92,6 @@ router.get("/my-page", async (req, res) => {
             articles: favourites,
             comments,
             isLoggedIn: req.isLoggedIn,
-            shownPhotos,
-            hiddenPhotos,
         })
     } catch (e) {
         return res.status(500).send()

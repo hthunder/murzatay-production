@@ -2,7 +2,6 @@ const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
-const { getPhotosList } = require("../util/getPhotosList")
 const { convertDate } = require("../util/convertDate")
 const { addCanDeleteField } = require("../util/addCanDeleteField")
 
@@ -47,7 +46,8 @@ exports.article_list = async (req, res) => {
 
         let articles
 
-        const findPageArticles = (request) => Article.find(request)
+        const findPageArticles = (request) =>
+            Article.find(request)
                 .sort("-createdAt")
                 .skip(skip)
                 .limit(limit)
@@ -69,7 +69,6 @@ exports.article_list = async (req, res) => {
 
         const pagination = getPaginationData(page, numberOfArticles, limit)
 
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         const isEmptyArticleList = numberOfArticles < 1
         return res.render("articles", {
             layout: false,
@@ -79,8 +78,6 @@ exports.article_list = async (req, res) => {
             isAdmin: req.authorities?.admin,
             isLoggedIn: req.isLoggedIn,
             isEmptyArticleList,
-            shownPhotos,
-            hiddenPhotos,
         })
     } catch (e) {
         console.log(e)
@@ -128,7 +125,6 @@ exports.article_page = async (req, res) => {
         }
         article.comments.reverse()
 
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
         return res.render("topic", {
             layout: false,
             favourite,
@@ -137,8 +133,6 @@ exports.article_page = async (req, res) => {
             user,
             article,
             userId: req.userId,
-            shownPhotos,
-            hiddenPhotos,
         })
     } catch (e) {
         return res.status(500).end()

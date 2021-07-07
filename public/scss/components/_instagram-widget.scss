@@ -7,6 +7,41 @@
     text-align: center;
     width: 100%;
 
+    &__hide-btn {
+        background: rgb(224, 224, 224);
+        border: none;
+        padding: 7px 14px;
+        margin-top: 15px;
+        border-radius: 4px;
+        line-height: 19.5px;
+        cursor: pointer;
+    }
+
+    &__hide-btn_shown {
+        display: block;
+    }
+
+    &__subscribe-btn {
+        padding: 7px 14px;
+        border-radius: 4px;
+        border: none;
+        background: rgb(217, 182, 139);
+        color: #000;
+        margin-top: 5px;
+        line-height: 19.5px;
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: var(--text-xs);
+        font-weight: 500;
+    }
+
+    &__subscribe-img {
+        margin-right: 7px;
+        position: relative;
+        top: 3px;
+    }
+
     &__profile-link {
         align-items: center;
 
@@ -46,6 +81,10 @@
     }
 
     &__hidden-photos {
+        display: none;
+    }
+
+    &__hidden-photos_shown {
         display: flex;
     }
 }

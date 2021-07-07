@@ -1,5 +1,5 @@
 <article class="pop-up">
-	<form class="pop-up__login" id="signin__form">
+	<form class="pop-up__login" id="signin__form" method="POST" action="/auth/signin">
 		<h2 class="pop-up__title">Войти</h2>
 		<input class="pop-up__input" type="text" placeholder="E-mail/Login"  name="username" required/>
 		<input class="pop-up__input" type="password" placeholder="Пароль"  name="password" required/>
@@ -7,7 +7,7 @@
 		<button class="pop-up__submit" type="submit">Войти</button><br />
 		<button class="pop-up__cancel-btn" type="button">Отменить</button>
 	</form>
-	<form class="pop-up__signup" id="signup__form">
+	<form class="pop-up__signup" id="signup__form" method="POST" action="/auth/signup">
 		<h2 class="pop-up__title">Регистрация</h2>
 		<input class="pop-up__input" type="text" placeholder="Login"  name="username" required />
 		<input class="pop-up__input" type="email" placeholder="E-mail"  name="email" required />

@@ -4,6 +4,16 @@ const User = require("../models/user.model")
 const { LONG_COMMENT, NOT_LOGGED_IN } = require("../constants")
 const { errorHandler } = require("../util/errorHandler")
 const { HttpError } = require("../util/HttpError")
+const { getPhotosList } = require("../util/getPhotosList")
+
+exports.widget_urls_get = async (req, res, next) => {
+    try {
+        const [shownPhotos, hiddenPhotos] = await getPhotosList()
+        return res.status(200).json({ shownPhotos, hiddenPhotos })
+    } catch (e) {
+        return next(e)
+    }
+}
 
 exports.articleComments_get = async (req, res) => {
     try {
