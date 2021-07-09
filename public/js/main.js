@@ -6,6 +6,7 @@ import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
 import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
+import { getCookie, deleteCookie } from "./getCookie"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
@@ -116,3 +117,24 @@ sidebarComments()
 sidebarInstagramWidget().then(() => {
     document.querySelector(".instagram-widget__hide-btn").onclick = showMore
 })
+
+const murzatayError = getCookie("murzatay-error")
+const auth = getCookie("call-login")
+if (auth && murzatayError) {
+    const btn = document.querySelector(".nav__button_login")
+    if (btn) {
+        const errorPlace = document.querySelector(
+            ".pop-up__login .pop-up__errors"
+        )
+
+        if (errorPlace) {
+            errorPlace.innerText = murzatayError
+            deleteCookie("murzatay-error")
+            deleteCookie("call-login")
+            setTimeout(() => {
+                errorPlace.innerText = ""
+            }, 10000)
+        }
+        btn.click()
+    }
+}

@@ -50,6 +50,7 @@ exports.signup = async (req, res) => {
 
 // .exec() gives you better stack traces
 exports.signin = async (req, res) => {
+    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
         const user = await User.findOne()
             .or([{ email: req.body.username }, { username: req.body.username }])
@@ -57,10 +58,8 @@ exports.signin = async (req, res) => {
             .exec()
 
         if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-            return res.redirect(req.headers.referer)
-            // return res
-            //     .status(401)
-            //     .json({ error: "Пользователь с такими данным не найден." })
+            userError = "Пользователь с такими данными не найден."
+            throw new Error()
         }
 
         const authorities = {}
@@ -71,15 +70,14 @@ exports.signin = async (req, res) => {
         const token = jwt.sign({ id: user.id, authorities }, config.secret, {
             expiresIn: 86400,
         })
-
         return res
             .cookie("token", token, { httpOnly: true, sameSite: "lax" })
-            .redirect(req.headers.referer)
-        // return res.status(200).json({ redirectUrl: "/", redirected: true })
-        // res.redirect(req.headers.referer)
+            .redirect("back")
     } catch (e) {
-        // return res.status(500).json({ message: e })
-        return res.redirect(req.headers.referer)
+        return res
+            .cookie("murzatay-error", userError)
+            .cookie("call-login", true)
+            .redirect("back")
     }
 }
 
