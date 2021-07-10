@@ -1,5 +1,5 @@
 const { check } = require("express-validator")
-const { verifySignUp } = require(".")
+const { checkDuplicateUsernameOrEmail } = require("./verifySignUp")
 
 exports.signup = [
     check("username", "Введите логин").not().isEmpty(),
@@ -14,5 +14,5 @@ exports.signup = [
         min: 6,
         max: 30,
     }),
-    verifySignUp.checkDuplicateUsernameOrEmail,
+    checkDuplicateUsernameOrEmail,
 ]

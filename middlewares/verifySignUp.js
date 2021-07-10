@@ -1,46 +1,33 @@
 const db = require("../models")
 
-// const { ROLES } = db
 const User = db.user
 
-const checkDuplicateUsernameOrEmail = (req, res, next) => {
-    User.findOne({
-        username: req.body.username,
-    }).exec((err, user) => {
-        if (err) {
-            res.status(500).send({ message: err })
-            return
-        }
+const handleError = (res, errorName) => {
+    res.cookie("murzatay-error", errorName)
+        .cookie("call-signup", true)
+        .redirect("back")
+}
 
-        if (user) {
-            res.status(400).send({
-                message: "Failed! Username is already in use!",
-            })
-            return
-        }
-
-        User.findOne({
-            email: req.body.email,
-        }).exec((err, user) => {
-            if (err) {
-                res.status(500).send({ message: err })
-                return
-            }
-
-            if (user) {
-                res.status(400).send({
-                    message: "Failed! Email is already in use!",
-                })
-                return
-            }
-
-            next()
+exports.checkDuplicateUsernameOrEmail = async (req, res, next) => {
+    try {
+        const userByUsername = User.findOne({
+            username: req.body.username,
         })
-    })
-}
+        if (userByUsername) {
+            return handleError(res, "Имя пользователя занято")
+        }
 
-const verifySignUp = {
-    checkDuplicateUsernameOrEmail
+        const userByEmail = User.findOne({
+            email: req.body.email,
+        })
+        if (userByEmail) {
+            return handleError(res, "Email занят другим пользователем")
+        }
+        return next()
+    } catch (e) {
+        return handleError(
+            res,
+            "Произошла какая-то ошибка, попробуйте еще раз позднее"
+        )
+    }
 }
-
-module.exports = verifySignUp

@@ -119,22 +119,31 @@ sidebarInstagramWidget().then(() => {
 })
 
 const murzatayError = getCookie("murzatay-error")
-const auth = getCookie("call-login")
-if (auth && murzatayError) {
-    const btn = document.querySelector(".nav__button_login")
+const authLogin = getCookie("call-login")
+const authSignup = getCookie("call-signup")
+
+const handleAuthErrors = (target) => {
+    const btn = document.querySelector(`.nav__button_${target}`)
     if (btn) {
         const errorPlace = document.querySelector(
-            ".pop-up__login .pop-up__errors"
+            `.pop-up__${target} .pop-up__errors`
         )
 
         if (errorPlace) {
             errorPlace.innerText = murzatayError
             deleteCookie("murzatay-error")
-            deleteCookie("call-login")
+            deleteCookie(`call-${target}`)
             setTimeout(() => {
                 errorPlace.innerText = ""
             }, 10000)
         }
         btn.click()
     }
+}
+
+if (murzatayError && authLogin) {
+    handleAuthErrors("login")
+}
+if (murzatayError && authSignup) {
+    handleAuthErrors("signup")
 }

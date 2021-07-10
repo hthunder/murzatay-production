@@ -10,7 +10,16 @@ exports.signup = async (req, res) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() })
+            return res
+                .cookie(
+                    "murzatay-error",
+                    errors
+                        .array()
+                        .map((error) => error.msg)
+                        .join("\n")
+                )
+                .cookie("call-signup", true)
+                .redirect("back")
         }
         const user = new User({
             username: req.body.username,
@@ -24,12 +33,13 @@ exports.signup = async (req, res) => {
             .cookie("murzatay-message", "Вы успешно зарегистрированы")
             .redirect("back")
     } catch (e) {
-        return (
-            res
-                // .cookie("murzatay-error", userError)
-                .cookie("call-signup", true)
-                .redirect("back")
-        )
+        return res
+            .cookie(
+                "murzatay-error",
+                "Произошла какая-то ошибка, попробуйте еще раз позднее"
+            )
+            .cookie("call-signup", true)
+            .redirect("back")
     }
 }
 
@@ -38,7 +48,8 @@ exports.signin = async (req, res) => {
     let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
         const user = await User.findOne()
-            .or([{ email: req.body.username }, { username: req.body.username }]).exec()
+            .or([{ email: req.body.username }, { username: req.body.username }])
+            .exec()
 
         if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
             userError = "Пользователь с такими данными не найден."
