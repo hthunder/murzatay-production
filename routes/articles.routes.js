@@ -7,8 +7,6 @@ const fileHandling = require("../middlewares/fileHandling")
 // only for admins
 router.get("/add", controller.article_create_get)
 
-router.get("/search", controller.articles_search)
-
 // only for admins
 router.get("/:id/edit", controller.article_edit_get)
 

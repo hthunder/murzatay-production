@@ -37,7 +37,7 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 exports.article_list = async (req, res) => {
     try {
         const limit = 2
-        const { page = 1, category = "all" } = req.query
+        const { page = 1, category = "all", q } = req.query
         let numberOfArticles
 
         if (page < 0 || page === 0) return res.redirect(`/articles`)
@@ -54,7 +54,10 @@ exports.article_list = async (req, res) => {
                 .lean()
 
         if (category === "all") {
-            articles = await findPageArticles({})
+            const searchRule = q
+                ? { title: { $regex: q, $options: "i" } }
+                : {}
+            articles = await findPageArticles(searchRule)
             numberOfArticles = await Article.countDocuments()
         } else {
             const rubric = await Rubric.findOne({ slug: category })
@@ -82,21 +85,6 @@ exports.article_list = async (req, res) => {
     } catch (e) {
         console.log(e)
         return res.redirect(`/articles`)
-    }
-}
-
-exports.articles_search = async (req, res) => {
-    const searchRule = req.query?.text
-    try {
-        const articles = await Article.find({
-            title: { $regex: searchRule, $options: "i" },
-        }).lean()
-        res.render("articles", {
-            layout: false,
-            articles,
-        })
-    } catch (e) {
-        res.status(500).end()
     }
 }
 
