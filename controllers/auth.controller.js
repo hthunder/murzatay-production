@@ -40,11 +40,14 @@ exports.signup = async (req, res) => {
         // eslint-disable-next-line no-underscore-dangle
         user.roles = [role._id]
         await user.save()
-        res.redirect(req.headers.referer)
-        // return res.send({ message: "User was registered successfully!" })
+        return res
+            .cookie("murzatay-message", "Вы успешно зарегистрированы")
+            .redirect("back")
     } catch (e) {
-        res.redirect(req.headers.referer)
-        // return res.status(500).send({ message: e })
+        return res
+            .cookie("murzatay-error", userError)
+            .cookie("call-signup", true)
+            .redirect("back")
     }
 }
 
