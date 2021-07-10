@@ -10,14 +10,14 @@ const handleError = (res, errorName) => {
 
 exports.checkDuplicateUsernameOrEmail = async (req, res, next) => {
     try {
-        const userByUsername = User.findOne({
+        const userByUsername = await User.findOne({
             username: req.body.username,
         })
         if (userByUsername) {
             return handleError(res, "Имя пользователя занято")
         }
 
-        const userByEmail = User.findOne({
+        const userByEmail = await User.findOne({
             email: req.body.email,
         })
         if (userByEmail) {

@@ -119,6 +119,7 @@ sidebarInstagramWidget().then(() => {
 })
 
 const murzatayError = getCookie("murzatay-error")
+const murzatayMessage = getCookie("murzatay-message")
 const authLogin = getCookie("call-login")
 const authSignup = getCookie("call-signup")
 
@@ -146,4 +147,8 @@ if (murzatayError && authLogin) {
 }
 if (murzatayError && authSignup) {
     handleAuthErrors("signup")
+}
+if (murzatayMessage) {
+    deleteCookie("murzatay-message")
+    alert(murzatayMessage)
 }
