@@ -1,5 +1,4 @@
-exports.addCanDeleteField = (comments, userId) => {
-    return comments.map((comment) => {
+exports.addCanDeleteField = (comments, userId) => comments.map((comment) => {
         const newComment = { ...comment }
         if (newComment.user.toString() === userId.toString()) {
             newComment.canDelete = true
@@ -8,4 +7,3 @@ exports.addCanDeleteField = (comments, userId) => {
         newComment.canDelete = false
         return newComment
     })
-}

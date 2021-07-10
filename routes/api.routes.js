@@ -3,7 +3,9 @@ const upload = require("../middlewares/articleImgHandler")
 const { isAdmin } = require("../middlewares/authJwt")
 const { avatarUploader } = require("../util/avatarUploader")
 const { authentication } = require("../middlewares/api/authentication")
-const { authorizeOwner } = require("../middlewares/api/permissions")
+const {
+    authorizeOwner,
+} = require("../middlewares/api/permissions")
 const { HttpError } = require("../util/HttpError")
 
 const router = express.Router()
@@ -56,15 +58,13 @@ router.post("/images", isAdmin, upload.single("file"), apiController.image_post)
 
 router.get("/comments", apiController.comments_get)
 
-// todo добавить возможность редактировать комменты админу
-
 // comment editing
 // url: /api/comments/:id
 // method: put
 // user route
 // private
 
-router.put("/comments/:id", apiController.comment_put)
+router.put("/comments/:id", authentication, apiController.comment_put)
 
 // todo добавить возможность удалять комменты админу
 
@@ -74,7 +74,11 @@ router.put("/comments/:id", apiController.comment_put)
 // user route
 // private
 
-router.delete("/comments/:id", apiController.comment_delete)
+router.delete(
+    "/comments/:id",
+    authentication,
+    apiController.comment_delete
+)
 
 // comment adding
 // url: /api/comments

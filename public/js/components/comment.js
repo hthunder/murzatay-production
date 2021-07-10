@@ -1,3 +1,23 @@
+const canEditOrDelete = (isEditable, isDeletable) => {
+    if (isEditable && isDeletable) {
+        return `<form class="comments__form">
+            <button class="button comments__delete-button" type="button">Удалить</button>
+            <button class="button comments__edit-button" type="button">Редактировать</button> 
+        </form>`
+    }
+    if (isEditable) {
+        return `<form class="comments__form">
+            <button class="button comments__edit-button" type="button">Редактировать</button> 
+        </form>`
+    }
+    if (isDeletable) {
+        return `<form class="comments__form">
+            <button class="button comments__delete-button" type="button">Удалить</button>
+        </form>`
+    }
+    return ""
+}
+
 export const CommentJS = (commentData) => {
     const {
         _id,
@@ -5,6 +25,7 @@ export const CommentJS = (commentData) => {
         text,
         date,
         isEditable,
+        isDeletable,
     } = commentData
     const article = document.createElement("article")
     article.classList.add("comments__instance")
@@ -19,14 +40,7 @@ export const CommentJS = (commentData) => {
             ).toISOString()}">
             ${new Date(date).toLocaleString("en-GB")}
             </time>
-            ${
-                isEditable
-                    ? `<form class="comments__form">
-                <button class="button comments__delete-button" type="button">Удалить</button>
-                <button class="button comments__edit-button" type="button">Редактировать</button> 
-            </form>`
-                    : ""
-            }
+            ${canEditOrDelete(isEditable, isDeletable)}
         </div>
     `
     return article

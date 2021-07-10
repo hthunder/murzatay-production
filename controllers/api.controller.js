@@ -18,7 +18,7 @@ exports.widget_urls_get = async (req, res, next) => {
 exports.articleComments_get = async (req, res) => {
     try {
         const { articleId } = req.params
-        const { userId } = req
+        const { userId, userRole } = req
         const { comments } = await Article.findById(articleId, "comments")
             .populate({
                 path: "comments",
@@ -31,6 +31,9 @@ exports.articleComments_get = async (req, res) => {
                 // eslint-disable-next-line no-underscore-dangle
                 if (comment.user._id.toString() === userId.toString()) {
                     comment.isEditable = true
+                    comment.isDeletable = true
+                } else if (["admin", "moderator"].includes(userRole)) {
+                    comment.isDeletable = true
                 }
                 return comment
             })
@@ -74,6 +77,7 @@ exports.comment_post = async (req, res) => {
                     .execPopulate()
             ).toObject()
             populatedComment.isEditable = true
+            populatedComment.isDeletable = true
             const article = await Article.findById(articleId)
             // eslint-disable-next-line no-underscore-dangle
             article.comments.push(comment._id)
@@ -92,12 +96,15 @@ exports.comment_delete = async (req, res) => {
         if (req.isLoggedInErrors) {
             throw new Error("You are not logged in")
         }
-        const comment = await Comment.findOneAndDelete({
+        const searchOptions = {
             _id: req.params.id,
-            user: req.userId,
-        })
+        }
+        if (!["admin", "moderator"].includes(req.userRole)) {
+            searchOptions.user = req.userId
+        }
+        const comment = await Comment.findOneAndDelete(searchOptions)
         if (!comment) {
-            throw new Error("You can't delete the comment or it is not existed")
+            throw new Error("Такого комментария не существует")
         }
         return res.status(200).send("The comment is deleted successfully")
     } catch (e) {

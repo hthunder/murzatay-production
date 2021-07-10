@@ -1,4 +1,7 @@
-export const SidebarComment = ({ text, user: { username, avatar } }) => {
+export const SidebarComment = ({
+    text,
+    user: { username, avatar = "/img/icons/user-profile.svg" },
+}) => {
     const figureEl = document.createElement("figure")
     figureEl.classList.add("sidebar__comments-item")
     figureEl.innerHTML = `
