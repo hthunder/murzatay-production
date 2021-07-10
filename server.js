@@ -14,7 +14,6 @@ const apiRoutes = require("./routes/api.routes")
 
 const db = require("./models")
 
-const Role = db.role
 const User = db.user
 
 const app = express()
@@ -71,6 +70,7 @@ const initial = async () => {
             "Интересные факты",
             "Забавные истории",
         ]
+
         rubrics.forEach(async (rubricName) => {
             const rubric = await Rubric.find({ name: rubricName })
             if (rubric.length === 0) {
@@ -78,21 +78,10 @@ const initial = async () => {
             }
         })
 
-        const count = await Role.estimatedDocumentCount()
-        if (count === 0) {
-            const roleUser = await new Role({
-                name: "user",
-            }).save()
-
-            const roleModerator = await new Role({
-                name: "moderator",
-            }).save()
-
-            const roleAdmin = await new Role({
-                name: "admin",
-            }).save()
+        const admin = await User.findOne({ username, email })
+        if (!admin) {
             User.create({
-                roles: [roleUser.id, roleModerator.id, roleAdmin.id],
+                role: "admin",
                 username,
                 email,
                 password: bcrypt.hashSync(password, 8),

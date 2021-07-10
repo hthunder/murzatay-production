@@ -75,7 +75,7 @@ exports.article_list = async (req, res) => {
             pagination,
             articles,
             category,
-            isAdmin: req.authorities?.admin,
+            isAdmin: req.userRole === "admin",
             isLoggedIn: req.isLoggedIn,
             isEmptyArticleList,
         })
@@ -129,7 +129,7 @@ exports.article_page = async (req, res) => {
             layout: false,
             favourite,
             isLoggedIn: req.isLoggedIn,
-            isAdmin: req.authorities?.admin,
+            isAdmin: req.userRole === "admin",
             user,
             article,
             userId: req.userId,
@@ -140,7 +140,7 @@ exports.article_page = async (req, res) => {
 }
 
 exports.article_create_get = (req, res) => {
-    if (!req.authorities?.admin) return res.redirect("/")
+    if (req.userRole !== "admin") return res.redirect("/")
     let { context } = req.cookies
     res.clearCookie("context", { httpOnly: true })
     if (!context) context = {}
@@ -174,7 +174,7 @@ exports.comment_add = async (req, res) => {
 }
 
 exports.article_edit_get = async (req, res) => {
-    if (!req.authorities?.admin) return res.redirect("/")
+    if (req.userRole !== "admin") return res.redirect("/")
     const article = await Article.findById(req.params.id).lean()
     const { context } = req.cookies
     res.clearCookie("context", { httpOnly: true })

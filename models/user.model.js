@@ -17,12 +17,12 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     city: { type: String, default: "" },
-    roles: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Role",
-        },
-    ],
+    role: {
+        type: String,
+        enum: ["user", "moderator", "admin"],
+        required: true,
+        default: "user",
+    },
     favourites: [
         {
             type: mongoose.Schema.Types.ObjectId,

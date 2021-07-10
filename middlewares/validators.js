@@ -15,5 +15,4 @@ exports.signup = [
         max: 30,
     }),
     verifySignUp.checkDuplicateUsernameOrEmail,
-    verifySignUp.checkRolesExisted,
 ]

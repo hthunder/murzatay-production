@@ -15,14 +15,14 @@ const isLoggedIn = (req, _res, next) => {
         } else {
             req.isLoggedIn = true
             req.userId = decoded.id
-            req.authorities = decoded.authorities
+            req.userRole = decoded.role
         }
     })
     return next()
 }
 
 const isAdmin = (req, res, next) => {
-    if (req.authorities?.admin) {
+    if (req.userRole === "admin") {
         return next()
     }
     return res.redirect("/")

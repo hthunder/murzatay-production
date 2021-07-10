@@ -11,7 +11,7 @@ const authentication = async (req, res, next) => {
                 throw new HttpError("Вы не залогинены", 401)
             }
             req.userId = decoded.id
-            req.authorities = decoded.authorities
+            req.userRole = decoded.role
             return next()
         })
     } catch (e) {
