@@ -150,5 +150,13 @@ if (murzatayError && authSignup) {
 }
 if (murzatayMessage) {
     deleteCookie("murzatay-message")
-    alert(murzatayMessage)
+    window.createNotification({
+        closeOnClick: true,
+        displayCloseButton: true,
+        positionClass: "nfc-top-right",
+        showDuration: "5000",
+        theme: "success",
+    })({
+        message: murzatayMessage,
+    })
 }
