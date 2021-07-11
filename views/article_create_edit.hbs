@@ -6,13 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 	<title>{{page_title}}</title>
-	<link rel="stylesheet" type="text/css" href="/css/admin.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<script src="/js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
 		tinymce.init({
 			selector: '#markdown',
 			height: 500,
-			width: 1000,
+			width: '100%',
 			plugins: ['advlist lists image'],
 			toolbar: 'undo redo | formatselect | ' +
 			'bold italic backcolor | alignleft aligncenter ' +
@@ -27,7 +27,7 @@
 <body class="edit__body">
 	<div>
 		<h1 class="edit_title">{{page_title}}</h1>
-		<form action="{{page_action}}" method="post" enctype="multipart/form-data">
+		<form class="article-form" action="{{page_action}}" method="post" enctype="multipart/form-data">
 			<div>Рубрика</div>
 			<select name="rubric" id="" required class="edit__select">
 				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
@@ -46,7 +46,7 @@
 			</div>
 			<div>
 				<label class="article-form__description" for="description">Описание</label>
-				<textarea required name="description" class="description" id="description">{{article.description}}</textarea>
+				<textarea class="article-form__description-area"  required name="description" id="description">{{article.description}}</textarea>
 			</div>
 			<div>
 				<label for="markdown" class="markdown__title">Разметка</label>

@@ -169,6 +169,7 @@
 
         &__about-avatar {
             max-width: 100%;
+            object-fit: contain;
         }
     }
 }

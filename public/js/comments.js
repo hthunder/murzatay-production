@@ -125,6 +125,7 @@ const getComments = async () => {
         addCommentPlace.appendChild(formEl)
         const addButton = formEl.querySelector(".comments__add-button")
         const textarea = formEl.querySelector(".sc-textarea__textarea")
+        countSymbols()
         addButton.onclick = () => {
             addCommentRequest(articleId, textarea)
         }
@@ -164,5 +165,3 @@ export const commentsInit = async () => {
         }
     })
 }
-
-countSymbols()

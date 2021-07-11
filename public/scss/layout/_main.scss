@@ -15,9 +15,9 @@
 
     &__sidebar {
         background-color: variables.$potters-clay-60;
-        flex-basis: 240px;
+        flex-basis: 243px;
         flex-shrink: 0;
-        max-width: 240px;
+        max-width: 243px;
     }
 
     @media #{variables.$media-md} {
