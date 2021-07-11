@@ -43,7 +43,7 @@ router.patch(
     apiController.user_patch
 )
 
-router.put("/users/:id", apiController.user_put)
+router.put("/users/:id", authentication, authorizeOwner, apiController.user_put)
 
 // article images upload handler
 // url: /api/images

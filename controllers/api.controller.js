@@ -167,20 +167,16 @@ exports.user_patch = async (req, res, next) => {
     }
 }
 
-exports.user_put = async (req, res) => {
+exports.user_put = async (req, res, next) => {
     try {
         const userId = req.params.id
         let message = ""
 
-        if (req.userId !== userId) {
-            return res.status(403).json({ message: "This action is forbidden" })
-        }
-
         const user = await User.findById(userId)
         const updates = req.body
 
-        if (user == null) {
-            return res.status(404).json({ message: "Cannot find user" })
+        if (!user) {
+            throw new HttpError("Пользователь с таким id не существует", 404)
         }
 
         const resJSON = {}
@@ -202,7 +198,7 @@ exports.user_put = async (req, res) => {
         resJSON.user = updatedUser
         return res.status(200).json(resJSON)
     } catch (e) {
-        return res.status(500).json({ message: e.message })
+        return next(e)
     }
 }
 
