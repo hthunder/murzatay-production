@@ -751,7 +751,7 @@ h4 {
 
 .cookie {
   align-items: center;
-  background-color: var(--white);
+  background-color: #fff;
   border-radius: 4px;
   bottom: 15px;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
