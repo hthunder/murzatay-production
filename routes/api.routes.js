@@ -5,6 +5,8 @@ const { avatarUploader } = require("../util/avatarUploader")
 const { authentication } = require("../middlewares/api/authentication")
 const {
     authorizeOwner,
+    authCommentDelete,
+    authCommentEdit,
 } = require("../middlewares/api/permissions")
 const { HttpError } = require("../util/HttpError")
 
@@ -64,9 +66,12 @@ router.get("/comments", apiController.comments_get)
 // user route
 // private
 
-router.put("/comments/:id", authentication, apiController.comment_put)
-
-// todo добавить возможность удалять комменты админу
+router.put(
+    "/comments/:id",
+    authentication,
+    authCommentEdit,
+    apiController.comment_put
+)
 
 // comment deleting
 // url: /api/comments/:id
@@ -77,6 +82,7 @@ router.put("/comments/:id", authentication, apiController.comment_put)
 router.delete(
     "/comments/:id",
     authentication,
+    authCommentDelete(["admin", "moderator"]),
     apiController.comment_delete
 )
 
@@ -100,7 +106,7 @@ router.delete(
 //     }
 // ]
 
-router.post("/comments", apiController.comment_post)
+router.post("/comments", authentication, apiController.comment_post)
 
 // get all comments
 // url: /api/articles/:articleId/comments

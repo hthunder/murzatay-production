@@ -59,12 +59,9 @@ exports.comments_get = async (req, res, next) => {
     }
 }
 
-exports.comment_post = async (req, res) => {
+exports.comment_post = async (req, res, next) => {
     try {
         const { articleId } = req.body
-        if (!req.userId) {
-            throw new Error(NOT_LOGGED_IN)
-        }
 
         if (req.body.text.length <= 500) {
             const comment = await Comment.create({
@@ -84,52 +81,39 @@ exports.comment_post = async (req, res) => {
             await article.save()
             return res.status(200).json(populatedComment)
         }
-        throw new Error(LONG_COMMENT)
+        throw new HttpError(LONG_COMMENT, 400)
     } catch (e) {
-        console.log(e)
-        return errorHandler(e.message, res)
+        return next(e)
     }
 }
 
-exports.comment_delete = async (req, res) => {
+exports.comment_delete = async (req, res, next) => {
     try {
-        if (req.isLoggedInErrors) {
-            throw new Error("You are not logged in")
-        }
-        const searchOptions = {
-            _id: req.params.id,
-        }
-        if (!["admin", "moderator"].includes(req.userRole)) {
-            searchOptions.user = req.userId
-        }
-        const comment = await Comment.findOneAndDelete(searchOptions)
+        const comment = await Comment.findByIdAndDelete(req.params.id)
         if (!comment) {
-            throw new Error("Такого комментария не существует")
+            throw new HttpError("Такого комментария не существует", 404)
         }
-        return res.status(200).send("The comment is deleted successfully")
+        return res.status(200).send("Комментарий успешно удален")
     } catch (e) {
-        return res.status(403).send(e.message)
+        return next(e)
     }
 }
 
-exports.comment_put = async (req, res) => {
+exports.comment_put = async (req, res, next) => {
     try {
-        if (req.isLoggedInErrors) {
-            throw new Error("You are not logged in")
-        }
-        const comment = await Comment.findOneAndUpdate(
-            { _id: req.params.id, user: req.userId },
+        const comment = await Comment.findByIdAndUpdate(
+            req.params.id,
             {
                 text: req.body.text,
             },
             { new: true }
         ).lean()
         if (!comment) {
-            throw new Error("You can't edit the comment")
+            throw new HttpError("Такого комментария не существует", 404)
         }
         return res.status(200).json({ text: comment.text })
     } catch (e) {
-        return res.status(403).send(e.message)
+        return next(e)
     }
 }
 
