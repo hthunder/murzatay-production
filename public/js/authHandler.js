@@ -3,18 +3,20 @@ import { getCookie, deleteCookie } from "./getCookie"
 const handleAuthErrors = (target, errorText) => {
     const btn = document.querySelector(`.nav__button_${target}`)
     if (btn) {
-        const errorPlace = document.querySelector(
-            `.pop-up__${target} .pop-up__errors`
+        const errorsElement = document.createElement("p")
+        const referenceElement = document.querySelector(
+            `.pop-up__${target} .pop-up__submit`
         )
+        const { parentElement } = referenceElement
 
-        if (errorPlace) {
-            errorPlace.innerText = errorText
-            deleteCookie("murzatay-error")
-            deleteCookie(`call-${target}`)
-            setTimeout(() => {
-                errorPlace.innerText = ""
-            }, 10000)
-        }
+        errorsElement.classList.add("pop-up__errors")
+        parentElement.insertBefore(errorsElement, referenceElement)
+        errorsElement.innerText = errorText
+        deleteCookie("murzatay-error")
+        deleteCookie(`call-${target}`)
+        setTimeout(() => {
+            parentElement.removeChild(errorsElement)
+        }, 10000)
         btn.click()
     }
 }
