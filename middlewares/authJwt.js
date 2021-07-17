@@ -38,12 +38,8 @@ const isActivated = async (req, res, next) => {
                 { username: req.body.username },
             ],
         })
-        if (!user) {
-            const error = new Error()
-            error.userMessage = "Такого пользователя не существует"
-            throw error
-        }
-        if (user.active) return next()
+
+        if (!user || user.active) return next()
         const error = new Error()
         error.hash = user.activationHash
         error.email = user.email
