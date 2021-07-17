@@ -201,14 +201,13 @@ h4 {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1140px;
-  padding: 5px 15px;
+  padding: 24px 15px;
   width: 100%;
 }
 .footer__links-list {
   align-items: flex-end;
   display: flex;
   list-style: none;
-  margin-top: 23px;
 }
 .footer__links-item {
   margin-right: 28px;
@@ -646,7 +645,6 @@ h4 {
 }
 
 .feedback {
-  margin-top: 23px;
   max-width: 240px;
   width: 20%;
 }
