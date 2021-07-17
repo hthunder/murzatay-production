@@ -6,7 +6,7 @@ import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
 import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
-import { getCookie, deleteCookie } from "./getCookie"
+import { authHandlerModule } from "./authHandler"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
@@ -118,45 +118,4 @@ sidebarInstagramWidget().then(() => {
     document.querySelector(".instagram-widget__hide-btn").onclick = showMore
 })
 
-const murzatayError = getCookie("murzatay-error")
-const murzatayMessage = getCookie("murzatay-message")
-const authLogin = getCookie("call-login")
-const authSignup = getCookie("call-signup")
-
-const handleAuthErrors = (target) => {
-    const btn = document.querySelector(`.nav__button_${target}`)
-    if (btn) {
-        const errorPlace = document.querySelector(
-            `.pop-up__${target} .pop-up__errors`
-        )
-
-        if (errorPlace) {
-            errorPlace.innerText = murzatayError
-            deleteCookie("murzatay-error")
-            deleteCookie(`call-${target}`)
-            setTimeout(() => {
-                errorPlace.innerText = ""
-            }, 10000)
-        }
-        btn.click()
-    }
-}
-
-if (murzatayError && authLogin) {
-    handleAuthErrors("login")
-}
-if (murzatayError && authSignup) {
-    handleAuthErrors("signup")
-}
-if (murzatayMessage) {
-    deleteCookie("murzatay-message")
-    window.createNotification({
-        closeOnClick: true,
-        displayCloseButton: true,
-        positionClass: "nfc-top-right",
-        showDuration: "5000",
-        theme: "success",
-    })({
-        message: murzatayMessage,
-    })
-}
+authHandlerModule()

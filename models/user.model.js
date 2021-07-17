@@ -23,6 +23,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: "user",
     },
+    active: {
+        type: Boolean,
+        default: false
+    },
+    activationHash: {
+        type: String,
+        unique: true
+    },
     favourites: [
         {
             type: mongoose.Schema.Types.ObjectId,

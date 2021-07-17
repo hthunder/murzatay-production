@@ -1,6 +1,12 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const { validationResult } = require("express-validator")
+const {
+    authErrorHandler,
+    concatErrors,
+    mailService,
+    createHash,
+} = require("../util")
 const config = require("../config/auth.config")
 const db = require("../models")
 
@@ -10,40 +16,51 @@ exports.signup = async (req, res) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-            return res
-                .cookie(
-                    "murzatay-error",
-                    errors
-                        .array()
-                        .map((error) => error.msg)
-                        .join("\n")
-                )
-                .cookie("call-signup", true)
-                .redirect("back")
+            return authErrorHandler(res, concatErrors(errors), "call-signup")
         }
         const user = new User({
             username: req.body.username,
             email: req.body.email,
             city: req.body.city,
             password: bcrypt.hashSync(req.body.password1, 8),
+            activationHash: createHash(),
         })
         await user.save()
-
+        mailService(
+            user.email,
+            "Подтверждение регистрации на сайте",
+            `https://3000-copper-hornet-8j3vlene.ws-eu11.gitpod.io/auth/activation?h=${user.activationHash}`
+        )
         return res
-            .cookie("murzatay-message", "Вы успешно зарегистрированы")
+            .cookie(
+                "murzatay-message",
+                "Вы успешно зарегистрированы, на вашу почту отправлено письмо с ссылкой активации"
+            )
             .redirect("back")
+    } catch (e) {
+        return authErrorHandler(
+            res,
+            "Произошла какая-то ошибка, попробуйте еще раз позднее",
+            "call-signup"
+        )
+    }
+}
+
+exports.activation = async (req, res) => {
+    try {
+        const { h } = req.query
+        await User.findOneAndUpdate({ activationHash: h }, { active: true })
+        return res.redirect("/")
     } catch (e) {
         return res
             .cookie(
                 "murzatay-error",
-                "Произошла какая-то ошибка, попробуйте еще раз позднее"
+                "Во время активации произошла какая-то ошибка, попробуйте позднее"
             )
-            .cookie("call-signup", true)
-            .redirect("back")
+            .redirect("/")
     }
 }
 
-// .exec() gives you better stack traces
 exports.signin = async (req, res) => {
     let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
@@ -64,10 +81,7 @@ exports.signin = async (req, res) => {
             .cookie("token", token, { httpOnly: true, sameSite: "lax" })
             .redirect("back")
     } catch (e) {
-        return res
-            .cookie("murzatay-error", userError)
-            .cookie("call-login", true)
-            .redirect("back")
+        return authErrorHandler(res, userError, "call-login")
     }
 }
 
