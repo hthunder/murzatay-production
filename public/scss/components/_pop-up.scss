@@ -4,6 +4,16 @@
     font-family: Raleway;
     font-style: normal;
 
+    &__forgot-pass,
+    &__back-to-login {
+        text-align: left;
+        margin-bottom: 16px;
+    }
+
+    &__forgot-pass-elem_hidden {
+        display: none;
+    }
+
     &__login,
     &__signup {
         background-color: variables.$akaroa;
@@ -35,6 +45,10 @@
         outline: none;
         padding: 0.2em 0.4em;
         width: 100%;
+    }
+
+    &__login-elem_hidden {
+        display: none;
     }
 
     &__errors {

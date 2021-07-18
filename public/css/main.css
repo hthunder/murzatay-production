@@ -451,6 +451,24 @@ h4 {
   }
 }
 
+.link {
+  background-color: transparent;
+  border: 0;
+  color: #8c5b3e;
+  font-family: Raleway;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  max-width: 640px;
+  padding-right: 20px;
+  text-align: right;
+  text-decoration: none;
+  width: 100%;
+}
+.link:hover {
+  color: #be6c23;
+  cursor: pointer;
+}
+
 .error {
   color: #ff0033;
 }
@@ -508,6 +526,13 @@ h4 {
   font-family: Raleway;
   font-style: normal;
 }
+.pop-up__forgot-pass, .pop-up__back-to-login {
+  text-align: left;
+  margin-bottom: 16px;
+}
+.pop-up__forgot-pass-elem_hidden {
+  display: none;
+}
 .pop-up__login, .pop-up__signup {
   background-color: #d8c1a6;
   border: 4px solid #96856c;
@@ -536,6 +561,9 @@ h4 {
   outline: none;
   padding: 0.2em 0.4em;
   width: 100%;
+}
+.pop-up__login-elem_hidden {
+  display: none;
 }
 .pop-up__errors {
   color: #ff0033;
@@ -786,24 +814,6 @@ h4 {
   .cookie__button {
     margin: 10px 0 0;
   }
-}
-
-.link {
-  background-color: transparent;
-  border: 0;
-  color: #8c5b3e;
-  font-family: Raleway;
-  font-size: var(--text-sm);
-  font-weight: 400;
-  max-width: 640px;
-  padding-right: 20px;
-  text-align: right;
-  text-decoration: none;
-  width: 100%;
-}
-.link:hover {
-  color: #be6c23;
-  cursor: pointer;
 }
 
 .unread {

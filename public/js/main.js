@@ -7,6 +7,7 @@ import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
 import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
 import { authHandlerModule } from "./authHandler"
+import { forgotPassModule } from "./forgotPass"
 
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
@@ -32,6 +33,8 @@ const popupSignup = document.querySelector(".pop-up__signup")
 const cancelSignup = document.querySelector(
     ".pop-up__signup .pop-up__cancel-btn"
 )
+
+forgotPassModule()
 
 if (login) {
     login.onclick = () => {

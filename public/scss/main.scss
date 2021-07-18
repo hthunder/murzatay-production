@@ -5,6 +5,7 @@
 @use 'layout/footer';
 @use 'layout/nav';
 @use 'layout/sidebar';
+@use 'components/link';
 @use 'components/error';
 @use 'components/rubrics';
 @use 'components/pop-up';
@@ -14,7 +15,6 @@
 @use 'components/feedback';
 @use 'components/instagram-widget';
 @use 'components/cookie';
-@use 'components/link';
 @use 'components/unread';
 @use 'components/pagination';
 @use 'pages/index';
