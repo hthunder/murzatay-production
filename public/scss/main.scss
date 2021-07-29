@@ -17,9 +17,13 @@
 @use 'components/cookie';
 @use 'components/unread';
 @use 'components/pagination';
+@use 'components/label';
+@use 'components/input';
+@use 'components/form';
 @use 'pages/index';
 @use 'pages/about';
 @use 'pages/articles';
 @use 'pages/topic';
 @use 'pages/my-page';
 @use 'pages/admin';
+@use 'pages/forgot-pass';

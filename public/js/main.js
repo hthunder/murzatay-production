@@ -1,14 +1,14 @@
 import { addFavourite } from "./addFavourite"
 import { showMore } from "./instagram_widget"
-import { slideToggle, fadeIn, fadeOut } from "./animations"
 import { areYouSurePrompt } from "./areYouSure"
 import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
 import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
 import { authHandlerModule } from "./authHandler"
-import { forgotPassModule } from "./forgotPass"
+import { popupInit } from "./popupInit"
 
+popupInit()
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
 
@@ -23,54 +23,6 @@ areYouSurePrompt(
         deleteArticleForm.submit()
     }
 )
-
-const login = document.querySelector(".nav__button_login")
-const popupLogin = document.querySelector(".pop-up__login")
-const cancelLogin = document.querySelector(".pop-up__login .pop-up__cancel-btn")
-const overlay = document.querySelector(".pop-up__overlay")
-const signup = document.querySelector(".nav__button_signup")
-const popupSignup = document.querySelector(".pop-up__signup")
-const cancelSignup = document.querySelector(
-    ".pop-up__signup .pop-up__cancel-btn"
-)
-
-forgotPassModule()
-
-if (login) {
-    login.onclick = () => {
-        slideToggle(popupLogin)
-        fadeIn(overlay)
-    }
-}
-
-if (cancelLogin) {
-    cancelLogin.addEventListener("click", () => {
-        slideToggle(popupLogin)
-        fadeOut(overlay)
-    })
-}
-
-if (overlay) {
-    overlay.addEventListener("click", () => {
-        fadeOut(popupLogin)
-        fadeOut(overlay)
-        fadeOut(popupSignup)
-    })
-}
-
-if (signup) {
-    signup.onclick = () => {
-        slideToggle(popupSignup)
-        fadeIn(overlay)
-    }
-}
-
-if (cancelSignup) {
-    cancelSignup.addEventListener("click", () => {
-        slideToggle(popupSignup)
-        fadeOut(overlay)
-    })
-}
 
 /* Не закрываются выпадающие элементы при повторном клике */
 

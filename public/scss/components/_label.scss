@@ -1,0 +1,12 @@
+@use '../abstracts/variables';
+
+.label {
+    font-family: Raleway;
+    &__title {
+        font-weight: bold;
+        margin-bottom: 0.2em;
+    }
+    &__title_block {
+        display: block;
+    }
+}

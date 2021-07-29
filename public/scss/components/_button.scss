@@ -22,4 +22,12 @@
         border-radius: 3px;
         padding: 0.35em 0.7em;
     }
+
+    &_wide {
+        width: 100%;
+    }
+
+    &_default {
+        font-size: var(--text);
+    }
 }

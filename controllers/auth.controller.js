@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const { validationResult } = require("express-validator")
+const crypto = require("crypto")
 const {
     authErrorHandler,
     concatErrors,
@@ -9,12 +10,14 @@ const {
 } = require("../util")
 const config = require("../config/auth.config")
 const db = require("../models")
+const Token = require("../models/token.model")
 
 const User = db.user
 
 exports.signup = async (req, res) => {
     try {
         const errors = validationResult(req)
+        const { protocol, hostname } = req
         if (!errors.isEmpty()) {
             return authErrorHandler(res, concatErrors(errors), "call-signup")
         }
@@ -29,7 +32,7 @@ exports.signup = async (req, res) => {
         mailService(
             user.email,
             "Подтверждение регистрации на сайте",
-            `https://3000-copper-hornet-8j3vlene.ws-eu11.gitpod.io/auth/activation?h=${user.activationHash}`
+            `${protocol}://${hostname}/auth/activation?h=${user.activationHash}`
         )
         return res
             .cookie(
@@ -82,6 +85,98 @@ exports.signin = async (req, res) => {
             .redirect("back")
     } catch (e) {
         return authErrorHandler(res, userError, "call-login")
+    }
+}
+
+exports.forgot_pass_get = async (req, res) => {
+    res.render("forgot_pass", {
+        layout: false,
+    })
+}
+
+exports.forgot_pass_post = async (req, res) => {
+    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
+    try {
+        const { protocol, hostname } = req
+        const { email } = req.body
+        const user = await User.findOne({ email })
+        if (!user) {
+            userError = "Пользователя с таким email-ом не существует"
+            throw new Error()
+        }
+        await Token.findOneAndDelete({ userId: user._id })
+        const resetToken = crypto.randomBytes(32).toString("hex")
+        const hash = await bcrypt.hash(
+            resetToken,
+            Number(process.env.BCRYPT_SALT)
+        )
+
+        await new Token({
+            userId: user._id,
+            token: hash,
+            createdAt: Date.now(),
+        }).save()
+
+        const link = `${protocol}://${hostname}/auth/password-reset?token=${resetToken}&id=${user._id}`
+        mailService(user.email, "Ссылка для восстановления пароля", link)
+        return res
+            .cookie(
+                "murzatay-message",
+                "Вам на почту направлено письмо с ссылкой для восстановления пароля"
+            )
+            .redirect("/")
+    } catch (e) {
+        return res.cookie("murzatay-error", userError).redirect("back")
+    }
+}
+
+exports.reset_pass_get = async (req, res) => {
+    try {
+        const { token, id } = req.query
+        res.render("password_reset", {
+            layout: false,
+            userId: id,
+            token,
+        })
+    } catch (e) {
+        return res.redirect("/")
+    }
+}
+
+exports.reset_pass_post = async (req, res) => {
+    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
+    try {
+        const { pass1, pass2, token, userId } = req.body
+        if (pass1 !== pass2) {
+            userError = "Пароли не совпадают"
+            throw new Error()
+        }
+        if (!token) {
+            userError =
+                "Ссылка для восстановления пароля истекла, запросите новую"
+            throw new Error()
+        }
+        const bdToken = await Token.findOne({ userId })
+        const isValidToken = await bcrypt.compare(token, bdToken.token)
+        if (bdToken && !isValidToken) {
+            userError =
+                "Ссылка для восстановления пароля истекла, запросите новую"
+            throw new Error()
+        }
+        const hashedPass = bcrypt.hashSync(pass1, 8)
+        const user = await User.findOneAndUpdate(
+            { _id: userId },
+            { password: hashedPass }
+        )
+        if (!user) {
+            throw new Error()
+        }
+        await bdToken.deleteOne()
+        return res
+            .cookie("murzatay-message", "Пароль успешно сброшен")
+            .redirect("/")
+    } catch (e) {
+        return res.cookie("murzatay-error", userError).redirect("back")
     }
 }
 
