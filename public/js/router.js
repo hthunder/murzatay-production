@@ -1,5 +1,6 @@
 import { commentsInit } from "./comments"
 import { profileInfoInit } from "./profile-info"
+import { passwordReset } from "./pages/passwordReset"
 
 export const router = (url) => {
     ;(async () => {
@@ -9,6 +10,9 @@ export const router = (url) => {
                 break
             case (url.match(/^\/my-page$/) || {}).input:
                 await profileInfoInit()
+                break
+            case (url.match(/^\/auth\/password-reset/) || {}).input:
+                passwordReset()
                 break
             default:
         }
