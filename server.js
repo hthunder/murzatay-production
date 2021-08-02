@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars")
 const cookieParser = require("cookie-parser")
 const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
+const { runInstagramWidget } = require("./util/interval/runInstagramWidget")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
@@ -107,6 +108,7 @@ async function start() {
         initial()
         app.listen(PORT, () => {
             console.log(`Server started on port ${PORT}`)
+            runInstagramWidget()
         })
     } catch (e) {
         console.log("hey")
@@ -116,3 +118,5 @@ async function start() {
 }
 
 start()
+
+// runInstagramWidget()
