@@ -8,9 +8,11 @@ const { getPhotosList } = require("../util/getPhotosList")
 
 exports.widget_urls_get = async (req, res, next) => {
     try {
-        const [shownPhotos, hiddenPhotos] = await getPhotosList()
-        return res.status(200).json({ shownPhotos, hiddenPhotos })
+        const imgList = await getPhotosList()
+        // console.log("shown", shownPhotos)
+        return res.status(200).json({ imgList })
     } catch (e) {
+        console.log(e)
         return next(e)
     }
 }

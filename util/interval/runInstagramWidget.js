@@ -3,7 +3,7 @@ const fs = require("fs")
 const imagemin = require("imagemin")
 const imageminMozjpeg = require("imagemin-mozjpeg")
 
-const indexCompressedFile = (pathToCompressedFile, cwd) => {
+const indexCompressedFile = (pathToCompressedFile, cwd, timestamp) => {
     const pathToJson = `${cwd}/public/img/instagram/compressed/img-list.json`
 
     fs.readFile(pathToJson, (err, readData) => {
@@ -14,6 +14,7 @@ const indexCompressedFile = (pathToCompressedFile, cwd) => {
                     imgList: [
                         {
                             path: pathToCompressedFile,
+                            timestamp,
                         },
                     ],
                 }),
@@ -24,24 +25,23 @@ const indexCompressedFile = (pathToCompressedFile, cwd) => {
 
         json.imgList.push({
             path: pathToCompressedFile,
+            timestamp,
         })
         return fs.writeFile(pathToJson, JSON.stringify(json), () => {})
     })
 }
 
-const createFile = (data, path, cwd) => {
+const createFile = (data, path, cwd, timestamp) => {
     const writer = fs.createWriteStream(path)
     writer.on("close", async () => {
         try {
-            console.log("before")
             const file = await imagemin([path], {
                 destination: `${cwd}/public/img/instagram/compressed`,
                 plugins: [imageminMozjpeg({ quality: 20 })],
             })
-            console.log('after', file)
-            indexCompressedFile(file[0].destinationPath, cwd)
+            indexCompressedFile(file[0].destinationPath, cwd, timestamp)
         } catch (e) {
-            console.log('trycatcherror', e)
+            console.log("trycatcherror", e)
         }
     })
     data.pipe(writer)
@@ -59,24 +59,31 @@ const downloadPhotos = async () => {
             const pathToFile = `${pathToFolder}/${media.id}.jpg`
 
             if (!fs.existsSync(pathToFile)) {
-                const mediaInfo = await axios.get(
-                    `https://graph.instagram.com/${media.id}?fields=id,media_url&access_token=${process.env.INSTAGRAM_ACCESS_TOKEN}`
+                const {
+                    data: { media_url, timestamp },
+                } = await axios.get(
+                    `https://graph.instagram.com/${media.id}?fields=id,media_url,timestamp&access_token=${process.env.INSTAGRAM_ACCESS_TOKEN}`
                 )
                 const fileStream = await axios({
-                    url: mediaInfo.data.media_url,
+                    url: media_url,
                     method: "GET",
                     responseType: "stream",
                 })
 
                 if (fileStream.headers["content-type"] === "image/jpeg") {
                     if (fs.existsSync(pathToFolder)) {
-                        createFile(fileStream.data, pathToFile, cwd)
+                        createFile(fileStream.data, pathToFile, cwd, timestamp)
                     } else {
                         fs.mkdir(
                             `${cwd}/public/img/instagram`,
                             { recursive: true },
                             () => {
-                                createFile(fileStream.data, pathToFile, cwd)
+                                createFile(
+                                    fileStream.data,
+                                    pathToFile,
+                                    cwd,
+                                    timestamp
+                                )
                             }
                         )
                     }
