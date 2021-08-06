@@ -1022,19 +1022,21 @@ h4 {
 .about__author-info {
   align-items: flex-start;
   display: flex;
-  margin-top: 34px;
 }
 .about__author-img {
   margin-right: 30px;
   max-height: 300px;
   max-width: 300px;
   object-fit: cover;
+  margin-top: 1em;
 }
 .about__author-text {
   font-family: Raleway;
   line-height: calc(1.5 * var(--text));
   max-width: 568px;
-  text-indent: 18px;
+}
+.about__text-paragraph {
+  margin: 1em 0;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .about__text {
@@ -1050,11 +1052,10 @@ h4 {
   }
   .about__author-info {
     display: block;
-    margin-top: 24px;
   }
   .about__author-img {
     display: block;
-    margin: 0 auto;
+    margin: 1em auto;
     margin-bottom: 10px;
   }
   .about__author-text {

@@ -1,18 +1,15 @@
 const Article = require("../models/article.model")
 const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
-const { LONG_COMMENT, NOT_LOGGED_IN } = require("../constants")
-const { errorHandler } = require("../util/errorHandler")
+const { LONG_COMMENT } = require("../constants")
 const { HttpError } = require("../util/HttpError")
 const { getPhotosList } = require("../util/getPhotosList")
 
 exports.widget_urls_get = async (req, res, next) => {
     try {
         const imgList = await getPhotosList()
-        // console.log("shown", shownPhotos)
         return res.status(200).json({ imgList })
     } catch (e) {
-        console.log(e)
         return next(e)
     }
 }

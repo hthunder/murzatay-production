@@ -13,7 +13,6 @@
     &__author-info {
         align-items: flex-start;
         display: flex;
-        margin-top: 34px;
     }
 
     &__author-img {
@@ -21,13 +20,17 @@
         max-height: 300px;
         max-width: 300px;
         object-fit: cover;
+        margin-top: 1em;
     }
 
     &__author-text {
         font-family: Raleway;
         line-height: calc(1.5 * var(--text));
         max-width: 568px;
-        text-indent: 18px;
+    }
+
+    &__text-paragraph {
+        margin: 1em 0;
     }
 
     @media #{variables.$media-md} {
@@ -46,12 +49,11 @@
 
         &__author-info {
             display: block;
-            margin-top: 24px;
         }
 
         &__author-img {
             display: block;
-            margin: 0 auto;
+            margin: 1em auto;
             margin-bottom: 10px;
         }
 

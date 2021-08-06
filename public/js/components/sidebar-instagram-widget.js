@@ -1,9 +1,9 @@
 const LinkList = (imgList) =>
     imgList
         .map(
-            (
-                val
-            ) => `<a class="instagram-widget__photo-link" href="https://www.instagram.com">
+            (val) => `<a class="instagram-widget__photo-link" href=${
+                val.permalink
+            }>
                 <img class="instagram-widget__photo-img" src="${
                     val.path.split("public")[1]
                 }" />
