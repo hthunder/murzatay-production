@@ -86,6 +86,7 @@ const initial = async () => {
                 username,
                 email,
                 password: bcrypt.hashSync(password, 8),
+                active: true,
             })
         }
     } catch (e) {

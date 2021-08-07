@@ -1,11 +1,9 @@
 @use '../abstracts/variables';
 
 .topic {
-    &__content {
-        padding: 0 80px 32px;
-        position: relative;
-        width: 100%;
-    }
+    padding: 0 80px 32px;
+    position: relative;
+    width: 100%;
 
     &__add-favourite {
         background-color: transparent;
@@ -38,14 +36,9 @@
 
     &__layout {
         font-family: Raleway;
-        font-style: normal;
-        font-weight: 500;
+        font-size: var(--text);
+        line-height: 1.5;
         margin-bottom: 12px;
-    }
-
-    &__layout p {
-        line-height: calc(1.5 * var(--text));
-        margin: 15px 0;
     }
 
     &__layout img {
