@@ -3,10 +3,10 @@
 .footer {
     background-color: variables.$bronze;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 1140px;
-    padding: 24px 15px;
+    padding: 24px 36px;
     width: 100%;
 
     &__links-list {
