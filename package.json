@@ -9,7 +9,7 @@
         "server": "nodemon server --ignore public/img/instagram/compressed/img-list.json",
         "mongo": "mkdir -p /workspace/data && mongod --dbpath /workspace/data",
         "scss": "npx sass --watch public/scss:public/css",
-        "scss:production": "npx sass --watch public/scss:public/css --style compressed",
+        "scss:production": "npx sass public/scss:public/css --style compressed",
         "webpack": "npx webpack",
         "eslint": "eslint",
         "eslint:fix": "eslint --fix"
