@@ -38,15 +38,10 @@ app.set("views", "views")
 
 app.use(checkSecureConnection)
 app.use(cookieParser())
-
-// parse request of content-type - application/json
 app.use(express.json())
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"))
 
-// routes
 app.use("/auth", auth)
 app.use("/articles", isLoggedIn, articleRouter)
 app.use("/api", isLoggedIn, apiRoutes)
