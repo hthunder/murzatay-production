@@ -11,6 +11,7 @@ const { runInstagramWidget } = require("./util/interval/runInstagramWidget")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
+const { checkSecureConnection } = require("./middlewares/checkSecureConnection")
 const Rubric = require("./models/rubric.model")
 
 const blogRoutes = require("./routes/blog.routes")
@@ -35,6 +36,7 @@ app.engine("hbs", hbs.engine)
 app.set("view engine", "hbs")
 app.set("views", "views")
 
+app.use(checkSecureConnection)
 app.use(cookieParser())
 
 // parse request of content-type - application/json
@@ -99,9 +101,9 @@ const initDB = async () => {
 const httpServer = http.createServer(app)
 
 const createHttpsServer = () => {
-    const privateKey = fs.readFileSync("/etc/letsencrypt/live/hthunder.ru/privkey.pem", "utf8")
-    const certificate = fs.readFileSync("/etc/letsencrypt/live/hthunder.ru/cert.pem", "utf8")
-    const ca = fs.readFileSync("/etc/letsencrypt/live/hthunder.ru/chain.pem", "utf8")
+    const privateKey = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/privkey.pem", "utf8")
+    const certificate = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/cert.pem", "utf8")
+    const ca = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/chain.pem", "utf8")
 
     const credentials = {
         key: privateKey,
@@ -123,8 +125,9 @@ const createHttpsServer = () => {
 
         if (process.env.MODE === 'production') {
             const httpsServer = createHttpsServer()
-            httpsServer.listen(443, () => {
-                console.log('HTTPS Server running on port 443')
+            const httpsPort = 443
+            httpsServer.listen(httpsPort, () => {
+                console.log(`HTTPS Server running on port ${httpsPort}`)
             })
         }
     } catch (e) {
