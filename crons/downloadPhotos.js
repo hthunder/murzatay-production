@@ -98,7 +98,4 @@ const downloadPhotos = async () => {
     }
 }
 
-exports.runInstagramWidget = () => {
-    downloadPhotos()
-    // setInterval(() => console.log("widget"), 1500)
-}
+downloadPhotos()

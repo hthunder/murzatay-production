@@ -7,7 +7,6 @@ const bcrypt = require("bcryptjs")
 const fs = require("fs")
 const http = require("http")
 const https = require("https")
-const { runInstagramWidget } = require("./util/interval/runInstagramWidget")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
@@ -36,7 +35,9 @@ app.engine("hbs", hbs.engine)
 app.set("view engine", "hbs")
 app.set("views", "views")
 
-app.use(checkSecureConnection)
+if (process.env.MODE === 'production') {
+    app.use(checkSecureConnection)
+}
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -130,5 +131,3 @@ const createHttpsServer = () => {
         process.exit()
     }
 })()
-
-runInstagramWidget()
