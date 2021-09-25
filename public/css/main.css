@@ -777,7 +777,7 @@ h4 {
 .instagram-widget__photo-link {
   margin: 5px 0;
   padding: 3px;
-  width: calc(100% / 3);
+  width: 33.3333333333%;
 }
 .instagram-widget__photo-img {
   height: 65px;
@@ -1583,6 +1583,7 @@ h4 {
   outline: none;
   padding: 2px;
   padding: 2.5px;
+  cursor: pointer;
 }
 
 .forgot-pass__form {

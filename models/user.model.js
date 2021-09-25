@@ -38,6 +38,12 @@ const userSchema = new mongoose.Schema({
             ref: "Article",
         },
     ],
+    visitedArticles: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Article"
+        }
+    ],
     about: { type: String, default: "" },
     avatar: String,
 })
