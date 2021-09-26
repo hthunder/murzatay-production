@@ -18,7 +18,7 @@ const canEditOrDelete = (isEditable, isDeletable) => {
     return ""
 }
 
-export const CommentJS = (commentData) => {
+export const CommentJS = (commentData, onDelete, onEdit) => {
     const {
         _id,
         user: { username, avatar = "/img/icons/user-profile.svg" },
@@ -43,6 +43,10 @@ export const CommentJS = (commentData) => {
             ${canEditOrDelete(isEditable, isDeletable)}
         </div>
     `
+    const editBtn = article.querySelector(".comments__edit-button")
+    const deleteBtn = article.querySelector(".comments__delete-button")
+    if (editBtn) editBtn.onclick = () => onEdit(article)
+    if (deleteBtn) deleteBtn.onclick = () => onDelete(article)
     return article
 }
 

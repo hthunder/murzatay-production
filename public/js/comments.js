@@ -25,11 +25,6 @@ export const saveCommentRequest = async (commentNode, text, id) => {
     }
 }
 
-const cancelEditing = (comment, editingForm) => {
-    comment.classList.toggle("comments__instance-content_hidden")
-    editingForm.classList.toggle("comments__temp-form_hidden")
-}
-
 const saveEditing = async (commentContent, formEl, commentEl, textareaEl) => {
     await saveCommentRequest(
         commentContent.querySelector(".comments__instance-text"),
@@ -52,7 +47,8 @@ const createTempForm = (commentText, commentEl, commentContentEl) => {
         saveEditing(commentContentEl, formEl, commentEl, textareaEl)
     }
     cancelButtonEl.onclick = () => {
-        cancelEditing(commentContentEl, formEl)
+        commentContentEl.classList.toggle("comments__instance-content_hidden")
+        formEl.classList.toggle("comments__temp-form_hidden")
     }
     countSymbols(counterEl, textareaEl)
 }
@@ -101,18 +97,8 @@ export const addCommentRequest = async (articleId, textarea) => {
         textareaPtr.value = ""
         const event = new Event("input")
         textareaPtr.dispatchEvent(event)
-        const commentEl = CommentJS(commentData)
+        const commentEl = CommentJS(commentData, deleteCommentRequest, editComment)
         document.querySelector(".comments__add-form").after(commentEl)
-
-        const deleteButton = commentEl.querySelector(".comments__delete-button")
-        const editButton = commentEl.querySelector(".comments__edit-button")
-
-        deleteButton.onclick = () => {
-            deleteCommentRequest(commentEl)
-        }
-        editButton.onclick = () => {
-            editComment(commentEl)
-        }
     }
 }
 
@@ -134,34 +120,15 @@ const getComments = async () => {
     const res = await fetch(`/api/articles/${articleId}/comments`)
     if (res.status === 200) {
         const commentsData = await res.json()
-        const commentsArray = commentsData.map((commentData) =>
-            CommentJS(commentData)
-        )
-        commentsArray.forEach((el) => {
-            allCommentsPlace.appendChild(el)
+        
+        commentsData.forEach((commentData) => {
+            allCommentsPlace.appendChild(
+                CommentJS(commentData, deleteCommentRequest, editComment)
+            )
         })
     }
 }
 
 export const commentsInit = async () => {
     await getComments()
-    const commentsNodeList = document.querySelectorAll(".comments__instance")
-    commentsNodeList.forEach((commentEl) => {
-        const deleteButtonEl = commentEl.querySelector(
-            ".comments__delete-button"
-        )
-        const editButtonEl = commentEl.querySelector(".comments__edit-button")
-
-        if (deleteButtonEl) {
-            deleteButtonEl.onclick = () => {
-                deleteCommentRequest(commentEl)
-            }
-        }
-
-        if (editButtonEl) {
-            editButtonEl.onclick = () => {
-                editComment(commentEl)
-            }
-        }
-    })
 }
