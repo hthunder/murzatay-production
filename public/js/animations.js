@@ -1,56 +1,63 @@
 export const slideUp = (target, duration) => {
-    /* Sliding-up logic */
-    target.style.transitionProperty = "height, margin, padding"
-    target.style.transitionDuration = `${duration}ms`
-    target.style.boxSizing = "border-box"
-    target.style.height = `${target.offsetHeight}px`
-    target.style.height = 0
-    target.style.paddingTop = 0
-    target.style.paddingBottom = 0
-    target.style.marginTop = 0
-    target.style.marginBottom = 0
-    target.style.overflow = "hidden"
+    const styleObj = {
+        transitionProperty: "height, margin, padding",
+        transitionDuration: `${duration}ms`,
+        boxSizing: "border-box",
+        height: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+        marginTop: 0,
+        marginBottom: 0,
+        overflow: "hidden",
+    }
+    Object.entries(styleObj).forEach(([key, val]) => {
+        target.style[key] = val
+    })
     window.setTimeout(() => {
         target.style.display = "none"
-        target.style.removeProperty("height")
-        target.style.removeProperty("padding-top")
-        target.style.removeProperty("padding-bottom")
-        target.style.removeProperty("margin-top")
-        target.style.removeProperty("margin-bottom")
-        target.style.removeProperty("overflow")
-        target.style.removeProperty("transition-duration")
-        target.style.removeProperty("transition-property")
+        const removedProps = [
+            "height",
+            "padding-top",
+            "padding-bottom",
+            "margin-top",
+            "margin-bottom",
+            "overflow",
+            "transition-duration",
+            "transition-property",
+        ]
+        removedProps.forEach((prop) => {
+            target.style.removeProperty(prop)
+        })
     }, duration)
 }
 
 export const slideDown = (target, duration) => {
-    /* Sliding-down logic */
     target.style.removeProperty("display")
     let { display } = window.getComputedStyle(target)
     if (display === "none") {
         display = "block"
     }
     target.style.display = display
-    const height = target.offsetHeight
-    target.style.height = 0
-    target.style.paddingTop = 0
-    target.style.paddingBottom = 0
-    target.style.marginTop = 0
-    target.style.marginBottom = 0
-    target.style.overflow = "hidden"
-    target.style.boxSizing = "border-box"
-    target.style.transitionProperty = "height, margin, padding"
-    target.style.transitionDuration = `${duration}ms`
-    target.style.height = `${height}px`
-    target.style.removeProperty("padding-top")
-    target.style.removeProperty("padding-bottom")
-    target.style.removeProperty("margin-top")
-    target.style.removeProperty("margin-bottom")
+    const styleObj = {
+        overflow: "hidden",
+        boxSizing: "border-box",
+        transitionProperty: "height, margin, padding",
+        transitionDuration: `${duration}ms`,
+        height: `${target.offsetHeight}px`,
+    }
+    Object.entries(styleObj).forEach(([key, val]) => {
+        target.style[key] = val
+    })
     window.setTimeout(() => {
-        target.style.removeProperty("height")
-        target.style.removeProperty("overflow")
-        target.style.removeProperty("transition-duration")
-        target.style.removeProperty("transition-property")
+        const removedPropsAsync = [
+            "height",
+            "overflow",
+            "transition-duration",
+            "transition-property",
+        ]
+        removedPropsAsync.forEach((prop) => {
+            target.style.removeProperty(prop)
+        })
     }, duration)
 }
 

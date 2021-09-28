@@ -1,38 +1,58 @@
 import { countSymbols } from "./counter"
 import { EditForm, CommentTextarea, CommentJS } from "./components/comment"
 
+const allCommentsPlace = document.querySelector(".topic__js-comments")
+const articleId = allCommentsPlace.dataset.id
+
 export const deleteCommentRequest = async (commentEl) => {
-    const res = await fetch(`/api/comments/${commentEl.dataset.id}`, {
-        method: "DELETE",
-    })
-    if (res.status === 200) {
-        commentEl.parentNode.removeChild(commentEl)
+    try {
+        const res = await fetch(`/api/comments/${commentEl.dataset.id}`, {
+            method: "DELETE",
+        })
+        if (res.status === 200) {
+            return commentEl.parentNode.removeChild(commentEl)
+        }
+        throw new Error("Не удалось удалить комментарий")
+    } catch (e) {
+        return console.error(e.message)
     }
 }
 
-export const saveCommentRequest = async (commentNode, text, id) => {
-    const paragraphComment = commentNode
-    const res = await fetch(`/api/comments/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text }),
-    })
-    if (res.status === 200) {
-        const newText = await res.json()
-        paragraphComment.textContent = newText.text
-    }
-}
-
-const saveEditing = async (commentContent, formEl, commentEl, textareaEl) => {
-    await saveCommentRequest(
-        commentContent.querySelector(".comments__instance-text"),
-        textareaEl.value,
-        commentEl.dataset.id
-    )
+const toggleEditingState = (commentContent, formEl) => {
     commentContent.classList.toggle("comments__instance-content_hidden")
     formEl.classList.toggle("comments__temp-form_hidden")
+}
+
+export const saveCommentRequest = async (
+    newText,
+    id,
+    commentContent,
+    formEl
+) => {
+    try {
+        const paragraph = commentContent.querySelector(
+            ".comments__instance-text"
+        )
+        if (newText !== paragraph.textContent) {
+            const res = await fetch(`/api/comments/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: newText }),
+            })
+            if (res.status === 200) {
+                const resObj = await res.json()
+                paragraph.textContent = resObj.text
+                return toggleEditingState(commentContent, formEl)
+            }
+            throw new Error("Не удалось сохранить изменения")
+        } else {
+            return toggleEditingState(commentContent, formEl)
+        }
+    } catch (e) {
+        return console.error(e.message)
+    }
 }
 
 const createTempForm = (commentText, commentEl, commentContentEl) => {
@@ -44,7 +64,12 @@ const createTempForm = (commentText, commentEl, commentContentEl) => {
 
     commentEl.appendChild(formEl)
     saveButtonEl.onclick = () => {
-        saveEditing(commentContentEl, formEl, commentEl, textareaEl)
+        saveCommentRequest(
+            textareaEl.value,
+            commentEl.dataset.id,
+            commentContentEl,
+            formEl
+        )
     }
     cancelButtonEl.onclick = () => {
         commentContentEl.classList.toggle("comments__instance-content_hidden")
@@ -54,8 +79,9 @@ const createTempForm = (commentText, commentEl, commentContentEl) => {
 }
 
 export const editComment = (commentEl) => {
-    const commentText = commentEl.querySelector(".comments__instance-text")
-        .textContent
+    const commentText = commentEl.querySelector(
+        ".comments__instance-text"
+    ).textContent
     const commentContentEl = commentEl.querySelector(
         ".comments__instance-content"
     )
@@ -73,39 +99,60 @@ export const editComment = (commentEl) => {
             ".comments__symbol-counter"
         ).innerHTML = `${commentText.length}/500`
     }
-
-    // Санитайзим пользовательский ввод
-    // Если запрос неуспешен, то возвращаем параграф и кнопку редактировать и убираем кнопку сохранить
-    // Добавляем всплывающий алерт(неблокирующий), который говорит, что произошла ошибка
 }
 
-export const addCommentRequest = async (articleId, textarea) => {
-    const textareaPtr = textarea
-    const data = {
-        articleId,
-        text: textarea.value,
-    }
-    const res = await fetch(`/api/comments`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-    if (res.status === 200) {
-        const commentData = await res.json()
-        textareaPtr.value = ""
-        const event = new Event("input")
-        textareaPtr.dispatchEvent(event)
-        const commentEl = CommentJS(commentData, deleteCommentRequest, editComment)
-        document.querySelector(".comments__add-form").after(commentEl)
+export const addCommentRequest = async (textarea) => {
+    try {
+        const res = await fetch(`/api/comments`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                articleId,
+                text: textarea.value,
+            }),
+        })
+        if (res.status === 200) {
+            const commentData = await res.json()
+            textarea.value = ""
+            textarea.dispatchEvent(new Event("input"))
+            const commentEl = CommentJS(
+                commentData,
+                deleteCommentRequest,
+                editComment
+            )
+            return document
+                .querySelector(".topic__js-comments")
+                .prepend(commentEl)
+        }
+        throw new Error("Не удалось добавить новый комментарий")
+    } catch (e) {
+        return console.error(e.message)
     }
 }
 
-const getComments = async () => {
+const getCommentsRequest = async () => {
+    try {
+        const res = await fetch(`/api/articles/${articleId}/comments`)
+        if (res.status === 200) {
+            const commentsData = await res.json()
+
+            return commentsData.forEach((commentData) => {
+                allCommentsPlace.appendChild(
+                    CommentJS(commentData, deleteCommentRequest, editComment)
+                )
+            })
+        }
+        throw new Error("Произошел сбой при получении списка комментариев")
+    } catch (e) {
+        return console.error(e.message)
+    }
+}
+
+export const commentsInit = async () => {
     const addCommentPlace = document.querySelector(".topic__js-add-comment")
-    const allCommentsPlace = document.querySelector(".topic__js-comments")
-    const articleId = allCommentsPlace.dataset.id
+
     if (addCommentPlace) {
         const formEl = CommentTextarea()
         addCommentPlace.appendChild(formEl)
@@ -113,22 +160,10 @@ const getComments = async () => {
         const textarea = formEl.querySelector(".sc-textarea__textarea")
         countSymbols()
         addButton.onclick = () => {
-            addCommentRequest(articleId, textarea)
+            if (textarea.value !== "") {
+                addCommentRequest(textarea)
+            }
         }
     }
-
-    const res = await fetch(`/api/articles/${articleId}/comments`)
-    if (res.status === 200) {
-        const commentsData = await res.json()
-        
-        commentsData.forEach((commentData) => {
-            allCommentsPlace.appendChild(
-                CommentJS(commentData, deleteCommentRequest, editComment)
-            )
-        })
-    }
-}
-
-export const commentsInit = async () => {
-    await getComments()
+    await getCommentsRequest()
 }

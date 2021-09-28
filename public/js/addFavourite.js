@@ -8,23 +8,19 @@ export const addFavourite = () => {
             const res = await fetch(`/api/users/${userId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ favourites: `${articleId}` }),
+                body: JSON.stringify({ favourites: articleId }),
             })
-            const data = await res.json()
-            if (
-                (data.favourites &&
-                    !favouriteBtn.classList.contains(
-                        "topic__add-favourite_active"
-                    )) ||
-                (!data.favourites &&
-                    favouriteBtn.classList.contains(
-                        "topic__add-favourite_active"
-                    ))
-            ) {
-                favouriteBtn.classList.toggle("topic__add-favourite_active")
+            if (res.ok) {
+                const data = await res.json()
+                const isViewLiked = favouriteBtn.classList.contains(
+                    "topic__add-favourite_active"
+                )
+                if (data.favourites !== isViewLiked) {
+                    favouriteBtn.classList.toggle("topic__add-favourite_active")
+                }
             }
         } catch (e) {
-            console.log(e)
+            console.error(e.message)
         }
     }
     if (favouriteBtn) {
