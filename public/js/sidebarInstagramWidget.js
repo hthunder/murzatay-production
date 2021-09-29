@@ -1,4 +1,4 @@
-import { SidebarInstagramWidget } from "./components/sidebar-instagram-widget"
+import { SidebarInstagramWidget } from "./components/sidebarInstagramWidget"
 
 export const sidebarInstagramWidget = async () => {
     const placeForWidgetEl = document.querySelector(

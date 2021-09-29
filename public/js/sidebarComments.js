@@ -1,4 +1,4 @@
-import { SidebarComment } from "./components/sidebar-comment"
+import { SidebarComment } from "./components/sidebarComment"
 
 export const sidebarComments = async () => {
     const placeForCommentsEl = document.querySelector(

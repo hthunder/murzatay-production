@@ -1,5 +1,5 @@
-import { ProfileInfo } from "./components/profile-info"
-import { setSizeControl } from "./imgsize_control"
+import { ProfileInfo } from "./components/profileInfo"
+import { setSizeControl } from "./imgsizeControl"
 
 export const profileRequest = async (
     placeForProfileInfo,
@@ -40,7 +40,9 @@ export const setAboutEditFormListener = (
     placeForProfileInfo,
     profileInfoEl
 ) => {
-    const editButton = profileInfoEl.querySelector(".my-page__about-edit-button")
+    const editButton = profileInfoEl.querySelector(
+        ".my-page__about-edit-button"
+    )
     const editForm = profileInfoEl.querySelector(".my-page__about-edit-form")
     const aboutInfo = profileInfoEl.querySelector(".my-page__about-fields")
 
