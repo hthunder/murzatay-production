@@ -1,4 +1,4 @@
-export const areYouSurePrompt = (element, message, callback) => {
+export const confirmAction = (element, message, callback) => {
     if (element) {
         element.onclick = () => {
             const confirmation = window.confirm(message)

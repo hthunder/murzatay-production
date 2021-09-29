@@ -1,6 +1,6 @@
 import { addFavourite } from "./addFavourite"
 import { showMore } from "./instagram_widget"
-import { areYouSurePrompt } from "./areYouSure"
+import { confirmAction } from "./confirmAction"
 import { router } from "./router"
 import { setSizeControl } from "./imgsize_control"
 import { sidebarComments } from "./sidebarComments"
@@ -17,7 +17,7 @@ setSizeControl(200, submitBtn, imgInput)
 
 const deleteArticleButton = document.querySelector(".articles__delete-button")
 const deleteArticleForm = document.querySelector(".articles__delete-form")
-areYouSurePrompt(
+confirmAction(
     deleteArticleButton,
     "Вы уверены, что хотите удалить эту статью?",
     () => {

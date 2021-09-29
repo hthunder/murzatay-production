@@ -534,9 +534,9 @@ h4 {
   display: none;
 }
 .pop-up__link {
+  display: block;
   color: #8c5b3e;
   font-size: var(--text-sm);
-  float: left;
   margin-bottom: 0.5em;
   text-decoration: none;
 }

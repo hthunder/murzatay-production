@@ -1,8 +1,10 @@
-import { countSymbols } from "./counter"
+import { countSymbols } from "./countSymbols"
 import { EditForm, CommentTextarea, CommentJS } from "./components/comment"
 
 const allCommentsPlace = document.querySelector(".topic__js-comments")
-const articleId = allCommentsPlace.dataset.id
+const articleId =
+    allCommentsPlace && allCommentsPlace.dataset && allCommentsPlace.dataset.id
+let resetCounter
 
 export const deleteCommentRequest = async (commentEl) => {
     try {
@@ -115,8 +117,7 @@ export const addCommentRequest = async (textarea) => {
         })
         if (res.status === 200) {
             const commentData = await res.json()
-            textarea.value = ""
-            textarea.dispatchEvent(new Event("input"))
+            resetCounter()
             const commentEl = CommentJS(
                 commentData,
                 deleteCommentRequest,
@@ -158,7 +159,8 @@ export const commentsInit = async () => {
         addCommentPlace.appendChild(formEl)
         const addButton = formEl.querySelector(".comments__add-button")
         const textarea = formEl.querySelector(".sc-textarea__textarea")
-        countSymbols()
+        const counterNode = document.querySelector(".comments__symbol-counter")
+        resetCounter = countSymbols(counterNode, textarea)
         addButton.onclick = () => {
             if (textarea.value !== "") {
                 addCommentRequest(textarea)
