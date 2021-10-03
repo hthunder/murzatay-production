@@ -35,7 +35,7 @@ app.engine("hbs", hbs.engine)
 app.set("view engine", "hbs")
 app.set("views", "views")
 
-if (process.env.MODE === 'production') {
+if (process.env.MODE === "production") {
     app.use(checkSecureConnection)
 }
 app.use(cookieParser())
@@ -61,15 +61,12 @@ const initDB = async () => {
         const password = process.env.DB_ADMIN_PASSWORD
         const email = process.env.DB_ADMIN_EMAIL
 
-        await db.mongoose.connect(
-            "mongodb://localhost:27017/murzatay",
-            {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useFindAndModify: false,
-                useCreateIndex: true,
-            }
-        )
+        await db.mongoose.connect("mongodb://localhost:27017/murzatay", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true,
+        })
 
         RUBRICS.forEach(async (rubricName) => {
             const rubric = await Rubric.find({ name: rubricName })
@@ -97,19 +94,28 @@ const initDB = async () => {
 const httpServer = http.createServer(app)
 
 const createHttpsServer = () => {
-    const privateKey = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/privkey.pem", "utf8")
-    const certificate = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/cert.pem", "utf8")
-    const ca = fs.readFileSync("/etc/letsencrypt/live/murzatay.ru/chain.pem", "utf8")
+    const privateKey = fs.readFileSync(
+        "/etc/letsencrypt/live/murzatay.ru/privkey.pem",
+        "utf8"
+    )
+    const certificate = fs.readFileSync(
+        "/etc/letsencrypt/live/murzatay.ru/cert.pem",
+        "utf8"
+    )
+    const ca = fs.readFileSync(
+        "/etc/letsencrypt/live/murzatay.ru/chain.pem",
+        "utf8"
+    )
 
     const credentials = {
         key: privateKey,
         cert: certificate,
-        ca
+        ca,
     }
     return https.createServer(credentials, app)
 }
 
-(async function start() {
+;(async function start() {
     try {
         const httpPort = process.env.MODE === "production" ? 80 : 3000
 
@@ -119,7 +125,7 @@ const createHttpsServer = () => {
             console.log(`HTTP Server running on port ${httpPort}`)
         })
 
-        if (process.env.MODE === 'production') {
+        if (process.env.MODE === "production") {
             const httpsServer = createHttpsServer()
             const httpsPort = 443
             httpsServer.listen(httpsPort, () => {

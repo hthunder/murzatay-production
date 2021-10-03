@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema({
     },
     active: {
         type: Boolean,
-        default: false
+        default: false,
     },
     activationHash: {
         type: String,
-        unique: true
+        unique: true,
     },
     favourites: [
         {
@@ -41,8 +41,8 @@ const userSchema = new mongoose.Schema({
     visitedArticles: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Article"
-        }
+            ref: "Article",
+        },
     ],
     about: { type: String, default: "" },
     avatar: String,

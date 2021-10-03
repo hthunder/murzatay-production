@@ -6,7 +6,7 @@ export const addFavourite = () => {
         const { userId } = favouriteBtn.dataset
         try {
             const res = await fetch(`/api/users/${userId}`, {
-                method: "PUT",
+                method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ favourites: articleId }),
             })
@@ -15,14 +15,26 @@ export const addFavourite = () => {
                 const isViewLiked = favouriteBtn.classList.contains(
                     "topic__add-favourite_active"
                 )
-                if (data.favourites !== isViewLiked) {
+                const isFavourite = data.favourites.indexOf(articleId) !== -1
+                if (isFavourite !== isViewLiked) {
                     favouriteBtn.classList.toggle("topic__add-favourite_active")
                 }
+            } else {
+                throw new Error()
             }
         } catch (e) {
-            console.error(e.message)
+            window.createNotification({
+                closeOnClick: true,
+                displayCloseButton: true,
+                positionClass: "nfc-top-right",
+                showDuration: "5000",
+                theme: "error",
+            })({
+                message: "Произошла неизвестная ошибка",
+            })
         }
     }
+
     if (favouriteBtn) {
         favouriteBtn.onclick = fetchRequest
     }

@@ -1,8 +1,11 @@
 const express = require("express")
 const upload = require("../middlewares/articleImgHandler")
-const { isAdmin } = require("../middlewares/authJwt")
+// const { isAd
 const { avatarUploader } = require("../util/avatarUploader")
-const { authentication } = require("../middlewares/api/authentication")
+const {
+    authentication,
+    authorize,
+} = require("../middlewares/api/authentication")
 const {
     authorizeOwner,
     authCommentDelete,
@@ -27,7 +30,11 @@ router.get("/widget-urls", apiController.widget_urls_get)
 // user route
 // private
 
-router.get("/users/:id", authentication, authorizeOwner, apiController.user_get)
+router.get(
+    "/users/:id",
+    authorize(["owner", "moderator", "admin"]),
+    apiController.user_get
+)
 
 // update user's info
 // url: /api/users/:id
@@ -37,13 +44,10 @@ router.get("/users/:id", authentication, authorizeOwner, apiController.user_get)
 
 router.patch(
     "/users/:id",
-    authentication,
-    authorizeOwner,
+    authorize(["owner", "moderator", "admin"]),
     avatarUploader.single("avatar"),
     apiController.user_patch
 )
-
-router.put("/users/:id", authentication, authorizeOwner, apiController.user_put)
 
 // article images upload handler
 // url: /api/images
@@ -51,7 +55,12 @@ router.put("/users/:id", authentication, authorizeOwner, apiController.user_put)
 // admin route
 // private
 
-router.post("/images", isAdmin, upload.single("file"), apiController.image_post)
+router.post(
+    "/images",
+    authorize("admin"),
+    upload.single("file"),
+    apiController.image_post
+)
 
 // comments getting
 // url: /api/comments
@@ -68,7 +77,7 @@ router.get("/comments", apiController.comments_get)
 
 router.put(
     "/comments/:id",
-    authentication,
+    authorize(),
     authCommentEdit,
     apiController.comment_put
 )
@@ -81,7 +90,7 @@ router.put(
 
 router.delete(
     "/comments/:id",
-    authentication,
+    authorize(),
     authCommentDelete(["admin", "moderator"]),
     apiController.comment_delete
 )
@@ -106,7 +115,7 @@ router.delete(
 //     }
 // ]
 
-router.post("/comments", authentication, apiController.comment_post)
+router.post("/comments", authorize(), apiController.comment_post)
 
 // get all comments
 // url: /api/articles/:articleId/comments
@@ -136,6 +145,13 @@ router.all("*", (req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 router.use((error, req, res, next) => {
+    if (error.codeName === "DuplicateKey") {
+        error.statusCode = 409
+        if (error?.keyPattern?.username === 1) {
+            error.message =
+                "Пользователь с данным именем уже существует. Выберите другое имя пользователя."
+        }
+    }
     if (!error.statusCode) error.statusCode = 500
     return res.status(error.statusCode).json({ message: error.message })
 })

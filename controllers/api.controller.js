@@ -133,27 +133,33 @@ exports.user_get = async (req, res, next) => {
     }
 }
 
+const getFavouritesInfo = async (userId, articleId) => {
+    const { favourites } = await User.findById(userId)
+    const index = favourites.indexOf(articleId)
+    if (index === -1) {
+        favourites.push(articleId)
+    } else {
+        favourites.splice(index, 1)
+    }
+    return favourites
+}
+
 exports.user_patch = async (req, res, next) => {
     try {
         const userId = req.params.id
         const userData = req.body
 
-        const tempUser = await User.findOne({
-            username: req.body.username,
-        }).lean()
-        // eslint-disable-next-line no-underscore-dangle
-        if (tempUser && tempUser._id.toString() !== userId) {
-            throw new HttpError(
-                "Пользователь с таким именем уже существует",
-                409
+        if (req.file) userData.avatar = `/${req.file.path.split("public/")[1]}`
+        if (userData.favourites) {
+            userData.favourites = await getFavouritesInfo(
+                userId,
+                userData.favourites
             )
         }
 
-        if (req.file) userData.avatar = `/${req.file.path.split("public/")[1]}`
-
         const user = await User.findByIdAndUpdate(userId, userData, {
             new: true,
-            fields: "about avatar city username",
+            fields: "about avatar city username favourites",
         }).lean()
 
         if (!user) {
@@ -161,41 +167,6 @@ exports.user_patch = async (req, res, next) => {
         }
 
         return res.status(200).json(user)
-    } catch (e) {
-        return next(e)
-    }
-}
-
-exports.user_put = async (req, res, next) => {
-    try {
-        const userId = req.params.id
-        let message = ""
-
-        const user = await User.findById(userId)
-        const updates = req.body
-
-        if (!user) {
-            throw new HttpError("Пользователь с таким id не существует", 404)
-        }
-
-        const resJSON = {}
-        if (updates.favourites) {
-            const index = user.favourites.indexOf(updates.favourites)
-            if (index !== -1) {
-                message = "Removed from favourites"
-                user.favourites.splice(index, 1)
-                resJSON.favourites = false
-            } else {
-                message = "Added to favourites"
-                user.favourites.push(updates.favourites)
-                resJSON.favourites = true
-            }
-        }
-
-        const updatedUser = await user.save()
-        resJSON.message = message
-        resJSON.user = updatedUser
-        return res.status(200).json(resJSON)
     } catch (e) {
         return next(e)
     }

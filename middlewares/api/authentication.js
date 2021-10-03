@@ -6,7 +6,7 @@ const authentication = async (req, res, next) => {
     try {
         const { token } = req.cookies
 
-        jwt.verify(token, config.secret, (err, decoded) => {
+        return jwt.verify(token, config.secret, (err, decoded) => {
             if (err) {
                 throw new HttpError("Вы не залогинены", 401)
             }
@@ -19,6 +19,30 @@ const authentication = async (req, res, next) => {
     }
 }
 
+// "user", "moderator", "admin", "owner", or [] for authenticated users
+const authorize = (roles = []) => {
+    if (typeof roles === "string") {
+        // eslint-disable-next-line no-param-reassign
+        roles = [roles]
+    }
+
+    return [
+        authentication,
+        (req, res, next) => {
+            if (roles.includes("owner") && req.userId === req.params.id) {
+                return next()
+            }
+            if (roles.length && !roles.includes(req.userRole)) {
+                return res
+                    .status(401)
+                    .json({ message: "Авторизация не пройдена" })
+            }
+            return next()
+        },
+    ]
+}
+
 module.exports = {
     authentication,
+    authorize,
 }
