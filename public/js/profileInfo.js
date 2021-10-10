@@ -1,5 +1,7 @@
+import AWN from "awesome-notifications"
 import { ProfileInfo } from "./components/profileInfo"
 import { setSizeControl } from "./imgsizeControl"
+import "awesome-notifications/dist/style.css"
 
 export const profileRequest = async (
     placeForProfileInfo,
@@ -43,14 +45,8 @@ export const profileRequest = async (
         )
     } catch (e) {
         if (!e.userMessage) e.userMessage = "Произошла неизвестная ошибка"
-        window.createNotification({
-            closeOnClick: true,
-            displayCloseButton: true,
-            positionClass: "nfc-top-right",
-            showDuration: "5000",
-            theme: "error",
-        })({
-            message: e.userMessage,
+        new AWN().alert(e.userMessage, {
+            durations: { alert: 0 },
         })
     }
 }

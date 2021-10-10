@@ -1,4 +1,6 @@
+import AWN from "awesome-notifications"
 import { getCookie, deleteCookie } from "./getCookie"
+import "awesome-notifications/dist/style.css"
 
 const handleAuthErrors = (target, errorText) => {
     const btn = document.querySelector(`.nav__button_${target}`)
@@ -34,28 +36,14 @@ export const authHandlerModule = async () => {
             handleAuthErrors("signup", murzatayError)
         } else {
             deleteCookie("murzatay-error")
-            window.createNotification({
-                closeOnClick: true,
-                displayCloseButton: true,
-                positionClass: "nfc-top-right",
-                showDuration: "5000",
-                theme: "error",
-            })({
-                message: murzatayError,
+            new AWN().alert(murzatayError, {
+                durations: { alert: 0 },
             })
         }
     }
 
     if (murzatayMessage) {
         deleteCookie("murzatay-message")
-        window.createNotification({
-            closeOnClick: true,
-            displayCloseButton: true,
-            positionClass: "nfc-top-right",
-            showDuration: "5000",
-            theme: "success",
-        })({
-            message: murzatayMessage,
-        })
+        new AWN().success(murzatayMessage, { durations: { success: 0 } })
     }
 }

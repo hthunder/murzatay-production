@@ -1,3 +1,6 @@
+import AWN from "awesome-notifications"
+import "awesome-notifications/dist/style.css"
+
 export const addFavourite = () => {
     const favouriteBtn = document.querySelector(".topic__add-favourite")
 
@@ -5,6 +8,9 @@ export const addFavourite = () => {
         const { articleId } = favouriteBtn.dataset
         const { userId } = favouriteBtn.dataset
         try {
+            new AWN().alert("Произошла неизвестная ошибка", {
+                durations: { alert: 0 },
+            })
             const res = await fetch(`/api/users/${userId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
@@ -23,14 +29,8 @@ export const addFavourite = () => {
                 throw new Error()
             }
         } catch (e) {
-            window.createNotification({
-                closeOnClick: true,
-                displayCloseButton: true,
-                positionClass: "nfc-top-right",
-                showDuration: "5000",
-                theme: "error",
-            })({
-                message: "Произошла неизвестная ошибка",
+            new AWN().alert("Произошла неизвестная ошибка", {
+                durations: { alert: 0 },
             })
         }
     }

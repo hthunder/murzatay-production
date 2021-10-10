@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs")
 const fs = require("fs")
 const http = require("http")
 const https = require("https")
+const compression = require("compression")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
@@ -38,6 +39,7 @@ app.set("views", "views")
 if (process.env.MODE === "production") {
     app.use(checkSecureConnection)
 }
+app.use(compression())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -48,6 +50,7 @@ app.use("/articles", isLoggedIn, articleRouter)
 app.use("/api", isLoggedIn, apiRoutes)
 app.use("/", isLoggedIn, blogRoutes)
 app.use(express.static("public"))
+app.use("/tinymce", express.static("node_modules/tinymce"))
 
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {

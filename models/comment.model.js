@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
-const escapeHtml = require('escape-html')
+// TODO убрать escapeHTML
+const escapeHtml = require("escape-html")
 
 const commentSchema = new mongoose.Schema({
     user: {

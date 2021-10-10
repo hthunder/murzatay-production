@@ -5,6 +5,14 @@ module.exports = {
     entry: {
         main: "./public/js/main.js",
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+    },
     // module: {
     //     rules: [
     //         {
