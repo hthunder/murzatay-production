@@ -1,5 +1,4 @@
 import AWN from "awesome-notifications"
-import { getCookie, deleteCookie } from "./utils/getCookie"
 import "awesome-notifications/dist/style.css"
 
 const handleAuthErrors = (target, errorText) => {
@@ -14,8 +13,6 @@ const handleAuthErrors = (target, errorText) => {
         errorsElement.classList.add("pop-up__errors")
         parentElement.insertBefore(errorsElement, referenceElement)
         errorsElement.innerText = errorText
-        deleteCookie("murzatay-error")
-        deleteCookie(`call-${target}`)
         setTimeout(() => {
             parentElement.removeChild(errorsElement)
         }, 10000)
@@ -24,18 +21,22 @@ const handleAuthErrors = (target, errorText) => {
 }
 
 export const authHandlerModule = async () => {
-    const murzatayError = getCookie("murzatay-error")
-    const murzatayMessage = getCookie("murzatay-message")
-    const authLogin = getCookie("call-login")
-    const authSignup = getCookie("call-signup")
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    const params = Object.fromEntries(urlSearchParams)
+    const murzatayError = params["murzatay-error"]
+    const murzatayMessage = params["murzatay-message"]
+    const authLogin = params["call-login"]
+    const authSignup = params["call-signup"]
+    const { pathname } = window.location
 
     if (murzatayError) {
+        if (window.history.replaceState)
+            window.history.replaceState({}, null, pathname)
         if (authLogin) {
             handleAuthErrors("login", murzatayError)
         } else if (authSignup) {
             handleAuthErrors("signup", murzatayError)
         } else {
-            deleteCookie("murzatay-error")
             new AWN().alert(murzatayError, {
                 durations: { alert: 0 },
             })
@@ -43,7 +44,8 @@ export const authHandlerModule = async () => {
     }
 
     if (murzatayMessage) {
-        deleteCookie("murzatay-message")
+        if (window.history.replaceState)
+            window.history.replaceState({}, null, pathname)
         new AWN().success(murzatayMessage, { durations: { success: 0 } })
     }
 }

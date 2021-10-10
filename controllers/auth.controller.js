@@ -84,7 +84,7 @@ exports.signin = async (req, res) => {
             .cookie("token", token, { httpOnly: true, sameSite: "lax" })
             .redirect("back")
     } catch (e) {
-        return authErrorHandler(res, userError, "call-login")
+        return authErrorHandler(res, userError, "call-login", req)
     }
 }
 

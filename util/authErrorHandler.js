@@ -4,6 +4,11 @@ exports.concatErrors = (errors) =>
         .map((error) => error.msg)
         .join("\n")
 
-exports.authErrorHandler = (res, errMessage, call) => {
-    res.cookie("murzatay-error", errMessage).cookie(call, true).redirect("back")
+exports.authErrorHandler = (res, errMessage, call, req) => {
+    const backUrl = req.header("referer") || "/"
+    const queryParams = new URLSearchParams({
+        "murzatay-error": errMessage,
+        [call]: true,
+    })
+    res.redirect(`${backUrl}?${queryParams}`)
 }
