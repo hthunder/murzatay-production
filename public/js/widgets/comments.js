@@ -1,5 +1,5 @@
-import { CommentList } from "./components/CommentList"
-import { AddComment } from "./components/AddComment"
+import { CommentList } from "../components/CommentList"
+import { AddComment } from "../components/AddComment"
 
 export const commentsInit = async () => {
     const addCommentPlace = document.querySelector(".topic__js-add-comment")

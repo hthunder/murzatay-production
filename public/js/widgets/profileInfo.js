@@ -1,6 +1,6 @@
 import AWN from "awesome-notifications"
-import { ProfileInfo } from "./components/profileInfo"
-import { setSizeControl } from "./imgsizeControl"
+import { ProfileInfo } from "../components/profileInfo"
+import { setSizeControl } from "../utils/imgsizeControl"
 import "awesome-notifications/dist/style.css"
 
 export const profileRequest = async (
@@ -44,6 +44,7 @@ export const profileRequest = async (
             profileInfoEl
         )
     } catch (e) {
+        console.log(e)
         if (!e.userMessage) e.userMessage = "Произошла неизвестная ошибка"
         new AWN().alert(e.userMessage, {
             durations: { alert: 0 },

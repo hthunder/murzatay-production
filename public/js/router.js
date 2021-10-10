@@ -1,5 +1,5 @@
-import { commentsInit } from "./comments"
-import { profileInfoInit } from "./profileInfo"
+import { commentsInit } from "./widgets/comments"
+import { profileInfoInit } from "./widgets/profileInfo"
 import { passwordReset } from "./pages/passwordReset"
 
 export const router = (url) => {

@@ -1,4 +1,4 @@
-import { countSymbols } from "../countSymbols"
+import { countSymbols } from "../utils/countSymbols"
 
 export class AddComment {
     constructor() {

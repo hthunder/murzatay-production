@@ -1,13 +1,12 @@
-import { addFavourite } from "./addFavourite"
-import { showMore } from "./instagramWidget"
-import { confirmAction } from "./confirmAction"
+import { addFavourite } from "./widgets/addFavourite"
+import { confirmAction } from "./utils/confirmAction"
 import { router } from "./router"
-import { setSizeControl } from "./imgsizeControl"
-import { sidebarComments } from "./sidebarComments"
-import { sidebarInstagramWidget } from "./sidebarInstagramWidget"
+import { setSizeControl } from "./utils/imgsizeControl"
+import { sidebarComments } from "./widgets/sidebarComments"
+import { sidebarInstagramWidget } from "./widgets/sidebarInstagramWidget"
 import { authHandlerModule } from "./authHandler"
 import { popupInit } from "./popupInit"
-import { checkCookies } from "./checkCookies"
+import { checkCookies } from "./utils/checkCookies"
 
 popupInit()
 const imgInput = document.getElementById("image")
@@ -53,8 +52,6 @@ checkCookies()
 
 router(window.location.pathname)
 sidebarComments()
-sidebarInstagramWidget().then(() => {
-    document.querySelector(".instagram-widget__hide-btn").onclick = showMore
-})
+sidebarInstagramWidget()
 
 authHandlerModule()

@@ -1,5 +1,5 @@
 import AWN from "awesome-notifications"
-import { getCookie, deleteCookie } from "./getCookie"
+import { getCookie, deleteCookie } from "./utils/getCookie"
 import "awesome-notifications/dist/style.css"
 
 const handleAuthErrors = (target, errorText) => {
