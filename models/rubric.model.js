@@ -1,20 +1,11 @@
 const mongoose = require("mongoose")
 const slugify = require("slugify")
+const { RUBRICS } = require("../constants")
 
 const rubricSchema = new mongoose.Schema({
     name: {
         type: String,
-        enum: [
-            "Кормление",
-            "Воспитание",
-            "Уход",
-            "Адаптация",
-            "Пора к ветеринару?",
-            "Коты доноры",
-            "Коты спинальники",
-            "Интересные факты",
-            "Забавные истории",
-        ],
+        enum: RUBRICS,
         required: true,
     },
     slug: {

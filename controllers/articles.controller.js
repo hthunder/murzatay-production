@@ -39,6 +39,7 @@ exports.article_list = async (req, res) => {
     try {
         const { page = 1, category = "all", q } = req.query
         let numberOfArticles
+        let heading
 
         if (page < 0 || page === 0) return res.redirect(`/articles`)
 
@@ -57,6 +58,7 @@ exports.article_list = async (req, res) => {
             const searchRule = q ? { title: { $regex: q, $options: "i" } } : {}
             articles = await findPageArticles(searchRule)
             numberOfArticles = await Article.countDocuments()
+            heading = "Все статьи"
         } else {
             const rubric = await Rubric.findOne({ slug: category })
             if (!rubric) return res.redirect(`/articles`)
@@ -66,6 +68,7 @@ exports.article_list = async (req, res) => {
                 // eslint-disable-next-line no-underscore-dangle
                 rubric: rubric._id,
             })
+            heading = rubric.name
         }
 
         const pagination = getPaginationData(
@@ -83,6 +86,7 @@ exports.article_list = async (req, res) => {
             isAdmin: req.userRole === "admin",
             isLoggedIn: req.isLoggedIn,
             isEmptyArticleList,
+            heading,
         })
     } catch (e) {
         console.log(e)
