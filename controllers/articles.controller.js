@@ -4,6 +4,7 @@ const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { convertDate } = require("../util/convertDate")
 const { addCanDeleteField } = require("../util/addCanDeleteField")
+const { RUBRICS } = require("../constants")
 
 const getPaginationData = (page, numberOfArticles, limit) => {
     const current = parseInt(page, 10)
@@ -54,9 +55,7 @@ exports.article_list = async (req, res) => {
                 .lean()
 
         if (category === "all") {
-            const searchRule = q
-                ? { title: { $regex: q, $options: "i" } }
-                : {}
+            const searchRule = q ? { title: { $regex: q, $options: "i" } } : {}
             articles = await findPageArticles(searchRule)
             numberOfArticles = await Article.countDocuments()
         } else {
@@ -138,6 +137,7 @@ exports.article_create_get = (req, res) => {
         page_title: "Новая статья",
         page_action: "/articles/add",
         article: context,
+        rubrics: RUBRICS,
     })
 }
 
@@ -172,6 +172,7 @@ exports.article_edit_get = async (req, res) => {
         page_title: "Редактировать статью",
         page_action: `/articles/${req.params.id}?_method=PUT`,
         article: context || article,
+        rubrics: RUBRICS,
     })
 }
 

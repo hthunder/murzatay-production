@@ -64,15 +64,9 @@
 		<form class="article-form" action="{{page_action}}" method="post" enctype="multipart/form-data">
 			<div>Рубрика</div>
 			<select name="rubric" id="" required class="edit__select">
-				<option class="edit__select-item" value="Кормление" selected>Кормление</option>
-				<option class="edit__select-item" value="Уход">Уход</option>
-				<option class="edit__select-item" value="Воспитание">Воспитание</option>
-				<option class="edit__select-item" value="Адаптация">Адаптация</option>
-				<option class="edit__select-item" value="Пора к ветеринару?">Пора к ветеринару?</option>
-				<option class="edit__select-item" value="Коты доноры">Коты доноры</option>
-				<option class="edit__select-item" value="Коты спинальники">Коты спинальники</option>
-				<option class="edit__select-item" value="Интересные факты">Интересные факты</option>
-				<option class="edit__select-item" value="Забавные истории">Забавные истории</option>
+				{{#each rubrics}}
+					<option class="edit__select-item" value="{{this}}">{{this}}</option>
+				{{/each}}
 			</select>
 			<div>
 				<label class="article-form__title" for="title">Название статьи</label>
