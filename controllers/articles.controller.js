@@ -4,7 +4,7 @@ const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { convertDate } = require("../util/convertDate")
 const { addCanDeleteField } = require("../util/addCanDeleteField")
-const { RUBRICS } = require("../constants")
+const { RUBRICS, ARTICLES_LIMIT } = require("../constants")
 
 const getPaginationData = (page, numberOfArticles, limit) => {
     const current = parseInt(page, 10)
@@ -37,13 +37,12 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 
 exports.article_list = async (req, res) => {
     try {
-        const limit = 2
         const { page = 1, category = "all", q } = req.query
         let numberOfArticles
 
         if (page < 0 || page === 0) return res.redirect(`/articles`)
 
-        const skip = limit * (page - 1)
+        const skip = ARTICLES_LIMIT * (page - 1)
 
         let articles
 
@@ -51,7 +50,7 @@ exports.article_list = async (req, res) => {
             Article.find(request)
                 .sort("-createdAt")
                 .skip(skip)
-                .limit(limit)
+                .limit(ARTICLES_LIMIT)
                 .lean()
 
         if (category === "all") {
@@ -69,7 +68,11 @@ exports.article_list = async (req, res) => {
             })
         }
 
-        const pagination = getPaginationData(page, numberOfArticles, limit)
+        const pagination = getPaginationData(
+            page,
+            numberOfArticles,
+            ARTICLES_LIMIT
+        )
 
         const isEmptyArticleList = numberOfArticles < 1
         return res.render("articles", {

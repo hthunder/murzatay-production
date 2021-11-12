@@ -12,3 +12,5 @@ exports.RUBRICS = [
     "Интересные факты",
     "Забавные истории",
 ]
+
+exports.ARTICLES_LIMIT = 10
