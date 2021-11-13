@@ -38,21 +38,14 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 exports.article_list = async (req, res) => {
     try {
         const { page = 1, category = "all", q = "" } = req.query
-        const articlesData = {}
-
-        if (page < 0 || page === 0) return res.redirect(`/articles`)
-
-        const skip = ARTICLES_LIMIT * (page - 1)
-
-        const findPageArticles = (rule) =>
-            Article.find(rule)
+        const safePage = page >= 1 ? page : 1
+        // TODO возможно сделать одинаковое название у рубрики и категории
+        const getAndCountArticles = async (searchRule, countRule, rubric) => {
+            const articles = await Article.find(searchRule)
                 .sort("-createdAt")
-                .skip(skip)
+                .skip(ARTICLES_LIMIT * (safePage - 1))
                 .limit(ARTICLES_LIMIT)
                 .lean()
-
-        const getAndCountArticles = async (searchRule, countRule, rubric) => {
-            const articles = await findPageArticles(searchRule)
             const numberOfArticles = await Article.countDocuments(countRule)
             const heading = rubric ? rubric.name : "Все статьи"
             return { articles, numberOfArticles, heading }
@@ -61,39 +54,30 @@ exports.article_list = async (req, res) => {
         const searchRule = {
             title: { $regex: q, $options: "i" },
         }
-
-        if (category !== "all") {
-            const rubric = await Rubric.findOne({ slug: category })
-            if (!rubric) return res.redirect(`/articles`)
-            const countRule = { rubric: rubric._id }
-            searchRule.rubric = rubric._id
-            Object.assign(
-                articlesData,
-                await getAndCountArticles(searchRule, countRule, rubric)
-            )
-        } else {
-            Object.assign(
-                articlesData,
-                await getAndCountArticles(searchRule, {})
-            )
-        }
+        const rubric = await Rubric.findOne({ slug: category })
+        const { articles, numberOfArticles, heading } = await (!rubric
+            ? getAndCountArticles(searchRule, {})
+            : getAndCountArticles(
+                  { ...searchRule, rubric: rubric._id },
+                  { rubric: rubric._id },
+                  rubric
+              ))
 
         const pagination = getPaginationData(
-            page,
-            articlesData.numberOfArticles,
+            safePage,
+            numberOfArticles,
             ARTICLES_LIMIT
         )
 
-        const isEmptyArticleList = articlesData.numberOfArticles < 1
         return res.render("articles", {
             layout: false,
             pagination,
-            articles: articlesData.articles,
+            articles,
             category,
             isAdmin: req.userRole === "admin",
             isLoggedIn: req.isLoggedIn,
-            isEmptyArticleList,
-            heading: articlesData.heading,
+            isEmptyArticleList: numberOfArticles < 1,
+            heading,
             q,
         })
     } catch (e) {
