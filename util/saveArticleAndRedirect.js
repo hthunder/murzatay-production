@@ -12,7 +12,6 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
     const rubric = await Rubric.findOne({
         name: req.body.rubric,
     })
-    // eslint-disable-next-line no-underscore-dangle
     article.rubric = rubric._id
 
     try {

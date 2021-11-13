@@ -54,23 +54,23 @@
 
             <div class="pagination">
                 {{#if pagination.first}}
-                <a class="pagination__page" href="/articles?page={{pagination.first}}&category={{category}}" >{{pagination.first}}</a>
+                <a class="pagination__page" href="/articles?page={{pagination.first}}&category={{category}}&q={{q}}">{{pagination.first}}</a>
                 {{/if}}
                 {{#if pagination.pointsBefore}}
                     <span>...</span>
                 {{/if}}
                 {{#each pagination.rangeBefore}}
-                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}" >{{this}}</a>
+                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}&q={{../q}}">{{this}}</a>
                 {{/each}}
-                <a class="pagination__page pagination__page_current" href="/articles?page={{pagination.current}}&category={{category}}">{{pagination.current}}</a>
+                <a class="pagination__page pagination__page_current" href="/articles?page={{pagination.current}}&category={{category}}&q={{q}}">{{pagination.current}}</a>
                 {{#each pagination.rangeAfter}}
-                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}" >{{this}}</a>
+                <a class="pagination__page" href="/articles?page={{this}}&category={{../category}}&q={{../q}}">{{this}}</a>
                 {{/each}}
                 {{#if pagination.pointsAfter}}
                     <span class="pagination__dots">...</span>
                 {{/if}}
                 {{#if pagination.last}}
-                <a class="pagination__page" href="/articles?page={{pagination.last}}&category={{category}}" >{{pagination.last}}</a>
+                <a class="pagination__page" href="/articles?page={{pagination.last}}&category={{category}}&q={{q}}">{{pagination.last}}</a>
                 {{/if}}
             </div>
 

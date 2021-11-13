@@ -37,56 +37,64 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 
 exports.article_list = async (req, res) => {
     try {
-        const { page = 1, category = "all", q } = req.query
-        let numberOfArticles
-        let heading
+        const { page = 1, category = "all", q = "" } = req.query
+        const articlesData = {}
 
         if (page < 0 || page === 0) return res.redirect(`/articles`)
 
         const skip = ARTICLES_LIMIT * (page - 1)
 
-        let articles
-
-        const findPageArticles = (request) =>
-            Article.find(request)
+        const findPageArticles = (rule) =>
+            Article.find(rule)
                 .sort("-createdAt")
                 .skip(skip)
                 .limit(ARTICLES_LIMIT)
                 .lean()
 
-        if (category === "all") {
-            const searchRule = q ? { title: { $regex: q, $options: "i" } } : {}
-            articles = await findPageArticles(searchRule)
-            numberOfArticles = await Article.countDocuments()
-            heading = "Все статьи"
-        } else {
+        const getAndCountArticles = async (searchRule, countRule, rubric) => {
+            const articles = await findPageArticles(searchRule)
+            const numberOfArticles = await Article.countDocuments(countRule)
+            const heading = rubric ? rubric.name : "Все статьи"
+            return { articles, numberOfArticles, heading }
+        }
+
+        const searchRule = {
+            title: { $regex: q, $options: "i" },
+        }
+
+        if (category !== "all") {
             const rubric = await Rubric.findOne({ slug: category })
             if (!rubric) return res.redirect(`/articles`)
-            // eslint-disable-next-line no-underscore-dangle
-            articles = await findPageArticles({ rubric: rubric._id })
-            numberOfArticles = await Article.countDocuments({
-                // eslint-disable-next-line no-underscore-dangle
-                rubric: rubric._id,
-            })
-            heading = rubric.name
+            const countRule = { rubric: rubric._id }
+            searchRule.rubric = rubric._id
+            Object.assign(
+                articlesData,
+                await getAndCountArticles(searchRule, countRule, rubric)
+            )
+        } else {
+            Object.assign(
+                articlesData,
+                await getAndCountArticles(searchRule, {})
+            )
         }
 
         const pagination = getPaginationData(
             page,
-            numberOfArticles,
+            articlesData.numberOfArticles,
             ARTICLES_LIMIT
         )
 
-        const isEmptyArticleList = numberOfArticles < 1
+        const isEmptyArticleList = articlesData.numberOfArticles < 1
         return res.render("articles", {
             layout: false,
             pagination,
-            articles,
+            articles: articlesData.articles,
             category,
             isAdmin: req.userRole === "admin",
             isLoggedIn: req.isLoggedIn,
             isEmptyArticleList,
-            heading,
+            heading: articlesData.heading,
+            q,
         })
     } catch (e) {
         console.log(e)
@@ -107,7 +115,6 @@ exports.article_page = async (req, res) => {
         if (req.isLoggedIn) {
             user = await User.findById(req.userId).select("-password").lean()
             const favouriteArray = user.favourites.map((val) => val.toString())
-            // eslint-disable-next-line no-underscore-dangle
             if (favouriteArray.indexOf(article._id.toString()) !== -1) {
                 favourite = true
             }

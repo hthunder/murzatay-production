@@ -27,7 +27,6 @@ exports.articleComments_get = async (req, res) => {
             .lean()
         if (userId) {
             const modifiedComments = comments.map((comment) => {
-                // eslint-disable-next-line no-underscore-dangle
                 if (comment.user._id.toString() === userId.toString()) {
                     comment.isEditable = true
                     comment.isDeletable = true
@@ -75,7 +74,6 @@ exports.comment_post = async (req, res, next) => {
             populatedComment.isEditable = true
             populatedComment.isDeletable = true
             const article = await Article.findById(articleId)
-            // eslint-disable-next-line no-underscore-dangle
             article.comments.push(comment._id)
             await article.save()
             return res.status(200).json(populatedComment)
