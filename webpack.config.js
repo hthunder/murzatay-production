@@ -1,7 +1,6 @@
-require("dotenv").config()
 const path = require("path")
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: {
         main: "./public/js/main.js",
     },
@@ -13,24 +12,9 @@ module.exports = {
             },
         ],
     },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.m?js$/,
-    //             exclude: /(node_modules|bower_components)/,
-    //             use: {
-    //                 loader: "babel-loader",
-    //                 options: {
-    //                     presets: ["@babel/preset-env"],
-    //                     plugins: ["@babel/plugin-proposal-optional-chaining"],
-    //                 },
-    //             },
-    //         },
-    //     ],
-    // },
-    mode: process.env.MODE,
+    mode: argv.mode,
     output: {
         path: path.resolve(__dirname, "public/js/dist"),
     },
-    watch: true,
-}
+    watch: argv.mode === "development",
+})
