@@ -14,7 +14,8 @@
         "webpack:production": "webpack --mode=production",
         "eslint": "eslint",
         "eslint:fix": "eslint --fix",
-        "build": "npm run scss:production && npm run webpack:production && cd public/ && rm -rf scss && cd js && rm -rf !('dist')"
+        "build": "npm run scss:production && npm run webpack:production",
+        "deploy": "rsync --archive --compress . root@194.87.101.164:~/murzatay"
     },
     "author": "",
     "license": "MIT",
