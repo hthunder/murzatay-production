@@ -14,7 +14,7 @@
         "webpack:production": "webpack --mode=production",
         "eslint": "eslint",
         "eslint:fix": "eslint --fix",
-        "build": "npm run scss:production && npm run webpack:production && cd public/ && rm -rf scss"
+        "build": "npm run scss:production && npm run webpack:production && cd public/ && rm -rf scss && cd js && rm -rf !('dist')"
     },
     "author": "",
     "license": "MIT",
