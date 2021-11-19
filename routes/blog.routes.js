@@ -40,12 +40,10 @@ router.get("/my-page", async (req, res) => {
         const { errors } = req.cookies
         res.clearCookie("errors")
 
-        const {
-            favourites,
-            avatar = "/img/icons/user-profile.svg",
-        } = await User.findById(userId, "favourites avatar")
-            .populate("favourites", "img title description slug")
-            .lean()
+        const { favourites, avatar = "/img/icons/user-profile.svg" } =
+            await User.findById(userId, "favourites avatar")
+                .populate("favourites", "img title description slug")
+                .lean()
 
         const comments = await Comment.find({ user: userId })
             .sort({ date: -1 })

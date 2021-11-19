@@ -14,15 +14,19 @@ const submitBtn = document.querySelector(".edit__submit")
 
 setSizeControl(200, submitBtn, imgInput)
 
-const deleteArticleButton = document.querySelector(".articles__delete-button")
-const deleteArticleForm = document.querySelector(".articles__delete-form")
-confirmAction(
-    deleteArticleButton,
-    "Вы уверены, что хотите удалить эту статью?",
-    () => {
-        deleteArticleForm.submit()
-    }
-)
+const deleteArticleForms = document.querySelectorAll(".articles__delete-form")
+
+deleteArticleForms.forEach((form) => {
+    const deleteArticleButton = form.querySelector(".articles__delete-button")
+
+    confirmAction(
+        deleteArticleButton,
+        "Вы уверены, что хотите удалить эту статью?",
+        () => {
+            form.submit()
+        }
+    )
+})
 
 /* Не закрываются выпадающие элементы при повторном клике */
 
