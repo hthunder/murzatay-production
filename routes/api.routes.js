@@ -147,7 +147,7 @@ router.all("*", (req, res, next) => {
 router.use((error, req, res, next) => {
     if (error.codeName === "DuplicateKey") {
         error.statusCode = 409
-        if (error?.keyPattern?.username === 1) {
+        if (error.keyPattern && error.keyPattern.username === 1) {
             error.message =
                 "Пользователь с данным именем уже существует. Выберите другое имя пользователя."
         }
