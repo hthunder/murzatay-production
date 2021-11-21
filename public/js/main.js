@@ -8,11 +8,20 @@ import { authHandlerModule } from "./authHandler"
 import { popupInit } from "./popupInit"
 import { checkCookies } from "./utils/checkCookies"
 
+const { ARTICLE_PREVIEW_SIZE_KB } = require("../../constants")
+
 popupInit()
 const imgInput = document.getElementById("image")
 const submitBtn = document.querySelector(".edit__submit")
+const articleFormImgInput = document.querySelector(".article-form__img-input")
+const articleFormSubmitBtn = document.querySelector(".article-form__submit")
 
 setSizeControl(200, submitBtn, imgInput)
+setSizeControl(
+    ARTICLE_PREVIEW_SIZE_KB,
+    articleFormSubmitBtn,
+    articleFormImgInput
+)
 
 const deleteArticleForms = document.querySelectorAll(".articles__delete-form")
 
@@ -33,22 +42,28 @@ deleteArticleForms.forEach((form) => {
 const burger = document.querySelector(".nav__burger")
 const menu = document.querySelector(".nav__list")
 
-burger.onclick = () => {
-    menu.classList.toggle("nav__list_opened")
+if (burger) {
+    burger.onclick = () => {
+        menu.classList.toggle("nav__list_opened")
+    }
 }
 
 const search = document.querySelector(".nav__search")
 const searchField = document.querySelector(".nav__search-form")
 
-search.onclick = () => {
-    searchField.classList.toggle("nav__search-form_opened")
+if (search) {
+    search.onclick = () => {
+        searchField.classList.toggle("nav__search-form_opened")
+    }
 }
 
 const rubricBtn = document.querySelector(".header__rubrics-btn")
 const rubrics = document.querySelector(".rubrics")
 
-rubricBtn.onclick = () => {
-    rubrics.classList.toggle("rubrics_opened")
+if (rubricBtn) {
+    rubricBtn.onclick = () => {
+        rubrics.classList.toggle("rubrics_opened")
+    }
 }
 
 addFavourite()

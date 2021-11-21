@@ -1,4 +1,5 @@
 const multer = require("multer")
+const { ARTICLE_PREVIEW_SIZE_KB } = require("../constants")
 
 const storage = multer.diskStorage({
     destination(_req, _file, cb) {
@@ -11,7 +12,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage,
-    limits: { fileSize: 1024 * 20 },
+    limits: { fileSize: 1024 * ARTICLE_PREVIEW_SIZE_KB },
 }).single("img")
 
 module.exports = (req, res, next) => {
@@ -22,7 +23,7 @@ module.exports = (req, res, next) => {
                     "context",
                     {
                         ...req.body,
-                        errors: "Слишком большой размер изображения",
+                        errors: "Слишком большой размер изображения.",
                     },
                     { httpOnly: true }
                 )

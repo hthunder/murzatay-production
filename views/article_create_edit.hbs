@@ -85,12 +85,13 @@
 				<input class="article-form__img-input" type="file" id="image" name="img" accept="image/*" />
 			</div>
 			<a href="/articles" class="edit__cancel">Отменить</a>
-			<button type="submit" class="edit__submit">Сохранить</button>
+			<button type="submit" class="article-form__submit edit__submit">Сохранить</button>
 		</form>
 		{{#if article.errors}}
 			<p>{{article.errors}}</p>
 		{{/if}}
 	</div>
+	<script type="module" src="/js/dist/main.js"></script>
 </body>
 
 </html>
