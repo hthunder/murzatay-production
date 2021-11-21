@@ -1,5 +1,6 @@
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
+const Comment = require("../models/comment.model")
 const User = require("../models/user.model")
 const util = require("../util/saveArticleAndRedirect")
 const { convertDate } = require("../util/convertDate")
@@ -180,6 +181,11 @@ exports.article_edit_put = async (req, res) => {
 }
 
 exports.article_remove = async (req, res) => {
-    await Article.findByIdAndDelete(req.params.id)
+    const deletedArticle = await Article.findByIdAndDelete(req.params.id)
+    if (deletedArticle !== null) {
+        deletedArticle.comments.map(async (commentId) => {
+            await Comment.findByIdAndDelete(commentId)
+        })
+    }
     res.redirect("/articles")
 }
