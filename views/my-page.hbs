@@ -14,6 +14,12 @@
     <section class="main">
         <div class="main__content">
             <div class="my-page__js-about" data-user-id="{{userId}}"></div>
+            {{#if this.isAdmin}}
+            <div class="my-page__admin-links">
+                <a class="link my-page__admin-link" href="/index/edit">Редактировать главную</a>
+                <a class="link my-page__admin-link" href="/about/edit">Редактировать страницу о себе</a>
+            </div>
+            {{/if}}
             <section class="my-page__favourite">
                 <h2 class="my-page__favourite-section-title">Избранные статьи</h2>
                 {{#each articles}}

@@ -9,8 +9,9 @@ const imgSizeControl = (size, trigger, { files }) => {
     }
 }
 
-export const setSizeControl = (sizeKb, trigger, file) => {
-    if (trigger && file) {
-        file.onchange = () => imgSizeControl(sizeKb, trigger, file)
+export const setSizeControl = (sizeLimitKb, submitEl, fileInputEl) => {
+    if (submitEl && fileInputEl) {
+        fileInputEl.onchange = () =>
+            imgSizeControl(sizeLimitKb, submitEl, fileInputEl)
     }
 }

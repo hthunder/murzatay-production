@@ -1,0 +1,32 @@
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+        <title>Мурзатай</title>
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    </head>
+
+    <body class="body">
+        <div class="about-edit">
+            <h1 class="about-edit__heading">{{this.heading}}</h1>
+            <a class="link about-edit__link" href="/">Вернуться на главную</a>
+            <form class="about-edit__form" action="{{this.path}}" enctype="multipart/form-data" method="POST">
+                <textarea class="about-edit__textarea" name="markdown">{{this.markdown}}</textarea>
+                <input class="about-edit__upload" type="file" name="image" />
+                <input
+                    class="button about-edit__submit-btn"
+                    type="submit"
+                    value="Отправить"
+                />
+            </form>
+        </div>
+        <script type="module">
+            import { setSizeControl } from '/js/utils/imgsizeControl.js'
+            const fileInputEl = document.querySelector('.about-edit__upload')
+            const submitEl = document.querySelector('.about-edit__submit-btn')
+            setSizeControl(1024, submitEl, fileInputEl)
+        </script>
+    </body>
+</html>

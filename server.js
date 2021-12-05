@@ -13,6 +13,7 @@ const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
 const { checkSecureConnection } = require("./middlewares/checkSecureConnection")
 const Rubric = require("./models/rubric.model")
+const Landing = require("./models/landing.model")
 
 const blogRoutes = require("./routes/blog.routes")
 const apiRoutes = require("./routes/api.routes")
@@ -79,7 +80,6 @@ const initDB = async () => {
         })
 
         const admin = await User.findOne({ username, email })
-
         if (!admin) {
             User.create({
                 role: "admin",
@@ -87,6 +87,24 @@ const initDB = async () => {
                 email,
                 password: bcrypt.hashSync(password, 8),
                 active: true,
+            })
+        }
+
+        const aboutLanding = await Landing.findOne({ path: "/about/edit" })
+        if (!aboutLanding) {
+            await Landing.create({
+                markdown: "hello world",
+                sanitizedHTML: "hello world",
+                path: "/about/edit",
+            })
+        }
+
+        const indexLanding = await Landing.findOne({ path: "/index/edit" })
+        if (!indexLanding) {
+            await Landing.create({
+                markdown: "hello world",
+                sanitizedHTML: "hello world",
+                path: "/index/edit",
             })
         }
     } catch (e) {

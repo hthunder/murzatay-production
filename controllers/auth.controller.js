@@ -133,7 +133,7 @@ exports.forgot_pass_post = async (req, res) => {
 exports.reset_pass_get = async (req, res) => {
     try {
         const { token, id } = req.query
-        res.render("password_reset", {
+        return res.render("password_reset", {
             layout: false,
             userId: id,
             token,

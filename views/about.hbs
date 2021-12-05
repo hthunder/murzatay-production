@@ -15,15 +15,8 @@
 		<div class="main__content about">
 			<h1 class="about__title"> Об авторе</h1>
 			<div class="about__author-info">
-				<img class="about__author-img" src="/img/placeholders/about.png" alt="Фото">
-				<div class="about__author-text">
-					<p class="about__text-paragraph">Первый котенок появился в нашей семье, когда мне было 9 лет. С тех пор, мое сердце безраздельно принадлежит котикам.</p>
-					<p class="about__text-paragraph">Как и многие обычные хозяева, к ответственному содержанию я шла путем собственных ошибок. Понадобилось довольно много времени, чтобы не столько понять, сколько принять необходимость всех нюансов по уходу и воспитанию.</p>
-					<p class="about__text-paragraph">Сейчас у меня живет внушительный прайд. Практически все котики были найдены на улице и большинство - взяты в семью крошечными котятами. Кроме того, я волонтер движения донорства крови кошек. Среди моих питомцев есть уже почетные доноры, несколько раз выезжавшие спасать котиков, попавших в беду.</p>
-					<p class="about__text-paragraph">На данный момент я знаю кошках довольно много, и знания подкреплены практикой. Но все равно постоянно учусь и узнаю нечто новое.</p>
-					<p class="about__text-paragraph">Верю, что мои статьи будут для вас и развлекательными, и познавательными.</p>
-					<span>Ваша Анна.</span>	
-				</div>
+				<img class="about__author-img" src="{{this.img}}" alt="Фото">
+				<div class="about__author-text"></div>
 			</div>
 		</div>
 		{{> sidebar }}
@@ -34,6 +27,11 @@
 
 	{{> popup }}
 
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        marked.setOptions({ breaks: true });
+        document.querySelector('.about__author-text').innerHTML = marked.parse(`{{{this.sanitizedHTML}}}`);
+    </script>
 	<script type="module" src="/js/dist/main.js"></script>
 
 </body>

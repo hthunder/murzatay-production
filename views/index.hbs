@@ -14,12 +14,8 @@
     <section class="main">
         <div class="main__content">
             <figure class="banner">
-                <img src="/img/banners/index.jpg" width="825" alt="Фото" class="banner__img">
-                <figcaption class="banner__caption">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod magnam, quisquam optio
-                    provident asperiores facilis, nostrum ad, necessitatibus ducimus nesciunt nulla dolorem minus tenetur
-                    soluta doloribus in error molestiae veniam!
-                </figcaption>
+                <img src="{{this.img}}" alt="Фото" class="banner__img">
+                <figcaption class="banner__caption"></figcaption>
             </figure>
             {{#each articles}}
             <figure class="last-articles">
@@ -42,7 +38,12 @@
 
     {{> footer }}
     {{> popup }}
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="/js/dist/main.js"></script>
+    <script>
+        marked.setOptions({ breaks: true });
+        document.querySelector(".banner__caption").innerHTML = marked.parse(`{{{this.sanitizedHTML}}}`)
+    </script>
 </body>
 
 </html>

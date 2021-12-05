@@ -1,18 +1,40 @@
 const { Router } = require("express")
 
 const router = Router()
+const multer = require("multer")
+const fs = require("fs")
 const Article = require("../models/article.model")
 const User = require("../models/user.model")
 const Comment = require("../models/comment.model")
+const Landing = require("../models/landing.model")
+const { landingGet, landingPost } = require("../controllers/blog.controller")
+const { isAdmin } = require("../middlewares/authJwt")
+
+if (!fs.existsSync("./public/img/landings")) {
+    fs.mkdirSync("./public/img/landings", { recursive: true })
+}
+
+const storage = multer.diskStorage({
+    destination: "./public/img/landings",
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}.${file.mimetype.split("/")[1]}`)
+    },
+})
+
+const upload = multer({ storage })
 
 router.get("/", async (req, res) => {
     try {
         const articles = await Article.find().sort("-createdAt").limit(2).lean()
-
+        const landing = await Landing.findOne({
+            path: "/index/edit",
+        }).lean()
         return res.render("index", {
             layout: false,
             isLoggedIn: req.isLoggedIn,
             articles,
+            sanitizedHTML: landing.sanitizedHTML,
+            img: landing.img,
         })
     } catch (e) {
         return res.status(500).send()
@@ -21,14 +43,27 @@ router.get("/", async (req, res) => {
 
 router.get("/about", async (req, res) => {
     try {
+        const landing = await Landing.findOne({
+            path: "/about/edit",
+        }).lean()
         return res.render("about", {
             layout: false,
             isLoggedIn: req.isLoggedIn,
+            sanitizedHTML: landing.sanitizedHTML,
+            img: landing.img,
         })
     } catch (e) {
         return res.status(500).send()
     }
 })
+
+router.get("/about/edit", isAdmin, landingGet)
+
+router.get("/index/edit", isAdmin, landingGet)
+
+router.post("/about/edit", isAdmin, upload.single("image"), landingPost)
+
+router.post("/index/edit", isAdmin, upload.single("image"), landingPost)
 
 router.get("/my-page", async (req, res) => {
     try {
@@ -58,6 +93,7 @@ router.get("/my-page", async (req, res) => {
             articles: favourites,
             comments,
             isLoggedIn: req.isLoggedIn,
+            isAdmin: req.userRole === "admin",
         })
     } catch (e) {
         return res.status(500).send()

@@ -628,6 +628,10 @@ h4 {
   text-decoration: none;
   letter-spacing: 0.02em;
 }
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 .button_light {
   background-color: rgba(140, 91, 62, 0.25);
   border: 1px solid rgba(140, 91, 62, 0.4);
@@ -914,7 +918,7 @@ h4 {
   height: auto;
   margin: 31px auto 0;
   max-height: 400px;
-  max-width: 100%;
+  width: 100%;
   object-fit: cover;
 }
 .banner__caption {
@@ -926,9 +930,6 @@ h4 {
   text-indent: 27px;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
-  .banner__img {
-    max-width: 100%;
-  }
   .banner__caption {
     margin-bottom: 72px;
     margin-top: 32px;
@@ -937,9 +938,6 @@ h4 {
   }
 }
 @media screen and (max-width: 750px) {
-  .banner__img {
-    max-width: 100%;
-  }
   .banner__caption {
     margin-bottom: 72px;
     margin-top: 32px;
@@ -1031,7 +1029,7 @@ h4 {
   line-height: calc(1.5 * var(--text));
   max-width: 568px;
 }
-.about__text-paragraph {
+.about__author-text p {
   margin: 1em 0;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
@@ -1058,6 +1056,33 @@ h4 {
     margin-top: 20px;
     max-width: 98%;
   }
+}
+
+.about-edit {
+  margin-left: 24px;
+}
+.about-edit__link {
+  color: #66422d;
+}
+.about-edit__heading {
+  margin-bottom: 12px;
+}
+.about-edit__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.about-edit__textarea {
+  max-width: 500px;
+  min-height: 300px;
+  padding: 8px;
+}
+.about-edit__submit-btn {
+  margin-top: 12px;
+  max-width: 120px;
+}
+.about-edit__upload {
+  margin-top: 12px;
 }
 
 .articles__add-button {
@@ -1280,6 +1305,15 @@ h4 {
   }
 }
 
+.my-page__admin-links {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.my-page__admin-link {
+  margin-top: 8px;
+  text-align: start;
+}
 .my-page__about {
   display: flex;
   margin-top: 24px;

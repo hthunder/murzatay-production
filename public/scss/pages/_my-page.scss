@@ -1,6 +1,17 @@
 @use '../abstracts/variables';
 
 .my-page {
+    &__admin-links {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__admin-link {
+        margin-top: 8px;
+        text-align: start;
+    }
+
     &__about {
         display: flex;
         margin-top: 24px;
