@@ -15,7 +15,7 @@
         "eslint": "eslint",
         "eslint:fix": "eslint --fix",
         "build": "npm run scss:production && npm run webpack:production",
-        "deploy": "rsync --archive --compress --exclude=\".*\" . root@194.87.101.164:~/murzatay"
+        "deploy": "rsync --archive --compress --exclude='.*' --exclude='public/img/articles' --exclude='public/img/avatars' --exclude='public/img/landings' --exclude='public/img/previews' . root@194.87.101.164:~/murzatay"
     },
     "author": "",
     "license": "MIT",
