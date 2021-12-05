@@ -43,8 +43,9 @@ exports.landingPost = async (req, res) => {
             },
             generateUpdateObj()
         ).lean()
-
-        fs.unlink(`./public${preUpdated.img}`, () => {})
+        if (req.file) {
+            fs.unlink(`./public${preUpdated.img}`, () => {})
+        }
         return res.redirect(path)
     } catch (e) {
         return res.status(500).send()
