@@ -1,3 +1,4 @@
 node_modules/
 .env
 public/img/instagram
+.DS_Store

@@ -17,7 +17,7 @@ const User = db.user
 exports.signup = async (req, res) => {
     try {
         const errors = validationResult(req)
-        const { protocol, hostname } = req
+        const { protocol } = req
         if (!errors.isEmpty()) {
             return authErrorHandler(res, concatErrors(errors), "call-signup")
         }
@@ -32,7 +32,7 @@ exports.signup = async (req, res) => {
         mailService(
             user.email,
             "Подтверждение регистрации на сайте",
-            `${protocol}://${hostname}/auth/activation?h=${user.activationHash}`
+            `${protocol}://${req.get('host')}/auth/activation?h=${user.activationHash}`
         )
         return res
             .cookie(
@@ -117,7 +117,7 @@ exports.forgot_pass_post = async (req, res) => {
             createdAt: Date.now(),
         }).save()
 
-        const link = `${protocol}://${hostname}/auth/password-reset?token=${resetToken}&id=${user._id}`
+        const link = `${protocol}://${req.get('host')}/auth/password-reset?token=${resetToken}&id=${user._id}`
         mailService(user.email, "Ссылка для восстановления пароля", link)
         return res
             .cookie(
