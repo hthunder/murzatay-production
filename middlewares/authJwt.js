@@ -32,7 +32,6 @@ const isAdmin = (req, res, next) => {
 
 const isActivated = async (req, res, next) => {
     try {
-        const protocol = { req }
         const user = await User.findOne({
             $or: [
                 { email: req.body.username },
@@ -48,11 +47,12 @@ const isActivated = async (req, res, next) => {
             "Пользователь не активирован, пройдите по ссылке в почте"
         throw error
     } catch (e) {
+        const protocol = { req }
         if (e.email && e.hash) {
             mailService(
                 e.email,
                 "Подтверждение регистрации на сайте",
-                `${protocol}://${req.get('host')}/auth/activation?h=${e.hash}`
+                `${protocol}://${req.get("host")}/auth/activation?h=${e.hash}`
             )
         }
         return res.cookie("murzatay-error", e.userMessage).redirect("/")
