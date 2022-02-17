@@ -100,11 +100,15 @@ export class CommentList {
 
     // eslint-disable-next-line class-methods-use-this
     async saveComment(comment) {
-        try {
-            if (
+        const isKeepUntouched = () => {
+            return (
                 comment.textarea.value === "" ||
                 comment.textarea.value === comment.nodeWithText.textContent
-            ) {
+            )
+        }
+
+        try {
+            if (isKeepUntouched()) {
                 return comment.changeEditMode()
             }
             // TODO поправить пут на патч
@@ -127,7 +131,7 @@ export class CommentList {
         }
     }
 
-    render(targetPlace) {
+    renderTo(targetPlace) {
         this.commentList.forEach((comment) => {
             targetPlace.appendChild(comment.element)
         })
