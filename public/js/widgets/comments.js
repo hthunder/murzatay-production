@@ -13,16 +13,16 @@ export const commentsInit = async () => {
     const addCommentPlace = document.querySelector(".topic__js-add-comment")
     const allCommentsPlace = document.querySelector(".topic__js-comments")
     const articleId = getArticleId(allCommentsPlace)
+    const addCommentArea = addCommentPlace ? new AddComment() : null
 
     if (addCommentPlace) {
-        const addCommentArea = new AddComment()
-        const commentList = new CommentList(
-            articleId,
-            `/api/articles/${articleId}/comments`,
-            addCommentArea
-        )
         addCommentArea.renderTo(addCommentPlace)
-        await commentList.getCommentList()
-        commentList.renderTo(allCommentsPlace)
     }
+    const commentList = new CommentList(
+        articleId,
+        `/api/articles/${articleId}/comments`,
+        addCommentArea
+    )
+    await commentList.getCommentList()
+    commentList.renderTo(allCommentsPlace)
 }

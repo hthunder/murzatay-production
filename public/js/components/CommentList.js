@@ -4,9 +4,11 @@ export class CommentList {
     constructor(articleId, url, addCommentArea) {
         this.commentList = []
         this.articleId = articleId
-        this.addCommentArea = addCommentArea
-        this.addCommentArea.sendBtn.onclick = () => {
-            this.addComment()
+        if (addCommentArea) {
+            this.addCommentArea = addCommentArea
+            this.addCommentArea.sendBtn.onclick = () => {
+                this.addComment()
+            }
         }
         this.url = url
     }

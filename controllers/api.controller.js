@@ -14,7 +14,16 @@ exports.widget_urls_get = async (req, res, next) => {
     }
 }
 
-exports.articleComments_get = async (req, res) => {
+exports.articleComments_get = async (req, res, next) => {
+    const isLoggedIn = (userId) => {
+        return Boolean(userId)
+    }
+    const isCommentOwner = (commentUserId, requestUserId) => {
+        return commentUserId.toString() === requestUserId.toString()
+    }
+    const isAdminOrModerator = (userRole) => {
+        return ["admin", "moderator"].includes(userRole)
+    }
     try {
         const { articleId } = req.params
         const { userId, userRole } = req
@@ -25,21 +34,19 @@ exports.articleComments_get = async (req, res) => {
                 populate: { path: "user", select: "username avatar" },
             })
             .lean()
-        if (userId) {
-            const modifiedComments = comments.map((comment) => {
-                if (comment.user._id.toString() === userId.toString()) {
-                    comment.isEditable = true
-                    comment.isDeletable = true
-                } else if (["admin", "moderator"].includes(userRole)) {
-                    comment.isDeletable = true
-                }
-                return comment
-            })
+        if (isLoggedIn(userId)) {
+            const modifiedComments = comments.map((comment) => ({
+                ...comment,
+                isEditable: isCommentOwner(comment.user._id, userId),
+                isDeletable:
+                    isCommentOwner(comment.user._id, userId) ||
+                    isAdminOrModerator(userRole),
+            }))
             return res.status(200).json(modifiedComments)
         }
         return res.status(200).json(comments)
     } catch (e) {
-        console.log(e)
+        return next(e)
     }
 }
 

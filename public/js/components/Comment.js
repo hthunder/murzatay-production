@@ -5,8 +5,8 @@ const getInnerHTML = (
     username,
     text,
     date,
-    isDeletable,
-    isEditable
+    isDeletable = "",
+    isEditable = ""
 ) => {
     const isoDate = new Date(date).toISOString()
     const localeDate = new Date(date).toLocaleString("en-GB")
@@ -20,12 +20,6 @@ const getInnerHTML = (
                     </time>
                 </div>
                 <form class="comments__form">
-                    <article class="textarea textarea_medium sc-textarea comments__sc-textarea hidden">
-                        <p class="sc-textarea__counter comments__symbol-counter">0/500</p>
-                        <textarea class="sc-textarea__textarea" maxlength="500">${text}</textarea>
-                    </article>
-                    <button class="comments__save-button button hidden" type="button">Сохранить</button>
-                    <button class="comments__cancel-button button hidden" type="button">Отменить</button>
                     ${
                         isDeletable &&
                         `<button class="button comments__delete-button" type="button">
@@ -34,7 +28,13 @@ const getInnerHTML = (
                     }
                     ${
                         isEditable &&
-                        `<button class="button comments__edit-button" type="button">
+                        `<article class="textarea textarea_medium sc-textarea comments__sc-textarea hidden">
+                            <p class="sc-textarea__counter comments__symbol-counter">0/500</p>
+                            <textarea class="sc-textarea__textarea" maxlength="500">${text}</textarea>
+                        </article>
+                        <button class="comments__save-button button hidden" type="button">Сохранить</button>
+                        <button class="comments__cancel-button button hidden" type="button">Отменить</button>
+                        <button class="button comments__edit-button" type="button">
                             Редактировать
                         </button>`
                     }
