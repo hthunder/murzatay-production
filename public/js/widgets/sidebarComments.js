@@ -1,23 +1,31 @@
-import { SidebarComment } from "../components/sidebarComment"
+const populateTemplate = (template) => {
+    return ({ text, user }) => {
+        const comment = template.content.cloneNode(true)
+        comment.querySelector(".sidebar__comments-text").innerText = text
+        comment.querySelector(".sidebar__comments-author").innerText =
+            user.username
+        comment
+            .querySelector(".sidebar__comments-img")
+            .setAttribute("src", user.avatar || "/img/icons/user-profile.svg")
+        return comment
+    }
+}
 
 export const sidebarComments = async () => {
-    const placeForCommentsEl = document.querySelector(
-        ".sidebar__js-last-comments"
+    const lastComments = document.querySelector(".sidebar__js-last-comments")
+    const template = document.querySelector(
+        ".sidebar__js-last-comments-template"
     )
-    if (placeForCommentsEl) {
+
+    if (lastComments) {
         try {
             const res = await fetch("/api/comments?limit=2")
             const commentsData = await res.json()
-            const headlineEl = document.createElement("h3")
-
-            headlineEl.classList.add("sidebar__title")
-            headlineEl.innerText = "Комментарии"
-            placeForCommentsEl.appendChild(headlineEl)
-            commentsData.map((commentData) =>
-                placeForCommentsEl.appendChild(SidebarComment(commentData))
-            )
+            commentsData
+                .map(populateTemplate(template))
+                .forEach(lastComments.appendChild.bind(lastComments))
         } catch (e) {
-            placeForCommentsEl.remove()
+            lastComments.remove()
         }
     }
 }

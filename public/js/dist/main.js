@@ -215,17 +215,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./public/js/components/sidebarComment.js":
-/*!************************************************!*\
-  !*** ./public/js/components/sidebarComment.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"SidebarComment\": () => (/* binding */ SidebarComment)\n/* harmony export */ });\nconst SidebarComment = ({\n    text,\n    user: { username, avatar = \"/img/icons/user-profile.svg\" },\n}) => {\n    const figureEl = document.createElement(\"figure\")\n    figureEl.classList.add(\"sidebar__comments-item\")\n    figureEl.innerHTML = `\n    <img class=\"sidebar__comments-img\" src=\"${avatar}\" width=\"38\" height=\"38\" alt=\"Аватарка\" >\n    <figcaption>\n        <p class=\"sidebar__comments-text\">${text}</p>\n        <p class=\"sidebar__comments-author\">${username}</p>\n    </figcaption>\n    `\n    return figureEl\n}\n\n\n//# sourceURL=webpack://blog/./public/js/components/sidebarComment.js?");
-
-/***/ }),
-
 /***/ "./public/js/components/sidebarInstagramWidget.js":
 /*!********************************************************!*\
   !*** ./public/js/components/sidebarInstagramWidget.js ***!
@@ -387,7 +376,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"sidebarComments\": () => (/* binding */ sidebarComments)\n/* harmony export */ });\n/* harmony import */ var _components_sidebarComment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/sidebarComment */ \"./public/js/components/sidebarComment.js\");\n\n\nconst sidebarComments = async () => {\n    const placeForCommentsEl = document.querySelector(\n        \".sidebar__js-last-comments\"\n    )\n    if (placeForCommentsEl) {\n        try {\n            const res = await fetch(\"/api/comments?limit=2\")\n            const commentsData = await res.json()\n            const headlineEl = document.createElement(\"h3\")\n\n            headlineEl.classList.add(\"sidebar__title\")\n            headlineEl.innerText = \"Комментарии\"\n            placeForCommentsEl.appendChild(headlineEl)\n            commentsData.map((commentData) =>\n                placeForCommentsEl.appendChild((0,_components_sidebarComment__WEBPACK_IMPORTED_MODULE_0__.SidebarComment)(commentData))\n            )\n        } catch (e) {\n            placeForCommentsEl.remove()\n        }\n    }\n}\n\n\n//# sourceURL=webpack://blog/./public/js/widgets/sidebarComments.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"sidebarComments\": () => (/* binding */ sidebarComments)\n/* harmony export */ });\nconst populateTemplate = (template) => {\n    return ({ text, user }) => {\n        const comment = template.content.cloneNode(true)\n        comment.querySelector(\".sidebar__comments-text\").innerText = text\n        comment.querySelector(\".sidebar__comments-author\").innerText =\n            user.username\n        comment\n            .querySelector(\".sidebar__comments-img\")\n            .setAttribute(\"src\", user.avatar || \"/img/icons/user-profile.svg\")\n        return comment\n    }\n}\n\nconst sidebarComments = async () => {\n    const lastComments = document.querySelector(\".sidebar__js-last-comments\")\n    const template = document.querySelector(\n        \".sidebar__js-last-comments-template\"\n    )\n\n    if (lastComments) {\n        try {\n            const res = await fetch(\"/api/comments?limit=2\")\n            const commentsData = await res.json()\n            commentsData\n                .map(populateTemplate(template))\n                .forEach(lastComments.appendChild.bind(lastComments))\n        } catch (e) {\n            lastComments.remove()\n        }\n    }\n}\n\n\n//# sourceURL=webpack://blog/./public/js/widgets/sidebarComments.js?");
 
 /***/ }),
 
