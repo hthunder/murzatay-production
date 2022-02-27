@@ -6,6 +6,7 @@
     "private": true,
     "scripts": {
         "start": "node server",
+        "install:production": "rm -rf node_modules && npm install --only=prod",
         "server": "nodemon server --ignore public/img/instagram/compressed/img-list.json",
         "mongo": "mkdir -p /workspace/data && mongod --dbpath /workspace/data",
         "mongo:mac": "brew services start mongodb-community@5.0",
