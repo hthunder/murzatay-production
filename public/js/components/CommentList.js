@@ -14,16 +14,17 @@ export class CommentList {
     }
 
     setListeners(comment) {
+        const { textarea } = comment
         comment.deleteBtn.onclick = () => {
             this.deleteComment(comment)
         }
         comment.editBtn.onclick = () => {
-            comment.textarea.value = comment.nodeWithText.textContent
+            textarea.value = comment.nodeWithText.textContent
             comment.changeEditMode()
-            comment.textarea.focus()
-            comment.textarea.setSelectionRange(
-                comment.textarea.value.length,
-                comment.textarea.value.length
+            textarea.focus()
+            textarea.setSelectionRange(
+                textarea.value.length,
+                textarea.value.length
             )
         }
         comment.cancelBtn.onclick = () => {

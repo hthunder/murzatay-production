@@ -5,8 +5,7 @@ export const addFavourite = () => {
     const favouriteBtn = document.querySelector(".topic__add-favourite")
 
     async function fetchRequest() {
-        const { articleId } = favouriteBtn.dataset
-        const { userId } = favouriteBtn.dataset
+        const { articleId, userId } = favouriteBtn.dataset
         try {
             const res = await fetch(`/api/users/${userId}`, {
                 method: "PATCH",
