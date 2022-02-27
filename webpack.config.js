@@ -14,7 +14,7 @@ module.exports = (env, argv) => ({
     },
     mode: argv.mode,
     output: {
-        path: path.resolve(__dirname, "public/js/dist"),
+        path: path.resolve(__dirname, "public/js-build"),
     },
     watch: argv.mode === "development",
 })

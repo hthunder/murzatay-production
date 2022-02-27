@@ -39,7 +39,7 @@
     {{> footer }}
     {{> popup }}
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="/js/dist/main.js"></script>
+    <script type="module" src="/js-build/main.js"></script>
     <script>
         marked.setOptions({ breaks: true });
         document.querySelector(".banner__caption").innerHTML = marked.parse(`{{{this.sanitizedHTML}}}`)
