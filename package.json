@@ -10,6 +10,7 @@
         "server": "nodemon server --ignore public/img/instagram/compressed/img-list.json",
         "mongo": "mkdir -p /workspace/data && mongod --dbpath /workspace/data",
         "mongo:mac": "brew services start mongodb-community@5.0",
+        "mongo:debian": "systemctl start mongod",
         "scss": "npx sass --watch public/scss:public/css",
         "scss:production": "npx sass public/scss:public/css --style=compressed",
         "webpack": "npx webpack --mode=development",
