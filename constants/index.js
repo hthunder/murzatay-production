@@ -14,4 +14,4 @@ exports.RUBRICS = [
 ]
 
 exports.ARTICLES_LIMIT = 10
-exports.ARTICLE_PREVIEW_SIZE_KB = 100
+exports.ARTICLE_PREVIEW_SIZE_KB = 500
