@@ -1140,12 +1140,22 @@ h4 {
   text-align: left;
 }
 @media screen and (max-width: 750px) {
+  .articles {
+    text-align: center;
+  }
+  .articles__add-button {
+    margin-left: initial;
+    transform: none;
+    margin-bottom: 2em;
+  }
   .articles__read-link {
     text-align: left;
   }
   .articles__preview {
     display: flex;
     flex-direction: column;
+    padding-left: 0.5em;
+    padding-bottom: 1em;
   }
   .articles__empty-list {
     margin: 0;
@@ -1154,21 +1164,23 @@ h4 {
   .articles__title {
     margin-top: 18px;
     max-width: 90%;
-    text-align: center;
-  }
-  .articles__title_main {
-    width: 92%;
+    font-size: var(--text-md);
+    margin-bottom: 0.5em;
+    text-align: left;
   }
   .articles__item {
     display: block;
-    margin-bottom: 10px;
     max-width: 749px;
     text-align: center;
+    border: 1px solid #80808052;
+    margin-bottom: 1.5em;
+    margin-top: 0;
   }
   .articles__img {
     margin-right: 0;
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 250px;
+    width: 100%;
+    max-width: none;
     object-fit: cover;
   }
   .articles__text {

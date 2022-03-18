@@ -66,6 +66,14 @@
     }
 
     @media #{variables.$media-sm} {
+        text-align: center;
+
+        &__add-button {
+            margin-left: initial;
+            transform: none;
+            margin-bottom: 2em;
+        }
+
         &__read-link {
             text-align: left;
         }
@@ -73,6 +81,8 @@
         &__preview {
             display: flex;
             flex-direction: column;
+            padding-left: 0.5em;
+            padding-bottom: 1em;
         }
 
         &__empty-list {
@@ -83,24 +93,25 @@
         &__title {
             margin-top: 18px;
             max-width: 90%;
-            text-align: center;
-        }
-
-        &__title_main {
-            width: 92%;
+            font-size: var(--text-md);
+            margin-bottom: 0.5em;
+            text-align: left;
         }
 
         &__item {
             display: block;
-            margin-bottom: 10px;
             max-width: 749px;
             text-align: center;
+            border: 1px solid #80808052;
+            margin-bottom: 1.5em;
+            margin-top: 0;
         }
 
         &__img {
             margin-right: 0;
-            max-height: 150px;
-            max-width: 150px;
+            max-height: 250px;
+            width: 100%;
+            max-width: none;
             object-fit: cover;
         }
 
