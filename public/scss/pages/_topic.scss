@@ -47,6 +47,8 @@
     }
 
     @media #{variables.$media-sm} {
+        padding: 0 40px 32px;
+
         &__add-favourite {
             display: block;
             margin-left: auto;

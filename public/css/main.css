@@ -927,7 +927,6 @@ h4 {
   margin-bottom: 72px;
   margin-top: 32px;
   text-align: left;
-  text-indent: 27px;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .banner__caption {
@@ -1177,6 +1176,9 @@ h4 {
   max-width: 100%;
 }
 @media screen and (max-width: 750px) {
+  .topic {
+    padding: 0 40px 32px;
+  }
   .topic__add-favourite {
     display: block;
     margin-left: auto;
