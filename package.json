@@ -22,7 +22,7 @@
         "eslint": "eslint",
         "eslint:fix": "eslint --fix",
         "build": "npm run scss:production && npm run webpack:production",
-        "deploy": "rsync --archive --compress --exclude='.*' --exclude='public/scss' --exclude='node_modules' --exclude='README.md' --exclude='webpack.config.js' . root@2.57.186.199:~/murzatay"
+        "deploy": "npm run build && rsync --archive --compress --exclude='.*' --exclude='public/scss' --exclude='node_modules' --exclude='README.md' --exclude='webpack.config.js' . root@2.57.186.199:~/murzatay"
     },
     "author": "",
     "license": "MIT",
