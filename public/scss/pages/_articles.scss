@@ -45,9 +45,14 @@
 
     &__img {
         margin-right: 32px;
-        max-height: 128px;
-        max-width: 128px;
+        width: 128px;
+        height: 128px;
         object-fit: cover;
+    }
+
+    &__img_lg {
+        width: 160px;
+        height: 160px;
     }
 
     &__preview {
@@ -108,6 +113,7 @@
         }
 
         &__img {
+            height: auto;
             margin-right: 0;
             max-height: 250px;
             width: 100%;

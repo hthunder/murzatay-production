@@ -18,16 +18,16 @@
                 <figcaption class="banner__caption"></figcaption>
             </figure>
             {{#each articles}}
-            <figure class="last-articles">
+            <figure class="articles__item">
                 {{#if this.img}}
-                <img width="160" height="160" src={{this.img}} alt="Фото" class="last-articles__img">
+                <img class="articles__img articles__img_lg" src={{this.img}} alt="Фото">
                 {{else}}
-                <img width="160" height="160" src="/img/placeholders/last-article.png" alt="Фото" class="last-articles__img">
+                <img class="articles__img articles__img_lg" src="/img/placeholders/last-article.png" alt="Фото">
                 {{/if}}
-                <figcaption class="last-articles__preview">
-                    <h2 class="last-articles__preview-title">{{this.title}}</h2>
-                    <p class="last-articles__preview-text">{{this.description}}</p>
-                    <a href="/articles/{{this.slug}}" class="link">Читать...</a>
+                <figcaption class="articles__preview">
+                    <h2 class="articles__title">{{this.title}}</h2>
+                    <p class="articles__text">{{this.description}}</p>
+                    <a class="articles__read-link link" href="/articles/{{this.slug}}">Читать...</a>
                 </figcaption>
             </figure>
             {{/each}}
