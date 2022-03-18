@@ -1105,7 +1105,6 @@ h4 {
   font-family: Lora;
   font-weight: 500;
   margin-bottom: 5px;
-  margin-top: 12px;
   max-width: 695px;
   text-align: left;
 }
@@ -1128,7 +1127,6 @@ h4 {
   object-fit: cover;
 }
 .articles__preview {
-  padding-top: 5px;
   position: relative;
 }
 .articles__text {
@@ -1136,7 +1134,7 @@ h4 {
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 16px;
+  line-height: 1.4rem;
   margin-bottom: 10px;
   max-width: 695px;
   text-align: left;
