@@ -66,6 +66,10 @@
     }
 
     @media #{variables.$media-sm} {
+        &__logo-wrapper {
+            display: none;
+        }
+
         &__rubrics-btn {
             display: block;
         }
@@ -76,14 +80,6 @@
             border: 10px solid variables.$potters-clay-60;
             display: flex;
             flex-direction: column;
-        }
-
-        &__logo-img {
-            width: 30%;
-        }
-
-        &__logo-slogan {
-            display: none;
         }
     }
 }

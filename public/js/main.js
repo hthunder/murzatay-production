@@ -8,6 +8,8 @@ import { authHandlerModule } from "./authHandler"
 import { popupInit } from "./popupInit"
 import { checkCookies } from "./utils/checkCookies"
 import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
+import { querySelectorMultiple } from "./utils/querySelectorMultiple"
+import { toggleDisplayNone } from "./utils/toggleDisplayNone"
 
 popupInit()
 
@@ -36,23 +38,25 @@ deleteArticleForms.forEach((form) => {
 
 /* Не закрываются выпадающие элементы при повторном клике */
 
-const burger = document.querySelector(".nav__burger")
-const menu = document.querySelector(".nav__list")
+const [burger, menu, searchForm, logo, searchIcon] = querySelectorMultiple(
+    ".nav__burger",
+    ".nav__list",
+    ".nav__search-form",
+    ".nav__logo",
+    ".nav__search"
+)
 
-if (burger) {
-    burger.onclick = () => {
+burger &&
+    burger.addEventListener("click", () => {
         menu.classList.toggle("nav__list_opened")
-    }
-}
+        searchForm.classList.toggle("nav__search-form_opened")
+        toggleDisplayNone(logo)
+    })
 
-const search = document.querySelector(".nav__search")
-const searchField = document.querySelector(".nav__search-form")
-
-if (search) {
-    search.onclick = () => {
-        searchField.classList.toggle("nav__search-form_opened")
-    }
-}
+searchIcon &&
+    searchIcon.addEventListener("click", () => {
+        searchForm.submit()
+    })
 
 const rubricBtn = document.querySelector(".header__rubrics-btn")
 const rubrics = document.querySelector(".rubrics")

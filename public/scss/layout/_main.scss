@@ -11,13 +11,13 @@
     &__content {
         padding: 0 36px 20px;
         width: 100%;
+        flex-grow: 1;
     }
 
     &__sidebar {
         background-color: variables.$potters-clay-60;
         flex-basis: 243px;
         flex-shrink: 0;
-        max-width: 243px;
     }
 
     @media #{variables.$media-md} {

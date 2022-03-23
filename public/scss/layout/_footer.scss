@@ -1,7 +1,7 @@
 @use '../abstracts/variables';
 
 .footer {
-    background-color: variables.$bronze;
+    background-color: variables.$potters-clay;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -21,7 +21,7 @@
     }
 
     &__link {
-        color: variables.$di-serria;
+        color: #fff;
         display: inline-block;
         font-family: Lora;
         font-weight: 500;
@@ -32,9 +32,18 @@
     }
 
     &__link:hover {
-        color: variables.$carrot-orange-80;
-        text-shadow: variables.$selective-yellow-30 1px 0;
+        color: variables.$bronze;
     }
+
+    &__feedback {
+        color: #fff;
+    }
+
+    &__email {
+        color: #fff;
+    }
+
+    
 
     @media #{variables.$media-md} {
         flex-wrap: wrap;

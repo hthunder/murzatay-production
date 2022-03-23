@@ -93,12 +93,12 @@ h4 {
 .main__content {
   padding: 0 36px 20px;
   width: 100%;
+  flex-grow: 1;
 }
 .main__sidebar {
   background-color: rgba(140, 91, 62, 0.6);
   flex-basis: 243px;
   flex-shrink: 0;
-  max-width: 243px;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .main {
@@ -173,6 +173,9 @@ h4 {
   }
 }
 @media screen and (max-width: 750px) {
+  .header__logo-wrapper {
+    display: none;
+  }
   .header__rubrics-btn {
     display: block;
   }
@@ -183,16 +186,10 @@ h4 {
     display: flex;
     flex-direction: column;
   }
-  .header__logo-img {
-    width: 30%;
-  }
-  .header__logo-slogan {
-    display: none;
-  }
 }
 
 .footer {
-  background-color: #401f09;
+  background-color: #8c5b3e;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -210,7 +207,7 @@ h4 {
   text-decoration: none;
 }
 .footer__link {
-  color: #dd9453;
+  color: #fff;
   display: inline-block;
   font-family: Lora;
   font-weight: 500;
@@ -220,8 +217,13 @@ h4 {
   vertical-align: middle;
 }
 .footer__link:hover {
-  color: rgba(242, 138, 44, 0.8);
-  text-shadow: rgba(255, 188, 4, 0.3) 1px 0;
+  color: #401f09;
+}
+.footer__feedback {
+  color: #fff;
+}
+.footer__email {
+  color: #fff;
 }
 @media screen and (min-width: 750px) and (max-width: 1024px) {
   .footer {
@@ -254,8 +256,11 @@ h4 {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1140px;
-  min-height: 41px;
-  padding: 3px;
+  height: 41px;
+  padding: 3px 0;
+}
+.nav__logo {
+  display: none;
 }
 .nav__list {
   display: flex;
@@ -300,14 +305,13 @@ h4 {
   margin-right: 3px;
 }
 .nav__search-form {
-  display: flex;
-  max-width: 245px;
-  width: 20.85%;
+  flex-basis: 243px;
+  padding: 0 8px;
 }
 .nav__search-field {
   border: 0;
   font-size: var(--text-sm);
-  height: 35px;
+  height: 32px;
   outline: none;
   padding: 3px;
   width: 100%;
@@ -319,74 +323,69 @@ h4 {
   margin-left: auto;
   outline: none;
 }
-@media screen and (min-width: 750px) and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .nav {
     position: relative;
+    height: 64px;
+    padding: 0 16px;
+  }
+  .nav__logo {
+    display: initial;
+    width: 180px;
+    height: auto;
   }
   .nav__list {
     display: none;
     flex-direction: column;
     position: absolute;
     right: 0;
-    top: 40px;
-    width: 50%;
+    top: 64px;
+    width: 100%;
+  }
+  .nav__search {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
   }
   .nav__search-form {
     display: none;
     left: 0;
     top: 35px;
-    width: 80%;
+    width: 100%;
+    max-width: none;
+    height: 64px;
   }
-  .nav__list_opened, .nav__search-form_opened {
+  .nav__search-form_opened {
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+  }
+  .nav__list_opened {
     display: flex;
   }
   .nav__item {
     background-color: #96684d;
-    border: 2px solid #96684d;
-    color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-family: Raleway;
-    padding: 5px;
+    padding: 16px 24px;
     text-decoration: none;
     width: 100%;
+    text-align: left;
+  }
+  .nav__item:not(:last-child) {
+    border-bottom: 1px solid #9a6f6f;
   }
   .nav__burger, .nav__search {
     display: block;
   }
-}
-@media screen and (max-width: 750px) {
-  .nav {
-    position: relative;
-  }
-  .nav__list {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    right: 0;
-    top: 40px;
-    width: 50%;
-  }
-  .nav__search-form {
-    display: none;
-    left: 0;
-    top: 35px;
-    width: 80%;
-  }
-  .nav__list_opened, .nav__search-form_opened {
-    display: flex;
-  }
-  .nav__item {
-    background-color: #96684d;
-    border: 2px solid #96684d;
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px;
-    text-decoration: none;
-    width: 100%;
-  }
-  .nav__burger, .nav__search {
+  .nav__link {
     display: block;
+    text-align: left;
+  }
+  .nav__button {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 }
 
@@ -402,7 +401,7 @@ h4 {
 .sidebar__comments-img {
   flex-shrink: 0;
   align-self: center;
-  border: 1px solid rgba(242, 138, 44, 0.6);
+  border: 1px solid rgba(140, 91, 62, 0.6);
   border-radius: 50%;
   margin-right: 11px;
   object-fit: cover;
