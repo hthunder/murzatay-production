@@ -1,5 +1,6 @@
 import AWN from "awesome-notifications"
 import "awesome-notifications/dist/style.css"
+import { parseCookie, deleteCookie } from "./utils/cookie/cookie"
 
 const handleAuthErrors = (target, errorText) => {
     const className = target === "signin" ? "login" : target
@@ -21,17 +22,6 @@ const handleAuthErrors = (target, errorText) => {
     }
 }
 
-const parseCookie = (str) =>
-    str
-        .split(";")
-        .map((v) => v.split("="))
-        .reduce((acc, v) => {
-            acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
-                v[1].trim()
-            )
-            return acc
-        }, {})
-
 export const errorHandler = async () => {
     if (document.cookie) {
         const {
@@ -41,32 +31,27 @@ export const errorHandler = async () => {
             murzatayMessage,
             murzatayWarning,
         } = parseCookie(document.cookie)
-        document.cookie =
-            "signinError=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie =
-            "signupError=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie =
-            "murzatayError=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie =
-            "murzatayMessage=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie =
-            "murzatayWarning=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         if (signinError || signupError) {
             if (signinError) {
                 handleAuthErrors("signin", signinError)
+                deleteCookie("signinError")
             }
             if (signupError) {
                 handleAuthErrors("signup", signupError)
+                deleteCookie("signupError")
             }
         }
         if (murzatayError) {
             new AWN().alert(murzatayError, { durations: { alert: 0 } })
+            deleteCookie("murzatayError")
         }
         if (murzatayMessage) {
             new AWN().success(murzatayMessage, { durations: { success: 0 } })
+            deleteCookie("murzatayMessage")
         }
         if (murzatayWarning) {
             new AWN().warning(murzatayWarning, { durations: { warning: 0 } })
+            deleteCookie("murzatayWarning")
         }
     }
 }
