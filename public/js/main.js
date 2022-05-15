@@ -1,27 +1,16 @@
-import { addFavourite } from "./widgets/addFavourite"
 import { confirmAction } from "./utils/confirmAction"
 import { router } from "./router"
-import { setSizeControl } from "./utils/imgsizeControl"
 import { sidebarComments } from "./widgets/sidebarComments"
 import { sidebarInstagramWidget } from "./widgets/sidebarInstagramWidget"
 import { errorHandler } from "./errorHandler"
 import { popupInit } from "./popupInit"
 import { checkCookies } from "./utils/checkCookies"
-import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
 import { querySelectorMultiple } from "./utils/querySelectorMultiple"
 import { toggleDisplayNone } from "./utils/toggleDisplayNone"
 import { signupFormValidator } from "./forms/signupFormValidator"
+import * as api from "./api/api"
 
 popupInit()
-
-// article creation page
-const articleFormImgInput = document.querySelector(".article-form__img-input")
-const articleFormSubmitBtn = document.querySelector(".article-form__submit")
-setSizeControl(
-    ARTICLE_PREVIEW_SIZE_KB,
-    articleFormSubmitBtn,
-    articleFormImgInput
-)
 
 const deleteArticleForms = document.querySelectorAll(".articles__delete-form")
 
@@ -68,7 +57,11 @@ if (rubricBtn) {
     }
 }
 
-addFavourite()
+const favouriteBtn = document.querySelector(".topic__add-favourite")
+if (favouriteBtn) {
+    favouriteBtn.onclick = () => api.addFavourite(favouriteBtn)
+}
+
 checkCookies()
 
 router(window.location.pathname)

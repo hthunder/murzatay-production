@@ -5,7 +5,7 @@ const ProfileInfoForm = (username, city, about) => {
     return ml(
         "form",
         {
-            class: "my-page__about-edit-form my-page__about-edit-form_hidden",
+            class: "my-page__about-edit-form hidden",
         },
         [
             ml(
@@ -24,7 +24,7 @@ const ProfileInfoForm = (username, city, about) => {
                 ]
             ),
             ml("label", { class: "my-page__about-form-label" }, [
-                "Ник:",
+                "Ник: ",
                 ml("input", {
                     class: "my-page__about-form-input",
                     name: "username",
@@ -33,7 +33,7 @@ const ProfileInfoForm = (username, city, about) => {
                 }),
             ]),
             ml("label", { class: "my-page__about-form-label" }, [
-                "Город:",
+                "Город: ",
                 ml("input", {
                     name: "city",
                     type: "text",
@@ -92,22 +92,24 @@ export const ProfileInfo = (profileData) => {
                 "Редактировать"
             ),
             ml("div", { class: "my-page__about-fields" }, [
+                ml("p", { class: "font-family-raleway" }, "Ник:"),
                 ml(
                     "p",
                     { class: "my-page__about-field my-page__about-username" },
                     escape(username)
                 ),
+                ml("p", { class: "font-family-raleway" }, "Город:"),
                 ml(
                     "p",
                     { class: "my-page__about-field my-page__about-city" },
                     escape(city)
                 ),
+                ml("p", { class: "font-family-raleway" }, "О себе:"),
                 ml(
                     "p",
-                    { class: "my-page__about-field my-page__about-me" },
-                    "Расскажите о себе или о своих питомцах:"
+                    { class: "my-page__about-field my-page__about-myself" },
+                    escape(about)
                 ),
-                ml("p", { class: "my-page__about-field" }, escape(about)),
             ]),
             profileInfoForm,
         ]),
