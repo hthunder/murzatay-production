@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const config = require("../config/auth.config")
 const User = require("../models/user.model")
 const { mailService } = require("../util/mailService")
+const { CLIENT_500_ERROR } = require("../constants")
 
 const isLoggedIn = (req, _res, next) => {
     const { token } = req.cookies
@@ -39,23 +40,26 @@ const isActivated = async (req, res, next) => {
             ],
         })
 
-        if (!user || user.active) return next()
-        const error = new Error()
-        error.hash = user.activationHash
-        error.email = user.email
-        error.userMessage =
-            "Пользователь не активирован, пройдите по ссылке в почте"
-        throw error
-    } catch (e) {
-        const protocol = { req }
-        if (e.email && e.hash) {
-            mailService(
-                e.email,
-                "Подтверждение регистрации на сайте",
-                `${protocol}://${req.get("host")}/auth/activation?h=${e.hash}`
-            )
+        if (user && !user.active) {
+            const hash = user.activationHash
+            const { email } = user
+            const userMessage =
+                "Пользователь не активирован, пройдите по ссылке в почте"
+            const protocol = { req }
+            if (email && hash) {
+                mailService(
+                    email,
+                    "Подтверждение регистрации на сайте",
+                    `${protocol}://${req.get("host")}/auth/activation?h=${hash}`
+                )
+            }
+            return res.cookie("murzatayWarning", userMessage).redirect("back")
         }
-        return res.cookie("murzatay-error", e.userMessage).redirect("/")
+
+        req.user = user
+        return next()
+    } catch (e) {
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
     }
 }
 

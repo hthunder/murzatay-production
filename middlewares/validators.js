@@ -1,18 +1,35 @@
-const { check } = require("express-validator")
-const { checkDuplicateUsernameOrEmail } = require("./verifySignUp")
+const { check, body } = require("express-validator")
+const db = require("../models")
+
+const User = db.user
 
 exports.signup = [
-    check("username", "Введите логин").not().isEmpty(),
-    check("email", "Введите валидный email").isEmail(),
-    check("password1").custom((value, { req }) => {
+    body("username", "Введите логин").not().isEmpty(),
+    body("email", "Введите валидный email").isEmail().not().isEmpty(),
+    body("password1").custom((value, { req }) => {
         if (value !== req.body.password2) {
             throw new Error("Пароли не совпадают")
         }
         return true
     }),
-    check("password1", "Пароль должен содержать от 6 до 30 символов").isLength({
+    body("password1", "Пароль должен содержать от 6 до 30 символов").isLength({
         min: 6,
         max: 30,
     }),
-    checkDuplicateUsernameOrEmail,
+    body("username").custom(async (value) => {
+        const userByUsername = await User.findOne({
+            username: value,
+        })
+        if (userByUsername) {
+            return Promise.reject("Имя пользователя занято")
+        }
+    }),
+    body("email").custom(async (value) => {
+        const userByEmail = await User.findOne({
+            email: value,
+        })
+        if (userByEmail) {
+            return Promise.reject("Email занят другим пользователем")
+        }
+    }),
 ]

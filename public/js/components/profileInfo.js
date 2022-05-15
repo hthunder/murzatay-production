@@ -1,4 +1,70 @@
 import escape from "lodash.escape"
+import { ml } from "../utils/mark"
+
+const ProfileInfoForm = (username, city, about) => {
+    return ml(
+        "form",
+        {
+            class: "my-page__about-edit-form my-page__about-edit-form_hidden",
+        },
+        [
+            ml(
+                "label",
+                {
+                    class: "my-page__avatar-label button button_light",
+                },
+                [
+                    "Загрузить аватар",
+                    ml("input", {
+                        class: "my-page__avatar-input",
+                        type: "file",
+                        name: "avatar",
+                        accept: ".jpg, .jpeg, .png",
+                    }),
+                ]
+            ),
+            ml("label", { class: "my-page__about-form-label" }, [
+                "Ник:",
+                ml("input", {
+                    class: "my-page__about-form-input",
+                    name: "username",
+                    type: "text",
+                    value: escape(username),
+                }),
+            ]),
+            ml("label", { class: "my-page__about-form-label" }, [
+                "Город:",
+                ml("input", {
+                    name: "city",
+                    type: "text",
+                    value: escape(city),
+                    class: "my-page__about-form-input",
+                }),
+            ]),
+            ml("label", { class: "my-page__about-form-label" }, [
+                "Расскажите о себе или своих питомцах:",
+                ml(
+                    "textarea",
+                    {
+                        maxlength: "250",
+                        name: "about",
+                        placeholder: "Расскажите о себе или своих питомцах",
+                        class: "my-page__about-form-textarea textarea",
+                    },
+                    about
+                ),
+            ]),
+            ml(
+                "button",
+                {
+                    class: "my-page__about-form-submit button button_light",
+                    type: "button",
+                },
+                "Готово"
+            ),
+        ]
+    )
+}
 
 export const ProfileInfo = (profileData) => {
     const {
@@ -7,52 +73,43 @@ export const ProfileInfo = (profileData) => {
         about = "",
         avatar = "/img/icons/user-profile.svg",
     } = profileData
-    const section = document.createElement("section")
 
-    section.classList.add("my-page__about")
-    section.innerHTML = `
-        <img class="my-page__about-avatar" src="${escape(
-            avatar
-        )}" alt="Ваше фото">
-        <div class="my-page__about-info">
-            <button class="my-page__about-edit-button button button_light" type="button">Редактировать</button>
-            <div class="my-page__about-fields">
-                <p class="my-page__about-field my-page__about-username">Ник: ${escape(
-                    username
-                )}</p>
-                <p class="my-page__about-field my-page__about-city">Город: ${escape(
-                    city
-                )}</p>
-                <p class="my-page__about-field my-page__about-me">Расскажите о себе или о своих питомцах:</p>
-                <p class="my-page__about-field">${escape(about)}</p>
-            </div>
-            <form class="my-page__about-edit-form my-page__about-edit-form_hidden">
-                <label class="my-page__avatar-label button button_light">
-                    Загрузить аватар
-                    <input class="my-page__avatar-input" type="file" name="avatar" accept=".jpg, .jpeg, .png">   
-                </label>
-                <label class="my-page__about-form-label">
-                    Ник:
-                    <input class="my-page__about-form-input" name="username" type="text" value="${escape(
-                        username
-                    )}">
-                </label>
-                <label class="my-page__about-form-label">
-                    Город:
-                    <input name="city" type="text" value="${escape(
-                        city
-                    )}" class="my-page__about-form-input">
-                </label>
-                <label class="my-page__about-form-label">
-                        Расскажите о себе или своих питомцах:
-                    <textarea maxlength="250" name="about" placeholder="Расскажите о себе или своих питомцах"
-                        class="my-page__about-form-textarea textarea">${escape(
-                            about
-                        )}</textarea>
-                </label>
-                <button class="my-page__about-form-submit button button_light" type="button">Готово</button>
-            </form>
-        </div>
-    `
-    return section
+    const profileInfoForm = ProfileInfoForm(username, city, about)
+
+    return ml("section", { class: "my-page__about" }, [
+        ml("img", {
+            class: "my-page__about-avatar",
+            src: escape(avatar),
+            alt: "Ваше фото",
+        }),
+        ml("div", { class: "my-page__about-info" }, [
+            ml(
+                "button",
+                {
+                    class: "my-page__about-edit-button button button_light",
+                    type: "button",
+                },
+                "Редактировать"
+            ),
+            ml("div", { class: "my-page__about-fields" }, [
+                ml(
+                    "p",
+                    { class: "my-page__about-field my-page__about-username" },
+                    escape(username)
+                ),
+                ml(
+                    "p",
+                    { class: "my-page__about-field my-page__about-city" },
+                    escape(city)
+                ),
+                ml(
+                    "p",
+                    { class: "my-page__about-field my-page__about-me" },
+                    "Расскажите о себе или о своих питомцах:"
+                ),
+                ml("p", { class: "my-page__about-field" }, escape(about)),
+            ]),
+            profileInfoForm,
+        ]),
+    ])
 }

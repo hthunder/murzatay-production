@@ -2,25 +2,29 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const { validationResult } = require("express-validator")
 const crypto = require("crypto")
-const {
-    authErrorHandler,
-    concatErrors,
-    mailService,
-    createHash,
-} = require("../util")
+const { concatErrors, mailService, createHash } = require("../util")
 const config = require("../config/auth.config")
 const db = require("../models")
 const Token = require("../models/token.model")
+const {
+    CLIENT_500_ERROR,
+    NON_EXISTENT_CLIENT,
+    PASSWORD_RESET_LINK_SENT,
+    PASSWORD_MISMATCH,
+    EXPIRED_PASSWORD_RESET_LINK,
+} = require("../constants")
 
 const User = db.user
 
 exports.signup = async (req, res) => {
     try {
-        const errors = validationResult(req)
-        const { protocol } = req
-        if (!errors.isEmpty()) {
-            return authErrorHandler(res, concatErrors(errors), "call-signup")
+        const clientErrors = validationResult(req)
+        if (!clientErrors.isEmpty()) {
+            return res
+                .cookie("signupError", concatErrors(clientErrors))
+                .redirect("back")
         }
+
         const user = new User({
             username: req.body.username,
             email: req.body.email,
@@ -29,51 +33,38 @@ exports.signup = async (req, res) => {
             activationHash: createHash(),
         })
         await user.save()
+
+        const { protocol } = req
         mailService(
             user.email,
             "Подтверждение регистрации на сайте",
-            `${protocol}://${req.get('host')}/auth/activation?h=${user.activationHash}`
+            `${protocol}://${req.get("host")}/auth/activation?h=${
+                user.activationHash
+            }`
         )
+
         return res
             .cookie(
-                "murzatay-message",
+                "murzatayMessage",
                 "Вы успешно зарегистрированы, на вашу почту отправлено письмо с ссылкой активации"
             )
             .redirect("back")
     } catch (e) {
-        return authErrorHandler(
-            res,
-            "Произошла какая-то ошибка, попробуйте еще раз позднее",
-            "call-signup"
-        )
-    }
-}
-
-exports.activation = async (req, res) => {
-    try {
-        const { h } = req.query
-        await User.findOneAndUpdate({ activationHash: h }, { active: true })
-        return res.redirect("/")
-    } catch (e) {
-        return res
-            .cookie(
-                "murzatay-error",
-                "Во время активации произошла какая-то ошибка, попробуйте позднее"
-            )
-            .redirect("/")
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
     }
 }
 
 exports.signin = async (req, res) => {
-    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
-        const user = await User.findOne()
-            .or([{ email: req.body.username }, { username: req.body.username }])
-            .exec()
+        const { user } = req
 
         if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-            userError = "Пользователь с такими данными не найден."
-            throw new Error()
+            return res
+                .cookie(
+                    "signinError",
+                    "Пользователь с такими данными не найден."
+                )
+                .redirect("back")
         }
 
         const { id, role } = user
@@ -84,7 +75,17 @@ exports.signin = async (req, res) => {
             .cookie("token", token, { httpOnly: true, sameSite: "lax" })
             .redirect("back")
     } catch (e) {
-        return authErrorHandler(res, userError, "call-login", req)
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
+    }
+}
+
+exports.activation = async (req, res) => {
+    try {
+        const { h } = req.query
+        await User.findOneAndUpdate({ activationHash: h }, { active: true })
+        return res.redirect("/")
+    } catch (e) {
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("/")
     }
 }
 
@@ -95,14 +96,14 @@ exports.forgot_pass_get = async (req, res) => {
 }
 
 exports.forgot_pass_post = async (req, res) => {
-    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
-        const { protocol, hostname } = req
+        const { protocol } = req
         const { email } = req.body
         const user = await User.findOne({ email })
         if (!user) {
-            userError = "Пользователя с таким email-ом не существует"
-            throw new Error()
+            return res
+                .cookie("murzatayError", NON_EXISTENT_CLIENT)
+                .redirect("back")
         }
         await Token.findOneAndDelete({ userId: user._id })
         const resetToken = crypto.randomBytes(32).toString("hex")
@@ -117,16 +118,16 @@ exports.forgot_pass_post = async (req, res) => {
             createdAt: Date.now(),
         }).save()
 
-        const link = `${protocol}://${req.get('host')}/auth/password-reset?token=${resetToken}&id=${user._id}`
+        const link = `${protocol}://${req.get(
+            "host"
+        )}/auth/password-reset?token=${resetToken}&id=${user._id}`
         mailService(user.email, "Ссылка для восстановления пароля", link)
+
         return res
-            .cookie(
-                "murzatay-message",
-                "Вам на почту направлено письмо с ссылкой для восстановления пароля"
-            )
+            .cookie("murzatayMessage", PASSWORD_RESET_LINK_SENT)
             .redirect("/")
     } catch (e) {
-        return res.cookie("murzatay-error", userError).redirect("back")
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
     }
 }
 
@@ -144,25 +145,28 @@ exports.reset_pass_get = async (req, res) => {
 }
 
 exports.reset_pass_post = async (req, res) => {
-    let userError = "Произошла какая-то ошибка, попробуйте еще раз позднее"
     try {
         const { pass1, pass2, token, userId } = req.body
         if (pass1 !== pass2) {
-            userError = "Пароли не совпадают"
-            throw new Error()
+            return res
+                .cookie("murzatayError", PASSWORD_MISMATCH)
+                .redirect("back")
         }
+
         if (!token) {
-            userError =
-                "Ссылка для восстановления пароля истекла, запросите новую"
-            throw new Error()
+            return res
+                .cookie("murzatayError", EXPIRED_PASSWORD_RESET_LINK)
+                .redirect("back")
         }
+
         const bdToken = await Token.findOne({ userId })
         const isValidToken = await bcrypt.compare(token, bdToken.token)
         if (bdToken && !isValidToken) {
-            userError =
-                "Ссылка для восстановления пароля истекла, запросите новую"
-            throw new Error()
+            return res
+                .cookie("murzatayError", EXPIRED_PASSWORD_RESET_LINK)
+                .redirect("back")
         }
+
         const hashedPass = bcrypt.hashSync(pass1, 8)
         const user = await User.findOneAndUpdate(
             { _id: userId },
@@ -171,12 +175,14 @@ exports.reset_pass_post = async (req, res) => {
         if (!user) {
             throw new Error()
         }
+
         await bdToken.deleteOne()
+
         return res
-            .cookie("murzatay-message", "Пароль успешно сброшен")
+            .cookie("murzatayMessage", "Пароль успешно сброшен")
             .redirect("/")
     } catch (e) {
-        return res.cookie("murzatay-error", userError).redirect("back")
+        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
     }
 }
 

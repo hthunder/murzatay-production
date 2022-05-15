@@ -13,6 +13,7 @@ router.post("/signin", isActivated, controller.signin)
 router.get("/forgot-pass", controller.forgot_pass_get)
 router.post("/forgot-pass", controller.forgot_pass_post)
 router.get("/password-reset", controller.reset_pass_get)
+
 router.post("/password-reset", controller.reset_pass_post)
 router.get("/logout", controller.logout)
 

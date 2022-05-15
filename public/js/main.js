@@ -4,12 +4,13 @@ import { router } from "./router"
 import { setSizeControl } from "./utils/imgsizeControl"
 import { sidebarComments } from "./widgets/sidebarComments"
 import { sidebarInstagramWidget } from "./widgets/sidebarInstagramWidget"
-import { authHandlerModule } from "./authHandler"
+import { errorHandler } from "./errorHandler"
 import { popupInit } from "./popupInit"
 import { checkCookies } from "./utils/checkCookies"
 import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
 import { querySelectorMultiple } from "./utils/querySelectorMultiple"
 import { toggleDisplayNone } from "./utils/toggleDisplayNone"
+import { signupFormValidator } from "./forms/signupFormValidator"
 
 popupInit()
 
@@ -74,4 +75,5 @@ router(window.location.pathname)
 sidebarComments()
 sidebarInstagramWidget()
 
-authHandlerModule()
+errorHandler()
+signupFormValidator()
