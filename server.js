@@ -4,9 +4,6 @@ const exphbs = require("express-handlebars")
 const cookieParser = require("cookie-parser")
 const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
-const fs = require("fs")
-const http = require("http")
-const https = require("https")
 const compression = require("compression")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
@@ -50,7 +47,6 @@ app.use("/auth", auth)
 app.use("/articles", isLoggedIn, articleRouter)
 app.use("/api", isLoggedIn, apiRoutes)
 app.use("/", isLoggedIn, blogRoutes)
-app.use(express.static("public"))
 app.use("/tinymce", express.static("node_modules/tinymce"))
 
 // eslint-disable-next-line no-unused-vars
@@ -112,47 +108,12 @@ const initDB = async () => {
     }
 }
 
-const httpServer = http.createServer(app)
-
-const createHttpsServer = () => {
-    const privateKey = fs.readFileSync(
-        "/etc/letsencrypt/live/murzatay.ru/privkey.pem",
-        "utf8"
-    )
-    const certificate = fs.readFileSync(
-        "/etc/letsencrypt/live/murzatay.ru/cert.pem",
-        "utf8"
-    )
-    const ca = fs.readFileSync(
-        "/etc/letsencrypt/live/murzatay.ru/chain.pem",
-        "utf8"
-    )
-
-    const credentials = {
-        key: privateKey,
-        cert: certificate,
-        ca,
-    }
-    return https.createServer(credentials, app)
-}
-
 ;(async function start() {
     try {
-        const httpPort = process.env.MODE === "production" ? 80 : 3000
-
         await initDB()
-
-        httpServer.listen(httpPort, () => {
-            console.log(`HTTP Server running on port ${httpPort}`)
+        app.listen(3000, () => {
+            console.log(`HTTP Server running on port 3000`)
         })
-
-        if (process.env.MODE === "production") {
-            const httpsServer = createHttpsServer()
-            const httpsPort = 443
-            httpsServer.listen(httpsPort, () => {
-                console.log(`HTTPS Server running on port ${httpsPort}`)
-            })
-        }
     } catch (e) {
         console.log(e)
         process.exit()

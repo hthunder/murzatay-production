@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <title>Мурзатай</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 </head>
 
 <body class="body">
@@ -14,15 +14,15 @@
     <section class="main">
         <div class="main__content">
             <figure class="banner">
-                <img src="{{this.img}}" alt="Фото" class="banner__img">
+                <img src="/static{{this.img}}" alt="Фото" class="banner__img">
                 <figcaption class="banner__caption"></figcaption>
             </figure>
             {{#each articles}}
             <figure class="articles__item">
                 {{#if this.img}}
-                <img class="articles__img articles__img_lg" src={{this.img}} alt="Фото">
+                <img class="articles__img articles__img_lg" src="/static{{this.img}}" alt="Фото">
                 {{else}}
-                <img class="articles__img articles__img_lg" src="/img/placeholders/last-article.png" alt="Фото">
+                <img class="articles__img articles__img_lg" src="/static/img/placeholders/last-article.png" alt="Фото">
                 {{/if}}
                 <figcaption class="articles__preview">
                     <h2 class="articles__title">{{this.title}}</h2>
@@ -39,7 +39,7 @@
     {{> footer }}
     {{> popup }}
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="/js-build/main.js"></script>
+    <script type="module" src="/static/js-build/main.js"></script>
     <script>
         marked.setOptions({ breaks: true });
         document.querySelector(".banner__caption").innerHTML = marked.parse(`{{{this.sanitizedHTML}}}`)

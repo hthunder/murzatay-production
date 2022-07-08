@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <title>Мурзатай</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 </head>
 
 <body class="body">
@@ -27,7 +27,7 @@
                     {{#if this.img}}
                     <img class="my-page__favourite-img" src={{this.img}}>
                     {{else}}
-                    <img class="my-page__favourite-img" src="/img/placeholders/article.png">
+                    <img class="my-page__favourite-img" src="/static/img/placeholders/article.png">
                     {{/if}}
                     <div class="my-page__favourite-preview">
                         <h4 class="my-page__favourite-preview-title">{{this.title}}</h4>
@@ -42,7 +42,7 @@
                 <h2 class="my-page__comments-title"> Последние комментарии</h2>
                 {{#each comments}}
                 <article class="my-page__comment">
-                    <img class="my-page__comment-img" src="{{../avatar}}" alt="Автарка">
+                    <img class="my-page__comment-img" src="/static/{{../avatar}}" alt="Автарка">
                     <p class="my-page__comment-text">{{this.text}}</p>
                 </article>
                 {{/each}}
@@ -51,7 +51,7 @@
         {{> sidebar this}}
     </section>
     {{> footer }}
-    <script type="module" src="/js-build/main.js"></script>
+    <script type="module" src="/static/js-build/main.js"></script>
 </body>
 
 </html>

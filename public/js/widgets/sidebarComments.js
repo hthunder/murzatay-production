@@ -6,7 +6,10 @@ const populateTemplate = (template) => {
             user.username
         comment
             .querySelector(".sidebar__comments-img")
-            .setAttribute("src", user.avatar || "/img/icons/user-profile.svg")
+            .setAttribute(
+                "src",
+                `/static/${user.avatar || "img/icons/user-profile.svg"}`
+            )
         return comment
     }
 }

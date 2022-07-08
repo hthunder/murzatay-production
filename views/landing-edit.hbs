@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico" />
         <title>Мурзатай</title>
-        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
     </head>
 
     <body class="body">
@@ -23,7 +23,7 @@
             </form>
         </div>
         <script type="module">
-            import { setSizeControl } from '/js/utils/imgsizeControl.js'
+            import { setSizeControl } from '/static/js/utils/imgsizeControl.js'
             const fileInputEl = document.querySelector('.about-edit__upload')
             const submitEl = document.querySelector('.about-edit__submit-btn')
             setSizeControl(1024, submitEl, fileInputEl)
