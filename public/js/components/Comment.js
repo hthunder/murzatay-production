@@ -19,7 +19,9 @@ export class Comment {
         this.element = ml("article", { class: "comments__instance" }, [
             ml("img", {
                 class: "comments__instance-ava",
-                src: this.user.avatar || "/img/icons/user-profile.svg",
+                src: `/static${
+                    this.user.avatar || "/img/icons/user-profile.svg"
+                }`,
                 alt: "Аватарка",
             }),
             ml("div", { class: "comments__instance-content" }, [

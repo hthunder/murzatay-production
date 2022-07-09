@@ -1,30 +1,28 @@
-import { ml } from "../utils/mark"
 import { countSymbols } from "../utils/countSymbols"
 
 export const TextAreaWithCounter = (maxlength = 200, initText = "") => {
-    const counter = ml(
-        "p",
-        {
-            class: "sc-textarea__counter comments__symbol-counter",
-        },
-        `0/${maxlength}`
-    )
-    const textarea = ml(
+    const textareaWithCounterEl = document.createElement("article")
+    textareaWithCounterEl.classList.add(
         "textarea",
-        {
-            class: "sc-textarea__textarea",
-            name: "text",
-            maxlength,
-        },
-        initText
+        "textarea_medium",
+        "sc-textarea",
+        "comments__sc-textarea"
     )
-    const textareaWrapper = ml(
-        "article",
-        {
-            class: `textarea textarea_medium sc-textarea comments__sc-textarea`,
-        },
-        [counter, textarea]
+    textareaWithCounterEl.insertAdjacentHTML(
+        "beforeend",
+        `<p class="sc-textarea__counter comments__symbol-counter">
+            0/${maxlength}
+        </p>
+        <textarea class="sc-textarea__textarea" name="text" maxlength="${maxlength}">
+            ${initText}
+        </textarea>`
     )
-    const resetCounter = countSymbols(counter, textarea)
-    return [textareaWrapper, textarea, resetCounter]
+    const counterEl = textareaWithCounterEl.querySelector(
+        ".sc-textarea__counter"
+    )
+    const textareaEl = textareaWithCounterEl.querySelector(
+        ".sc-textarea__textarea"
+    )
+    const resetCounter = countSymbols(counterEl, textareaEl)
+    return [textareaWithCounterEl, textareaEl, resetCounter]
 }
