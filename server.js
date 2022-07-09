@@ -4,11 +4,9 @@ const exphbs = require("express-handlebars")
 const cookieParser = require("cookie-parser")
 const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
-const compression = require("compression")
 const auth = require("./routes/auth.routes")
 const articleRouter = require("./routes/articles.routes")
 const { isLoggedIn } = require("./middlewares/authJwt")
-const { checkSecureConnection } = require("./middlewares/checkSecureConnection")
 const Rubric = require("./models/rubric.model")
 const Landing = require("./models/landing.model")
 
@@ -34,10 +32,6 @@ app.engine("hbs", hbs.engine)
 app.set("view engine", "hbs")
 app.set("views", "views")
 
-if (process.env.MODE === "production") {
-    app.use(checkSecureConnection)
-}
-app.use(compression())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
