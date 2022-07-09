@@ -3,11 +3,9 @@ import { TextAreaWithCounter } from "./TextAreaWithCounter"
 
 export class AddComment {
     constructor() {
-        const [textareaWrapper, textarea, resetCounter] =
+        const [textareaWithCounterEl, textareaEl, resetCounter] =
             TextAreaWithCounter(500)
-        this.textarea = textarea
-        this.resetCounter = resetCounter
-        this.sendBtn = ml(
+        const sendBtn = ml(
             "button",
             {
                 class: "comments__add-button comments__send-button button",
@@ -16,10 +14,15 @@ export class AddComment {
             },
             "Отправить"
         )
-        this.element = ml("form", { class: "comments__add-form" }, [
-            textareaWrapper,
-            this.sendBtn,
-        ])
+        Object.assign(this, {
+            textarea: textareaEl,
+            resetCounter,
+            sendBtn,
+            element: ml("form", { class: "comments__add-form" }, [
+                textareaWithCounterEl,
+                sendBtn,
+            ]),
+        })
     }
 
     renderTo(targetPlace) {

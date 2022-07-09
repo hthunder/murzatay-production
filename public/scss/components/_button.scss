@@ -1,4 +1,4 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .button {
     background-color: variables.$hampton;
@@ -14,7 +14,7 @@
     padding: 4px 10px;
     text-align: center;
     text-decoration: none;
-	letter-spacing: 0.02em;
+    letter-spacing: 0.02em;
 
     &:disabled {
         opacity: 0.7;
@@ -23,6 +23,13 @@
 
     &_light {
         background-color: variables.$potters-clay-25;
+        border: 1px solid variables.$potters-clay-40;
+        border-radius: 3px;
+        padding: 0.35em 0.7em;
+    }
+
+    &_secondary {
+        background-color: white;
         border: 1px solid variables.$potters-clay-40;
         border-radius: 3px;
         padding: 0.35em 0.7em;

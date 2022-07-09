@@ -2,15 +2,17 @@ import { Comment } from "./Comment"
 
 export class CommentList {
     constructor(articleId, url, addCommentArea) {
-        this.commentList = []
-        this.articleId = articleId
+        Object.assign(this, {
+            commentList: [],
+            articleId,
+            url,
+        })
         if (addCommentArea) {
             this.addCommentArea = addCommentArea
             this.addCommentArea.sendBtn.onclick = () => {
                 this.addComment()
             }
         }
-        this.url = url
     }
 
     async getCommentList() {

@@ -1,4 +1,4 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .my-page {
     &__admin-links {
@@ -24,29 +24,44 @@
         text-align: left;
     }
 
+    &__about-avatar-container {
+        text-align: center;
+        margin-top: 0.5em;
+        padding: 0 0.5em;
+    }
+
     &__about-avatar {
-        max-height: 181px;
-        max-width: 203px;
         object-fit: cover;
+        width: 100%;
+        height: auto;
     }
 
     &__about-info {
         margin-left: 16px;
+        width: 70%;
+        flex-shrink: 0;
     }
 
     &__about-form-label {
-        display: block;
-        margin: 5px 0;
+        display: flex;
+        flex-direction: column;
+        margin: 0.4em 0;
     }
 
     &__about-form-input {
         font-size: var(--text-sm);
-        padding: 2px;
+        padding: 0.3em 0.6em;
+        margin-top: 0.4rem;
+    }
+
+    &__about-form-submit {
+        margin-top: 0.5em;
+        margin-right: 0.5em;
     }
 
     &__avatar-label {
         cursor: pointer;
-        margin: 0.3em 0;
+        margin: 0.5em 0;
     }
 
     &__avatar-input {
@@ -54,7 +69,9 @@
     }
 
     &__about-form-textarea {
-        margin-top: 4px;
+        margin-top: 0.4rem;
+        padding: 0.3em 0.6em;
+        background-color: white;
     }
 
     &__about-edit-form {
@@ -64,6 +81,7 @@
 
     &__about-edit-button {
         margin-bottom: 8px;
+        margin-top: 0.5em;
     }
 
     &__favourite {
@@ -166,6 +184,7 @@
         &__about-info {
             margin-left: 0;
             max-width: 95%;
+            width: 100%;
             text-align: left;
         }
 
