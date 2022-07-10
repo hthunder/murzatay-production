@@ -24,18 +24,6 @@
         text-align: left;
     }
 
-    &__about-avatar-container {
-        text-align: center;
-        margin-top: 0.5em;
-        padding: 0 0.5em;
-    }
-
-    &__about-avatar {
-        object-fit: cover;
-        width: 100%;
-        height: auto;
-    }
-
     &__about-info {
         margin-left: 16px;
         width: 70%;
@@ -57,11 +45,6 @@
     &__about-form-submit {
         margin-top: 0.5em;
         margin-right: 0.5em;
-    }
-
-    &__avatar-label {
-        cursor: pointer;
-        margin: 0.5em 0;
     }
 
     &__avatar-input {
@@ -176,9 +159,8 @@
         }
 
         &__about {
-            display: block;
-            max-width: 100%;
-            text-align: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         &__about-info {
@@ -190,11 +172,6 @@
 
         &__about-edit-button {
             margin: 10px 0;
-        }
-
-        &__about-avatar {
-            max-width: 100%;
-            object-fit: contain;
         }
     }
 }

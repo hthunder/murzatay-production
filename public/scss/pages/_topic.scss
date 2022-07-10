@@ -1,4 +1,4 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .topic {
     padding: 0 80px 32px;
@@ -71,6 +71,10 @@
 }
 
 .comments {
+    button {
+        margin-right: 8px;
+    }
+
     &__sc-textarea {
         margin-bottom: 12px;
     }

@@ -2,8 +2,8 @@
 
 .button {
     background-color: variables.$hampton;
-    border: 2px solid variables.$potters-clay;
-    border-radius: 10px;
+    border: 1px solid variables.$potters-clay;
+    border-radius: 0.3em;
     color: var(--black);
     cursor: pointer;
     display: inline-block;

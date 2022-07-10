@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   /* type scale */
   --text-scale-ratio: 1.125;
@@ -267,7 +268,7 @@ h4 {
   flex-grow: 1;
   justify-content: space-around;
   list-style: none;
-  z-index: 1;
+  z-index: 10;
 }
 .nav__item {
   text-align: center;
@@ -613,8 +614,8 @@ h4 {
 
 .button {
   background-color: #e6cfb3;
-  border: 2px solid #8c5b3e;
-  border-radius: 10px;
+  border: 1px solid #8c5b3e;
+  border-radius: 0.3em;
   color: var(--black);
   cursor: pointer;
   display: inline-block;
@@ -918,6 +919,58 @@ h4 {
   margin-bottom: 0.5em;
 }
 
+.avatar {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  text-align: center;
+  pointer-events: none;
+}
+.avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.avatar.avatar_editing-mode {
+  pointer-events: initial;
+}
+.avatar.avatar_editing-mode:hover {
+  cursor: pointer;
+}
+.avatar.avatar_editing-mode::before {
+  position: absolute;
+  content: "Загрузить фото";
+  font-family: "Raleway";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.avatar.avatar_editing-mode:hover .avatar__img {
+  z-index: 0;
+  filter: opacity(0.2);
+}
+.avatar.avatar_editing-mode::after {
+  box-sizing: border-box;
+  position: absolute;
+  content: url("/static/img/icons/upload.svg");
+  background-color: #d9b68b;
+  border-radius: 50%;
+  width: 15%;
+  height: 15%;
+  vertical-align: middle;
+  top: 82.5%;
+  left: 82.5%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  padding-top: 5px;
+}
+
 .banner__img {
   display: block;
   height: auto;
@@ -1201,6 +1254,9 @@ h4 {
   }
 }
 
+.comments button {
+  margin-right: 8px;
+}
 .comments__sc-textarea {
   margin-bottom: 12px;
 }
@@ -1287,16 +1343,6 @@ h4 {
   margin-bottom: 5px;
   text-align: left;
 }
-.my-page__about-avatar-container {
-  text-align: center;
-  margin-top: 0.5em;
-  padding: 0 0.5em;
-}
-.my-page__about-avatar {
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-}
 .my-page__about-info {
   margin-left: 16px;
   width: 70%;
@@ -1315,10 +1361,6 @@ h4 {
 .my-page__about-form-submit {
   margin-top: 0.5em;
   margin-right: 0.5em;
-}
-.my-page__avatar-label {
-  cursor: pointer;
-  margin: 0.5em 0;
 }
 .my-page__avatar-input {
   display: none;
@@ -1415,9 +1457,8 @@ h4 {
     margin-right: 0;
   }
   .my-page__about {
-    display: block;
-    max-width: 100%;
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
   }
   .my-page__about-info {
     margin-left: 0;
@@ -1427,10 +1468,6 @@ h4 {
   }
   .my-page__about-edit-button {
     margin: 10px 0;
-  }
-  .my-page__about-avatar {
-    max-width: 100%;
-    object-fit: contain;
   }
 }
 
@@ -1607,6 +1644,22 @@ h4 {
 
 .font-family-raleway {
   font-family: "Raleway";
+}
+
+.ml-2 {
+  margin-left: 0.2em;
+}
+
+.mv-3 {
+  margin: 0.3em 0;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.display-ib {
+  display: inline-block;
 }
 
 /*!

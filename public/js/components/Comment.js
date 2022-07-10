@@ -122,7 +122,7 @@ export class Comment {
             this.deleteBtn = ml(
                 "button",
                 {
-                    class: "button comments__delete-button",
+                    class: "button button_secondary comments__delete-button",
                     type: "button",
                     onClick: this.deleteComment.bind(this),
                 },
@@ -152,7 +152,7 @@ export class Comment {
             ml("p", { class: "comments__instance-author" }, this.user.username),
             this.nodeWithText,
             DateTime(this.date),
-            ml("div", {}, [this.deleteBtn, this.editBtn]),
+            ml("div", {}, [this.editBtn, this.deleteBtn]),
         ])
     }
 }

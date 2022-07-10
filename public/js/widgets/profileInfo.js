@@ -1,4 +1,4 @@
-import { ProfileInfo } from "../components/profileInfo"
+import { ProfileInfo } from "../components/ProfileInfo/ProfileInfo"
 import { setSizeControl } from "../utils/imgsizeControl"
 import "awesome-notifications/dist/style.css"
 import * as api from "../api/api"
@@ -11,7 +11,7 @@ const updateProfileInfoUI = (profileInfoEl, newData) => {
     const avatarWithFallback = `/static${
         newData.avatar || "/img/icons/user-profile.svg"
     }`
-    boundSelector(".my-page__about-avatar").src = avatarWithFallback
+    boundSelector(".avatar__img").src = avatarWithFallback
     boundSelector(".my-page__about-username").innerText = newData.username
     boundSelector(".my-page__about-city").innerText = newData.city
     boundSelector(".my-page__about-myself").innerText = newData.about
@@ -20,25 +20,25 @@ const updateProfileInfoUI = (profileInfoEl, newData) => {
 const initListeners = (userId, profileInfoEl) => {
     const submitBtn = document.querySelector(".my-page__about-form-submit")
     const uploadAvatarBtn = document.querySelector(".my-page__avatar-input")
-    const uploadAvatarLabelEl = document.querySelector(".my-page__avatar-label")
     setSizeControl(200, submitBtn, uploadAvatarBtn)
 
     const editForm = profileInfoEl.querySelector(".my-page__about-edit-form")
     const profileInfo = profileInfoEl.querySelector(".my-page__about-fields")
     const editBtn = profileInfoEl.querySelector(".my-page__about-edit-button")
     const aboutInfoEl = profileInfoEl.querySelector(".my-page__about-info")
+    const avatarEl = profileInfoEl.querySelector(".avatar")
     const toggleEditingMode = () => {
         editForm.classList.toggle("hidden")
         profileInfo.classList.toggle("hidden")
         const isEditingMode = editBtn.innerText === "Редактировать"
         editBtn.innerText = isEditingMode ? "Отменить" : "Редактировать"
         editBtn.classList.toggle("button_secondary")
+        avatarEl.classList.toggle("avatar_editing-mode")
         if (isEditingMode) {
             editForm.appendChild(editBtn)
         } else {
-            aboutInfoEl.prepend(editBtn)
+            aboutInfoEl.appendChild(editBtn)
         }
-        uploadAvatarLabelEl.classList.toggle("hidden")
     }
 
     editBtn.onclick = toggleEditingMode
