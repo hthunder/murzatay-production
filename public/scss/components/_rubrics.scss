@@ -1,8 +1,7 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .rubrics {
     background-color: #fff;
-    border: 10px solid variables.$potters-clay-60;
     font-family: Raleway;
     list-style: none;
     padding: 12px 3px 1px;

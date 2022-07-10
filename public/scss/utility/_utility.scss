@@ -21,3 +21,31 @@
 .display-ib {
     display: inline-block;
 }
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+.ff-lora {
+    font-family: "Lora";
+}
+
+.ff-raleway {
+    font-family: "Raleway";
+}
+
+$sizes: (
+    --text-xs: 7,
+    --text-sm: 6,
+    --text: 5,
+    --text-md: 4,
+    --text-lg: 3,
+    --text-xl: 2,
+    --text-xxl: 1,
+);
+
+@each $size, $number in $sizes {
+    fs-#{$number} {
+        font-size: var($size);
+    }
+}

@@ -1,6 +1,6 @@
-$media-md: 'screen and (min-width: 750px) and (max-width: 1024px)';
-$media-sm: 'screen and (max-width: 750px)';
-$media-sm-md: 'screen and (max-width: 1024px)';
+$media-md: "screen and (min-width: 750px) and (max-width: 1024px)";
+$media-sm: "screen and (max-width: 750px)";
+$media-sm-md: "screen and (max-width: 1024px)";
 
 $hampton: rgb(230, 207, 179);
 $torch-red: rgb(255, 0, 51);
@@ -31,16 +31,23 @@ $spicy-mix-65: rgba(134, 92, 68, 0.65);
 $dusty-gray-45: rgba(155, 143, 143, 0.45);
 $di-serria-65: rgba(221, 148, 83, 0.65);
 
-//typography
-
 :root {
-	/* type scale */
-	--text-scale-ratio: 1.125;
-	--text-xs: calc(var(--text-sm) / var(--text-scale-ratio)); //14.2
-	--text-sm: calc(var(--text) / var(--text-scale-ratio)); //16
-	--text: 1rem; // text-base 18
-	--text-md: calc(var(--text) * var(--text-scale-ratio)); // h4 20.25
-	--text-lg: calc(var(--text-md) * var(--text-scale-ratio)); // h3 22.8
-	--text-xl: calc(var(--text-lg) * var(--text-scale-ratio)); // h2 25.6
-	--text-xxl: calc(var(--text-xl) * var(--text-scale-ratio)); // h1 28.8
+    /* type scale */
+    --text-scale-ratio: 1.125;
+    --text-xs: calc(var(--text-sm) / var(--text-scale-ratio)); //14.2
+    --text-sm: calc(var(--text) / var(--text-scale-ratio)); //16
+    --text: 1rem; // text-base 18
+    --text-md: calc(var(--text) * var(--text-scale-ratio)); // h4 20.25
+    --text-lg: calc(var(--text-md) * var(--text-scale-ratio)); // h3 22.8
+    --text-xl: calc(var(--text-lg) * var(--text-scale-ratio)); // h2 25.6
+    --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio)); // h1 28.8
+
+    --space-unit: 1em;
+    --space-xxs: calc(0.25 * var(--space-unit));
+    --space-xs: calc(0.5 * var(--space-unit));
+    --space-sm: calc(0.75 * var(--space-unit));
+    --space-md: calc(1.25 * var(--space-unit));
+    --space-lg: calc(2 * var(--space-unit));
+    --space-xl: calc(3.25 * var(--space-unit));
+    --space-xxl: calc(5.25 * var(--space-unit));
 }
