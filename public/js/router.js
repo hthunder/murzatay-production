@@ -6,9 +6,11 @@ import { setSizeControl } from "./utils/imgsizeControl"
 
 const workWithArticles = () => {
     const articleFormImgInput = document.querySelector(
-        ".article-form__img-input"
+        ".article-editor__form-file"
     )
-    const articleFormSubmitBtn = document.querySelector(".article-form__submit")
+    const articleFormSubmitBtn = document.querySelector(
+        ".article-editor__form-submit"
+    )
     setSizeControl(
         ARTICLE_PREVIEW_SIZE_KB,
         articleFormSubmitBtn,

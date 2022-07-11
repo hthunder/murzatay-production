@@ -58,39 +58,46 @@
   </script>
 </head>
 
-<body class="edit__body">
-	<div>
-		<h1 class="edit_title">{{page_title}}</h1>
-		<form class="article-form" action="{{page_action}}" method="post" enctype="multipart/form-data">
-			<div>Рубрика</div>
-			<select name="rubric" id="" required class="edit__select">
-				{{#each rubrics}}
-					<option class="edit__select-item" value="{{this}}">{{this}}</option>
-				{{/each}}
-			</select>
-			<div>
-				<label class="article-form__title" for="title">Название статьи</label>
-				<input required value="{{article.title}}" type="text" class="edit__article-title" name="title" id="title" />
-			</div>
-			<div>
-				<label class="article-form__description" for="description">Описание</label>
-				<textarea class="article-form__description-area"  required name="description" id="description">{{article.description}}</textarea>
-			</div>
-			<div>
-				<label for="markdown" class="markdown__title">Разметка</label>
-				<textarea name="markdown" class="markdown" id="markdown">{{article.markdown}}</textarea>
-			</div>
-			<div class="article-form__img-container">
-				<label class="article-form__img-label" for="image">Выберите изображение</label>
-				<input class="article-form__img-input" type="file" id="image" name="img" accept="image/*" />
-			</div>
-			<a href="/articles" class="edit__cancel">Отменить</a>
-			<button type="submit" class="article-form__submit edit__submit">Сохранить</button>
+<body>
+	<main class="article-editor">
+		<h1 class="article-editor__title">{{page_title}}</h1>
+		<form class="article-editor__form" action="{{page_action}}" method="post" enctype="multipart/form-data">
+			<label class="article-editor__form-label">
+				<p class="article-editor__form-label-text">Рубрика</p>
+				<select class="article-editor__form-selector" name="rubric" required>
+					{{#each rubrics}}
+						<option class="article-edit__form-option" value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>	
+			</label>
+
+			<label class="article-editor__form-label">
+				<p class="article-editor__form-label-text">Название статьи</p>
+				<input class="article-editor__form-input" name="title" value="{{article.title}}" type="text"  required/>
+			</label>
+				
+			<label class="article-editor__form-label">
+				<p class="article-editor__form-label-text">Описание</p>
+				<textarea class="article-editor__form-textarea" name="description" required>{{article.description}}</textarea>
+			</label>
+				
+			<label class="article-editor__form-label" for="markdown">
+				<p class="article-editor__form-label-text">Разметка</p>
+				<textarea class="markdown" name="markdown" id="markdown">{{article.markdown}}</textarea>
+			</label>
+				
+			<label class="article-editor__form-label">
+				<p class="article-editor__form-label-text">Выберите изображение</p>
+				<input class="article-editor__form-file" name="img" type="file" accept="image/*" />
+			</label>
+
+			<a class="article-editor__back-link" href="/articles">Отменить</a>
+			<button class="article-editor__form-submit" type="submit">Сохранить</button>
 		</form>
 		{{#if article.errors}}
 			<p>{{article.errors}}</p>
 		{{/if}}
-	</div>
+	</main>
 	<script type="module" src="/static/js-build/main.js"></script>
 </body>
 

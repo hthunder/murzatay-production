@@ -1,0 +1,64 @@
+.article-editor {
+    margin: var(--space-sm) var(--space-md);
+
+    &__title {
+        margin-bottom: var(--space-sm);
+        text-align: center;
+    }
+
+    &__form {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    &__form-selector {
+        padding: 3px;
+    }
+
+    &__form-label {
+        display: block;
+        margin: var(--space-xs) auto;
+    }
+
+    &__form-label-text {
+        margin-bottom: var(--space-xxs);
+    }
+
+    &__form-input {
+        border: 1px solid gray;
+        padding: 5px;
+        width: 100%;
+    }
+
+    &__form-textarea {
+        width: 100%;
+        border: 1px solid gray;
+        min-height: 100px;
+        padding: 5px;
+    }
+
+    &__back-link {
+        background-color: #fff;
+        border: 2px solid gray;
+        border-radius: 3px;
+        color: black;
+        display: inline-block;
+        font-size: 14px;
+        padding: 2.5px;
+        text-decoration: none;
+    }
+
+    &__form-submit {
+        background-color: #fff;
+        border: 2px solid gray;
+        border-radius: 3px;
+        outline: none;
+        padding: 2px;
+        padding: 2.5px;
+        cursor: pointer;
+    }
+}
+
+.markdown {
+    display: none;
+}

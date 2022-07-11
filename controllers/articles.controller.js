@@ -131,7 +131,7 @@ exports.article_create_get = (req, res) => {
     res.clearCookie("context", { httpOnly: true })
     if (!context) context = {}
 
-    return res.render("article_create_edit", {
+    return res.render("article-editor", {
         layout: false,
         page_title: "Новая статья",
         page_action: "/articles/add",
@@ -166,7 +166,7 @@ exports.article_edit_get = async (req, res) => {
     const { context } = req.cookies
     res.clearCookie("context", { httpOnly: true })
 
-    return res.render("article_create_edit", {
+    return res.render("article-editor", {
         layout: false,
         page_title: "Редактировать статью",
         page_action: `/articles/${req.params.id}?_method=PUT`,
