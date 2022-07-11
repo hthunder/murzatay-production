@@ -11,6 +11,9 @@ const articleSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        keywords: {
+            type: String,
+        },
         description: {
             type: String,
             required: true,

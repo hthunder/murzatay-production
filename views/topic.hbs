@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{#if article.keywords}}
+		<meta name="keywords" content="{{article.keywords}}"/>
+	{{/if}}
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <title>Мурзатай</title>

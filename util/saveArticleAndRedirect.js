@@ -5,6 +5,7 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
     article.title = req.body.title
     article.markdown = req.body.markdown
     article.description = req.body.description
+    article.keywords = req.body.keywords
 
     if (Object.prototype.hasOwnProperty.call(req, "file"))
         article.img = `/img/previews/${req.file.filename}`
@@ -22,6 +23,7 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
             title: article.title,
             markdown: article.markdown,
             description: article.description,
+            keywords: article.keywords,
         }
         res.cookie("context", articleCopy, { httpOnly: true }).redirect(
             redirect
