@@ -1393,6 +1393,12 @@ h4 {
   width: 70%;
   flex-shrink: 0;
 }
+.my-page__about-info_editing-mode > .my-page__about-fields {
+  display: none;
+}
+.my-page__about-info_editing-mode > .my-page__about-edit-form {
+  display: initial;
+}
 .my-page__about-form-label {
   display: flex;
   flex-direction: column;
@@ -1418,6 +1424,7 @@ h4 {
 .my-page__about-edit-form {
   font-family: "Raleway";
   word-break: break-word;
+  display: none;
 }
 .my-page__about-edit-button {
   margin-bottom: var(--space-xs);

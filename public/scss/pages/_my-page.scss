@@ -29,6 +29,14 @@
         flex-shrink: 0;
     }
 
+    &__about-info_editing-mode > &__about-fields{
+        display: none;
+    }
+
+    &__about-info_editing-mode > &__about-edit-form {
+        display: initial;
+    }
+
     &__about-form-label {
         display: flex;
         flex-direction: column;
@@ -59,7 +67,10 @@
     &__about-edit-form {
         font-family: "Raleway";
         word-break: break-word;
+        display: none;
     }
+
+
 
     &__about-edit-button {
         margin-bottom: var(--space-xs);

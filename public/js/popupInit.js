@@ -11,17 +11,14 @@ const handleClick = (targetElem, animationsArr) => {
 }
 
 export const popupInit = () => {
-    const loginBtn = document.querySelector(".nav__button_login")
-    const loginForm = document.querySelector(".pop-up__login")
-    const loginCancelBtn = document.querySelector(
-        ".pop-up__login .pop-up__cancel-btn"
-    )
-    const signupBtn = document.querySelector(".nav__button_signup")
-    const signupForm = document.querySelector(".pop-up__signup")
-    const signupCancelBtn = document.querySelector(
-        ".pop-up__signup .pop-up__cancel-btn"
-    )
-    const overlay = document.querySelector(".pop-up__overlay")
+    const $ = document.querySelector.bind(document)
+    const loginBtn = $(".nav__button_login")
+    const loginForm = $(".pop-up__login")
+    const loginCancelBtn = $(".pop-up__login .pop-up__cancel-btn")
+    const signupBtn = $(".nav__button_signup")
+    const signupForm = $(".pop-up__signup")
+    const signupCancelBtn = $(".pop-up__signup .pop-up__cancel-btn")
+    const overlay = $(".pop-up__overlay")
 
     handleClick(loginBtn, [() => slideToggle(loginForm), () => fadeIn(overlay)])
     handleClick(loginCancelBtn, [
