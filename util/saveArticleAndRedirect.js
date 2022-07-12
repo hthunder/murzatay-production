@@ -14,7 +14,6 @@ exports.saveArticleAndRedirect = async (req, res, redirect) => {
         name: req.body.rubric,
     })
     article.rubric = rubric._id
-
     try {
         article = await article.save()
         res.redirect(`/articles/${article.slug}`)
