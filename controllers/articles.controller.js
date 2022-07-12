@@ -110,7 +110,6 @@ exports.article_page = async (req, res) => {
             article.comments = addCanDeleteField(article.comments, req.userId)
         }
         article.comments.reverse()
-
         return res.render("topic", {
             layout: false,
             favourite,

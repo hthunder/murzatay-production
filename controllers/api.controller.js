@@ -179,5 +179,5 @@ exports.user_patch = async (req, res, next) => {
 
 exports.image_post = async (req, res) => {
     const location = req.file.path.substring("public".length)
-    return res.json({ location })
+    return res.json({ location: `/static${location}` })
 }
