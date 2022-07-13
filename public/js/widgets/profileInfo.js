@@ -2,7 +2,11 @@ import { ProfileInfo } from "../components/ProfileInfo"
 import { setSizeControl } from "../utils/imgsizeControl"
 import "awesome-notifications/dist/style.css"
 import * as api from "../api/api"
+import { ObservableStore } from "../store"
 
+const store = new ObservableStore({
+    isEditingMode: false,
+})
 const $ = document.querySelector.bind(document)
 
 const updateProfileInfoUI = ($pi, newData) => {
@@ -41,6 +45,7 @@ const initListeners = (userId, profileInfoEl) => {
             userId,
             new FormData(editForm)
         )
+
         toggleEditingMode.call(editBtn)
         updateProfileInfoUI($pi, newData)
     }
@@ -51,6 +56,7 @@ export const initProfileComponet = async () => {
     const { userId } = placeForProfileInfo?.dataset
     const profileData = await api.getProfileData(userId)
 
+    
     if (profileData) {
         const profileInfoEl = ProfileInfo(profileData)
         placeForProfileInfo.appendChild(profileInfoEl)
