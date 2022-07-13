@@ -1,59 +1,153 @@
-<!DOCTYPE html>
 <html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <title>Мурзатай</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-utilities.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico" />
+        <title>Мурзатай</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+    </head>
 
-<body class="body">
-    {{> header }}
-    <section class="main">
-        <div class="main__content">
-            <div class="my-page__js-about" data-user-id="{{userId}}"></div>
-            {{#if this.isAdmin}}
-            <div class="my-page__admin-links">
-                <a class="link my-page__admin-link" href="/index/edit">Редактировать главную</a>
-                <a class="link my-page__admin-link" href="/about/edit">Редактировать страницу о себе</a>
+    <body class="body">
+        {{> header }}
+        <section class="main">
+            <div class="main__content">
+                <div class="my-page__js-about" data-user-id="{{userId}}">
+                    <section class="my-page__about">
+                        <label class="avatar" for="upload-avatar">
+                            <img class="avatar__img hidden" alt="Ваше фото" src=""/>
+                        </label>
+                        <div class="my-page__about-info">
+                            <div class="my-page__about-fields">
+                                <p>
+                                    <p class="font-family-raleway mv-3">Ник:</p>
+                                    <p
+                                        class="my-page__about-field my-page__about-username mv-3"
+                                    >
+                                    </p>
+                                </p>
+                                <p>
+                                    <p class="font-family-raleway mv-3">
+                                        Город:
+                                    </p>
+                                    <p
+                                        class="my-page__about-field my-page__about-city mv-3"
+                                    >
+                                    </p>
+                                </p>
+                                <p>
+                                    <p class="font-family-raleway mv-3">О себе:</p>
+                                    <p
+                                        class="my-page__about-field my-page__about-myself mv-3"
+                                    >
+                                    </p>
+                                </p>
+                                <button
+                                    class="my-page__about-edit-button button button_light"
+                                    type="button"
+                                >
+                                    Редактировать
+                                </button>
+                            </div>
+                            <form class="my-page__about-edit-form hidden">
+                                <input
+                                    class="my-page__avatar-input"
+                                    id="upload-avatar"
+                                    type="file"
+                                    name="avatar"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                                <label class="my-page__about-form-label">
+                                    <span>
+                                        Ник:
+                                    </span>
+                                    <input
+                                        class="my-page__about-form-input"
+                                        name="username"
+                                    />
+                                </label>
+                                <label class="my-page__about-form-label">
+                                    <span>Город: </span>
+                                    <input
+                                        class="my-page__about-form-input"
+                                        name="city"
+                                    />
+                                </label>
+                                <label class="my-page__about-form-label">
+                                    <span>
+                                        Расскажите о себе или о своих питомцах:
+                                    </span>
+                                    <textarea
+                                        class="my-page__about-form-textarea textarea"
+                                        maxlength="250"
+                                        name="about"
+                                        placeholder="Расскажите о себе или своих питомцах"
+                                    >
+                                    </textarea>
+                                </label>
+                                <input
+                                    class="my-page__about-form-submit button button_light"
+                                    type="button"
+                                    value="Готово"
+                                />
+                            </form>
+                        </div>
+                    </section>
+                </div>
+                {{#if this.isAdmin}}
+                    <div class="my-page__admin-links">
+                        <a class="link my-page__admin-link" href="/index/edit">
+                            Редактировать главную</a>
+                        <a
+                            class="link my-page__admin-link"
+                            href="/about/edit"
+                        >Редактировать страницу о себе</a>
+                    </div>
+                {{/if}}
+                <section class="tiles">
+                    <h2 class="tiles__header">Избранные статьи</h2>
+                    {{#each articles}}
+                        <article class="tiles__instance">
+                            {{#if this.img}}
+                                <img
+                                    class="tiles__img"
+                                    src="/static{{this.img}}"
+                                />
+                            {{else}}
+                                <img
+                                    class="tiles__img"
+                                    src="/static/img/placeholders/article.png"
+                                />
+                            {{/if}}
+                            <div class="tiles__text">
+                                <h3 class="ff-lora fw-500">{{this.title}}</h3>
+                                <p
+                                    class="ff-raleway mb-2 mt-1 fs-6"
+                                >{{this.description}}</p>
+                                <a
+                                    class="link"
+                                    href="/articles/{{this.slug}}"
+                                >Читать...</a>
+                            </div>
+                        </article>
+                    {{/each}}
+                </section>
+                <section class="tiles">
+                    <h2 class="tiles__header">Последние комментарии</h2>
+                    {{#each comments}}
+                        <article class="tiles__instance">
+                            <img class="tiles__img" src="/static/{{../avatar}}" alt="Автарка">
+                            <div class="tiles__text">
+                                <p>{{this.text}}</p>
+                            </div>
+                        </article>
+                    {{/each}}
+                </section>
             </div>
-            {{/if}}
-            <section class="tiles">
-                <h2 class="tiles__header">Избранные статьи</h2>
-                {{#each articles}}
-                <article class="tiles__instance">
-                    {{#if this.img}}
-                    <img class="tiles__img" src="/static{{this.img}}">
-                    {{else}}
-                    <img class="tiles__img" src="/static/img/placeholders/article.png">
-                    {{/if}}
-                    <div class="tiles__text">
-                        <h3 class="ff-lora fw-500">{{this.title}}</h3>
-                        <p class="ff-raleway mb-2 mt-1 fs-6">{{this.description}}</p>
-                        <a class="link" href="/articles/{{this.slug}}">Читать...</a>
-                    </div>
-                </article>
-                {{/each}}
-            </section>
-            <section class="tiles">
-                <h2 class="tiles__header">Последние комментарии</h2>
-                {{#each comments}}
-                <article class="tiles__instance">
-                    <img class="tiles__img" src="/static/{{../avatar}}" alt="Автарка">
-                    <div class="tiles__text">
-                        <p>{{this.text}}</p>   
-                    </div>
-                </article>
-                {{/each}}
-            </section>
-        </div>
-        {{> sidebar this}}
-    </section>
-    {{> footer }}
-    <script type="module" src="/static/js-build/main.js"></script>
-</body>
+            {{> sidebar this}}
+        </section>
+        {{> footer }}
+        <script type="module" src="/static/js-build/main.js"></script>
+    </body>
 
 </html>

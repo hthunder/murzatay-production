@@ -1,7 +1,6 @@
 import { confirmAction } from "./utils/confirmAction"
 import { router } from "./router"
 import { sidebarComments } from "./widgets/sidebarComments"
-import { sidebarInstagramWidget } from "./widgets/sidebarInstagramWidget"
 import { errorHandler } from "./errorHandler"
 import { popupInit } from "./popupInit"
 import { checkCookies } from "./utils/checkCookies"
@@ -66,7 +65,6 @@ checkCookies()
 
 router(window.location.pathname)
 sidebarComments()
-sidebarInstagramWidget()
 
 errorHandler()
 signupFormValidator()

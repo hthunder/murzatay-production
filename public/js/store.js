@@ -33,6 +33,10 @@ export class ObservableStore {
         )
     }
 
+    getStateSnapshot() {
+        return this._store.getValue()
+    }
+
     stateChanges() {
         // Creates a new Observable with this Subject as the source.
         // You can do this to create customize Observer-side logic of the Subject

@@ -1,51 +1,66 @@
-<!DOCTYPE html>
 <html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{#if article.keywords}}
-		<meta name="keywords" content="{{article.keywords}}"/>
-	{{/if}}
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <title>Мурзатай</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{#if article.keywords}}
+            <meta name="keywords" content="{{article.keywords}}" />
+        {{/if}}
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+        <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico" />
+        <title>Мурзатай</title>
+    </head>
 
-<body class="body">
-    {{> header }}
-    <section class="main">
-        <article class="topic">
-            {{#if isLoggedIn}}
-            {{#if favourite}}
-            <button data-article-id="{{article._id}}" data-user-id="{{userId}}"
-                class="topic__add-favourite topic__add-favourite_active"></button>
-            {{else}}
-            <button data-article-id="{{article._id}}" data-user-id="{{userId}}" class="topic__add-favourite"></button>
-            {{/if}}
-            {{/if}}
-
-            <h1 class="topic__title">{{article.title}}</h1>
-            <div class="topic__layout">{{{article.sanitizedHTML}}}</div>
-            {{#if isAdmin}}
-            <a class="topic__edit-button button" href="/articles/{{article._id}}/edit/">Редактировать пост</a>
-            {{/if}}
-
-            <section class="topic__comments comments">
+    <body class="body">
+        {{> header }}
+        <section class="main">
+            <article class="topic">
                 {{#if isLoggedIn}}
-                <p class="comments__welcome-message">Оставьте свой комментарий</p>
-                <div class="topic__js-add-comment"></div>
-                {{else}}
-                <p class="comments__unauthorized">Для того чтобы оставить комментарий, войдите или зарегистрируйтесь</p>
+                    {{#if favourite}}
+                        <button
+                            data-article-id="{{article._id}}"
+                            data-user-id="{{userId}}"
+                            class="topic__add-favourite topic__add-favourite_active"
+                        >
+                        </button>
+                    {{else}}
+                        <button
+                            data-article-id="{{article._id}}"
+                            data-user-id="{{userId}}"
+                            class="topic__add-favourite"
+                        ></button>
+                    {{/if}}
                 {{/if}}
-                <div class="topic__js-comments" data-id="{{article._id}}"></div>
-            </section>
-        </article>
-        {{> sidebar }}
-    </section>
-    {{> footer }}
-    {{> popup }}
-    <script type="module" src="/static/js-build/main.js"></script>
-</body>
+
+                <h1 class="topic__title">{{article.title}}</h1>
+                <div class="topic__layout">{{{article.sanitizedHTML}}}</div>
+                {{#if isAdmin}}
+                    <a
+                        class="topic__edit-button button"
+                        href="/articles/{{article._id}}/edit/"
+                    >Редактировать пост</a>
+                {{/if}}
+
+                <section class="topic__comments comments">
+                    {{#if isLoggedIn}}
+                        <p class="comments__welcome-message">Оставьте свой
+                            комментарий</p>
+                        <div class="topic__js-add-comment"></div>
+                    {{else}}
+                        <p class="comments__unauthorized">Для того чтобы
+                            оставить комментарий, войдите или зарегистрируйтесь</p>
+                    {{/if}}
+                    <div
+                        class="topic__js-comments"
+                        data-id="{{article._id}}"
+                    ></div>
+                </section>
+            </article>
+            {{> sidebar }}
+        </section>
+        {{> footer }}
+        {{> popup }}
+        <script type="module" src="/static/js-build/main.js"></script>
+    </body>
 
 </html>

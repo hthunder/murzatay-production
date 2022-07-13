@@ -1,4 +1,3 @@
-import { ProfileInfo } from "../components/ProfileInfo"
 import { setSizeControl } from "../utils/imgsizeControl"
 import "awesome-notifications/dist/style.css"
 import * as api from "../api/api"
@@ -7,59 +6,82 @@ import { ObservableStore } from "../store"
 const store = new ObservableStore({
     isEditingMode: false,
 })
-const $ = document.querySelector.bind(document)
 
-const updateProfileInfoUI = ($pi, newData) => {
-    $pi(".avatar__img").src = `/static${
-        newData.avatar || "/img/icons/user-profile.svg"
-    }`
-    $pi(".my-page__about-username").innerText = newData.username
-    $pi(".my-page__about-city").innerText = newData.city
-    $pi(".my-page__about-myself").innerText = newData.about
-}
+export const initProfileComponet = async () => {
+    const $ = document.querySelector.bind(document)
+    const placeForProfileInfo = $(".my-page__js-about")
+    const { userId } = placeForProfileInfo?.dataset
 
-const initListeners = (userId, profileInfoEl) => {
-    const $pi = profileInfoEl.querySelector.bind(profileInfoEl)
-    const editForm = $pi(".my-page__about-edit-form")
-    const editBtn = $pi(".my-page__about-edit-button")
-    function toggleEditingMode() {
-        $pi(".my-page__about-info").classList.toggle(
-            "my-page__about-info_editing-mode"
-        )
-        const isEditingMode = this.innerText === "Редактировать"
-        this.innerText = isEditingMode ? "Отменить" : "Редактировать"
-        this.classList.toggle("button_secondary")
-        $pi(".avatar").classList.toggle("avatar_editing-mode")
-        if (isEditingMode) {
-            editForm.appendChild(this)
-        } else {
-            $pi(".my-page__about-info").appendChild(this)
-        }
-    }
-    editBtn.onclick = toggleEditingMode
+    const editButton = $(".my-page__about-edit-button")
+    const editForm = $(".my-page__about-edit-form")
+    const aboutInfo = $(".my-page__about-info")
+    const submitButton = $(".my-page__about-form-submit")
 
-    const submitBtn = $(".my-page__about-form-submit")
-    setSizeControl(200, submitBtn, $(".my-page__avatar-input"))
-    submitBtn.onclick = async () => {
+    setSizeControl(200, submitButton, $(".my-page__avatar-input"))
+
+    submitButton.onclick = async () => {
         const newData = await api.sendNewProfileData(
             userId,
             new FormData(editForm)
         )
 
-        toggleEditingMode.call(editBtn)
-        updateProfileInfoUI($pi, newData)
+        store.updateState({ user: newData })
+        store.updateState({ isEditingMode: false })
     }
-}
 
-export const initProfileComponet = async () => {
-    const placeForProfileInfo = $(".my-page__js-about")
-    const { userId } = placeForProfileInfo?.dataset
+    editButton.onclick = () => {
+        const snapshot = store.getStateSnapshot()
+        const wasEditingMode = snapshot.isEditingMode
+        store.updateState({
+            isEditingMode: !wasEditingMode,
+        })
+
+        if (wasEditingMode) {
+            $(".my-page__about-form-input[name='username']").value =
+                snapshot.user.username
+            $(".my-page__about-form-input[name='city']").value =
+                snapshot.user.city
+            $(".my-page__about-form-textarea").value = snapshot.user.about
+        }
+    }
+
+    store.selectState("isEditingMode").subscribe((isEditingMode) => {
+        if (isEditingMode) {
+            editForm.append(editButton)
+            editButton.textContent = "Отменить"
+            $(".my-page__about-fields").classList.add("hidden")
+            $(".my-page__about-edit-form").classList.remove("hidden")
+            editButton.classList.add("button_secondary")
+            $(".avatar").classList.add("avatar_editing-mode")
+        } else {
+            aboutInfo.append(editButton)
+            editButton.textContent = "Редактировать"
+            $(".my-page__about-fields").classList.remove("hidden")
+            $(".my-page__about-edit-form").classList.add("hidden")
+            editButton.classList.remove("button_secondary")
+            $(".avatar").classList.remove("avatar_editing-mode")
+        }
+    })
+
+    store.selectState("user").subscribe((user) => {
+        if (user) {
+            // костыль со статикой
+            $(".avatar__img").src = `/static${
+                user.avatar || "/img/icons/user-profile.svg"
+            }`
+            if ($(".avatar__img").classList.contains("hidden")) {
+                $(".avatar__img").classList.remove("hidden")
+            }
+            $(".my-page__about-username").textContent = user.username
+            $(".my-page__about-form-input[name='username']").value =
+                user.username
+            $(".my-page__about-city").textContent = user.city
+            $(".my-page__about-form-input[name='city']").value = user.city
+            $(".my-page__about-myself").textContent = user.about
+            $(".my-page__about-form-textarea").value = user.about
+        }
+    })
+
     const profileData = await api.getProfileData(userId)
-
-    
-    if (profileData) {
-        const profileInfoEl = ProfileInfo(profileData)
-        placeForProfileInfo.appendChild(profileInfoEl)
-        initListeners(userId, profileInfoEl)
-    }
+    store.updateState({ user: profileData })
 }
