@@ -1,5 +1,5 @@
 import { BehaviorSubject, Subject } from "rxjs"
-import { scan, distinctUntilKeyChanged, map } from "rxjs/operators"
+import { scan, distinctUntilKeyChanged, map, skip } from "rxjs/operators"
 
 export class ObservableStore {
     constructor(initialState) {
@@ -22,14 +22,15 @@ export class ObservableStore {
         this._stateUpdates.next(stateUpdate)
     }
 
-    selectState(stateKey) {
+    selectState(stateKey, skipNumber = 0) {
         return this._store.pipe(
             // Returns an Observable that emits all items emitted by the source Observable
             // that are distinct by comparison from the previous item,
             // using a property accessed by using the key provided
             // to check if the two items are distinct.
             distinctUntilKeyChanged(stateKey),
-            map((state) => state[stateKey])
+            map((state) => state[stateKey]),
+            skip(skipNumber)
         )
     }
 

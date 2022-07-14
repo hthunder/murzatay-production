@@ -9,13 +9,20 @@ const store = new ObservableStore({
 
 export const initProfileComponet = async () => {
     const $ = document.querySelector.bind(document)
-    const placeForProfileInfo = $(".my-page__js-about")
-    const { userId } = placeForProfileInfo?.dataset
 
+    const placeForProfileInfo = $(".my-page__js-about")
     const editButton = $(".my-page__about-edit-button")
-    const editForm = $(".my-page__about-edit-form")
-    const aboutInfo = $(".my-page__about-info")
     const submitButton = $(".my-page__about-form-submit")
+    const editForm = $(".my-page__about-edit-form")
+    const usernameInput = $(".my-page__about-form-input[name='username']")
+    const cityInput = $(".my-page__about-form-input[name='city']")
+    const aboutMeTextarea = $(".my-page__about-form-textarea")
+    const fieldsContainer = $(".my-page__about-fields")
+    const usernameField = $(".my-page__about-username")
+    const cityField = $(".my-page__about-city")
+    const aboutMeField = $(".my-page__about-myself")
+    const aboutInfo = $(".my-page__about-info")
+    const { userId } = placeForProfileInfo?.dataset
 
     setSizeControl(200, submitButton, $(".my-page__avatar-input"))
 
@@ -24,9 +31,7 @@ export const initProfileComponet = async () => {
             userId,
             new FormData(editForm)
         )
-
-        store.updateState({ user: newData })
-        store.updateState({ isEditingMode: false })
+        store.updateState({ user: newData, isEditingMode: false })
     }
 
     editButton.onclick = () => {
@@ -37,30 +42,21 @@ export const initProfileComponet = async () => {
         })
 
         if (wasEditingMode) {
-            $(".my-page__about-form-input[name='username']").value =
-                snapshot.user.username
-            $(".my-page__about-form-input[name='city']").value =
-                snapshot.user.city
-            $(".my-page__about-form-textarea").value = snapshot.user.about
+            store.updateState({
+                user: { ...snapshot.user },
+            })
+            $(".my-page__avatar-input").value = ""
         }
     }
 
-    store.selectState("isEditingMode").subscribe((isEditingMode) => {
-        if (isEditingMode) {
-            editForm.append(editButton)
-            editButton.textContent = "Отменить"
-            $(".my-page__about-fields").classList.add("hidden")
-            $(".my-page__about-edit-form").classList.remove("hidden")
-            editButton.classList.add("button_secondary")
-            $(".avatar").classList.add("avatar_editing-mode")
-        } else {
-            aboutInfo.append(editButton)
-            editButton.textContent = "Редактировать"
-            $(".my-page__about-fields").classList.remove("hidden")
-            $(".my-page__about-edit-form").classList.add("hidden")
-            editButton.classList.remove("button_secondary")
-            $(".avatar").classList.remove("avatar_editing-mode")
-        }
+    store.selectState("isEditingMode", 1).subscribe((isEditingMode) => {
+        editForm.classList.toggle("hidden")
+        editButton.classList.toggle("button_secondary")
+        $(".avatar").classList.toggle("avatar_editing-mode")
+        fieldsContainer.classList.toggle("hidden")
+        const appendTo = isEditingMode ? editForm : aboutInfo
+        editButton.textContent = isEditingMode ? "Отменить" : "Редактировать"
+        appendTo.append(editButton)
     })
 
     store.selectState("user").subscribe((user) => {
@@ -69,16 +65,14 @@ export const initProfileComponet = async () => {
             $(".avatar__img").src = `/static${
                 user.avatar || "/img/icons/user-profile.svg"
             }`
-            if ($(".avatar__img").classList.contains("hidden")) {
-                $(".avatar__img").classList.remove("hidden")
-            }
-            $(".my-page__about-username").textContent = user.username
-            $(".my-page__about-form-input[name='username']").value =
-                user.username
-            $(".my-page__about-city").textContent = user.city
-            $(".my-page__about-form-input[name='city']").value = user.city
-            $(".my-page__about-myself").textContent = user.about
-            $(".my-page__about-form-textarea").value = user.about
+            ;[
+                [usernameInput, usernameField],
+                [cityInput, cityField],
+                [aboutMeTextarea, aboutMeField],
+            ].forEach(([input, field]) => {
+                input.value = user[input.name]
+                field.textContent = user[input.name]
+            })
         }
     })
 
