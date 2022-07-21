@@ -179,12 +179,12 @@ exports.article_edit_put = async (req, res) => {
     util.saveArticleAndRedirect(req, res, req.headers.referer)
 }
 
-exports.article_remove = async (req, res) => {
-    const deletedArticle = await Article.findByIdAndDelete(req.params.id)
-    if (deletedArticle !== null) {
-        deletedArticle.comments.map(async (commentId) => {
-            await Comment.findByIdAndDelete(commentId)
-        })
-    }
-    res.redirect("/articles")
-}
+// exports.article_remove = async (req, res) => {
+//     const deletedArticle = await Article.findByIdAndDelete(req.params.id)
+//     if (deletedArticle !== null) {
+//         deletedArticle.comments.map(async (commentId) => {
+//             await Comment.findByIdAndDelete(commentId)
+//         })
+//     }
+//     res.redirect("/articles")
+// }

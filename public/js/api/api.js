@@ -71,3 +71,24 @@ export const sendNewProfileData = async (userId, formData) => {
         })
     }
 }
+
+export const getCommentList = async (articleId) => {
+    try {
+        const res = await fetch(`/api/articles/${articleId}/comments`)
+        if (res.ok) {
+            const commentsData = await res.json()
+            // commentsData.forEach((commentData) => {
+            //     this.commentList.push(new Comment(commentData))
+            // })
+            return commentsData
+        }
+        throw new Error("Произошел сбой при получении списка комментариев")
+    } catch (e) {
+        return console.error("message", e.message)
+    }
+}
+
+export const deleteArticle = async (articleId) =>
+    fetch(`/api/articles/${articleId}`, {
+        method: "DELETE",
+    })

@@ -42,8 +42,8 @@
 						<a class="button articles__edit-button" href="/articles/{{this._id}}/edit">
 							Редактировать
 						</a>
-						<form class="articles__delete-form" action="/articles/{{this._id}}?_method=DELETE" method="POST">
-							<button class="articles__delete-button button" type="button">Удалить</button>
+						<form data-article-id="{{this._id}}" class="articles__delete-form" action="/articles/{{this._id}}?_method=DELETE" method="POST">
+							<button class="articles__delete-button button" type="submit">Удалить</button>
 						</form>	
 					</div>
 					
@@ -82,7 +82,7 @@
 	{{> footer }}
 
 	{{> popup }}
-
+	<script src="https://unpkg.com/page/page.js"></script>
 	<script type="module" src="/static/js-build/main.js"></script>
 
 

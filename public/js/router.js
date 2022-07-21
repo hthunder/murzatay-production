@@ -1,16 +1,15 @@
-import { commentsInit } from "./widgets/comments"
+import Navigo from "navigo"
+import { init } from "./widgets/comments/init"
 import { initProfileComponet } from "./widgets/profileInfo"
 import { passwordReset } from "./pages/passwordReset"
 import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
 import { setSizeControl } from "./utils/imgsizeControl"
+import { $ } from "./utils/$"
+import { initArticleRemovingHandlers } from "./pages/articles"
 
 const workWithArticles = () => {
-    const articleFormImgInput = document.querySelector(
-        ".article-editor__form-file"
-    )
-    const articleFormSubmitBtn = document.querySelector(
-        ".article-editor__form-submit"
-    )
+    const articleFormImgInput = $(".article-editor__form-file")
+    const articleFormSubmitBtn = $(".article-editor__form-submit")
     setSizeControl(
         ARTICLE_PREVIEW_SIZE_KB,
         articleFormSubmitBtn,
@@ -18,23 +17,13 @@ const workWithArticles = () => {
     )
 }
 
-export const router = (url) => {
-    ;(async () => {
-        switch (url) {
-            case (url.match(/^\/articles\/add$/) || {}).input:
-            case (url.match(/^\/articles\/\w+\/edit$/) || {}).input:
-                workWithArticles()
-                break
-            case (url.match(/^\/articles\/\w+/) || {}).input:
-                await commentsInit()
-                break
-            case (url.match(/^\/my-page$/) || {}).input:
-                await initProfileComponet()
-                break
-            case (url.match(/^\/auth\/password-reset/) || {}).input:
-                passwordReset()
-                break
-            default:
-        }
-    })(url)
+export const router = () => {
+    const navigoRouter = new Navigo("/")
+    navigoRouter.on("/articles", initArticleRemovingHandlers)
+    navigoRouter.on("/articles/add", workWithArticles)
+    navigoRouter.on("/articles/:id/edit", workWithArticles)
+    navigoRouter.on("/articles/:id", init)
+    navigoRouter.on("/my-page", initProfileComponet)
+    navigoRouter.on("/auth/password-reset", passwordReset)
+    navigoRouter.resolve()
 }

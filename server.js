@@ -39,7 +39,7 @@ app.use(methodOverride("_method"))
 
 app.use("/auth", auth)
 app.use("/articles", isLoggedIn, articleRouter)
-app.use("/api", isLoggedIn, apiRoutes)
+app.use("/api", apiRoutes)
 app.use("/", isLoggedIn, blogRoutes)
 app.use("/tinymce", express.static("node_modules/tinymce"))
 

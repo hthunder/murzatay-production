@@ -1,0 +1,47 @@
+<template id="comment-template">
+    <article class="comments__instance">
+        <img
+            class="comments__instance-ava"
+            src="/static/img/avatars/avatar-1657792722497.jpeg"
+            alt="Аватарка"
+        />
+        <div class="comments__instance-content">
+            <div class="comments__content">
+                <p class="comments__instance-author"></p>
+                <p class="comments__instance-text"></p>
+                <time class="comments__instance-date"></time>
+                <div class="comments__actions">
+                    {{!-- <button class="button comments__edit-button" type="button">
+                        Редактировать
+                    </button>
+                    <button
+                        class="button button_secondary comments__delete-button"
+                        type="button"
+                    >
+                        Удалить
+                    </button> --}}
+                </div>
+            </div>
+            <form class="comments__form hidden">
+                <article
+                    class="textarea textarea_medium sc-textarea comments__sc-textarea"
+                >
+                    <p
+                        class="sc-textarea__counter comments__symbol-counter"
+                    ></p>
+                    <textarea
+                        class="sc-textarea__textarea"
+                        name="text"
+                        maxlength="500"
+                    ></textarea>
+                </article>
+                {{!-- <button class="comments__save-button button" type="button">
+                    Сохранить
+                </button>
+                <button class="comments__cancel-button button" type="button">
+                    Отменить
+                </button> --}}
+            </form>
+        </div>
+    </article>
+</template>

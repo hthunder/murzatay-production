@@ -11,10 +11,8 @@ export function checkCookies() {
     }
 
     // При клике на кнопку, в локальное хранилище записывается текущая дата в системе UNIX
-    if (cookieBtn) {
-        cookieBtn.addEventListener("click", () => {
-            localStorage.setItem("cookieDate", Date.now())
-            cookieNotification.classList.remove("show")
-        })
-    }
+    cookieBtn?.addEventListener("click", () => {
+        localStorage.setItem("cookieDate", Date.now())
+        cookieNotification.classList.remove("show")
+    })
 }

@@ -45,15 +45,38 @@
                     {{#if isLoggedIn}}
                         <p class="comments__welcome-message">Оставьте свой
                             комментарий</p>
-                        <div class="topic__js-add-comment"></div>
+                        <form class="comments__add-form">
+                            <article
+                                class="textarea textarea_medium sc-textarea comments__sc-textarea"
+                            >
+                                <p
+                                    class="sc-textarea__counter comments__symbol-counter"
+                                >
+                                    0/500
+                                </p>
+                                <textarea
+                                    class="sc-textarea__textarea"
+                                    name="text"
+                                    maxlength="500"
+                                ></textarea>
+                            </article>
+                            <button
+                                class="comments__add-button comments__send-button button"
+                                type="button"
+                                data-id=""
+                            >
+                                Отправить
+                            </button>
+                        </form>
                     {{else}}
                         <p class="comments__unauthorized">Для того чтобы
                             оставить комментарий, войдите или зарегистрируйтесь</p>
                     {{/if}}
                     <div
-                        class="topic__js-comments"
+                        class="comments__inner"
                         data-id="{{article._id}}"
                     ></div>
+                    {{> comment}}
                 </section>
             </article>
             {{> sidebar }}

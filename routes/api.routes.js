@@ -2,19 +2,19 @@ const express = require("express")
 const upload = require("../middlewares/articleImgHandler")
 // const { isAd
 const { avatarUploader } = require("../util/avatarUploader")
-const {
-    authentication,
-    authorize,
-} = require("../middlewares/api/authentication")
+const { authenticate, authorize } = require("../middlewares/api/authentication")
 const {
     authorizeOwner,
     authCommentDelete,
     authCommentEdit,
 } = require("../middlewares/api/permissions")
+const { isLoggedIn } = require("../middlewares/authJwt")
 const { HttpError } = require("../util/HttpError")
+const articlesRouter = require("./api/articles.routes")
 
 const router = express.Router()
 const apiController = require("../controllers/api.controller")
+// const { articleRemove } = require("../controllers/api/articles.controller")
 
 // get urls of widget images
 // url: /api/widget-urls
@@ -22,7 +22,7 @@ const apiController = require("../controllers/api.controller")
 // user route
 // public
 
-router.get("/widget-urls", apiController.widget_urls_get)
+router.get("/widget-urls", isLoggedIn, apiController.widget_urls_get)
 
 // get user's info
 // url: /api/users/:id
@@ -32,6 +32,7 @@ router.get("/widget-urls", apiController.widget_urls_get)
 
 router.get(
     "/users/:id",
+    isLoggedIn,
     authorize(["owner", "moderator", "admin"]),
     apiController.user_get
 )
@@ -44,6 +45,7 @@ router.get(
 
 router.patch(
     "/users/:id",
+    isLoggedIn,
     authorize(["owner", "moderator", "admin"]),
     avatarUploader.single("avatar"),
     apiController.user_patch
@@ -57,6 +59,7 @@ router.patch(
 
 router.post(
     "/images",
+    isLoggedIn,
     authorize("admin"),
     upload.single("file"),
     apiController.image_post
@@ -67,7 +70,7 @@ router.post(
 // method: get
 // public
 
-router.get("/comments", apiController.comments_get)
+router.get("/comments", isLoggedIn, apiController.comments_get)
 
 // comment editing
 // url: /api/comments/:id
@@ -77,6 +80,7 @@ router.get("/comments", apiController.comments_get)
 
 router.put(
     "/comments/:id",
+    isLoggedIn,
     authorize(),
     authCommentEdit,
     apiController.comment_put
@@ -90,6 +94,7 @@ router.put(
 
 router.delete(
     "/comments/:id",
+    isLoggedIn,
     authorize(),
     authCommentDelete(["admin", "moderator"]),
     apiController.comment_delete
@@ -115,7 +120,7 @@ router.delete(
 //     }
 // ]
 
-router.post("/comments", authorize(), apiController.comment_post)
+router.post("/comments", isLoggedIn, authorize(), apiController.comment_post)
 
 // get all comments
 // url: /api/articles/:articleId/comments
@@ -137,9 +142,17 @@ router.post("/comments", authorize(), apiController.comment_post)
 //     }
 // ]
 
-router.get("/articles/:articleId/comments", apiController.articleComments_get)
+router.get(
+    "/articles/:articleId/comments",
+    isLoggedIn,
+    apiController.articleComments_get
+)
 
-router.all("*", (req, res, next) => {
+// Here will be refactored code
+
+router.use("/articles", authorize("admin"), articlesRouter)
+
+router.all("*", isLoggedIn, (req, res, next) => {
     next(new HttpError("Запрашиваемый url не существует", 404))
 })
 

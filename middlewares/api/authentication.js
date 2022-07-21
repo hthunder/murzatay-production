@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const config = require("../../config/auth.config")
 const { HttpError } = require("../../util/HttpError")
 
-const authentication = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
     try {
         const { token } = req.cookies
 
@@ -27,15 +27,16 @@ const authorize = (roles = []) => {
     }
 
     return [
-        authentication,
+        authenticate,
         (req, res, next) => {
             if (roles.includes("owner") && req.userId === req.params.id) {
                 return next()
             }
             if (roles.length && !roles.includes(req.userRole)) {
-                return res
-                    .status(401)
-                    .json({ message: "Авторизация не пройдена" })
+                throw new HttpError(
+                    "Вы не имеете права на данное действие",
+                    403
+                )
             }
             return next()
         },
@@ -43,6 +44,6 @@ const authorize = (roles = []) => {
 }
 
 module.exports = {
-    authentication,
+    authenticate,
     authorize,
 }
