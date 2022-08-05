@@ -1,5 +1,4 @@
 import Navigo from "navigo"
-import { initProfileComponet } from "./widgets/profileInfo"
 import { passwordReset } from "./pages/passwordReset"
 import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
 import { setSizeControl } from "./utils/imgsizeControl"
@@ -27,7 +26,6 @@ export const router = () => {
             addFavourite(e.target)
         })
     })
-    navigoRouter.on("/my-page", initProfileComponet)
     navigoRouter.on("/auth/password-reset", passwordReset)
     navigoRouter.resolve()
 }

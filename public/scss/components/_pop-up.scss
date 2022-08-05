@@ -1,8 +1,13 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .pop-up {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     font-family: Raleway;
     font-style: normal;
+    position: fixed;
 
     &__forgot-pass,
     &__back-to-login {
@@ -28,18 +33,12 @@
 
     &__login,
     &__signup {
-        background-color: variables.$akaroa;
-        border: 4px solid variables.$arrowtown;
+        background-color: #d8c1a6;
+        border: 4px solid #96856c;
         border-radius: 25px;
-        display: none;
-        left: 50%;
         padding: 0.5em 1em;
-        position: absolute;
         text-align: center;
-        top: 50vh;
-        transform: translate(-50%, -50%);
         width: 300px;
-        z-index: 100;
     }
 
     &__title {
@@ -90,14 +89,12 @@
     }
 
     &__overlay {
-        background: variables.$dusty-gray-45;
-        display: none;
-        height: 200vh;
-        left: 0;
-        position: absolute;
-        top: 0;
         width: 100%;
-        z-index: 99;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(155, 143, 143, 0.45);
     }
 
     @media #{variables.$media-sm} {

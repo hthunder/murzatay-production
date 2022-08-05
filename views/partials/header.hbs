@@ -4,32 +4,7 @@
         <img class="header__logo-slogan" src="/static/img/koshkonutost.png" width="308" alt="Слоган">
     </div>
     <nav class="nav">
-        <ul class="nav__list">
-            <li class="nav__item">
-                <a href="/" class="nav__link">Главная</a>
-            </li>
-            <li class="nav__item">
-                <a href="/about" class="nav__link">Об авторе</a>
-            </li>
-            <li class="nav__item">
-                <a href="/articles" class="nav__link">Блог</a>
-            </li>
-            {{#if isLoggedIn}}
-            <li class="nav__item">
-                <a href="/my-page" class="nav__link">Профиль</a>
-            </li>
-            <li class="nav__item">
-                <a href="/auth/logout" class="nav__link">Выйти</a>
-            </li>
-            {{else}}
-            <li class="nav__item">
-                <button class="nav__button nav__button_login">Войти</button>   
-            </li>
-            <li class="nav__item">
-                <button class="nav__button nav__button_signup">Зарегистрироваться</button>   
-            </li>
-            {{/if}}
-        </ul>
+        <ul id="react-nav" class="nav__list"></ul>
         <form action="/articles" class="nav__search-form">
             <img src="/static/img/icons/svg-search.svg" alt="Поиск" class="nav__search">
             <input type="search" name="q" class="nav__search-field" placeholder="Поиск">

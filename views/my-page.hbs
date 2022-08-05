@@ -12,88 +12,7 @@
         {{> header }}
         <section class="main">
             <div class="main__content">
-                <div class="my-page__js-about" data-user-id="{{userId}}">
-                    <section class="my-page__about">
-                        <label class="avatar" for="upload-avatar">
-                            <img class="avatar__img" alt="Ваше фото" src=""/>
-                        </label>
-                        <div class="my-page__about-info">
-                            <div class="my-page__about-fields">
-                                <p>
-                                    <p class="font-family-raleway mv-3">Ник:</p>
-                                    <p
-                                        class="my-page__about-field my-page__about-username mv-3"
-                                    >
-                                    </p>
-                                </p>
-                                <p>
-                                    <p class="font-family-raleway mv-3">
-                                        Город:
-                                    </p>
-                                    <p
-                                        class="my-page__about-field my-page__about-city mv-3"
-                                    >
-                                    </p>
-                                </p>
-                                <p>
-                                    <p class="font-family-raleway mv-3">О себе:</p>
-                                    <p
-                                        class="my-page__about-field my-page__about-myself mv-3"
-                                    >
-                                    </p>
-                                </p>
-                                <button
-                                    class="my-page__about-edit-button button button_light"
-                                    type="button"
-                                >
-                                    Редактировать
-                                </button>
-                            </div>
-                            <form class="my-page__about-edit-form hidden">
-                                <input
-                                    class="my-page__avatar-input"
-                                    id="upload-avatar"
-                                    type="file"
-                                    name="avatar"
-                                    accept=".jpg, .jpeg, .png"
-                                />
-                                <label class="my-page__about-form-label">
-                                    <span>
-                                        Ник:
-                                    </span>
-                                    <input
-                                        class="my-page__about-form-input"
-                                        name="username"
-                                    />
-                                </label>
-                                <label class="my-page__about-form-label">
-                                    <span>Город: </span>
-                                    <input
-                                        class="my-page__about-form-input"
-                                        name="city"
-                                    />
-                                </label>
-                                <label class="my-page__about-form-label">
-                                    <span>
-                                        Расскажите о себе или о своих питомцах:
-                                    </span>
-                                    <textarea
-                                        class="my-page__about-form-textarea textarea"
-                                        maxlength="250"
-                                        name="about"
-                                        placeholder="Расскажите о себе или своих питомцах"
-                                    >
-                                    </textarea>
-                                </label>
-                                <input
-                                    class="my-page__about-form-submit button button_light"
-                                    type="button"
-                                    value="Готово"
-                                />
-                            </form>
-                        </div>
-                    </section>
-                </div>
+                <div id="react-profile"></div>
                 {{#if this.isAdmin}}
                     <div class="my-page__admin-links">
                         <a class="link my-page__admin-link" href="/index/edit">
@@ -147,6 +66,8 @@
             {{> sidebar this}}
         </section>
         {{> footer }}
+        <script type="module" src="/static/js-build/profile.js"></script>
+        <script src="/static/js-build/nav.js"></script>
         <script type="module" src="/static/js-build/main.js"></script>
     </body>
 

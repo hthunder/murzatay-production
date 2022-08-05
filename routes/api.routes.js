@@ -18,7 +18,9 @@ const apiController = require("../controllers/api.controller")
 // const { articleRemove } = require("../controllers/api/articles.controller")
 
 router.get("/logged_in", isLoggedIn, (req, res) => {
-    return res.status(200).json({ isLoggedIn: req.isLoggedIn })
+    return res
+        .status(200)
+        .json({ isLoggedIn: req.isLoggedIn, userId: req.userId })
 })
 
 router.get("/id_from_slug", async (req, res, next) => {
@@ -28,24 +30,6 @@ router.get("/id_from_slug", async (req, res, next) => {
     } catch (e) {
         next(e) // TODO check if it is needed operation
     }
-
-    // const articleRemove = async (req, res, next) => {
-    //     try {
-    //         const deletedArticle = await Article.findByIdAndDelete(
-    //             req.params.id
-    //         )
-
-    //         if (!deletedArticle) {
-    //             deletedArticle.comments.map(async (commentId) => {
-    //                 await Comment.findByIdAndDelete(commentId)
-    //             })
-    //         }
-
-    //         res.sendStatus(200)
-    //     } catch (e) {
-    //         next(e)
-    //     }
-    // }
 })
 
 // get user's info

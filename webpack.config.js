@@ -4,6 +4,8 @@ module.exports = (env, argv) => ({
     entry: {
         main: "./public/js/main.js",
         comments: "./public/js/react/comments/Comments.jsx",
+        profile: "./public/js/react/profile/Profile.jsx",
+        nav: "./public/js/react/nav/Nav.jsx",
     },
     module: {
         rules: [

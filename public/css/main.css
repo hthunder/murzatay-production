@@ -524,8 +524,13 @@ h4 {
 }
 
 .pop-up {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   font-family: Raleway;
   font-style: normal;
+  position: fixed;
 }
 .pop-up__forgot-pass, .pop-up__back-to-login {
   text-align: left;
@@ -548,15 +553,9 @@ h4 {
   background-color: #d8c1a6;
   border: 4px solid #96856c;
   border-radius: 25px;
-  display: none;
-  left: 50%;
   padding: 0.5em 1em;
-  position: absolute;
   text-align: center;
-  top: 50vh;
-  transform: translate(-50%, -50%);
   width: 300px;
-  z-index: 100;
 }
 .pop-up__title {
   font-size: var(--text-lg);
@@ -599,14 +598,12 @@ h4 {
   background-color: rgba(134, 92, 68, 0.65);
 }
 .pop-up__overlay {
-  background: rgba(155, 143, 143, 0.45);
-  display: none;
-  height: 200vh;
-  left: 0;
-  position: absolute;
-  top: 0;
   width: 100%;
-  z-index: 99;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(155, 143, 143, 0.45);
 }
 @media screen and (max-width: 750px) {
   .pop-up__signup, .pop-up__login {
@@ -1437,6 +1434,11 @@ h4 {
 
 .hidden {
   display: none;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 .font-family-raleway {

@@ -28,66 +28,6 @@ export async function addFavourite(favouriteBtn) {
     }
 }
 
-export const getProfileData = async (userId) => {
-    try {
-        const res = await fetch(`api/users/${userId}`)
-        const userData = await res.json()
-
-        if (!res.ok) {
-            const error = new Error()
-            error.userMessage = userData.message
-            throw error
-        }
-
-        return userData
-    } catch (e) {
-        if (!e.userMessage) e.userMessage = "Произошла неизвестная ошибка"
-        new AWN().alert(e.userMessage, {
-            durations: { alert: 0 },
-        })
-    }
-}
-
-export const sendNewProfileData = async (userId, formData) => {
-    try {
-        const res = await fetch(`/api/users/${userId}`, {
-            method: "PATCH",
-            mode: "same-origin",
-            body: formData,
-        })
-
-        const userData = await res.json()
-        if (!res.ok) {
-            const error = new Error()
-            error.userMessage = userData.message
-            throw error
-        }
-
-        return userData
-    } catch (e) {
-        if (!e.userMessage) e.userMessage = "Произошла неизвестная ошибка"
-        new AWN().alert(e.userMessage, {
-            durations: { alert: 0 },
-        })
-    }
-}
-
-export const getCommentList = async (articleId) => {
-    try {
-        const res = await fetch(`/api/articles/${articleId}/comments`)
-        if (res.ok) {
-            const commentsData = await res.json()
-            // commentsData.forEach((commentData) => {
-            //     this.commentList.push(new Comment(commentData))
-            // })
-            return commentsData
-        }
-        throw new Error("Произошел сбой при получении списка комментариев")
-    } catch (e) {
-        return console.error("message", e.message)
-    }
-}
-
 export const deleteArticle = async (articleId) =>
     fetch(`/api/articles/${articleId}`, {
         method: "DELETE",

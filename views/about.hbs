@@ -22,14 +22,13 @@
 		{{> sidebar }}
 	</section>
 	{{> footer }}
-	{{> popup }}
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script src="/static/js-build/nav.js"></script>
     <script>
         marked.setOptions({ breaks: true });
         document.querySelector('.about__author-text').innerHTML = marked.parse(`{{{this.sanitizedHTML}}}`);
     </script>
 	<script type="module" src="/static/js-build/main.js"></script>
-
 </body>
 
 </html>
