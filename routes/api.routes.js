@@ -11,18 +11,42 @@ const {
 const { isLoggedIn } = require("../middlewares/authJwt")
 const { HttpError } = require("../util/HttpError")
 const articlesRouter = require("./api/articles.routes")
+const Article = require("../models/article.model")
 
 const router = express.Router()
 const apiController = require("../controllers/api.controller")
 // const { articleRemove } = require("../controllers/api/articles.controller")
 
-// get urls of widget images
-// url: /api/widget-urls
-// method: get
-// user route
-// public
+router.get("/logged_in", isLoggedIn, (req, res) => {
+    return res.status(200).json({ isLoggedIn: req.isLoggedIn })
+})
 
-router.get("/widget-urls", isLoggedIn, apiController.widget_urls_get)
+router.get("/id_from_slug", async (req, res, next) => {
+    try {
+        const article = await Article.findOne({ slug: req.query.slug }).lean()
+        return res.status(200).json({ id: article._id })
+    } catch (e) {
+        next(e) // TODO check if it is needed operation
+    }
+
+    // const articleRemove = async (req, res, next) => {
+    //     try {
+    //         const deletedArticle = await Article.findByIdAndDelete(
+    //             req.params.id
+    //         )
+
+    //         if (!deletedArticle) {
+    //             deletedArticle.comments.map(async (commentId) => {
+    //                 await Comment.findByIdAndDelete(commentId)
+    //             })
+    //         }
+
+    //         res.sendStatus(200)
+    //     } catch (e) {
+    //         next(e)
+    //     }
+    // }
+})
 
 // get user's info
 // url: /api/users/:id

@@ -41,48 +41,13 @@
                     >Редактировать пост</a>
                 {{/if}}
 
-                <section class="topic__comments comments">
-                    {{#if isLoggedIn}}
-                        <p class="comments__welcome-message">Оставьте свой
-                            комментарий</p>
-                        <form class="comments__add-form">
-                            <article
-                                class="textarea textarea_medium sc-textarea comments__sc-textarea"
-                            >
-                                <p
-                                    class="sc-textarea__counter comments__symbol-counter"
-                                >
-                                    0/500
-                                </p>
-                                <textarea
-                                    class="sc-textarea__textarea"
-                                    name="text"
-                                    maxlength="500"
-                                ></textarea>
-                            </article>
-                            <button
-                                class="comments__add-button comments__send-button button"
-                                type="button"
-                                data-id=""
-                            >
-                                Отправить
-                            </button>
-                        </form>
-                    {{else}}
-                        <p class="comments__unauthorized">Для того чтобы
-                            оставить комментарий, войдите или зарегистрируйтесь</p>
-                    {{/if}}
-                    <div
-                        class="comments__inner"
-                        data-id="{{article._id}}"
-                    ></div>
-                    {{> comment}}
-                </section>
+                <div id="react-comments"></div>
             </article>
             {{> sidebar }}
         </section>
         {{> footer }}
         {{> popup }}
+        <script type="module" src="/static/js-build/comments.js"></script>
         <script type="module" src="/static/js-build/main.js"></script>
     </body>
 

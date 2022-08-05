@@ -7,7 +7,7 @@
 
     &__add-favourite {
         background-color: transparent;
-        background-image: url("/img/icons/heart.svg");
+        background-image: url("/static/img/icons/heart.svg");
         background-repeat: no-repeat;
         background-size: 28px 28px;
         border: 0;
@@ -21,7 +21,7 @@
     }
 
     &__add-favourite_active {
-        background-image: url("/img/icons/heart-added.svg");
+        background-image: url("/static/img/icons/heart-added.svg");
     }
 
     &__title {

@@ -1172,7 +1172,7 @@ h4 {
 }
 .topic__add-favourite {
   background-color: transparent;
-  background-image: url("/img/icons/heart.svg");
+  background-image: url("/static/img/icons/heart.svg");
   background-repeat: no-repeat;
   background-size: 28px 28px;
   border: 0;
@@ -1185,7 +1185,7 @@ h4 {
   width: 28px;
 }
 .topic__add-favourite_active {
-  background-image: url("/img/icons/heart-added.svg");
+  background-image: url("/static/img/icons/heart-added.svg");
 }
 .topic__title {
   font-family: Lora;
