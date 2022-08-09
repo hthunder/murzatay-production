@@ -2,9 +2,10 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { createRoot } from "react-dom/client"
 import { links, states } from "./constants.js"
-import { Popup } from "../popup/Popup.jsx"
+import { Modal } from "../modal/Modal.jsx"
 import { LoginForm } from "../forms/LoginForm.jsx"
 import { SignupForm } from "../forms/SignupForm.jsx"
+import { ForgotPasswordForm } from "../forms/ForgotPasswordForm.jsx"
 
 const disableScrolling = () => {
     document.body.classList.add("stop-scrolling")
@@ -16,16 +17,31 @@ const enableScrolling = () => {
 
 function Nav() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [popupState, setPopupState] = useState(null)
+    const [modalState, setModalState] = useState(null)
     useEffect(() => {
         axios.get("/api/logged_in").then((response) => {
             setIsLoggedIn(response.data.userId)
         })
     }, [])
 
-    const cancelForm = () => {
-        setPopupState(null)
+    const closeModal = () => {
+        setModalState(null)
         enableScrolling()
+    }
+
+    const openLoginModal = () => {
+        setModalState(states.loginOpened)
+        disableScrolling()
+    }
+
+    const openSignupModal = () => {
+        setModalState(states.signupOpened)
+        disableScrolling()
+    }
+
+    const openForgotPassModal = () => {
+        setModalState(states.forgotPassOpened)
+        disableScrolling()
     }
 
     return (
@@ -50,8 +66,7 @@ function Nav() {
                         <button
                             className="nav__button nav__button_login"
                             onClick={() => {
-                                setPopupState(states.loginOpened)
-                                disableScrolling()
+                                openLoginModal()
                             }}
                         >
                             Войти
@@ -61,8 +76,7 @@ function Nav() {
                         <button
                             className="nav__button nav__button_signup"
                             onClick={() => {
-                                setPopupState(states.signupOpened)
-                                disableScrolling()
+                                openSignupModal()
                             }}
                         >
                             Зарегистрироваться
@@ -70,15 +84,21 @@ function Nav() {
                     </li>
                 </>
             )}
-            {popupState === states.loginOpened && (
-                <Popup>
-                    <LoginForm cancelForm={cancelForm} />
-                </Popup>
-            )}
-            {popupState === states.signupOpened && (
-                <Popup>
-                    <SignupForm cancelForm={cancelForm} />
-                </Popup>
+            {modalState && (
+                <Modal closeModal={closeModal}>
+                    {modalState === states.loginOpened && (
+                        <LoginForm
+                            openSignupModal={openSignupModal}
+                            openForgotPassModal={openForgotPassModal}
+                        />
+                    )}
+                    {modalState === states.signupOpened && (
+                        <SignupForm openLoginModal={openLoginModal} />
+                    )}
+                    {modalState === states.forgotPassOpened && (
+                        <ForgotPasswordForm openLoginModal={openLoginModal} />
+                    )}
+                </Modal>
             )}
         </>
     )

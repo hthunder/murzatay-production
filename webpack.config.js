@@ -11,7 +11,19 @@ module.exports = (env, argv) => ({
         rules: [
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName:
+                                    "[name]__[local]--[hash:base64:5]", // TODO '[hash:base64]' for production
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(jsx)$/,

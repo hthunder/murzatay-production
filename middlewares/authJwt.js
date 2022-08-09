@@ -53,13 +53,15 @@ const isActivated = async (req, res, next) => {
                     `${protocol}://${req.get("host")}/auth/activation?h=${hash}`
                 )
             }
-            return res.cookie("murzatayWarning", userMessage).redirect("back")
+            return res.status(400).json({ errors: [userMessage] })
+            // return res.cookie("murzatayWarning", userMessage).redirect("back")
         }
 
         req.user = user
         return next()
     } catch (e) {
-        return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
+        return res.status(500).json({ errors: [CLIENT_500_ERROR] })
+        // return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
     }
 }
 

@@ -1,15 +1,52 @@
-import React, { useRef } from "react"
+import axios from "axios"
+import React, { useState, useRef } from "react"
+import { VisibilityToggle } from "./visibility-toggle/VisibilityToggle.jsx"
+
+function ActivationInfo(props) {
+    const { email } = props
+
+    return (
+        <>
+            <h2 className="auth-form__title">Почти готово...</h2>
+            <p className="auth-form__paragraph">
+                Мы отправили письмо на почтовый ящик:{" "}
+                <span className="font-bold">{email}</span>
+            </p>
+            <p className="auth-form__paragraph">
+                Перейдите по полученной ссылке для активации аккаунта
+            </p>
+        </>
+    )
+}
 
 export function SignupForm(props) {
-    const { cancelForm } = props
+    const { openLoginModal } = props
+    const [values, setValues] = useState({
+        username: "",
+        email: "",
+        password: "",
+    })
+    const [error, setError] = useState("")
+    const [isActivationStep, setIsActivationStep] = useState(false)
     const passwordEl = useRef(null)
     const passwordRepeatEl = useRef(null)
 
     const onSubmit = (e) => {
+        e.preventDefault()
         if (passwordEl.current.value !== passwordRepeatEl.current.value) {
-            e.preventDefault()
             passwordEl.current.setCustomValidity("Пароли должны совпадать")
             passwordEl.current.reportValidity()
+        } else {
+            axios
+                .post("/api/signup", values)
+                .then(() => {
+                    setIsActivationStep(true)
+                })
+                .catch((e) => {
+                    if (e.response) {
+                        setError(e.response.data.errors.join(", "))
+                    }
+                })
         }
     }
 
@@ -17,62 +54,78 @@ export function SignupForm(props) {
         passwordEl.current.setCustomValidity("")
     }
 
+    const onChange = (e) => {
+        setValues((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
+
     return (
-        <form
-            className="pop-up__signup"
-            id="signup__form"
-            method="POST"
-            action="/auth/signup"
-            onSubmit={onSubmit}
-        >
-            <h2 className="pop-up__title">Регистрация</h2>
-            <input
-                className="pop-up__input"
-                type="text"
-                placeholder="Login*"
-                name="username"
-                required
-            />
-            <input
-                className="pop-up__input"
-                type="email"
-                placeholder="E-mail*"
-                name="email"
-                required
-            />
-            <input
-                className="pop-up__input"
-                type="password"
-                placeholder="Пароль*"
-                name="password1"
-                ref={passwordEl}
-                onInput={onInput}
-                required
-            />
-            <input
-                className="pop-up__input"
-                type="password"
-                placeholder="Повторите пароль*"
-                name="password2"
-                ref={passwordRepeatEl}
-                required
-            />
-            <input
-                className="pop-up__input"
-                type="text"
-                placeholder="Город"
-                name="city"
-            />
-            <button className="pop-up__submit" type="submit">
-                Зарегистрироваться
-            </button>
-            <button
-                className="pop-up__cancel-btn"
-                type="button"
-                onClick={cancelForm}
-            >
-                Отменить
-            </button>
-        </form>
+        <>
+            {isActivationStep ? (
+                <ActivationInfo email={values.email} />
+            ) : (
+                <form className="auth-form" onSubmit={onSubmit}>
+                    <h2 className="auth-form__title">Регистрация</h2>
+                    <label className="auth-form__label">
+                        <span className="auth-form__label-text">Login*</span>
+                        <input
+                            className="auth-form__input"
+                            type="text"
+                            name="username"
+                            value={values.username}
+                            onChange={onChange}
+                            required
+                        />
+                    </label>
+                    <label className="auth-form__label">
+                        <span className="auth-form__label-text">Email*</span>
+                        <input
+                            className="auth-form__input"
+                            type="email"
+                            name="email"
+                            value={values.email}
+                            onChange={onChange}
+                            required
+                        />
+                    </label>
+                    <label className="auth-form__label">
+                        <span className="auth-form__label-text">Пароль*</span>
+                        <VisibilityToggle
+                            render={(isPassVisible, style) => (
+                                <input
+                                    className="auth-form__input"
+                                    type={isPassVisible ? "text" : "password"}
+                                    name="password"
+                                    value={values.password}
+                                    onChange={onChange}
+                                    ref={passwordEl}
+                                    onInput={onInput}
+                                    style={{ ...style }}
+                                    required
+                                />
+                            )}
+                        />
+                    </label>
+                    {error && <p className="auth-form__errors">{error}</p>}
+                    <button className="auth-form__btn" type="submit">
+                        Зарегистрироваться
+                    </button>
+                    <hr className="auth-form__divider" />
+                    <div>
+                        <p className="auth-form__additional-text">
+                            Уже есть аккаунт?
+                        </p>
+                        <button
+                            className="auth-form__link"
+                            onClick={openLoginModal}
+                        >
+                            Войти
+                        </button>
+                    </div>
+                </form>
+            )}
+        </>
     )
 }

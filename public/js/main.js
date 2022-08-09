@@ -1,6 +1,5 @@
 import { router } from "./router"
 import { sidebarComments } from "./widgets/sidebarComments"
-import { errorHandler } from "./errorHandler"
 import { checkCookies } from "./utils/checkCookies"
 import { $ } from "./utils/$"
 
@@ -28,5 +27,3 @@ checkCookies()
 
 router()
 sidebarComments()
-
-errorHandler()

@@ -9,4 +9,5 @@ export const links = [
 export const states = {
     loginOpened: "loginOpened",
     signupOpened: "signupOpened",
+    forgotPassOpened: "forgotPassOpened",
 }

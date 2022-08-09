@@ -44,7 +44,6 @@ export function Form(props) {
                 type="file"
                 name="avatar"
                 accept=".jpg, .jpeg, .png"
-                // value={image}
                 onChange={(e) => {
                     setImage(e.target.files[0])
                 }}
