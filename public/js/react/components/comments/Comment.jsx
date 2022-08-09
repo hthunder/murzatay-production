@@ -2,7 +2,7 @@ import axios from "axios"
 import React, { useState } from "react"
 import { MAX_LENGTH } from "./constants.js"
 import { Textarea } from "../textarea/Textarea.jsx"
-import { formatDate } from "../utils/formatDate.js"
+import { formatDate } from "../../utils/formatDate.js"
 
 export function Comment(props) {
     const { data, deleteComment, updateComment } = props

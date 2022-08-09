@@ -3,9 +3,10 @@ const path = require("path")
 module.exports = (env, argv) => ({
     entry: {
         main: "./public/js/main.js",
-        comments: "./public/js/react/comments/Comments.jsx",
-        profile: "./public/js/react/profile/Profile.jsx",
-        nav: "./public/js/react/nav/Nav.jsx",
+        comments: "./public/js/react/components/comments/Comments.jsx",
+        profile: "./public/js/react/components/profile/Profile.jsx",
+        nav: "./public/js/react/components/nav/Nav.jsx",
+        like: "./public/js/react/components/like-button/LikeButton.jsx",
     },
     module: {
         rules: [

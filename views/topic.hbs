@@ -15,6 +15,7 @@
         {{> header }}
         <section class="main">
             <article class="topic">
+                <div id="react-like"></div>
                 {{#if isLoggedIn}}
                     {{#if favourite}}
                         <button
@@ -46,6 +47,7 @@
             {{> sidebar }}
         </section>
         {{> footer }}
+        <script type="module" src="/static/js-build/like.js"></script>
         <script type="module" src="/static/js-build/comments.js"></script>
         <script src="/static/js-build/nav.js"></script>
         <script type="module" src="/static/js-build/main.js"></script>
