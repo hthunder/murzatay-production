@@ -1,5 +1,4 @@
 import { router } from "./router"
-import { sidebarComments } from "./widgets/sidebarComments"
 import { checkCookies } from "./utils/checkCookies"
 import { $ } from "./utils/$"
 
@@ -26,4 +25,3 @@ import { $ } from "./utils/$"
 checkCookies()
 
 router()
-sidebarComments()

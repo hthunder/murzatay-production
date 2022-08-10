@@ -16,23 +16,6 @@
         <section class="main">
             <article class="topic">
                 <div id="react-like"></div>
-                {{!-- {{#if isLoggedIn}}
-                    {{#if favourite}}
-                        <button
-                            data-article-id="{{article._id}}"
-                            data-user-id="{{userId}}"
-                            class="topic__add-favourite topic__add-favourite_active"
-                        >
-                        </button>
-                    {{else}}
-                        <button
-                            data-article-id="{{article._id}}"
-                            data-user-id="{{userId}}"
-                            class="topic__add-favourite"
-                        ></button>
-                    {{/if}}
-                {{/if}} --}}
-
                 <h1 class="topic__title">{{article.title}}</h1>
                 <div class="topic__layout">{{{article.sanitizedHTML}}}</div>
                 {{#if isAdmin}}
@@ -48,6 +31,7 @@
         </section>
         {{> footer }}
         <script type="module" src="/static/js-build/like.js"></script>
+        <script src="/static/js-build/sidebarComments.js"></script>
         <script type="module" src="/static/js-build/comments.js"></script>
         <script src="/static/js-build/nav.js"></script>
         <script type="module" src="/static/js-build/main.js"></script>
