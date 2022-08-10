@@ -16,7 +16,7 @@
         <section class="main">
             <article class="topic">
                 <div id="react-like"></div>
-                {{#if isLoggedIn}}
+                {{!-- {{#if isLoggedIn}}
                     {{#if favourite}}
                         <button
                             data-article-id="{{article._id}}"
@@ -31,7 +31,7 @@
                             class="topic__add-favourite"
                         ></button>
                     {{/if}}
-                {{/if}}
+                {{/if}} --}}
 
                 <h1 class="topic__title">{{article.title}}</h1>
                 <div class="topic__layout">{{{article.sanitizedHTML}}}</div>

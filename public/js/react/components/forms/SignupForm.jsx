@@ -38,7 +38,7 @@ export function SignupForm(props) {
             passwordEl.current.reportValidity()
         } else {
             axios
-                .post("/api/signup", values)
+                .post("/api/auth/signup", values)
                 .then(() => {
                     setIsActivationStep(true)
                 })

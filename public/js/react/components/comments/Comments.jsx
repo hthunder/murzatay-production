@@ -1,13 +1,14 @@
 import { createRoot } from "react-dom/client"
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 import { NewCommentForm } from "./NewCommentForm.jsx"
 import { Comment } from "./Comment.jsx"
+import { getIdFromSlug } from "../../api/util"
+import { getArticleComments } from "../../api/comments"
 
 function Comments() {
     const [comments, setComments] = useState([])
     const [articleId, setArticleId] = useState(null)
-
+    // TODO make comments sorting
     const addComment = (newComment) => {
         setComments((prevState) => {
             return [...prevState, newComment]
@@ -34,16 +35,13 @@ function Comments() {
     }
 
     useEffect(() => {
-        const slug = window.location.pathname.split("/")[2] // TODO test this function in edge cases
-        axios
-            .get(`/api/id_from_slug?slug=${slug}`)
-            .then((response) => {
-                const { id } = response.data
+        getIdFromSlug()
+            .then((id) => {
                 setArticleId(id)
-                return axios.get(`/api/articles/${id}/comments`)
+                return getArticleComments(id)
             })
             .then((response) => {
-                setComments([...response.data])
+                setComments((prevState) => [...prevState, ...response.data])
             })
     }, [])
 

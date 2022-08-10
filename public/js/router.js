@@ -3,7 +3,6 @@ import { ARTICLE_PREVIEW_SIZE_KB } from "../../constants"
 import { setSizeControl } from "./utils/imgsizeControl"
 import { $ } from "./utils/$"
 import { initArticleRemovingHandlers } from "./pages/articles"
-import { addFavourite } from "./api/api"
 
 const workWithArticles = () => {
     const articleFormImgInput = $(".article-editor__form-file")
@@ -20,10 +19,4 @@ export const router = () => {
     navigoRouter.on("/articles", initArticleRemovingHandlers)
     navigoRouter.on("/articles/add", workWithArticles)
     navigoRouter.on("/articles/:id/edit", workWithArticles)
-    navigoRouter.on("/articles/:id", () => {
-        $(".topic__add-favourite")?.addEventListener("click", (e) => {
-            addFavourite(e.target)
-        })
-    })
-    navigoRouter.resolve()
 }

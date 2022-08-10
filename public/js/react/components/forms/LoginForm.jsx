@@ -11,7 +11,7 @@ export function LoginForm(props) {
     const onSubmit = (e) => {
         e.preventDefault()
         axios
-            .post("/api/signin", {
+            .post("/api/auth/signin", {
                 username,
                 password,
             })

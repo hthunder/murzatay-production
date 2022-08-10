@@ -1,3 +1,4 @@
-import { client } from "./client"
+import axios from "axios"
 
-export const getComments = () => client.get("/comments")
+export const getArticleComments = (id) =>
+    axios.get(`/api/articles/${id}/comments`)

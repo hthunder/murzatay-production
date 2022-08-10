@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { MAX_LENGTH } from "./constants.js"
 import { Textarea } from "../textarea/Textarea.jsx"
+import { getLoggedInValue } from "../../api/auth.js"
 
 export function NewCommentForm(props) {
     const { addComment, articleId } = props
@@ -9,9 +10,7 @@ export function NewCommentForm(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
-        axios.get("/api/logged_in").then((response) => {
-            setIsLoggedIn(response.data.isLoggedIn)
-        })
+        getLoggedInValue().then(setIsLoggedIn)
     }, [])
 
     const onSubmit = (e) => {
