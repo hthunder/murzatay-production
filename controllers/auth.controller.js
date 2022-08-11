@@ -1,9 +1,6 @@
-const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const { validationResult } = require("express-validator")
 const crypto = require("crypto")
-const { concatErrors, mailService, createHash } = require("../util")
-const config = require("../config/auth.config")
+const { mailService } = require("../util")
 const db = require("../models")
 const Token = require("../models/token.model")
 const {
@@ -16,84 +13,11 @@ const {
 
 const User = db.user
 
-// exports.signup = async (req, res) => {
-//     try {
-//         const clientErrors = validationResult(req)
-//         if (!clientErrors.isEmpty()) {
-//             return res.status(400).json({ errors: clientErrors })
-//             // return res
-//             //     .cookie("signupError", concatErrors(clientErrors))
-//             //     .redirect("back")
-//         }
-
-//         const user = new User({
-//             username: req.body.username,
-//             email: req.body.email,
-//             city: req.body.city,
-//             password: bcrypt.hashSync(req.body.password1, 8),
-//             activationHash: createHash(),
-//         })
-//         await user.save()
-
-//         const { protocol } = req
-//         mailService(
-//             user.email,
-//             "Подтверждение регистрации на сайте",
-//             `${protocol}://${req.get("host")}/auth/activation?h=${
-//                 user.activationHash
-//             }`
-//         )
-
-//         return res.status(200).send()
-//         // .cookie(
-//         //     "murzatayMessage",
-//         //     "Вы успешно зарегистрированы, на вашу почту отправлено письмо с ссылкой активации"
-//         // )
-//         // .redirect("back")
-//     } catch (e) {
-//         return res.status(500).json({ errors: [CLIENT_500_ERROR] })
-//         // return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
-//     }
-// }
-
-// exports.signin = async (req, res) => {
-//     try {
-//         const { user } = req
-
-//         if (
-//             isUserNotExisted(user) ||
-//             isPasswordWrong(req.body.password, user.password)
-//         ) {
-//             return res
-//                 .status(400)
-//                 .json({ errors: ["Пользователь с такими данными не найден."] })
-//             // return res
-//             //     .cookie(
-//             //         "signinError",
-//             //         "Пользователь с такими данными не найден."
-//             //     )
-//             //     .redirect("back")
-//         }
-
-//         const { id, role } = user
-//         const token = issueToken({ id, role }, 86400)
-//         return res.cookie("token", token, { httpOnly: "lax" })
-//         // return res
-//         //     .cookie("token", token, { httpOnly: true, sameSite: "lax" })
-//         //     .redirect("back")
-//     } catch (e) {
-//         return res.status(500).json({
-//             errors: ["Произошла какая-то ошибка, попробуйте еще раз позднее"],
-//         })
-//         // return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("back")
-//     }
-// }
-
 exports.activation = async (req, res) => {
     try {
         const { h } = req.query
         await User.findOneAndUpdate({ activationHash: h }, { active: true })
-        return res.redirect("/")
+        return res.redirect("/?success=Активация прошла успешно")
     } catch (e) {
         return res.cookie("murzatayError", CLIENT_500_ERROR).redirect("/")
     }

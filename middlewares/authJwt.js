@@ -45,12 +45,11 @@ const isActivated = async (req, res, next) => {
             const { email } = user
             const userMessage =
                 "Пользователь не активирован, пройдите по ссылке в почте"
-            const protocol = { req }
             if (email && hash) {
                 mailService(
                     email,
                     "Подтверждение регистрации на сайте",
-                    `${protocol}://${req.get("host")}/auth/activation?h=${hash}`
+                    `${process.env.ORIGIN}/auth/activation?h=${hash}`
                 )
             }
             return res.status(400).json({ errors: [userMessage] })

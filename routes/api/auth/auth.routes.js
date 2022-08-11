@@ -7,6 +7,7 @@ const { isActivated } = require("../../../middlewares/authJwt")
 const User = require("../../../models/user.model")
 const { createHash, mailService } = require("../../../util")
 const { isUserNotExisted, isPasswordWrong, issueToken } = require("./util")
+require("dotenv").config()
 
 const authRouter = express.Router()
 
@@ -54,18 +55,15 @@ authRouter.post("/signup", validators.signup, async (req, res) => {
             username: req.body.username,
             email: req.body.email,
             city: req.body.city,
-            password: bcrypt.hashSync(req.body.password1, 8),
+            password: bcrypt.hashSync(req.body.password, 8),
             activationHash: createHash(),
         })
         await user.save()
 
-        const { protocol } = req
         mailService(
             user.email,
             "Подтверждение регистрации на сайте",
-            `${protocol}://${req.get("host")}/auth/activation?h=${
-                user.activationHash
-            }`
+            `${process.env.ORIGIN}/auth/activation?h=${user.activationHash}`
         )
 
         return res.status(200).send()

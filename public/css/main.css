@@ -472,7 +472,7 @@ h4 {
 }
 
 .error {
-  color: #ff0033;
+  color: #db3646;
 }
 
 .rubrics {
@@ -579,15 +579,14 @@ h4 {
 .auth-form__input {
   border: 1px solid #6b6154;
   border-radius: 3px;
-  font-size: var(--text);
+  font-size: var(--text-sm);
   height: 30px;
   outline: none;
   padding: 0.2em 0.4em;
   width: 100%;
 }
 .auth-form__errors {
-  color: #ff0033;
-  margin-bottom: 15px;
+  font-size: var(--text-sm);
   text-align: left;
 }
 .auth-form__link {
@@ -624,6 +623,7 @@ h4 {
 .auth-form__paragraph {
   text-align: left;
   margin: 1em 0;
+  font-size: var(--text-sm);
 }
 .auth-form__additional-text {
   font-size: var(--text-sm);

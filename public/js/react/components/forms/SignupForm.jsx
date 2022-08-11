@@ -28,30 +28,19 @@ export function SignupForm(props) {
     })
     const [error, setError] = useState("")
     const [isActivationStep, setIsActivationStep] = useState(false)
-    const passwordEl = useRef(null)
-    const passwordRepeatEl = useRef(null)
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (passwordEl.current.value !== passwordRepeatEl.current.value) {
-            passwordEl.current.setCustomValidity("Пароли должны совпадать")
-            passwordEl.current.reportValidity()
-        } else {
-            axios
-                .post("/api/auth/signup", values)
-                .then(() => {
-                    setIsActivationStep(true)
-                })
-                .catch((e) => {
-                    if (e.response) {
-                        setError(e.response.data.errors.join(", "))
-                    }
-                })
-        }
-    }
-
-    const onInput = (e) => {
-        passwordEl.current.setCustomValidity("")
+        axios
+            .post("/api/auth/signup", values)
+            .then(() => {
+                setIsActivationStep(true)
+            })
+            .catch((e) => {
+                if (e.response) {
+                    setError(e.response.data.errors.join(", "))
+                }
+            })
     }
 
     const onChange = (e) => {
@@ -100,15 +89,13 @@ export function SignupForm(props) {
                                     name="password"
                                     value={values.password}
                                     onChange={onChange}
-                                    ref={passwordEl}
-                                    onInput={onInput}
                                     style={{ ...style }}
                                     required
                                 />
                             )}
                         />
                     </label>
-                    {error && <p className="auth-form__errors">{error}</p>}
+                    {error && <p className="auth-form__errors error">{error}</p>}
                     <button className="auth-form__btn" type="submit">
                         Зарегистрироваться
                     </button>

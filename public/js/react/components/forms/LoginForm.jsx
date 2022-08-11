@@ -66,7 +66,7 @@ export function LoginForm(props) {
                 />
             </label>
 
-            {error && <p className="auth-form__errors">{error}</p>}
+            {error && <p className="auth-form__errors error">{error}</p>}
 
             <button className="auth-form__btn" type="submit">
                 Войти

@@ -62,7 +62,7 @@
     &__input {
         border: 1px solid variables.$soya-bean;
         border-radius: 3px;
-        font-size: var(--text);
+        font-size: var(--text-sm);
         height: 30px;
         outline: none;
         padding: 0.2em 0.4em;
@@ -70,8 +70,7 @@
     }
 
     &__errors {
-        color: variables.$torch-red;
-        margin-bottom: 15px;
+        font-size: var(--text-sm);
         text-align: left;
     }
 
@@ -79,7 +78,6 @@
         display: block;
         color: #8c5b3e;
         font-size: var(--text-sm);
-        // margin-bottom: 0.5em;
         text-decoration: none;
         background: none;
         border: none;
@@ -95,10 +93,6 @@
         border: 0;
         border-top: 1px solid variables.$soya-bean;
     }
-    // &__close-btn {
-    //     background: none;
-    //     border-radius: 50%;
-    // }
 
     &__btn {
         background-color: variables.$spicy-mix;
@@ -109,7 +103,6 @@
         margin-top: var(--space-sm);
         font-size: var(--text-sm);
         font-weight: 500;
-        // margin-bottom: 10px;
         outline: none;
         padding: 0.5em 1em;
         user-select: none;
@@ -119,6 +112,7 @@
     &__paragraph {
         text-align: left;
         margin: 1em 0;
+        font-size: var(--text-sm);
     }
 
     &__additional-text {
@@ -127,27 +121,4 @@
         display: block;
         text-align: center;
     }
-    // &__submit:active {
-    //     background-color: variables.$spicy-mix-65;
-    // }
-
-    // &__forgot-pass,
-    // &__back-to-login {
-    //     text-align: left;
-    //     margin-bottom: 16px;
-    // }
-
-    // &__forgot-pass-elem_hidden {
-    //     display: none;
-    // }
-
-    // &__login-elem_hidden {
-    //     display: none;
-    // }
-
-    // @media #{variables.$media-sm} {
-    //     &__btn {
-    //         margin-bottom: 16px;
-    //     }
-    // }
 }
