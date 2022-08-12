@@ -3,6 +3,7 @@ const config = require("../config/auth.config")
 const User = require("../models/user.model")
 const { mailService } = require("../util/mailService")
 const { CLIENT_500_ERROR } = require("../constants")
+require("dotenv").config()
 
 const isLoggedIn = (req, _res, next) => {
     const { token } = req.cookies

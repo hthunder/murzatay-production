@@ -1,8 +1,7 @@
+const createError = require("http-errors")
 const User = require("../../models/user.model")
-const { HttpError } = require("../../util/HttpError")
 
 exports.logged_in_user_get = async (req, res, next) => {
-    // console.log('dsadf')
     try {
         if (req.isLoggedIn) {
             const user = await User.findById(req.userId, {
@@ -11,9 +10,10 @@ exports.logged_in_user_get = async (req, res, next) => {
             }).lean()
             return res.status(200).json(user)
         }
-        throw new HttpError("Пользователь на авторизован", 401)
-    } catch (e) {
-        return next(e)
+        const error = createError(401, "Unauthorized")
+        return next(error)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -25,12 +25,13 @@ exports.user_get = async (req, res, next) => {
             "about avatar city username"
         ).lean()
         if (!user) {
-            throw new HttpError("Пользователь с таким id не существует", 404)
+            const error = createError(404, "User is not existed")
+            return next(error)
         }
 
         return res.status(200).json(user)
-    } catch (e) {
-        return next(e)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -64,12 +65,13 @@ exports.user_patch = async (req, res, next) => {
         }).lean()
 
         if (!user) {
-            throw new HttpError("Пользователь с таким id не существует", 404)
+            const error = createError(404, "User is not existed")
+            return next(error)
         }
 
         return res.status(200).json(user)
-    } catch (e) {
-        return next(e)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -87,9 +89,10 @@ exports.user_favourite_put = async (req, res, next) => {
 
             return res.sendStatus(204)
         }
-        throw new HttpError("Пользователь на авторизован", 401)
-    } catch (e) {
-        return next(e)
+        const error = createError(401, "User is not authorized")
+        return next(error)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -106,8 +109,9 @@ exports.user_favourite_delete = async (req, res, next) => {
             user.save()
             return res.sendStatus(204)
         }
-        throw new HttpError("Пользователь на авторизован", 401)
-    } catch (e) {
-        return next(e)
+        const error = createError(401, "User is not authorized")
+        return next(error)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }

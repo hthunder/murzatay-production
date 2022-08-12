@@ -10,10 +10,10 @@ router.use(checkHeaders)
 router.get("/activation", controller.activation)
 // router.post("/signup", validators.signup, controller.signup)
 // router.post("/signin", isActivated, controller.signin)
-router.post("/forgot-pass", controller.forgot_pass_post)
+// router.post("/forgot-pass", controller.forgot_pass_post)
 router.get("/password-reset", controller.reset_pass_get)
 
-router.post("/password-reset", controller.reset_pass_post)
+// router.post("/password-reset", controller.reset_pass_post)
 router.get("/logout", controller.logout)
 
 module.exports = router

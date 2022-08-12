@@ -1,6 +1,6 @@
-import axios from "axios"
 import React, { useState } from "react"
 import { VisibilityToggle } from "./visibility-toggle/VisibilityToggle.jsx"
+import { login } from "../../api/auth"
 
 export function LoginForm(props) {
     const { openSignupModal, openForgotPassModal } = props
@@ -10,11 +10,7 @@ export function LoginForm(props) {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        axios
-            .post("/api/auth/signin", {
-                username,
-                password,
-            })
+        login({ username, password })
             .then(() => {
                 location.reload()
             })

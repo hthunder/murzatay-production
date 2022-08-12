@@ -9,6 +9,8 @@ module.exports = (env, argv) => ({
         profile: "./public/js/react/components/profile/Profile.jsx",
         nav: "./public/js/react/components/nav/Nav.jsx",
         like: "./public/js/react/components/like-button/LikeButton.jsx",
+        passwordReset:
+            "./public/js/react/components/forms/PasswordResetForm.jsx",
     },
     module: {
         rules: [

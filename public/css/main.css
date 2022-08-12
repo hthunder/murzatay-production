@@ -1442,12 +1442,12 @@ h4 {
   display: none;
 }
 
-.forgot-pass__form {
-  max-width: 350px;
-  border: 1px solid #d9b68b;
-  border-radius: 4px;
-  margin: 0 auto;
-  margin-top: 3em;
+.forgot-pass {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: var(--space-xl);
 }
 
 .hidden {

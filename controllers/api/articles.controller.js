@@ -1,3 +1,4 @@
+const createError = require("http-errors")
 const Article = require("../../models/article.model")
 
 const articleRemove = async (req, res, next) => {
@@ -10,9 +11,9 @@ const articleRemove = async (req, res, next) => {
             })
         }
 
-        res.sendStatus(200)
-    } catch (e) {
-        next(e)
+        return res.sendStatus(200)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 

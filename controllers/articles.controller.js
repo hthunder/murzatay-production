@@ -82,7 +82,6 @@ exports.article_list = async (req, res) => {
             q,
         })
     } catch (e) {
-        console.log(e)
         return res.redirect(`/articles`)
     }
 }

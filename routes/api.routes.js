@@ -1,4 +1,5 @@
 const express = require("express")
+const createError = require("http-errors")
 const upload = require("../middlewares/articleImgHandler")
 const { authorize } = require("../middlewares/api/authentication")
 const { isLoggedIn } = require("../middlewares/authJwt")
@@ -10,7 +11,8 @@ const Article = require("../models/article.model")
 const router = express.Router()
 const apiController = require("../controllers/api.controller")
 const commentsRouter = require("./api/comments.routes")
-const authRouter = require("./api/auth/auth.routes")
+const authRouter = require("./api/auth.routes")
+const { errorHandlerMiddleware } = require("../middlewares/api/error-handler")
 
 router.get("/logged_in", isLoggedIn, (req, res) => {
     return res
@@ -22,8 +24,8 @@ router.get("/id_from_slug", async (req, res, next) => {
     try {
         const article = await Article.findOne({ slug: req.query.slug }).lean()
         return res.status(200).json({ id: article._id })
-    } catch (e) {
-        next(e) // TODO check if it is needed operation
+    } catch (err) {
+        return next(createError(500, err))
     }
 })
 
@@ -50,17 +52,6 @@ router.all("*", isLoggedIn, (req, res, next) => {
     next(new HttpError("Запрашиваемый url не существует", 404))
 })
 
-// eslint-disable-next-line no-unused-vars
-router.use((error, req, res, next) => {
-    if (error.codeName === "DuplicateKey") {
-        error.statusCode = 409
-        if (error.keyPattern && error.keyPattern.username === 1) {
-            error.message =
-                "Пользователь с данным именем уже существует. Выберите другое имя пользователя."
-        }
-    }
-    if (!error.statusCode) error.statusCode = 500
-    return res.status(error.statusCode).json({ message: error.message })
-})
+router.use(errorHandlerMiddleware)
 
 module.exports = router

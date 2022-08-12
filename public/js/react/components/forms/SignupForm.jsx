@@ -1,6 +1,6 @@
-import axios from "axios"
 import React, { useState, useRef } from "react"
 import { VisibilityToggle } from "./visibility-toggle/VisibilityToggle.jsx"
+import { signup } from "../../api/auth"
 
 function ActivationInfo(props) {
     const { email } = props
@@ -31,8 +31,7 @@ export function SignupForm(props) {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        axios
-            .post("/api/auth/signup", values)
+        signup(values)
             .then(() => {
                 setIsActivationStep(true)
             })
@@ -95,7 +94,9 @@ export function SignupForm(props) {
                             )}
                         />
                     </label>
-                    {error && <p className="auth-form__errors error">{error}</p>}
+                    {error && (
+                        <p className="auth-form__errors error">{error}</p>
+                    )}
                     <button className="auth-form__btn" type="submit">
                         Зарегистрироваться
                     </button>

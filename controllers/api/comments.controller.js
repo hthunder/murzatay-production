@@ -1,7 +1,6 @@
+const createError = require("http-errors")
 const Comment = require("../../models/comment.model")
 const Article = require("../../models/article.model")
-const { LONG_COMMENT } = require("../../constants")
-const { HttpError } = require("../../util/HttpError")
 
 exports.comments_get = async (req, res, next) => {
     try {
@@ -12,8 +11,8 @@ exports.comments_get = async (req, res, next) => {
             .sort({ date: -1 })
             .lean()
         return res.status(200).json(comments)
-    } catch (e) {
-        return next(e)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -38,9 +37,10 @@ exports.comment_post = async (req, res, next) => {
             await article.save()
             return res.status(200).json(populatedComment)
         }
-        throw new HttpError(LONG_COMMENT, 400)
-    } catch (e) {
-        return next(e)
+        const error = createError(400, "Too much symbols")
+        return next(error)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -48,11 +48,12 @@ exports.comment_delete = async (req, res, next) => {
     try {
         const comment = await Comment.findByIdAndDelete(req.params.id)
         if (!comment) {
-            throw new HttpError("Такого комментария не существует", 404)
+            const error = createError(404, "Comment is not exist")
+            return next(error)
         }
         return res.status(200).send("Комментарий успешно удален")
-    } catch (e) {
-        return next(e)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }
 
@@ -66,10 +67,11 @@ exports.comment_put = async (req, res, next) => {
             { new: true }
         ).lean()
         if (!comment) {
-            throw new HttpError("Такого комментария не существует", 404)
+            const error = createError(404, "Comment is not exist")
+            return next(error)
         }
         return res.status(200).json({ text: comment.text })
-    } catch (e) {
-        return next(e)
+    } catch (err) {
+        return next(createError(500, err))
     }
 }

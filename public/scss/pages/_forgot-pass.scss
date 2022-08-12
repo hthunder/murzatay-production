@@ -1,11 +1,9 @@
-@use '../abstracts/variables';
+@use "../abstracts/variables";
 
 .forgot-pass {
-    &__form {
-        max-width: 350px;
-        border: 1px solid variables.$tumbleweed;
-        border-radius: 4px;
-        margin: 0 auto;
-        margin-top: 3em;
-    }
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: var(--space-xl);
 }
