@@ -1,39 +1,58 @@
 import { createRoot } from "react-dom/client"
 import React, { useState, useEffect } from "react"
-import { NewCommentForm } from "./NewCommentForm.jsx"
+import { CommentForm } from "./CommentForm.jsx"
 import { Comment } from "./Comment.jsx"
 import { getIdFromSlug } from "../../api/util"
-import { getArticleComments } from "../../api/comments"
+import {
+    getArticleComments,
+    deleteComment as deleteCommentApi,
+    updateComment as updateCommentApi,
+    createComment as createCommentApi,
+} from "../../api/comments"
 import { getAuthInfo } from "../../api/auth.js"
 
 function Comments() {
     const [comments, setComments] = useState([])
     const [articleId, setArticleId] = useState(null)
     const [authInfo, setAuthInfo] = useState(null)
+    const [editingId, setEditingId] = useState(null)
     // TODO make comments sorting
-    const addComment = (newComment) => {
-        setComments((prevState) => {
-            return [...prevState, newComment]
-        })
+    const addComment = async (text, resetText) => {
+        try {
+            const response = await createCommentApi(articleId, text)
+            const newComment = response.data
+
+            setComments((prevState) => {
+                return [...prevState, newComment]
+            })
+            resetText()
+        } catch (e) {}
     }
 
-    const updateComment = (id, update) => {
-        setComments((prevState) => {
-            return prevState.map((comment) => {
-                if (comment._id === id) {
-                    return { ...comment, ...update }
-                }
-                return comment
+    const updateComment = async (id, text) => {
+        try {
+            const response = await updateCommentApi(id, text)
+            const updatedComment = response.data
+
+            setComments((prevState) => {
+                return prevState.map((comment) => {
+                    if (comment._id === id) {
+                        return { ...comment, ...updatedComment }
+                    }
+                    return comment
+                })
             })
-        })
+            setEditingId(null)
+        } catch (e) {}
     }
 
-    const deleteComment = (id) => {
-        setComments((prevState) => {
-            return prevState.filter((comment) => {
-                return comment._id !== id
+    const deleteComment = async (id) => {
+        try {
+            await deleteCommentApi(id)
+            setComments((prevState) => {
+                return prevState.filter((comment) => comment._id !== id)
             })
-        })
+        } catch (e) {}
     }
 
     useEffect(() => {
@@ -50,7 +69,19 @@ function Comments() {
 
     return (
         <section className="topic__comments comments">
-            <NewCommentForm addComment={addComment} articleId={articleId} />
+            {authInfo && authInfo.isLoggedIn ? (
+                <div className="comments__add-form">
+                    <p className="comments__welcome-message">
+                        Оставьте свой комментарий
+                    </p>
+                    <CommentForm sendComment={addComment} />
+                </div>
+            ) : (
+                <p className="comments__unauthorized">
+                    Для того чтобы оставить комментарий, войдите или
+                    зарегистрируйтесь
+                </p>
+            )}
             {comments.map((comment) => (
                 <Comment
                     key={comment._id}
@@ -58,6 +89,8 @@ function Comments() {
                     authInfo={authInfo}
                     deleteComment={deleteComment}
                     updateComment={updateComment}
+                    editingId={editingId}
+                    setEditingId={setEditingId}
                 />
             ))}
         </section>

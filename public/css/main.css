@@ -1268,17 +1268,20 @@ h4 {
   display: none;
 }
 .comments__instance-author {
+  margin-bottom: var(--space-xxs);
   font-family: Lora;
   font-size: var(--text-sm);
   font-weight: 600;
-  margin-bottom: 5px;
 }
 .comments__instance-text {
+  margin-bottom: var(--space-xxs);
   font-family: Raleway;
   font-size: var(--text-sm);
   word-wrap: break-word;
 }
 .comments__instance-date {
+  margin-bottom: var(--space-xxs);
+  display: inline-block;
   font-family: Raleway;
   font-size: var(--text-xs);
 }
@@ -1293,7 +1296,7 @@ h4 {
   max-width: 640px;
 }
 .comments__add-form {
-  position: relative;
+  margin-bottom: var(--space-sm);
 }
 .comments__unauthorized {
   font-size: var(--text-sm);

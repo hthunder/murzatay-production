@@ -38,6 +38,7 @@ const articleCommentsGet = catchAsync(async (req, res, next) => {
         // const { userId, userRole } = req
 
         const comments = await articleService.getArticleComments(articleId)
+        console.log(comments)
         // if (isLoggedIn(userId)) { // TODO make public api and make authorization on client
         //     const modifiedComments = comments.map((comment) => ({
         //         ...comment,

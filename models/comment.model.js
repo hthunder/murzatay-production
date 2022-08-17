@@ -2,22 +2,20 @@ const mongoose = require("mongoose")
 // TODO убрать escapeHTML
 const escapeHtml = require("escape-html")
 
-const commentSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+const commentSchema = new mongoose.Schema(
+    {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
+        text: {
+            type: String,
+            required: true,
+        },
     },
-    text: {
-        type: String,
-        required: true,
-    },
-    date: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
-})
+    { timestamps: true }
+)
 
 commentSchema.pre("validate", function validate(next) {
     if (this.text) {

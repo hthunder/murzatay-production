@@ -6,7 +6,7 @@ const getArticleComments = async (id) => {
     const { comments } = await Article.findById(id, "comments")
         .populate({
             path: "comments",
-            options: { sort: { date: -1 } },
+            options: { sort: { createdAt: -1 } },
             populate: {
                 path: "user",
                 select: "username avatar",
