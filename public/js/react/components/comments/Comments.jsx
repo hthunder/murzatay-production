@@ -4,10 +4,12 @@ import { NewCommentForm } from "./NewCommentForm.jsx"
 import { Comment } from "./Comment.jsx"
 import { getIdFromSlug } from "../../api/util"
 import { getArticleComments } from "../../api/comments"
+import { getAuthInfo } from "../../api/auth.js"
 
 function Comments() {
     const [comments, setComments] = useState([])
     const [articleId, setArticleId] = useState(null)
+    const [authInfo, setAuthInfo] = useState(null)
     // TODO make comments sorting
     const addComment = (newComment) => {
         setComments((prevState) => {
@@ -43,6 +45,7 @@ function Comments() {
             .then((response) => {
                 setComments((prevState) => [...prevState, ...response.data])
             })
+        getAuthInfo().then(setAuthInfo)
     }, [])
 
     return (
@@ -52,6 +55,7 @@ function Comments() {
                 <Comment
                     key={comment._id}
                     data={comment}
+                    authInfo={authInfo}
                     deleteComment={deleteComment}
                     updateComment={updateComment}
                 />

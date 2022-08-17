@@ -4,8 +4,18 @@ import { MAX_LENGTH } from "./constants.js"
 import { Textarea } from "../textarea/Textarea.jsx"
 import { formatDate } from "../../utils/formatDate.js"
 
+const canDelete = (userRole, userId, commentOwnerId) => {
+    return (
+        ["admin", "moderator"].includes(userRole) || userId === commentOwnerId
+    )
+}
+
+const canEdit = (userId, commentOwnerId) => {
+    return userId === commentOwnerId
+}
+
 export function Comment(props) {
-    const { data, deleteComment, updateComment } = props
+    const { data, deleteComment, updateComment, authInfo } = props
     const [text, setText] = useState(data.text)
     const [isEditing, setIsEditing] = useState(false)
 
@@ -67,7 +77,7 @@ export function Comment(props) {
                             {formatDate(data.date)}
                         </time>
                         <div className="comments__actions">
-                            {data.isEditable && (
+                            {canEdit(authInfo.userId, data.user._id) && (
                                 <button
                                     className="button comments__edit-button"
                                     type="button"
@@ -78,7 +88,11 @@ export function Comment(props) {
                                     Редактировать
                                 </button>
                             )}
-                            {data.isDeletable && (
+                            {canDelete(
+                                authInfo.userRole,
+                                authInfo.userId,
+                                data.user._id
+                            ) && (
                                 <button
                                     className="button button_secondary comments__delete-button"
                                     type="button"

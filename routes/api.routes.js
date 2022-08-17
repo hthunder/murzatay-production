@@ -15,9 +15,12 @@ const authRouter = require("./api/auth.routes")
 const { errorHandlerMiddleware } = require("../middlewares/api/error-handler")
 
 router.get("/logged_in", isLoggedIn, (req, res) => {
-    return res
-        .status(200)
-        .json({ isLoggedIn: req.isLoggedIn, userId: req.userId })
+    // TODO change route name to /auth_info or something like that
+    return res.status(200).json({
+        isLoggedIn: req.isLoggedIn,
+        userId: req.userId,
+        userRole: req.userRole,
+    })
 })
 
 router.get("/id_from_slug", async (req, res, next) => {
@@ -43,7 +46,7 @@ router.post(
     apiController.image_post
 )
 
-router.use("/articles", authorize("admin"), articlesRouter)
+router.use("/articles", articlesRouter)
 router.use("/users", usersRouter)
 router.use("/comments", commentsRouter)
 router.use("/auth", authRouter)

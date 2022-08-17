@@ -1,17 +1,27 @@
 const express = require("express")
-const { authenticate } = require("../../middlewares/api/authentication")
-const { articleRemove } = require("../../controllers/api/articles.controller")
+const {
+    authenticate,
+    authorize,
+} = require("../../middlewares/api/authentication")
+const {
+    articleRemove,
+    articleCommentsGet,
+    articleGet,
+    allArticlesGet,
+} = require("../../controllers/api/articles.controller")
 const { isLoggedIn } = require("../../middlewares/authJwt")
-const apiController = require("../../controllers/api.controller")
+// const apiController = require("../../controllers/api.controller")
+// const { authorize } = require("../../middlewares/api/authentication")
 
 const articlesRouter = express.Router()
 
-articlesRouter.delete("/:id", authenticate, articleRemove)
+articlesRouter.delete("/:id", authenticate, authorize("admin"), articleRemove)
 
-articlesRouter.get(
-    "/:articleId/comments",
-    isLoggedIn,
-    apiController.articleComments_get
-)
+articlesRouter.get("/", allArticlesGet)
+
+articlesRouter.get("/:articleId/comments", articleCommentsGet)
+
+articlesRouter.get("/:articleId", articleGet)
+// articlesRouter.get("/:articleId")
 
 module.exports = articlesRouter

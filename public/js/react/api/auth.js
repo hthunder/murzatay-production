@@ -3,6 +3,9 @@ import axios from "axios"
 export const getLoggedInValue = () =>
     axios.get("/api/logged_in").then((response) => response.data.isLoggedIn)
 
+export const getAuthInfo = () =>
+    axios.get("/api/logged_in").then((response) => response.data)
+
 export const login = (data) => axios.post("/api/auth/signin", data)
 
 export const signup = (data) => axios.post("/api/auth/signup", data)

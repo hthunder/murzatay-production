@@ -27,7 +27,7 @@ const authorize = (roles = []) => {
     }
 
     return [
-        authenticate,
+        authenticate, // TODO check is it needed?
         (req, res, next) => {
             if (roles.includes("owner") && req.userId === req.params.id) {
                 return next()

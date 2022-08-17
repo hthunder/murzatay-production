@@ -1,3 +1,4 @@
+const axios = require("axios").default
 const Article = require("../models/article.model")
 const Rubric = require("../models/rubric.model")
 const Comment = require("../models/comment.model")
@@ -6,6 +7,8 @@ const util = require("../util/saveArticleAndRedirect")
 const { convertDate } = require("../util/convertDate")
 const { addCanDeleteField } = require("../util/addCanDeleteField")
 const { RUBRICS, ARTICLES_LIMIT } = require("../constants")
+const articleService = require("../services/articles.service")
+const rubricService = require("../services/rubric.service")
 
 const getPaginationData = (page, numberOfArticles, limit) => {
     const current = parseInt(page, 10)
@@ -38,37 +41,25 @@ const getPaginationData = (page, numberOfArticles, limit) => {
 
 exports.article_list = async (req, res) => {
     try {
-        const { page = 1, category = "all", q = "" } = req.query
-        const safePage = page >= 1 ? page : 1
-        // TODO возможно сделать одинаковое название у рубрики и категории
-        const getAndCountArticles = async (searchRule, countRule, rubric) => {
-            const articles = await Article.find(searchRule)
-                .sort("-createdAt")
-                .skip(ARTICLES_LIMIT * (safePage - 1))
-                .limit(ARTICLES_LIMIT)
-                .lean()
-            const numberOfArticles = await Article.countDocuments(countRule)
-            const heading = rubric ? rubric.name : "Все статьи"
-            return { articles, numberOfArticles, heading }
-        }
-
-        const searchRule = {
-            title: { $regex: q, $options: "i" },
-        }
-        const rubric = await Rubric.findOne({ slug: category })
-        const { articles, numberOfArticles, heading } = await (!rubric
-            ? getAndCountArticles(searchRule, {})
-            : getAndCountArticles(
-                  { ...searchRule, rubric: rubric._id },
-                  { rubric: rubric._id },
-                  rubric
-              ))
-
-        const pagination = getPaginationData(
-            safePage,
-            numberOfArticles,
-            ARTICLES_LIMIT
+        const { page = 1, category = "", q = "" } = req.query
+        const { data: articles } = await axios.get(
+            `/api/articles?page=${page}&category=${category}&q=${q}&limit=${ARTICLES_LIMIT}&sortOrder=desc`
         )
+        const total = await articleService.countArticles({
+            searchString: q,
+            rubricSlug: category,
+        })
+        let rubric
+
+        if (category) {
+            rubric = await rubricService.getRubricBySlug(category)
+        }
+
+        const safePage = page >= 1 ? page : 1
+        // TODO make a test for bad page number
+        // TODO возможно сделать одинаковое название у рубрики и категории
+        const heading = rubric ? rubric.name : "Все статьи"
+        const pagination = getPaginationData(safePage, total, ARTICLES_LIMIT)
 
         return res.render("articles", {
             layout: false,
@@ -77,7 +68,7 @@ exports.article_list = async (req, res) => {
             category,
             isAdmin: req.userRole === "admin",
             isLoggedIn: req.isLoggedIn,
-            isEmptyArticleList: numberOfArticles < 1,
+            isEmptyArticleList: total < 1,
             heading,
             q,
         })
@@ -89,37 +80,18 @@ exports.article_list = async (req, res) => {
 exports.article_page = async (req, res) => {
     try {
         const { slug } = req.params
-        let favourite = false
-        const article = await Article.findOne({ slug })
-            .populate("comments")
-            .lean()
-        if (article == null) return res.redirect("/")
-        let user
 
-        if (req.isLoggedIn) {
-            user = await User.findById(req.userId).select("-password").lean()
-            const favouriteArray = user.favourites.map((val) => val.toString())
-            if (favouriteArray.indexOf(article._id.toString()) !== -1) {
-                favourite = true
-            }
-        }
+        const { data: article } = await axios.get(
+            `/api/articles/${slug}?slugSearch=true`
+        )
 
-        article.comments = convertDate(article.comments)
-        if (req.userId) {
-            article.comments = addCanDeleteField(article.comments, req.userId)
-        }
-        article.comments.reverse()
         return res.render("topic", {
             layout: false,
-            favourite,
-            isLoggedIn: req.isLoggedIn,
             isAdmin: req.userRole === "admin",
-            user,
             article,
-            userId: req.userId,
         })
     } catch (e) {
-        return res.status(500).end()
+        return res.redirect("/")
     }
 }
 

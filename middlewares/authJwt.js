@@ -19,9 +19,10 @@ const isLoggedIn = (req, _res, next) => {
         } else {
             req.isLoggedIn = true
             req.userId = decoded.id
-            req.userRole = decoded.role
+            req.userRole = decoded.role // TODO remove it, here will be a problem if role will change, add here getting a role from db
         }
     })
+    console.log(req.userId)
     return next()
 }
 

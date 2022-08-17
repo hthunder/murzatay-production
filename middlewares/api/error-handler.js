@@ -28,6 +28,7 @@ function getHttpStatusCode({ error, response }) {
 }
 
 exports.errorHandlerMiddleware = (error, req, res, next) => {
+    console.log("route", req.originalUrl)
     logErrorMessage(error)
 
     // If response headers have already been sent,

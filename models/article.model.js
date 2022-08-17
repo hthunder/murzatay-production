@@ -33,7 +33,7 @@ const articleSchema = new mongoose.Schema(
         },
         rubric: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Rubric",
+            ref: "Rubric", // TODO is it required?
         },
         img: {
             type: String,
